@@ -1,3 +1,24 @@
+<?php
+error_reporting(0);
+session_start();
+ob_start();
+
+
+$pagename = $_GET["pagename"];
+$explode = explode("_", $pagename);
+$include = "";
+$module = "";
+$page = "";
+if (count($explode) >= 2) {
+    $include = $explode[1] . "/" . $pagename;
+    $module = $explode[1];
+    $page = $explode[0] . " " . $explode[1];
+} else {
+    $include = "dashboard";
+    $module = "Home";
+    $page = "Dashboard";
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -35,8 +56,14 @@
         <div id="sidebar">
             <?php include './leftmenu.php'; ?>
         </div>
+
         <div id="content">
-            <?php include './dashboard.php'; ?>
+            <div id="content-header">
+                <div id="breadcrumb"> 
+                    <a href="index.php" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a>
+                </div>
+            </div>
+            <?php include '' . $include . ".php"; ?>
         </div>
     </div>
 </div>
