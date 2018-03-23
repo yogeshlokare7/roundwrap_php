@@ -4,7 +4,7 @@ $packslip = MysqlConnection::fetchAll("customer_master");
 <div id="content-header">
     <div id="breadcrumb"> 
         <a  class="tip-bottom"><i class="icon-home"></i> Home</a>
-        <a class="tip-bottom"><i class="icon-home"></i>Packing Slip</a>
+        <a class="tip-bottom"><i class="icon-home"></i>invoice</a>
     </div>
 </div>
 
@@ -12,7 +12,7 @@ $packslip = MysqlConnection::fetchAll("customer_master");
     <div class="widget-box">
         <div class="widget-title">
             <span class="icon"><i class="icon-th"></i></span> 
-            <h5>PACKING SLIP</h5>
+            <h5>INVOICE</h5>
         </div>
         <div class="widget-content nopadding">
             <table class="table table-bordered data-table">
