@@ -14,62 +14,68 @@ $listofcompany = MysqlConnection::fetchAll("company_master");
             <h5>Company Master</h5>
         </div>
         <div class="widget-content nopadding">
-            <table class="table table-bordered data-table">
-                <thead>
-                     <tr>
-                        <th style="width: 2.3%">#</th>
-                        <th style="width: 2.3%">#</th>            				
-                        <th>ID</th>
-                        <th>Name</th>
-                        <th>Street No</th>
-                        <th>Street Name</th>
-                        <th>City</th>
-                        <th>Email</th>
-                        <th>Phone No</th>
-                        <th>Website</th>
-                        
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php
-                    foreach ($listofcompany as $key => $value) {
-                        ?>
-                         <tr class="gradeX">
-                            <td><a href="#" class="tip-top" data-original-title="Edit Record"><i  class="icon-edit"></i></a></td>
-                            <td><a href="#myAlert" data-toggle="modal"  class="tip-top" data-original-title="Delete Record"><i class="icon-remove"></i></a> </td>
-                            <td><?php echo $value["cmp_id"] ?></td>
-                            <td><?php echo $value["cmp_name"] ?></td>
-                            <td><?php echo $value["streetNo"] ?></td>
-                            <td><?php echo $value["streetName"] ?></td>
-                            <td><?php echo $value["city"] ?></td>
-                            <td><?php echo $value["email"] ?></td>
-                            <td><?php echo $value["phno"] ?></td>
-                            <td><?php echo $value["cmp_website"] ?></td>
-                            
-                        </tr>
-                        <?php
-                    }
-                    ?>
+            <form name="companymaster" id="companymaster" method="POST">
+                <table class="table table-bordered data-table">
+                    <thead>
+                        <tr>
+                            <th style="width: 2.3%">#</th>
+                            <th style="width: 2.3%">#</th>            				
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Street No</th>
+                            <th>Street Name</th>
+                            <th>City</th>
+                            <th>Email</th>
+                            <th>Phone No</th>
+                            <th>Website</th>
 
-                </tbody>
-            </table>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                        foreach ($listofcompany as $key => $value) {
+                            ?>
+                            <tr class="gradeX">
+                                <td><a href="#" class="tip-top" data-original-title="Edit Record"><i  class="icon-edit"></i></a></td>
+                                <td><a href="#myAlert" onclick="setDeleteField('<?php echo $value["cmp_id"] ?>')" data-toggle="modal"  class="tip-top" data-original-title="Delete Record"><i class="icon-remove"></i></a> </td>
+                                <td><?php echo $value["cmp_id"] ?></td>
+                                <td><?php echo $value["cmp_name"] ?></td>
+                                <td><?php echo $value["streetNo"] ?></td>
+                                <td><?php echo $value["streetName"] ?></td>
+                                <td><?php echo $value["city"] ?></td>
+                                <td><?php echo $value["email"] ?></td>
+                                <td><?php echo $value["phno"] ?></td>
+                                <td><?php echo $value["cmp_website"] ?></td>
+
+                            </tr>
+                            <?php
+                        }
+                        ?>
+
+                    </tbody>
+                </table>
+                <input type="hidden" id="deleteId" name="cid" value="">
+                <input type="hidden" id="flag" name="flag" value="">
+            </form>
         </div>
     </div>
 </div>
-<div id="myAlert" class="modal hide" style="width: 400px;top: 30%;left: 50%;">
-    <div class="modal-header">
-        <button data-dismiss="modal" class="close" type="button">×</button>
-        <h3>Action Alert !!!</h3>
-    </div>
-    <div class="modal-body">
-        <p>Are you sure you want to delete this Item ???</p>
-    </div>
-    <div class="modal-footer"> 
-        <a id="deleteThis" data-dismiss="modal" class="btn btn-primary">Confirm</a> 
-        <a data-dismiss="modal" class="btn" href="#">Cancel</a> 
-    </div>
-</div>
 <script>
-    $("#myAlert").click(function () {
+    $("#deleteThis").click(function () {
+        var dataString = "deleteId=" + $('#deleteId').val();
+        $.ajax({
+            type: 'POST',
+            url: 'companymaster/companymaster_ajax.php',
+            data: dataString
+        }).done(function (data) {
+//            location.reload();
+        }).fail(function () {
+        });
+        location.reload();
     });
+
+    function setDeleteField(deleteId) {
+        document.getElementById("deleteId").value = deleteId;
+    }
+
 </script>

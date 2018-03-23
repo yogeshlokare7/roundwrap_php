@@ -1,7 +1,7 @@
 <?php //
-$listofunit = MysqlConnection::fetchCustom("SELECT * FROM generic_entry WHERE type = 'unit_name' ");
+$listofpackingtype = MysqlConnection::fetchCustom("SELECT * FROM generic_entry WHERE type = 'unit_name' ");
 ?>
-<title>RoundWrap</title>
+
 
 <div id="content-header">
     <div id="breadcrumb"> 
@@ -16,6 +16,7 @@ $listofunit = MysqlConnection::fetchCustom("SELECT * FROM generic_entry WHERE ty
             <h5>Packing Type</h5>
         </div>
         <div class="widget-content nopadding">
+            <form name="packingtype" id="packingtype" method="POST">
             <table class="table table-bordered data-table">
                 <thead>
                     <tr>
@@ -28,7 +29,7 @@ $listofunit = MysqlConnection::fetchCustom("SELECT * FROM generic_entry WHERE ty
                 </thead>
                 <tbody>
                     <?php
-                    foreach ($listofunit as $key => $value) {
+                    foreach ($listofpackingtype as $key => $value) {
                         ?>
                         <tr class="gradeX">
                             <td><a href="#" class="tip-top" data-original-title="Edit Record"><i  class="icon-edit"></i></a></td>
@@ -43,23 +44,29 @@ $listofunit = MysqlConnection::fetchCustom("SELECT * FROM generic_entry WHERE ty
 
                 </tbody>
             </table>
+                <input type="hidden" id="deleteId" name="cid" value="">
+                <input type="hidden" id="flag" name="flag" value="">
+            </form>
         </div>
     </div>
 </div>
-<div id="myAlert" class="modal hide" style="width: 400px;top: 30%;left: 50%;">
-    <div class="modal-header">
-        <button data-dismiss="modal" class="close" type="button">×</button>
-        <h3>Action Alert !!!</h3>
-    </div>
-    <div class="modal-body">
-        <p>Are you sure you want to delete this Item ???</p>
-    </div>
-    <div class="modal-footer"> 
-        <a id="deleteThis" data-dismiss="modal" class="btn btn-primary">Confirm</a> 
-        <a data-dismiss="modal" class="btn" href="#">Cancel</a> 
-    </div>
-</div>
 <script>
-    $("#myAlert").click(function() {
+    $("#deleteThis").click(function () {
+        var dataString = "deleteId=" + $('#deleteId').val();
+        $.ajax({
+            type: 'POST',
+            url: 'packingtype/packingtype_ajax.php',
+            data: dataString
+        }).done(function (data) {
+            $("#flagmsg").append("<br/><div id='successMessage' class='alert alert-success'><button class='close' data-dismiss='alert'>×</button><strong>Success!</strong>Record Deleted Successfully !!!</div>");
+        }).fail(function () {
+            $("#flagmsg").append("fail");
+        });
+        location.reload();
     });
+
+    function setDeleteField(deleteId) {
+        document.getElementById("deleteId").value = deleteId;
+    }
+
 </script>

@@ -58,7 +58,7 @@ $listofprofiles = MysqlConnection::fetchAll("profile_master");
         var dataString = "deleteId=" + $('#deleteId').val();
         $.ajax({
             type: 'POST',
-            url: 'profilemaster/profilemaster_ajax.php',
+            url: 'taxname/taxname_ajax.php',
             data: dataString
         }).done(function(data) {
         }).fail(function() {
