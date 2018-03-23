@@ -9,6 +9,7 @@ $listofprofiles = MysqlConnection::fetchAll("profile_master");
         <a href="manage_profilemaster.php" title="View Profile Master" class="tip-bottom"><i class="icon-home"></i>View Profile Master</a>
     </div>
 </div>
+
 <div class="container-fluid">
     <div class="widget-box">
         <div class="widget-title">
