@@ -18,8 +18,8 @@ $listCreateOrders = MysqlConnection::fetchAll("sales_order");
             <table class="table table-bordered data-table">
                 <thead>
                     <tr>
-                        <th></th>
-                        <th></th>
+                        <th style="width: 2.3%">#</th>
+                        <th style="width: 2.3%">#</th>  
                         <th>ID</th>
                         <th>PO ID</th>
                         <th>Customer Name</th>
@@ -38,10 +38,9 @@ $listCreateOrders = MysqlConnection::fetchAll("sales_order");
                     foreach ($listCreateOrders as $key => $value) {
                         ?>
                         <tr class="gradeX">
-                            <td></td>
-                            <td></td>
+                            <td><a href="#" class="tip-top" data-original-title="Edit Record"><i  class="icon-edit"></i></a></td>
+                            <td><a href="#" class="tip-top" data-original-title="Delete Record"><i  class="icon-remove"></i></a> </td>
                             <td><?php echo $value["id"] ?></td>
-                            <td><?php echo $value["purchaseOrderId"] ?></td>
                             <td><?php echo $value["customer_id"] ?></td>
                             <td><?php echo $value["expected_date"] ?></td>
                             <td></td>

@@ -18,8 +18,8 @@ $listSalesOrders = MysqlConnection::fetchAll("customer_packing_slip");
             <table class="table table-bordered data-table">
                 <thead>
                     <tr>
-                        <th></th>
-                        <th></th>
+                        <th style="width: 2.3%">#</th>
+                        <th style="width: 2.3%">#</th>  
                         <th>ID</th>
                         <th>Customer Name</th>
                         <th>Ordered Items</th>
@@ -35,8 +35,8 @@ $listSalesOrders = MysqlConnection::fetchAll("customer_packing_slip");
                     foreach ($listSalesOrders as $key => $value) {
                         ?>
                         <tr class="gradeX">
-                            <td></td>
-                            <td></td>
+                            <td><a href="#" class="tip-top" data-original-title="Edit Record"><i  class="icon-edit"></i></a></td>
+                            <td><a href="#" class="tip-top" data-original-title="Delete Record"><i  class="icon-remove"></i></a> </td>
                             <td><?php echo $value["cpsId"] ?></td>
                             <td><?php echo $value["customerId"] ?></td>
                             <td><?php echo $value["itemQty"] ?></td>
