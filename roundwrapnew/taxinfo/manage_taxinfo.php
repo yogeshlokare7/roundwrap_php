@@ -34,7 +34,7 @@ $listoftaxinfo = MysqlConnection::fetchAll("taxinfo_table");
                             ?>
                             <tr class="gradeX">
                                 <td><a href="#" class="tip-top" data-original-title="Edit Record"><i  class="icon-edit"></i></a></td>
-                                <td><a href="#myAlert" data-toggle="modal"  class="tip-top" data-original-title="Delete Record"><i class="icon-remove"></i></a> </td>
+                                <td><a href="#myAlert" data-toggle="modal"  onclick="setDeleteField('<?php echo $value["id"] ?>')"  class="tip-top" data-original-title="Delete Record"><i class="icon-remove"></i></a> </td>
                                 <td><?php echo $value["country"] ?></td>
                                 <td><?php echo $value["province"] ?></td>
                                 <td><?php echo $value["tax"] ?></td>
@@ -53,16 +53,14 @@ $listoftaxinfo = MysqlConnection::fetchAll("taxinfo_table");
     </div>
 </div>
 <script>
-    $("#deleteThis").click(function () {
+    $("#deleteThis").click(function() {
         var dataString = "deleteId=" + $('#deleteId').val();
         $.ajax({
             type: 'POST',
             url: 'taxinfo/taxinfo_ajax.php',
             data: dataString
-        }).done(function (data) {
-            $("#flagmsg").append("<br/><div id='successMessage' class='alert alert-success'><button class='close' data-dismiss='alert'>×</button><strong>Success!</strong>Record Deleted Successfully !!!</div>");
-        }).fail(function () {
-            $("#flagmsg").append("fail");
+        }).done(function(data) {
+        }).fail(function() {
         });
         location.reload();
     });
