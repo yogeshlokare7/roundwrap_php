@@ -1,5 +1,5 @@
 <?php
-$packslip = MysqlConnection::fetchAll("customer_master");
+$packslip = MysqlConnection::fetchAll(" ");
 ?>
 <div id="content-header">
     <div id="breadcrumb"> 
@@ -36,13 +36,13 @@ $packslip = MysqlConnection::fetchAll("customer_master");
                         <tr class="gradeX">
                             <td><a href="#" class="tip-top" data-original-title="Edit Record"><i  class="icon-edit"></i></a></td>
                             <td><a href="#myAlert" data-toggle="modal"  class="tip-top" data-original-title="Delete Record"><i class="icon-remove"></i></a> </td>
-                            <td><?php echo $value["cust_id"] ?></td>
-                            <td><?php echo $value["cust_companyname"] ?></td>
                             <td></td>
-                            <td><?php echo $value["phno"] ?></td>
-                            <td><?php echo $value["cust_email"] ?></td>
                             <td></td>
-                            <td><?php echo $value["sales_person_name"] ?></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
                         </tr>
                         <?php
                     }
