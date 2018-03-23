@@ -1,10 +1,10 @@
 <?php
-$listPurchaseOrders = MysqlConnection::fetchAll("purchase_order");
+$listRecieveingOrders = MysqlConnection::fetchAll("supplier_packing_slip");
 ?>
 <div id="content-header">
     <div id="breadcrumb"> 
-        <a href="index.php" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a>
-        <a href="index.php" title="Go to Home" class="tip-bottom"><i class="icon-home"></i>Receiving Orders</a>
+        <a title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a>
+        <a title="Go to Home" class="tip-bottom"><i class="icon-home"></i>Receiving Orders</a>
     </div>
 </div>
 
@@ -31,15 +31,15 @@ $listPurchaseOrders = MysqlConnection::fetchAll("purchase_order");
                 </thead>
                 <tbody>
                    <?php
-                    foreach ($listPurchaseOrders as $key => $value) {
+                    foreach ($listRecieveingOrders as $key => $value) {
                         ?>
                         <tr class="gradeX">
                             <td></td>
                             <td></td>
                             <td></td>
-                            <td><?php echo $value["purchaseOrderId"] ?></td>
-                            <td><?php echo $value["supplier_id"] ?></td>
-                            <td></td>
+                            <td><?php echo $value["sPOId"] ?></td>
+                            <td><?php echo $value["supplierId"] ?></td>
+                            <td><?php echo $value["itemQty"] ?></td>
                             <td></td>
                             <td></td>
                             <td></td>

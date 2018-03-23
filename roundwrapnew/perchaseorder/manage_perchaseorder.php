@@ -3,8 +3,8 @@ $listPurchaseOrders = MysqlConnection::fetchAll("purchase_order");
 ?>
 <div id="content-header">
     <div id="breadcrumb"> 
-        <a href="index.php" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a>
-        <a href="index.php" title="Go to Home" class="tip-bottom"><i class="icon-home"></i>Purchase Orders</a>
+        <a title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a>
+        <a title="Go to Home" class="tip-bottom"><i class="icon-home"></i>Purchase Orders</a>
     </div>
 </div>
 

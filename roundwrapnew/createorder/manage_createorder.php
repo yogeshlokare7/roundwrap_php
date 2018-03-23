@@ -1,10 +1,10 @@
 <?php
-$listPurchaseOrders = MysqlConnection::fetchAll("sales_order");
+$listCreateOrders = MysqlConnection::fetchAll("sales_order");
 ?>
 <div id="content-header">
     <div id="breadcrumb"> 
-        <a href="index.php" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a>
-        <a href="index.php" title="Go to Home" class="tip-bottom"><i class="icon-home"></i>Create Order</a>
+        <a title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a>
+        <a title="Go to Home" class="tip-bottom"><i class="icon-home"></i>Create Order</a>
     </div>
 </div>
 
@@ -35,7 +35,7 @@ $listPurchaseOrders = MysqlConnection::fetchAll("sales_order");
                 </thead>
                 <tbody>
                    <?php
-                    foreach ($listPurchaseOrders as $key => $value) {
+                    foreach ($listCreateOrders as $key => $value) {
                         ?>
                         <tr class="gradeX">
                             <td></td>
