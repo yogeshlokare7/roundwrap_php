@@ -32,7 +32,7 @@ $quotationSlip = MysqlConnection::fetchAll("packslip");
                     </tr>
                 </thead>
                 <tbody>
-                   <?php
+                    <?php
                     foreach ($quotationSlip as $key => $value) {
                         ?>
                         <tr class="gradeX">
@@ -57,19 +57,7 @@ $quotationSlip = MysqlConnection::fetchAll("packslip");
         </div>
     </div>
 </div>
-<div id="myAlert" class="modal hide" style="width: 400px;top: 30%;left: 50%;">
-    <div class="modal-header">
-        <button data-dismiss="modal" class="close" type="button">×</button>
-        <h3>Action Alert !!!</h3>
-    </div>
-    <div class="modal-body">
-        <p>Are you sure you want to delete this Item ???</p>
-    </div>
-    <div class="modal-footer"> 
-        <a id="deleteThis" data-dismiss="modal" class="btn btn-primary">Confirm</a> 
-        <a data-dismiss="modal" class="btn" href="#">Cancel</a> 
-    </div>
-</div>
+
 <script>
     $("#myAlert").click(function() {
     });
