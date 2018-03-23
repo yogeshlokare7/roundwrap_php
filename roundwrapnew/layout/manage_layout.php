@@ -38,7 +38,7 @@ $layout = MysqlConnection::fetchAll("packslip");
                             ?>
                             <tr class="gradeX">
                                 <td><a href="#" class="tip-top" data-original-title="Edit Record"><i  class="icon-edit"></i></a></td>
-                                <td><a href="#myAlert" data-toggle="modal"  class="tip-top" data-original-title="Delete Record"><i class="icon-remove"></i></a> </td>
+                                <td><a href="#myAlert" onclick="setDeleteField('<?php echo $value["ps_id"] ?>')" data-toggle="modal"  class="tip-top" data-original-title="Delete Record"><i class="icon-remove"></i></a> </td>
                                 <td><?php echo $value["ps_id"] ?></td>
                                 <td></td>
                                 <td><?php echo $value["prof_id"] ?></td>
@@ -69,9 +69,7 @@ $layout = MysqlConnection::fetchAll("packslip");
             url: 'layout/layout_ajax.php',
             data: dataString
         }).done(function (data) {
-            $("#flagmsg").append("<br/><div id='successMessage' class='alert alert-success'><button class='close' data-dismiss='alert'>×</button><strong>Success!</strong>Record Deleted Successfully !!!</div>");
         }).fail(function () {
-            $("#flagmsg").append("fail");
         });
         location.reload();
     });
