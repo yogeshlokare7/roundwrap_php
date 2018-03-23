@@ -1,14 +1,13 @@
-<?php
-$listofprofiles = MysqlConnection::fetchAll("profile_master");
-?>
-
+<?php $listofprofiles = MysqlConnection::fetchAll("profile_master"); ?>
 <div id="content-header">
     <div id="breadcrumb"> 
         <a href="index.php" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a>
         <a title="View Profile Master" class="tip-bottom">View Profile Master</a>
     </div>
 </div>
-<div class="container-fluid">
+<div class="container-fluid" >
+    <br/>
+    <a class="btn" href="#addData"  data-toggle="modal">ADD PROFILE</a>
     <div class="widget-box">
         <div class="widget-title">
             <span class="icon"><i class="icon-th"></i></span> 
@@ -65,9 +64,49 @@ $listofprofiles = MysqlConnection::fetchAll("profile_master");
         });
         location.reload();
     });
-
     function setDeleteField(deleteId) {
         document.getElementById("deleteId").value = deleteId;
     }
-
 </script>
+
+<!-- this is custom model dialog --->
+<div id="addData" class="modal hide" style="top: 10%;left: 50%;">
+    <div class="modal-header">
+        <button data-dismiss="modal" class="close" type="button">×</button>
+        <h3>Add New profile</h3>
+    </div>
+    <div class="modal-body">
+        <form class="form-horizontal" method="post" action="#" name="basic_validate" id="basic_validate" novalidate="novalidate">
+            <div class="control-group">
+                <label class="control-label">Your Name</label>
+                <div class="controls">
+                    <input type="text" name="required" id="required">
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">Your Email</label>
+                <div class="controls">
+                    <input type="text" name="email" id="email">
+
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">Date (only Number)</label>
+                <div class="controls">
+                    <input type="text" name="date" id="date">
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">URL (Start with http://)</label>
+                <div class="controls">
+                    <input type="text" name="url" id="url">
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer"> 
+        <a id="save" data-dismiss="modal" class="btn btn-primary">Save</a> 
+        <a data-dismiss="modal" class="btn" href="#">Cancel</a> 
+    </div>
+</div>
+<!-- this is model dialog --->
