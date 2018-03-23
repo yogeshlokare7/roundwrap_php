@@ -32,7 +32,7 @@ $listofcustomertype = MysqlConnection::fetchCustom("SELECT * FROM generic_entry 
                         ?>
                         <tr class="gradeX">
                             <td><a href="#" class="tip-top" data-original-title="Edit Record"><i  class="icon-edit"></i></a></td>
-                            <td><a href="#" class="tip-top" data-original-title="Delete Record"><i  class="icon-remove"></i></a> </td>
+                             <td><a href="#myAlert" data-toggle="modal"  class="tip-top" data-original-title="Delete Record"><i class="icon-remove"></i></a> </td>
                             <td><?php echo $value["name"] ?></td>
                             <td><?php echo $value["discount"] ?></td>
                             <td><?php echo $value["description"] ?></td>
@@ -47,3 +47,20 @@ $listofcustomertype = MysqlConnection::fetchCustom("SELECT * FROM generic_entry 
         </div>
     </div>
 </div>
+<div id="myAlert" class="modal hide" style="width: 400px;top: 30%;left: 50%;">
+    <div class="modal-header">
+        <button data-dismiss="modal" class="close" type="button">×</button>
+        <h3>Action Alert !!!</h3>
+    </div>
+    <div class="modal-body">
+        <p>Are you sure you want to delete this Item ???</p>
+    </div>
+    <div class="modal-footer"> 
+        <a id="deleteThis" data-dismiss="modal" class="btn btn-primary">Confirm</a> 
+        <a data-dismiss="modal" class="btn" href="#">Cancel</a> 
+    </div>
+</div>
+<script>
+    $("#myAlert").click(function() {
+    });
+</script>
