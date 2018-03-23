@@ -36,7 +36,7 @@ $listRecieveingOrders = MysqlConnection::fetchAll("supplier_packing_slip");
                             ?>
                             <tr class="gradeX">
                                 <td><a href="#" class="tip-top" data-original-title="Edit Record"><i  class="icon-edit"></i></a></td>
-                                <td><a href="#myAlert" data-toggle="modal"  class="tip-top" data-original-title="Delete Record"><i class="icon-remove"></i></a> </td>
+                                <td><a href="#myAlert" onclick="setDeleteField('<?php echo $value["sPOId"] ?>')" data-toggle="modal"  class="tip-top" data-original-title="Delete Record"><i class="icon-remove"></i></a> </td>
                                 <td></td>
                                 <td><?php echo $value["sPOId"] ?></td>
                                 <td><?php echo $value["supplierId"] ?></td>
