@@ -67,12 +67,12 @@ class MysqlConnection {
      * @param String $tbl table name
      * @param int  $id primary key of the table
      */
-    static function delete($tbl = "", $id = '', $pkcolumn) {
+    static function delete($query) {
         try {
-            $query = "DELETE FROM $tbl where txtId = $id ";
             MysqlConnection::executeQuery($query);
+            return "";
         } catch (Exception $exc) {
-            echo "<span style='color:red'>SQL QUERY ERROR !!! DELETE !!!<span>";
+            return $exc->getMessage();
         }
     }
 
@@ -94,7 +94,7 @@ class MysqlConnection {
      * @return Array
      */
     static function fetchAll($tbl, $sql = array()) {
-         $query = "SELECT * FROM $tbl ";
+        $query = "SELECT * FROM $tbl ";
         $resource = MysqlConnection::executeQuery($query);
         return MysqlConnection::toArrays($resource);
     }
