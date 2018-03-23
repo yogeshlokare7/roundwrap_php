@@ -1,6 +1,6 @@
 <div class="container-fluid">
     <br/>
-    dsad
+  
     <div class="widget-box">
         <div class="widget-title">
             <span class="icon"><i class="icon-th"></i></span> 
@@ -10,10 +10,10 @@
             <table class="table table-bordered data-table">
                 <thead>
                     <tr>
-                        <th>Rendering engine</th>
-                        <th>Browser</th>
-                        <th>Platform(s)</th>
-                        <th>Engine version</th>
+                        <th>#</th>
+                        <th>Name</th>
+                        <th>Description</th>
+                        <th>Active</th>
                     </tr>
                 </thead>
                 <tbody>

@@ -1,7 +1,10 @@
+
 <?php
 error_reporting(0);
 session_start();
 ob_start();
+
+include './MysqlConnection.php';
 
 $pagename = $_GET["pagename"];
 $explode = explode("_", $pagename);
@@ -34,17 +37,13 @@ if (count($explode) >= 2) {
     </head>
     <body>
         <div id="header" style="color: white">Round Wrap</div>
-        
+
         <div id="sidebar"  >
             <?php include './leftmenu.php'; ?>
         </div>
 
         <div id="content">
-            <div id="content-header">
-                <div id="breadcrumb"> 
-                    <a href="index.php" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a>
-                </div>
-            </div>
+
             <?php include '' . $include . ".php"; ?>
         </div>
     </div>

@@ -1,10 +1,12 @@
 <?php
 $listofprofiles = MysqlConnection::fetchAll("profile_master");
 ?>
+<title>RoundWrap</title>
+
 <div id="content-header">
     <div id="breadcrumb"> 
         <a href="index.php" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a>
-        <a href="index.php" title="Go to Home" class="tip-bottom"><i class="icon-home"></i>View Profile Master</a>
+        <a href="manage_profilemaster.php" title="View Profile Master" class="tip-bottom"><i class="icon-home"></i>View Profile Master</a>
     </div>
 </div>
 <div class="container-fluid">
@@ -17,8 +19,8 @@ $listofprofiles = MysqlConnection::fetchAll("profile_master");
             <table class="table table-bordered data-table">
                 <thead>
                     <tr>
-                        <th></th>
-                        <th></th>
+                        <th>#</th>
+                        <th>#</th>
                         <th>Profile Name</th>
                         <th>Label Name</th>
                         <th>Label Value</th>

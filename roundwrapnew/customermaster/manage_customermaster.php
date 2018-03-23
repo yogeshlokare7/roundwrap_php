@@ -4,7 +4,7 @@
     <div class="widget-box">
         <div class="widget-title">
             <span class="icon"><i class="icon-th"></i></span> 
-            <h5>User Role Table</h5>
+            <h5>Customer Master</h5>
         </div>
         <div class="widget-content nopadding">
             <table class="table table-bordered data-table">
