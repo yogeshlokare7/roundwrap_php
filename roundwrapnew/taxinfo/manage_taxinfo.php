@@ -6,7 +6,7 @@ $listofprofiles = MysqlConnection::fetchAll("taxinfo_table");
 <div id="content-header">
     <div id="breadcrumb"> 
         <a href="index.php" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a>
-        <a title="View User Role" class="tip-bottom"><i class="icon-home"></i>Tax Info Table</a>
+        <a title="View Tax Info" class="tip-bottom"><i class="icon-home"></i>Tax Info Table</a>
     </div>
 </div>
 <div class="container-fluid">
@@ -19,8 +19,8 @@ $listofprofiles = MysqlConnection::fetchAll("taxinfo_table");
             <table class="table table-bordered data-table">
                 <thead>
                     <tr>
-                        <th>#</th>
-                        <th>#</th>
+                        <th style="width: 2.3%">#</th>
+                        <th style="width: 2.3%">#</th>
                         <th>Country</th>
                         <th>Province</th>
                         <th>Active</th>
@@ -32,8 +32,8 @@ $listofprofiles = MysqlConnection::fetchAll("taxinfo_table");
                     foreach ($listofprofiles as $key => $value) {
                         ?>
                         <tr class="gradeX">
-                            <td></td>
-                            <td></td>
+                            <td><a href="#" class="tip-top" data-original-title="Edit Record"><i  class="icon-edit"></i></a></td>
+                            <td><a href="#" class="tip-top" data-original-title="Delete Record"><i  class="icon-remove"></i></a> </td>
                             <td><?php echo $value["country"] ?></td>
                             <td><?php echo $value["province"] ?></td>
                             <td><?php echo $value["tax"] ?></td>

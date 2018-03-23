@@ -1,5 +1,5 @@
-<?php
-$listofprofiles = MysqlConnection::fetchAll("generic_entry");
+<<?php
+$listofuser = MysqlConnection::fetchCustom("SELECT * FROM generic_entry WHERE type = 'user_role' ");
 ?>
 <title>RoundWrap</title>
 
@@ -19,8 +19,8 @@ $listofprofiles = MysqlConnection::fetchAll("generic_entry");
             <table class="table table-bordered data-table">
                 <thead>
                     <tr>
-                        <th>#</th>
-                        <th>#</th>
+                        <th style="width: 2.3%">#</th>
+                        <th style="width: 2.3%">#</th> 
                         <th>Name</th>
                         <th>Description</th>
                         <th>Active</th>
@@ -28,11 +28,11 @@ $listofprofiles = MysqlConnection::fetchAll("generic_entry");
                 </thead>
                 <tbody>
                     <?php
-                    foreach ($listofprofiles as $key => $value) {
+                    foreach ($listofuser as $key => $value) {
                         ?>
                         <tr class="gradeX">
-                            <td></td>
-                            <td></td>
+                            <td><a href="#" class="tip-top" data-original-title="Edit Record"><i  class="icon-edit"></i></a></td>
+                            <td><a href="#" class="tip-top" data-original-title="Delete Record"><i  class="icon-remove"></i></a> </td>
                             <td><?php echo $value["name"] ?></td>
                             <td><?php echo $value["description"] ?></td>
                             <td><?php echo $value["active"] ?></td>
