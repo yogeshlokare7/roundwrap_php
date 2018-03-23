@@ -3,8 +3,8 @@ $listSalesOrders = MysqlConnection::fetchAll("customer_packing_slip");
 ?>
 <div id="content-header">
     <div id="breadcrumb"> 
-        <a title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a>
-        <a title="Go to Home" class="tip-bottom"><i class="icon-home"></i>Create Order</a>
+        <a class="tip-bottom"><i class="icon-home"></i> Home</a>
+        <a class="tip-bottom"><i class="icon-home"></i>Create Order</a>
     </div>
 </div>
 
