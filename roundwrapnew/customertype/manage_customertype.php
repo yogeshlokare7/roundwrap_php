@@ -60,9 +60,7 @@ $listofcustomertype = MysqlConnection::fetchCustom("SELECT * FROM generic_entry 
             url: 'customertype/customertype_ajax.php',
             data: dataString
         }).done(function(data) {
-            $("#flagmsg").append("<br/><div id='successMessage' class='alert alert-success'><button class='close' data-dismiss='alert'>×</button><strong>Success!</strong>Record Deleted Successfully !!!</div>");
         }).fail(function() {
-            $("#flagmsg").append("fail");
         });
         location.reload();
     });
