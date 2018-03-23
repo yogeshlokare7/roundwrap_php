@@ -1,4 +1,4 @@
-<<?php
+<?php
 $listofuser = MysqlConnection::fetchCustom("SELECT * FROM generic_entry WHERE type = 'user_role' ");
 ?>
 <title>RoundWrap</title>
