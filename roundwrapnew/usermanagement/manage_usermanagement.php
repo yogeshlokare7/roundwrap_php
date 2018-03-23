@@ -1,39 +1,79 @@
+<?php
+$listofuser = MysqlConnection::fetchAll("user_master");
+?>
+<div id="content-header">
+    <div id="breadcrumb"> 
+        <a href="index.php" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a>
+        <a title="View User Management" class="tip-bottom"><i class="icon-home"></i>View User Management</a>
+    </div>
+</div>
 <div class="container-fluid">
-    <br/>
-    dsad
     <div class="widget-box">
         <div class="widget-title">
             <span class="icon"><i class="icon-th"></i></span> 
-            <h5>User Role Table</h5>
+            <h5>User Management</h5>
         </div>
         <div class="widget-content nopadding">
             <table class="table table-bordered data-table">
                 <thead>
-                    <tr>
-                        <th>Rendering engine</th>
-                        <th>Browser</th>
-                        <th>Platform(s)</th>
-                        <th>Engine version</th>
+
+
+                     <tr>
+                        <th style="width: 2.3%">#</th>
+                        <th style="width: 2.3%">#</th>            				
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Street No</th>
+                        <th>Street Name</th>
+                        <th>City</th>
+                        <th>Email</th>
+                        <th>Created Date</th>
+                        <th>Expiry Date</th>
+                        <th>Expire In</th>
+                        <th>Active</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php
-                    for ($index = 0; $index < 100; $index++) {
+                    foreach ($listofuser as $key => $value) {
                         ?>
-
-                        <tr class="gradeX">
-                            <td>Trident</td>
-                            <td>Internet
-                                Explorer 4.0</td>
-                            <td>Win 95+</td>
-                            <td class="center">4</td>
+                         <tr class="gradeX">
+                            <td><a href="#" class="tip-top" data-original-title="Edit Record"><i  class="icon-edit"></i></a></td>
+                            <td><a href="#myAlert" data-toggle="modal"  class="tip-top" data-original-title="Delete Record"><i class="icon-remove"></i></a> </td>
+                            <td><?php echo $value["firstName"] ?></td>
+                            <td><?php echo $value["lastName"] ?></td>
+                            <td><?php echo $value["streetNo"] ?></td>
+                            <td><?php echo $value["streetName"] ?></td>
+                            <td><?php echo $value["city"] ?></td>
+                            <td><?php echo $value["email"] ?></td>
+                            <td><?php echo $value["createdDate"] ?></td>
+                            <td><?php echo $value["expiryDate"] ?></td>
+                            <td><?php echo $value["suspend"] ?></td>
+                            <td><?php echo $value["active"] ?></td>
                         </tr>
-
                         <?php
                     }
                     ?>
+
                 </tbody>
             </table>
         </div>
     </div>
 </div>
+<div id="myAlert" class="modal hide" style="width: 400px;top: 30%;left: 50%;">
+    <div class="modal-header">
+        <button data-dismiss="modal" class="close" type="button">×</button>
+        <h3>Action Alert !!!</h3>
+    </div>
+    <div class="modal-body">
+        <p>Are you sure you want to delete this Item ???</p>
+    </div>
+    <div class="modal-footer"> 
+        <a id="deleteThis" data-dismiss="modal" class="btn btn-primary">Confirm</a> 
+        <a data-dismiss="modal" class="btn" href="#">Cancel</a> 
+    </div>
+</div>
+<script>
+    $("#myAlert").click(function () {
+    });
+</script>
