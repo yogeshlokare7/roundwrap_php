@@ -19,8 +19,8 @@ $listofitems = MysqlConnection::fetchAll("item_master");
             <table class="table table-bordered data-table">
                 <thead>
                     <tr>
-                        <th>#</th>
-                        <th>#</th>
+                        <th style="width: 2.3%">#</th>
+                        <th style="width: 2.3%">#</th>
                         <th>ID</th>                 							
                         <th>Code</th>
                         <th>Description(Purchase)</th>
@@ -39,8 +39,8 @@ $listofitems = MysqlConnection::fetchAll("item_master");
                     foreach ($listofitems as $key => $value) {
                         ?>
                         <tr class="gradeX">
-                            <td></td>
-                            <td></td>
+                            <td><a href="#" class="tip-top" data-original-title="Edit Record"><i  class="icon-edit"></i></a></td>
+                            <td><a href="#" class="tip-top" data-original-title="Delete Record"><i  class="icon-remove"></i></a> </td>
                             <td><?php echo $value["item_id"] ?></td>
                             <td><?php echo $value["item_code"] ?></td>
                             <td><?php echo $value["item_desc"] ?></td>

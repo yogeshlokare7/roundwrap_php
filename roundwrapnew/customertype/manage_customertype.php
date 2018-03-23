@@ -1,5 +1,5 @@
 <?php
-$listofitems = MysqlConnection::fetchCustom("SELECT * FROM generic_entry WHERE type = 'customer_type' ");
+$listofcustomertype = MysqlConnection::fetchCustom("SELECT * FROM generic_entry WHERE type = 'customer_type' ");
 ?>
 <div id="content-header">
     <div id="breadcrumb"> 
@@ -28,7 +28,7 @@ $listofitems = MysqlConnection::fetchCustom("SELECT * FROM generic_entry WHERE t
                 </thead>
                 <tbody>
                     <?php
-                    foreach ($listofitems as $key => $value) {
+                    foreach ($listofcustomertype as $key => $value) {
                         ?>
                         <tr class="gradeX">
                             <td><a href="#" class="tip-top" data-original-title="Edit Record"><i  class="icon-edit"></i></a></td>

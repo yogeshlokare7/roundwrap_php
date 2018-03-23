@@ -6,7 +6,7 @@ $listofprofiles = MysqlConnection::fetchAll("profile_master");
 <div id="content-header">
     <div id="breadcrumb"> 
         <a href="index.php" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a>
-        <a href="manage_profilemaster.php" title="View Profile Master" class="tip-bottom"><i class="icon-home"></i>View Profile Master</a>
+        <a title="View Profile Master" class="tip-bottom"><i class="icon-home"></i>View Profile Master</a>
     </div>
 </div>
 
@@ -20,8 +20,8 @@ $listofprofiles = MysqlConnection::fetchAll("profile_master");
             <table class="table table-bordered data-table">
                 <thead>
                     <tr>
-                        <th>#</th>
-                        <th>#</th>
+                        <th style="width: 2.3%">#</th>
+                        <th style="width: 2.3%">#</th>
                         <th>Profile Name</th>
                         <th>Label Name</th>
                         <th>Label Value</th>
@@ -32,8 +32,8 @@ $listofprofiles = MysqlConnection::fetchAll("profile_master");
                     foreach ($listofprofiles as $key => $value) {
                         ?>
                         <tr class="gradeX">
-                            <td></td>
-                            <td></td>
+                            <td><a href="#" class="tip-top" data-original-title="Edit Record"><i  class="icon-edit"></i></a></td>
+                            <td><a href="#" class="tip-top" data-original-title="Delete Record"><i  class="icon-remove"></i></a> </td>
                             <td><?php echo $value["profile_name"] ?></td>
                             <td><?php echo $value["label_name"] ?></td>
                             <td><?php echo $value["label_value"] ?></td>

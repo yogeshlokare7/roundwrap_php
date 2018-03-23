@@ -1,5 +1,5 @@
 <?php
-$listofitems = MysqlConnection::fetchAll("item_master");
+$listofinventory = MysqlConnection::fetchAll("item_master");
 ?>
 <title>RoundWrap</title>
 
@@ -19,8 +19,8 @@ $listofitems = MysqlConnection::fetchAll("item_master");
             <table class="table table-bordered data-table">
                 <thead>
                     <tr>
-                        <th>#</th>
-                        <th>#</th>                 							
+                        <th style="width: 2.3%">#</th>
+                        <th style="width: 2.3%">#</th>                 							
                         <th>Item Code</th>
                         <th>Item Description</th>
                         <th>Item Quantity</th>
@@ -28,12 +28,11 @@ $listofitems = MysqlConnection::fetchAll("item_master");
                 </thead>
                 <tbody>
                     <?php
-                    foreach ($listofitems as $key => $value) {
+                    foreach ($listofinventory as $key => $value) {
                         ?>
                         <tr class="gradeX">
-                            <td></td>
-                            <td></td>
-                           
+                            <td><a href="#" class="tip-top" data-original-title="Edit Record"><i  class="icon-edit"></i></a></td>
+                            <td><a href="#" class="tip-top" data-original-title="Delete Record"><i  class="icon-remove"></i></a> </td>
                             <td><?php echo $value["item_code"] ?></td>
                             <td><?php echo $value["item_desc"] ?></td>
                              <td><?php echo $value["quantity"] ?></td>
