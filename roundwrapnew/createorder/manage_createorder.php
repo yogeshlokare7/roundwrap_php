@@ -15,7 +15,7 @@ $listCreateOrders = MysqlConnection::fetchAll("sales_order");
             <h5>CUSTOMER ORDERS</h5>
         </div>
         <div class="widget-content nopadding">
-            <form name="createorder" id="profilemaster" method="POST">
+            <form name="createorder" id="createorder" method="POST">
                 <table class="table table-bordered data-table">
                     <thead>
                         <tr>

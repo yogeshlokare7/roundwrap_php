@@ -15,7 +15,7 @@ $listSalesOrders = MysqlConnection::fetchAll("customer_packing_slip");
             <h5>CUSTOMER SALES ORDER</h5>
         </div>
         <div class="widget-content nopadding">
-            <form name="salesorder" id="profilemaster" method="POST">
+            <form name="salesorder" id="salesorder" method="POST">
                 <table class="table table-bordered data-table">
                     <thead>
                         <tr>

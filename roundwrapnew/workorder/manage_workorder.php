@@ -15,7 +15,7 @@ $workOrderDashboard = MysqlConnection::fetchAll("packslip");
             <h5>Work Order Details</h5>
         </div>
         <div class="widget-content nopadding">
-            <form name="workorder" id="profilemaster" method="POST">
+            <form name="workorder" id="workorder" method="POST">
                 <table class="table table-bordered data-table">
                     <thead>
                         <tr>

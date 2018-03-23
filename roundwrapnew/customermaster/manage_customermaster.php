@@ -1,6 +1,5 @@
 <div class="container-fluid">
-    <br/>
-    dsad
+
     <div class="widget-box">
         <div class="widget-title">
             <span class="icon"><i class="icon-th"></i></span> 

@@ -15,7 +15,7 @@ $layout = MysqlConnection::fetchAll("packslip");
             <h5>LAYOUT</h5>
         </div>
         <div class="widget-content nopadding">
-            <form name="layout" id="profilemaster" method="POST">
+            <form name="layout" id="layout" method="POST">
                 <table class="table table-bordered data-table">
                     <thead>
                         <tr>

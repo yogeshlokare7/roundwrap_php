@@ -15,7 +15,7 @@ $listRecieveingOrders = MysqlConnection::fetchAll("supplier_packing_slip");
             <h5>SUPPLIERS RECEIVING LIST</h5>
         </div>
         <div class="widget-content nopadding">
-            <form name="receivingorder" id="profilemaster" method="POST">
+            <form name="receivingorder" id="receivingorder" method="POST">
                 <table class="table table-bordered data-table">
                     <thead>
                         <tr>

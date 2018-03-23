@@ -15,7 +15,7 @@ $quotationSlip = MysqlConnection::fetchAll("packslip");
             <h5>PACKING SLIP</h5>
         </div>
         <div class="widget-content nopadding">
-            <form name="quotation" id="profilemaster" method="POST">
+            <form name="quotation" id="quotation" method="POST">
                 <table class="table table-bordered data-table">
                     <thead>
                         <tr>

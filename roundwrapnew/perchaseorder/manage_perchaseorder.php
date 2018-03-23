@@ -15,7 +15,7 @@ $listPurchaseOrders = MysqlConnection::fetchAll("purchase_order");
             <h5>SUPPLIERS PURCHASE ORDER LIST</h5>
         </div>
         <div class="widget-content nopadding">
-            <form name="purchaseorder" id="profilemaster" method="POST">
+            <form name="purchaseorder" id="purchaseorder" method="POST">
                 <table class="table table-bordered data-table">
                     <thead>
                         <tr>

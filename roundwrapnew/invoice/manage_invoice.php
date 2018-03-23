@@ -15,7 +15,7 @@ $packslip = MysqlConnection::fetchAll(" ");
             <h5>INVOICE</h5>
         </div>
         <div class="widget-content nopadding">
-            <form name="invoice" id="profilemaster" method="POST">
+            <form name="invoice" id="invoice" method="POST">
                 <table class="table table-bordered data-table">
                     <thead>
                         <tr>
@@ -36,7 +36,7 @@ $packslip = MysqlConnection::fetchAll(" ");
                             ?>
                             <tr class="gradeX">
                                 <td><a href="#" class="tip-top" data-original-title="Edit Record"><i  class="icon-edit"></i></a></td>
-                                <td><a href="#myAlert" data-toggle="modal"  class="tip-top" data-original-title="Delete Record"><i class="icon-remove"></i></a> </td>
+                                <td><a href="#myAlert" data-toggle="modal" onclick="setDeleteField('<?php echo $value["id"] ?>')" class="tip-top" data-original-title="Delete Record"><i class="icon-remove"></i></a> </td>
                                 <td></td>
                                 <td></td>
                                 <td></td>

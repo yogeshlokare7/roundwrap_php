@@ -15,7 +15,7 @@ $listReadymadeOrders = MysqlConnection::fetchAll("sales_order");
             <h5>READY-MADE ORDERS</h5>
         </div>
         <div class="widget-content nopadding">
-            <form name="readymadeorder" id="profilemaster" method="POST">
+            <form name="readymadeorder" id="readymadeorder" method="POST">
                 <table class="table table-bordered data-table">
                     <thead>
                         <tr>
