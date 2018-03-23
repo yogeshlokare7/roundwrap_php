@@ -1,15 +1,14 @@
 <?php
 $listofprofiles = MysqlConnection::fetchAll("profile_master");
 ?>
+
 <div id="content-header">
     <div id="breadcrumb"> 
         <a href="index.php" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a>
         <a title="View Profile Master" class="tip-bottom">View Profile Master</a>
     </div>
 </div>
-
 <div class="container-fluid">
-    <div id="flagmsg"></div>
     <div class="widget-box">
         <div class="widget-title">
             <span class="icon"><i class="icon-th"></i></span> 
@@ -32,11 +31,9 @@ $listofprofiles = MysqlConnection::fetchAll("profile_master");
                         foreach ($listofprofiles as $key => $value) {
                             ?>
                             <tr class="gradeX">
+                                <td><a href="#" class="tip-top" data-original-title="Edit Record"><i  class="icon-edit"></i></a></td>
                                 <td>
-                                    <a href="#" class="tip-top" data-original-title="Edit Record"><i  class="icon-edit"></i></a>
-                                </td>
-                                <td>
-                                    <a onclick="setDeleteField('<?php echo base64_encode($value["id"]) ?>')" href="#myAlert" data-toggle="modal"  class="tip-top" data-original-title="Delete Record" data-id="<? echo $value['id'] ?>">
+                                    <a onclick="setDeleteField('<?php echo $value["id"] ?>')" href="#myAlert" data-toggle="modal"  class="tip-top" data-original-title="Delete Record" data-id="<? echo $value['id'] ?>">
                                         <i class="icon-remove"></i>
                                     </a> 
                                 </td>
@@ -64,9 +61,7 @@ $listofprofiles = MysqlConnection::fetchAll("profile_master");
             url: 'profilemaster/profilemaster_ajax.php',
             data: dataString
         }).done(function(data) {
-            $("#flagmsg").append("<br/><div id='successMessage' class='alert alert-success'><button class='close' data-dismiss='alert'>×</button><strong>Success!</strong>Record Deleted Successfully !!!</div>");
         }).fail(function() {
-            $("#flagmsg").append("fail");
         });
         location.reload();
     });
