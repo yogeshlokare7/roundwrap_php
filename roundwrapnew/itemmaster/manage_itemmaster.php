@@ -6,7 +6,7 @@ $listofitems = MysqlConnection::fetchAll("item_master");
 <div id="content-header">
     <div id="breadcrumb"> 
         <a href="index.php" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a>
-        <a href="manage_itemmaster.php" title="View Item Master" class="tip-bottom"><i class="icon-home"></i>View Item Master</a>
+        <a href="index.php" title="View Item Master" class="tip-bottom"><i class="icon-home"></i>View Item Master</a>
     </div>
 </div>
 <div class="container-fluid">
@@ -41,17 +41,17 @@ $listofitems = MysqlConnection::fetchAll("item_master");
                         <tr class="gradeX">
                             <td></td>
                             <td></td>
-                            <td><?php echo $value["profile_name"] ?></td>
-                            <td><?php echo $value["label_name"] ?></td>
-                            <td><?php echo $value["label_value"] ?></td>
-                            <td><?php echo $value["profile_name"] ?></td>
-                            <td><?php echo $value["label_name"] ?></td>
-                            <td><?php echo $value["label_value"] ?></td>
-                            <td><?php echo $value["profile_name"] ?></td>
-                            <td><?php echo $value["label_name"] ?></td>
-                            <td><?php echo $value["label_value"] ?></td>
-                            <td><?php echo $value["profile_name"] ?></td>
-                            
+                            <td><?php echo $value["item_id"] ?></td>
+                            <td><?php echo $value["item_code"] ?></td>
+                            <td><?php echo $value["item_desc"] ?></td>
+                            <td><?php echo $value["item_desc_sales"] ?></td>
+                            <td><?php echo $value["unit"] ?></td>
+                            <td><?php echo $value["opening_stock"] ?></td>
+                            <td><?php echo $value["stockLevel"] ?></td>
+                            <td><?php echo $value["orderQuanity"] ?></td>
+                            <td><?php echo $value["purchase_rate"] ?></td>
+                            <td><?php echo $value["sell_rate"] ?></td>
+                            <td><?php echo $value["add_by"] ?></td>
                         </tr>
                         <?php
                     }
