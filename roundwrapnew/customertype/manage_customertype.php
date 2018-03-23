@@ -8,6 +8,8 @@ $listofcustomertype = MysqlConnection::fetchCustom("SELECT * FROM generic_entry 
     </div>
 </div>
 <div class="container-fluid">
+     <br/>
+    <a class="btn" href="#addData"  data-toggle="modal">ADD CUSTOMER TYPE</a>
     <div class="widget-box">
         <div class="widget-title">
             <span class="icon"><i class="icon-th"></i></span> 
@@ -70,3 +72,48 @@ $listofcustomertype = MysqlConnection::fetchCustom("SELECT * FROM generic_entry 
     }
 
 </script>
+
+<!-- this is custom model dialog --->
+<div id="addData" class="modal hide" style="top: 10%;left: 50%;">
+    <div class="modal-header">
+        <button data-dismiss="modal" class="close" type="button">×</button>
+        <h3>Add New Customer Type</h3>
+    </div>
+    <div class="modal-body">
+        <form class="form-horizontal" method="post" action="#" name="basic_validate" id="basic_validate" novalidate="novalidate">
+            <div class="control-group">
+                <label class="control-label">CUSTOMER TYPE *:</label>
+                <div class="controls">
+                    <input type="text" name="" id="itemcode">
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">DESCRIPTION:</label>
+                <div class="controls">
+                    <input type="text" name="" id="">
+
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">ACTIVE:</label>
+                <div class="controls">
+                    <input type="text" name="" id="">
+
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">DISCOUNT:</label>
+                <div class="controls">
+                    <input type="text" name="" id="">
+                </div>
+            </div>
+            
+            
+        </form>
+    </div>
+    <div class="modal-footer"> 
+        <a id="save" data-dismiss="modal" class="btn btn-primary">Save</a> 
+        <a data-dismiss="modal" class="btn" href="#">Cancel</a> 
+    </div>
+</div>
+<!-- this is model dialog --->
