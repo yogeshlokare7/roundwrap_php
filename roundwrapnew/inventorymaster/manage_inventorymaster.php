@@ -22,8 +22,8 @@ $listofitems = MysqlConnection::fetchAll("item_master");
                         <th>#</th>
                         <th>#</th>                 							
                         <th>Item Code</th>
-                        <th><Item Description</th>
-                        <th><Item Quantity</th>
+                        <th>Item Description</th>
+                        <th>Item Quantity</th>
                     </tr>
                 </thead>
                 <tbody>
