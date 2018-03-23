@@ -33,7 +33,7 @@ $listofuser = MysqlConnection::fetchCustom("SELECT * FROM generic_entry WHERE ty
                             ?>
                             <tr class="gradeX">
                                 <td><a href="#" class="tip-top" data-original-title="Edit Record"><i  class="icon-edit"></i></a></td>
-                                <td><a href="#myAlert" data-toggle="modal"  class="tip-top" data-original-title="Delete Record"><i class="icon-remove"></i></a> </td>
+                                <td><a href="#myAlert" onclick="setDeleteField('<?php echo $value["id"] ?>')" data-toggle="modal"  class="tip-top" data-original-title="Delete Record"><i class="icon-remove"></i></a> </td>
                                 <td><?php echo $value["name"] ?></td>
                                 <td><?php echo $value["description"] ?></td>
                                 <td><?php echo $value["active"] ?></td>
@@ -58,9 +58,8 @@ $listofuser = MysqlConnection::fetchCustom("SELECT * FROM generic_entry WHERE ty
             url: 'userrole/userrole_ajax.php',
             data: dataString
         }).done(function (data) {
-            $("#flagmsg").append("<br/><div id='successMessage' class='alert alert-success'><button class='close' data-dismiss='alert'>×</button><strong>Success!</strong>Record Deleted Successfully !!!</div>");
+//            location.reload();
         }).fail(function () {
-            $("#flagmsg").append("fail");
         });
         location.reload();
     });

@@ -12,7 +12,7 @@ $quotationSlip = MysqlConnection::fetchAll("packslip");
     <div class="widget-box">
         <div class="widget-title">
             <span class="icon"><i class="icon-th"></i></span> 
-            <h5>PACKING SLIP</h5>
+            <h5>Quotation</h5>
         </div>
         <div class="widget-content nopadding">
             <form name="quotation" id="quotation" method="POST">
@@ -38,7 +38,7 @@ $quotationSlip = MysqlConnection::fetchAll("packslip");
                             ?>
                             <tr class="gradeX">
                                 <td><a href="#" class="tip-top" data-original-title="Edit Record"><i  class="icon-edit"></i></a></td>
-                                <td><a href="#myAlert" data-toggle="modal"  class="tip-top" data-original-title="Delete Record"><i class="icon-remove"></i></a> </td>
+                                <td><a href="#myAlert" onclick="setDeleteField('<?php echo $value["ps_id"] ?>')" data-toggle="modal"  class="tip-top" data-original-title="Delete Record"><i class="icon-remove"></i></a> </td>
                                 <td><?php echo $value["quot_id"] ?></td>
                                 <td></td>
                                 <td><?php echo $value["prof_id"] ?></td>
@@ -69,9 +69,8 @@ $quotationSlip = MysqlConnection::fetchAll("packslip");
             url: 'quotation/quotation_ajax.php',
             data: dataString
         }).done(function (data) {
-            $("#flagmsg").append("<br/><div id='successMessage' class='alert alert-success'><button class='close' data-dismiss='alert'>×</button><strong>Success!</strong>Record Deleted Successfully !!!</div>");
+//            location.reload();
         }).fail(function () {
-            $("#flagmsg").append("fail");
         });
         location.reload();
     });
