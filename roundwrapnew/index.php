@@ -34,6 +34,7 @@ if (count($explode) >= 2) {
         <link rel="stylesheet" href="css/bootstrap-responsive.min.css" />
         <link rel="stylesheet" href="css/select2.css" />
         <link rel="stylesheet" href="css/uniform.css" />
+        <script src="js/jquery.min.js"></script> 
     </head>
     <body>
         <div id="header" style="color: white">Round Wrap</div>
@@ -52,32 +53,24 @@ if (count($explode) >= 2) {
     <div id="footer" class="span12"></a> </div>
 </div>
 
-<script src="js/jquery.min.js"></script> 
+
+
+
 <script src="js/jquery.ui.custom.js"></script> 
 <script src="js/bootstrap.min.js"></script> 
 <script src="js/jquery.uniform.js"></script> 
 <script src="js/select2.min.js"></script> 
-<script src="js/jquery.dataTables.min.js"></script> 
 <script src="js/maruti.js"></script> 
-<script src="js/maruti.tables.js"></script>
 <script src="js/excanvas.min.js"></script> 
 <script src="js/maruti.tables.js"></script>
-<script src="js/jquery.min.js"></script> 
-<script src="js/jquery.ui.custom.js"></script> 
-<script src="js/bootstrap.min.js"></script> 
-<script src="js/jquery.flot.min.js"></script> 
-<script src="js/jquery.flot.resize.min.js"></script> 
 <script src="js/jquery.peity.min.js"></script> 
 <script src="js/fullcalendar.min.js"></script> 
 <script src="js/maruti.dashboard.js"></script> 
 <script src="js/maruti.chat.js"></script> 
+<script src="js/jquery.flot.min.js"></script> 
+<script src="js/jquery.flot.resize.min.js"></script> 
+<script src="js/maruti.tables.js"></script>
 <script src="js/jquery.dataTables.min.js"></script> 
-<script src="js/jquery.uniform.js"></script> 
-<script src="js/select2.min.js"></script> 
-<script src="js/jquery.dataTables.min.js"></script> 
-<script src="js/maruti.js"></script> 
-
-
 <script type="text/javascript">
     // This function is called from the pop-up menus to transfer to
     // a different page. Ignore if the value returned is a null string:
