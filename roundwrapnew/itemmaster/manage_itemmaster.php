@@ -10,6 +10,8 @@ $listofitems = MysqlConnection::fetchAll("item_master");
     </div>
 </div>
 <div class="container-fluid">
+    <br/>
+    <a class="btn" href="#addData"  data-toggle="modal">ADD ITEM</a>
     <div class="widget-box">
         <div class="widget-title">
             <span class="icon"><i class="icon-th"></i></span> 
@@ -85,3 +87,77 @@ $listofitems = MysqlConnection::fetchAll("item_master");
     }
 
 </script>
+
+<!-- this is custom model dialog --->
+<div id="addData" class="modal hide" style="top: 10%;left: 50%;">
+    <div class="modal-header">
+        <button data-dismiss="modal" class="close" type="button">×</button>
+        <h3>Add New Item</h3>
+    </div>
+    <div class="modal-body">
+        <form class="form-horizontal" method="post" action="#" name="basic_validate" id="basic_validate" novalidate="novalidate">
+            <div class="control-group">
+                <label class="control-label">Item Code / Name </label>
+                <div class="controls">
+                    <input type="text" name="itemcode" id="itemcode">
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">Item Description (Purchase)*</label>
+                <div class="controls">
+                    <input type="text" name="" id="">
+
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">Item Description (Sales)*</label>
+                <div class="controls">
+                    <input type="text" name="" id="">
+
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">Unit*</label>
+                <div class="controls">
+                    <input type="text" name="" id="">
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">Opening Stock</label>
+                <div class="controls">
+                    <input type="text" name="" id="">
+                </div>
+            </div>
+             <div class="control-group">
+                <label class="control-label">Min Stock Level *</label>
+                <div class="controls">
+                    <input type="text" name="" id="">
+                </div>
+            </div>
+             <div class="control-group">
+                <label class="control-label">Order Quanity *</label>
+                <div class="controls">
+                    <input type="text" name="" id="">
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">Purchase Rate*</label>
+                <div class="controls">
+                    <input type="text" name="" id="">
+                </div>
+            </div>
+              <div class="control-group">
+                <label class="control-label">Sell Rate*</label>
+                <div class="controls">
+                    <input type="text" name="" id="">
+                </div>
+            </div>
+            
+        </form>
+    </div>
+    <div class="modal-footer"> 
+        <a id="save" data-dismiss="modal" class="btn btn-primary">Save</a> 
+        <a data-dismiss="modal" class="btn" href="#">Cancel</a> 
+    </div>
+</div>
+<!-- this is model dialog --->
