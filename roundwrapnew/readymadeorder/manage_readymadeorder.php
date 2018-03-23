@@ -4,7 +4,7 @@ $listReadymadeOrders = MysqlConnection::fetchAll("sales_order");
 <div id="content-header">
     <div id="breadcrumb"> 
         <a class="tip-bottom"><i class="icon-home"></i> Home</a>
-        <a class="tip-bottom"><i class="icon-home"></i>Create Order</a>
+        <a class="tip-bottom"><i class="icon-home"></i>Ready-made Order</a>
     </div>
 </div>
 
