@@ -19,8 +19,6 @@ $layout = MysqlConnection::fetchAll("packslip");
                 <table class="table table-bordered data-table">
                     <thead>
                         <tr>
-                            <th style="width: 2.3%">#</th>
-                            <th style="width: 2.3%">#</th>  
                             <th>ID</th>
                             <th>Company Name</th>
                             <th>Profile Name</th>
@@ -37,8 +35,6 @@ $layout = MysqlConnection::fetchAll("packslip");
                         foreach ($layout as $key => $value) {
                             ?>
                             <tr class="gradeX">
-                                <td><a href="#" class="tip-top" data-original-title="Edit Record"><i  class="icon-edit"></i></a></td>
-                                <td><a href="#myAlert" onclick="setDeleteField('<?php echo $value["ps_id"] ?>')" data-toggle="modal"  class="tip-top" data-original-title="Delete Record"><i class="icon-remove"></i></a> </td>
                                 <td><?php echo $value["ps_id"] ?></td>
                                 <td></td>
                                 <td><?php echo $value["prof_id"] ?></td>

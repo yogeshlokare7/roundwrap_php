@@ -18,9 +18,7 @@ $packslip = MysqlConnection::fetchAll(" ");
             <form name="invoice" id="invoice" method="POST">
                 <table class="table table-bordered data-table">
                     <thead>
-                        <tr>
-                            <th style="width: 2.3%">#</th>
-                            <th style="width: 2.3%">#</th>  
+                        <tr> 
                             <th>ID</th>
                             <th>Company Name</th>
                             <th>Address</th>
@@ -35,8 +33,6 @@ $packslip = MysqlConnection::fetchAll(" ");
                         foreach ($packslip as $key => $value) {
                             ?>
                             <tr class="gradeX">
-                                <td><a href="#" class="tip-top" data-original-title="Edit Record"><i  class="icon-edit"></i></a></td>
-                                <td><a href="#myAlert" data-toggle="modal" onclick="setDeleteField('<?php echo $value["id"] ?>')" class="tip-top" data-original-title="Delete Record"><i class="icon-remove"></i></a> </td>
                                 <td></td>
                                 <td></td>
                                 <td></td>

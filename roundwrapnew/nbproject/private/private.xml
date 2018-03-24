@@ -3,33 +3,7 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/xampp/htdocs/roundwrap_php/trunk/roundwrapnew/taxinfo/manage_taxinfo.php</file>
-            <file>file:/C:/xampp/htdocs/roundwrap_php/trunk/roundwrapnew/receivingorder/manage_receivingorder.php</file>
-            <file>file:/C:/xampp/htdocs/roundwrap_php/trunk/roundwrapnew/userrole/manage_userrole.php</file>
-            <file>file:/C:/xampp/htdocs/roundwrap_php/trunk/roundwrapnew/inventorymaster/manage_inventorymaster.php</file>
-            <file>file:/C:/xampp/htdocs/roundwrap_php/trunk/roundwrapnew/layout/manage_layout.php</file>
-            <file>file:/C:/xampp/htdocs/roundwrap_php/trunk/roundwrapnew/workorder/manage_workorder.php</file>
-            <file>file:/C:/xampp/htdocs/roundwrap_php/trunk/roundwrapnew/profilemaster/manage_profilemaster.php</file>
-            <file>file:/C:/xampp/htdocs/roundwrap_php/trunk/roundwrapnew/suppliermaster/manage_suppliermaster.php</file>
-            <file>file:/C:/xampp/htdocs/roundwrap_php/trunk/roundwrapnew/companymaster/manage_companymaster.php</file>
-            <file>file:/C:/xampp/htdocs/roundwrap_php/trunk/roundwrapnew/customertype/manage_customertype.php</file>
-            <file>file:/C:/xampp/htdocs/roundwrap_php/trunk/roundwrapnew/packingslip/manage_packingslip.php</file>
-            <file>file:/C:/xampp/htdocs/roundwrap_php/trunk/roundwrapnew/invoice/manage_invoice.php</file>
-            <file>file:/C:/xampp/htdocs/roundwrap_php/trunk/roundwrapnew/taxname/manage_taxname.php</file>
-            <file>file:/C:/xampp/htdocs/roundwrap_php/trunk/roundwrapnew/salesorder/manage_salesorder.php</file>
-            <file>file:/C:/xampp/htdocs/roundwrap_php/trunk/roundwrapnew/salespersonreport/manage_salespersonreport.php</file>
-            <file>file:/C:/xampp/htdocs/roundwrap_php/trunk/roundwrapnew/createorder/manage_createorder.php</file>
-            <file>file:/C:/xampp/htdocs/roundwrap_php/trunk/roundwrapnew/printerdetail/manage_printerdetail.php</file>
-            <file>file:/C:/xampp/htdocs/roundwrap_php/trunk/roundwrapnew/itemmaster/manage_itemmaster.php</file>
-            <file>file:/C:/xampp/htdocs/roundwrap_php/trunk/roundwrapnew/preference/manage_preference.php</file>
-            <file>file:/C:/xampp/htdocs/roundwrap_php/trunk/roundwrapnew/readymadeorder/manage_readymadeorder.php</file>
-            <file>file:/C:/xampp/htdocs/roundwrap_php/trunk/roundwrapnew/quotation/manage_quotation.php</file>
-            <file>file:/C:/xampp/htdocs/roundwrap_php/trunk/roundwrapnew/scannerdetail/manage_scannerdetail.php</file>
-            <file>file:/C:/xampp/htdocs/roundwrap_php/trunk/roundwrapnew/perchaseorder/manage_perchaseorder.php</file>
-            <file>file:/C:/xampp/htdocs/roundwrap_php/trunk/roundwrapnew/unit/manage_unit.php</file>
-            <file>file:/C:/xampp/htdocs/roundwrap_php/trunk/roundwrapnew/packingtype/manage_packingtype.php</file>
-            <file>file:/C:/xampp/htdocs/roundwrap_php/trunk/roundwrapnew/usermanagement/manage_usermanagement.php</file>
-            <file>file:/C:/xampp/htdocs/roundwrap_php/trunk/roundwrapnew/customermaster/manage_customermaster.php</file>
+            <file>file:/C:/xampp/htdocs/roundwrap_php/trunk/roundwrapnew/inventorymaster/inventorymaster_ajax.php</file>
         </group>
     </open-files>
 </project-private>
