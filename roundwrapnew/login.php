@@ -21,7 +21,7 @@ if (count($_POST) > 0) {
 }
 
 function getResultSet($sql) {
-    $connect = mysqli_connect("localhost", "root", "", "opmsconfig");
+    $connect = mysqli_connect("localhost", "root", "root", "opmsconfig");
     $mysqli_query = mysqli_query($connect, $sql);
     $array = array();
     while ($row = mysqli_fetch_array($mysqli_query)) {
@@ -31,7 +31,7 @@ function getResultSet($sql) {
 }
 
 function getSubResult($sql, $db) {
-    $connect = mysqli_connect("localhost", "root", "", $db);
+    $connect = mysqli_connect("localhost", "root", "root", $db);
     $mysqli_query = mysqli_query($connect, $sql);
     $array = array();
     while ($row = mysqli_fetch_array($mysqli_query)) {

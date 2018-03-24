@@ -40,8 +40,18 @@ $listReadymadeOrders = MysqlConnection::fetchAll("sales_order");
                         foreach ($listReadymadeOrders as $key => $value) {
                             ?>
                             <tr class="gradeX">
-                                <td><a href="#" class="tip-top" data-original-title="Edit Record"><i  class="icon-edit"></i></a></td>
                                 <td><a href="#myAlert" data-toggle="modal"  class="tip-top" data-original-title="Delete Record"><i class="icon-remove"></i></a> </td>
+                                <td>
+                                    <div class="btn-group">
+                                        <button data-toggle="dropdown" class="btn dropdown-toggle">Action&nbsp;<span class="caret"></span></button>
+                                        <ul class="dropdown-menu">
+                                            <li><a href="#">Create Order</a></li> 
+                                            <li><a href="#">View Order</a></li>
+                                            <li><a href="#">Delete Order</a></li>   
+                                            <li><a href="#">Edit Order</a></li>   
+                                        </ul>
+                                    </div>
+                                </td>
                                 <td><?php echo $value["id"] ?></td>
                                 <td><?php echo $value["purchaseOrderId"] ?></td>
                                 <td><?php echo $value["customer_id"] ?></td>

@@ -39,8 +39,21 @@ $packslip = MysqlConnection::fetchAll("packslip");
                         foreach ($packslip as $key => $value) {
                             ?>
                             <tr class="gradeX">
-                                <td><a href="#" class="tip-top" data-original-title="Edit Record"><i  class="icon-edit"></i></a></td>
                                 <td><a href="#myAlert" onclick="setDeleteField('<?php echo $value["ps_id"] ?>')" data-toggle="modal"  class="tip-top" data-original-title="Delete Record"><i class="icon-remove"></i></a> </td>
+
+                                                                <td>
+                                    <div class="btn-group">
+                                        <button data-toggle="dropdown" class="btn dropdown-toggle">Action&nbsp;<span class="caret"></span></button>
+                                        <ul class="dropdown-menu">
+                                            <li><a href="#">Create Packing Slip</a></li> 
+                                            <li><a href="#">View Packing Slip</a></li>
+                                            <li><a href="#">Delete Packing Slip</a></li>   
+                                            <li><a href="#">Edit Packing Slip</a></li> 
+                                            <li><a href="#">Activate User</a></li> 
+                                        </ul>
+                                    </div>
+                                </td>
+
                                 <td><?php echo $value["ps_id"] ?></td>
                                 <td></td>
                                 <td><?php echo $value["prof_id"] ?></td>

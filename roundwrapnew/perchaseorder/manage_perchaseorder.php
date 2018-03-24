@@ -41,8 +41,21 @@ $listPerchaseOrders = MysqlConnection::fetchAll("purchase_order");
                         foreach ($listPerchaseOrders as $key => $value) {
                             ?>
                             <tr class="gradeX">
-                                <td><a href="#" class="tip-top" data-original-title="Edit Record"><i  class="icon-edit"></i></a></td>
+
                                 <td><a href="#myAlert"  onclick="setDeleteField('<?php echo $value["purchaseOrderId"] ?>')" data-toggle="modal"  class="tip-top" data-original-title="Delete Record"><i class="icon-remove"></i></a> </td>
+
+                                <td>
+                                    <div class="btn-group">
+                                        <button data-toggle="dropdown" class="btn dropdown-toggle">Action&nbsp;<span class="caret"></span></button>
+                                        <ul class="dropdown-menu">
+                                            <li><a href="#">View Purchase Order</a></li>
+                                            <li><a href="#">Delete Purchase Order</a></li>   
+                                            <li><a href="#">Edit Purchase Order</a></li>   
+                                            <li><a href="#">Enter Receiving order</a></li> 
+                                        </ul>
+                                    </div>
+                                </td>
+
                                 <td><?php echo $value["purchaseOrderId"] ?></td>
                                 <td><?php echo $value["supplier_id"] ?></td>
                                 <td><?php echo $value["expected_date"] ?></td>
