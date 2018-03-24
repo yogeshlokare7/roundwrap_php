@@ -1,12 +1,22 @@
 <?php
 
+session_start();
+ob_start();
+
 class MysqlConnection {
 
     static function connect() {
-        $DB_NAME = "rw";
-        $DB_HOST = "localhost";
-        $DB_USER = "root";
-        $DB_PASS = "root";
+        session_start();
+        ob_start();
+        $company = $_SESSION["master"]["company"];
+        $DB_NAME = $company["databasename"];
+        $DB_HOST = $company["databaseurl"];
+        $DB_USER = $company["dbusername"];
+        $DB_PASS = $company["dbpassword"];
+        return mysqli_connect($DB_HOST, $DB_USER, $DB_PASS, $DB_NAME);
+    }
+
+    static function connectToDiffrent($DB_HOST, $DB_USER, $DB_PASS, $DB_NAME) {
         return mysqli_connect($DB_HOST, $DB_USER, $DB_PASS, $DB_NAME);
     }
 
