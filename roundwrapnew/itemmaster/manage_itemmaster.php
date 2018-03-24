@@ -70,14 +70,14 @@ $listofitems = MysqlConnection::fetchAll("item_master");
 </div>
 
 <script>
-    $("#deleteThis").click(function () {
+    $("#deleteThis").click(function() {
         var dataString = "deleteId=" + $('#deleteId').val();
         $.ajax({
             type: 'POST',
             url: 'itemmaster/itemmaster_ajax.php',
             data: dataString
-        }).done(function (data) {
-        }).fail(function () {
+        }).done(function(data) {
+        }).fail(function() {
         });
         location.reload();
     });
@@ -101,58 +101,42 @@ $listofitems = MysqlConnection::fetchAll("item_master");
                 <div class="controls">
                     <input type="text" name="itemcode" id="itemcode">
                 </div>
-            </div>
-            <div class="control-group">
                 <label class="control-label">Item Description (Purchase)*</label>
                 <div class="controls">
                     <input type="text" name="" id="">
 
                 </div>
-            </div>
-            <div class="control-group">
                 <label class="control-label">Item Description (Sales)*</label>
                 <div class="controls">
                     <input type="text" name="" id="">
 
                 </div>
-            </div>
-            <div class="control-group">
                 <label class="control-label">Unit*</label>
                 <div class="controls">
                     <input type="text" name="" id="">
                 </div>
-            </div>
-            <div class="control-group">
                 <label class="control-label">Opening Stock</label>
                 <div class="controls">
                     <input type="text" name="" id="">
                 </div>
-            </div>
-             <div class="control-group">
                 <label class="control-label">Min Stock Level *</label>
                 <div class="controls">
                     <input type="text" name="" id="">
                 </div>
-            </div>
-             <div class="control-group">
                 <label class="control-label">Order Quanity *</label>
                 <div class="controls">
                     <input type="text" name="" id="">
                 </div>
-            </div>
-            <div class="control-group">
                 <label class="control-label">Purchase Rate*</label>
                 <div class="controls">
                     <input type="text" name="" id="">
                 </div>
-            </div>
-              <div class="control-group">
                 <label class="control-label">Sell Rate*</label>
                 <div class="controls">
                     <input type="text" name="" id="">
                 </div>
             </div>
-            
+
         </form>
     </div>
     <div class="modal-footer"> 

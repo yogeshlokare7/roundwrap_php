@@ -81,6 +81,11 @@ if (count($explode) >= 2) {
                 top: 0;
                 width: 100%
             }
+            label, input, button, select, textarea {
+                font-size: 12px;
+                font-weight: normal;
+                line-height: 10px;
+            }
         </style>
 
 
