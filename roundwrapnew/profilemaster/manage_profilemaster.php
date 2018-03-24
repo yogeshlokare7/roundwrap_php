@@ -77,6 +77,7 @@
                 <label class="control-label">Label Value</label>
                 <div class="controls">
                     <input type="text" name="label_value" id="label_value">
+                    <input type="text" name="label_value" id="label_value">
                 </div>
             </div>
         </form>

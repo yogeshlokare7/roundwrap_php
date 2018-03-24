@@ -1,5 +1,5 @@
 <?php
-$listofprinters = MysqlConnection::fetchAll("");
+$listofprinters = MysqlConnection::fetchAll("tbl_printer");
 ?>
 <div id="content-header">
     <div id="breadcrumb"> 

@@ -20,8 +20,8 @@ $listofinventory = MysqlConnection::fetchAll("item_master");
                 <table class="table table-bordered data-table">
                     <thead>
                         <tr>
-                            <th style="width: 2.3%">#</th>
-                            <th style="width: 2.3%">#</th>                 							
+<!--                            <th style="width: 2.3%">#</th>
+                            <th style="width: 2.3%">#</th>                 							-->
                             <th>Item Code</th>
                             <th>Item Description</th>
                             <th>Item Quantity</th>
@@ -32,8 +32,8 @@ $listofinventory = MysqlConnection::fetchAll("item_master");
                         foreach ($listofinventory as $key => $value) {
                             ?>
                             <tr class="gradeX">
-                                <td><a href="#" class="tip-top" data-original-title="Edit Record"><i  class="icon-edit"></i></a></td>
-                                <td><a href="#myAlert" data-toggle="modal" onclick="setDeleteField('<?php echo $value["item_code"] ?>')" class="tip-top" data-original-title="Delete Record"><i class="icon-remove"></i></a> </td>
+<!--                                <td><a href="#" class="tip-top" data-original-title="Edit Record"><i  class="icon-edit"></i></a></td>
+                                <td><a href="#myAlert" onclick="setDeleteField('<?php echo $value["id"] ?>')" data-toggle="modal"  class="tip-top" data-original-title="Delete Record"><i class="icon-remove"></i></a> </td>-->
                                 <td><?php echo $value["item_code"] ?></td>
                                 <td><?php echo $value["item_desc"] ?></td>
                                 <td><?php echo $value["quantity"] ?></td>
@@ -53,18 +53,17 @@ $listofinventory = MysqlConnection::fetchAll("item_master");
 </div>
 
 <script>
-    $("#deleteThis").click(function() {
+    $("#deleteThis").click(function () {
         var dataString = "deleteId=" + $('#deleteId').val();
         $.ajax({
             type: 'POST',
-            url: 'itemcode/itemcode_ajax.php',
+            url: 'inventorymaster/inventorymaster_ajax.php',
             data: dataString
-        }).done(function(data) {
-            $("#flagmsg").append("<br/><div id='successMessage' class='alert alert-success'><button class='close' data-dismiss='alert'>×</button><strong>Success!</strong>Record Deleted Successfully !!!</div>");
-        }).fail(function() {
-            $("#flagmsg").append("fail");
+        }).done(function (data) {
+//            location.reload();
+        }).fail(function () {
         });
-       location.reload();
+        location.reload();
     });
 
     function setDeleteField(deleteId) {

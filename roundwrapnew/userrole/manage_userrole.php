@@ -10,6 +10,8 @@ $listofuser = MysqlConnection::fetchCustom("SELECT * FROM generic_entry WHERE ty
     </div>
 </div>
 <div class="container-fluid">
+    <br/>
+    <a class="btn" href="#addData"  data-toggle="modal">ADD USER ROLE</a>
     <div class="widget-box">
         <div class="widget-title">
             <span class="icon"><i class="icon-th"></i></span> 
@@ -50,6 +52,38 @@ $listofuser = MysqlConnection::fetchCustom("SELECT * FROM generic_entry WHERE ty
         </div>
     </div>
 </div>
+
+
+<!-- this is custom model dialog --->
+<div id="addData" class="modal hide" style="top: 10%;left: 50%;">
+    <div class="modal-header">
+        <button data-dismiss="modal" class="close" type="button">×</button>
+        <h3>Add New User Role</h3>
+    </div>
+    <div class="modal-body">
+        <form class="form-horizontal" method="post" action="#" name="basic_validate" id="basic_validate" novalidate="novalidate">
+            <div class="control-group">
+                <label class="control-label">USER ROLE</label>
+                <div class="controls"><input type="text" name="name" id="name"></div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">DESCRIPTION</label>
+                <div class="controls"><input type="text" name="description" id="description"></div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">ACTIVE</label>
+                <div class="controls"><input type="text" name="active" id="active"></div>
+            </div>
+            <input type="hidden" name="type" id="type" value="user_role">
+        </form>
+    </div>
+    <div class="modal-footer"> 
+        <a id="save" class="btn btn-primary">Save</a> 
+        <a data-dismiss="modal" class="btn" href="#">Cancel</a> 
+    </div>
+</div>
+<!-- this is model dialog --->
+
 <script>
     $("#deleteThis").click(function () {
         var dataString = "deleteId=" + $('#deleteId').val();
@@ -67,5 +101,17 @@ $listofuser = MysqlConnection::fetchCustom("SELECT * FROM generic_entry WHERE ty
     function setDeleteField(deleteId) {
         document.getElementById("deleteId").value = deleteId;
     }
+
+    $("#save").click(function () {
+        var json = convertFormToJSON("#basic_validate");
+        $.ajax({
+            type: 'POST',
+            url: 'userrole/saveuserrole_ajax.php',
+            data: json
+        }).done(function (data) {
+        }).fail(function () {
+        });
+        location.reload();
+    });
 
 </script>

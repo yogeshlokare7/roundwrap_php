@@ -10,6 +10,8 @@ $listoftaxinfo = MysqlConnection::fetchAll("taxinfo_table");
     </div>
 </div>
 <div class="container-fluid">
+    <br/>
+    <a class="btn" href="#addData"  data-toggle="modal">ADD TAX INFO</a>
     <div class="widget-box">
         <div class="widget-title">
             <span class="icon"><i class="icon-th"></i></span> 
@@ -52,15 +54,50 @@ $listoftaxinfo = MysqlConnection::fetchAll("taxinfo_table");
         </div>
     </div>
 </div>
+<!-- this is custom model dialog --->
+<div id="addData" class="modal hide" style="top: 10%;left: 50%;">
+    <div class="modal-header">
+        <button data-dismiss="modal" class="close" type="button">×</button>
+        <h3>Add New Tax Info</h3>
+    </div>
+    <div class="modal-body">
+        <form class="form-horizontal" method="post" action="#" name="basic_validate" id="basic_validate" novalidate="novalidate">
+            <div class="control-group">
+                <label class="control-label">Country*</label>
+                <div class="controls"><input type="text" name="country" id="country"></div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">Province*</label>
+                <div class="controls"><input type="text" name="province" id="province"></div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">Tax Type</label>
+                <div class="controls"><input type="text" name="tax" id="tax"></div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">Percent</label>
+                <div class="controls"><input type="text" name="percentage" id="percentage"></div>
+            </div>
+<!--            <input type="hidden" name="type" id="type" value="tax_type">-->
+        </form>
+    </div>
+    <div class="modal-footer"> 
+        <a id="save" class="btn btn-primary">Save</a> 
+        <a data-dismiss="modal" class="btn" href="#">Cancel</a> 
+    </div>
+</div>
+<!-- this is model dialog --->
+
+
 <script>
-    $("#deleteThis").click(function() {
+    $("#deleteThis").click(function () {
         var dataString = "deleteId=" + $('#deleteId').val();
         $.ajax({
             type: 'POST',
             url: 'taxinfo/taxinfo_ajax.php',
             data: dataString
-        }).done(function(data) {
-        }).fail(function() {
+        }).done(function (data) {
+        }).fail(function () {
         });
         location.reload();
     });
@@ -68,5 +105,16 @@ $listoftaxinfo = MysqlConnection::fetchAll("taxinfo_table");
     function setDeleteField(deleteId) {
         document.getElementById("deleteId").value = deleteId;
     }
+    $("#save").click(function () {
+        var json = convertFormToJSON("#basic_validate");
+        $.ajax({
+            type: 'POST',
+            url: 'taxinfo/savetaxinfo_ajax.php',
+            data: json
+        }).done(function (data) {
+        }).fail(function () {
+        });
+        location.reload();
+    });
 
 </script>
