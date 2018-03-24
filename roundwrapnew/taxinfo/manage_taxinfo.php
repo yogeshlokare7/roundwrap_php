@@ -1,3 +1,13 @@
+<style>
+    .form-horizontal .control-label {
+        padding-top: 17px;
+        width: 148px;
+    }
+    .custominput{
+        width:300px;
+    }
+</style>
+
 <?php
 $listoftaxinfo = MysqlConnection::fetchAll("taxinfo_table");
 ?>
@@ -64,19 +74,16 @@ $listoftaxinfo = MysqlConnection::fetchAll("taxinfo_table");
         <form class="form-horizontal" method="post" action="#" name="basic_validate" id="basic_validate" novalidate="novalidate">
             <div class="control-group">
                 <label class="control-label">Country*</label>
-                <div class="controls"><input type="text" name="country" id="country"></div>
-            </div>
-            <div class="control-group">
+                <div class="controls"><input type="text" class="custominput" name="country" id="country"></div>
+           
                 <label class="control-label">Province*</label>
-                <div class="controls"><input type="text" name="province" id="province"></div>
-            </div>
-            <div class="control-group">
+                <div class="controls"><input type="text" class="custominput" name="province" id="province"></div>
+           
                 <label class="control-label">Tax Type</label>
-                <div class="controls"><input type="text" name="tax" id="tax"></div>
-            </div>
-            <div class="control-group">
+                <div class="controls"><input type="text" class="custominput" name="tax" id="tax"></div>
+          
                 <label class="control-label">Percent</label>
-                <div class="controls"><input type="text" name="percentage" id="percentage"></div>
+                <div class="controls"><input type="text" class="custominput" name="percentage" id="percentage"></div>
             </div>
 <!--            <input type="hidden" name="type" id="type" value="tax_type">-->
         </form>
@@ -91,6 +98,7 @@ $listoftaxinfo = MysqlConnection::fetchAll("taxinfo_table");
 
 <script>
     $("#deleteThis").click(function () {
+         $("div#divLoading").addClass('show');
         var dataString = "deleteId=" + $('#deleteId').val();
         $.ajax({
             type: 'POST',
@@ -103,6 +111,7 @@ $listoftaxinfo = MysqlConnection::fetchAll("taxinfo_table");
     });
 
     function setDeleteField(deleteId) {
+         $("div#divLoading").addClass('show');
         document.getElementById("deleteId").value = deleteId;
     }
     $("#save").click(function () {

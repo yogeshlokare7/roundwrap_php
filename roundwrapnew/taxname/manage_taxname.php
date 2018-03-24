@@ -1,3 +1,13 @@
+<style>
+    .form-horizontal .control-label {
+        padding-top: 17px;
+        width: 148px;
+    }
+    .custominput{
+        width:300px;
+    }
+</style>
+
 <?php
 $listoftaxname = MysqlConnection::fetchCustom("SELECT * FROM generic_entry WHERE type = 'tax_type' ");
 ?>
@@ -10,7 +20,7 @@ $listoftaxname = MysqlConnection::fetchCustom("SELECT * FROM generic_entry WHERE
     </div>
 </div>
 <div class="container-fluid">
-     <br/>
+    <br/>
     <a class="btn" href="#addData"  data-toggle="modal">ADD TAX NAME</a>
     <div class="widget-box">
         <div class="widget-title">
@@ -62,53 +72,51 @@ $listoftaxname = MysqlConnection::fetchCustom("SELECT * FROM generic_entry WHERE
         <form class="form-horizontal" method="post" action="#" name="basic_validate" id="basic_validate" novalidate="novalidate">
             <div class="control-group">
                 <label class="control-label">TAX TYPE *:</label>
-                <div class="controls"><input type="text" name="name" id="name"></div>
-            </div>
-            <div class="control-group">
+                <div class="controls"><input type="text" class="custominput" name="name" id="name"></div>
                 <label class="control-label">DESCRIPTION</label>
-                <div class="controls"><input type="text" name="description" id="description"></div>
-            </div>
-            <div class="control-group">
+                <div class="controls"><input type="text" class="custominput" name="description" id="description"></div>
                 <label class="control-label">ACTIVE</label>
-                <div class="controls"><input type="text" name="active" id="active"></div>
+                <div class="controls"><input type="text" class="custominput" name="active" id="active"></div>
+
+                <input type="hidden" name="type" id="type" value="tax_type"></div>
+                </form>
             </div>
-            <input type="hidden" name="type" id="type" value="tax_type">
-        </form>
+            <div class="modal-footer"> 
+                <a id="save" class="btn btn-primary">Save</a> 
+                <a data-dismiss="modal" class="btn" href="#">Cancel</a> 
+            </div>
     </div>
-    <div class="modal-footer"> 
-        <a id="save" class="btn btn-primary">Save</a> 
-        <a data-dismiss="modal" class="btn" href="#">Cancel</a> 
-    </div>
-</div>
-<!-- this is model dialog --->
+    <!-- this is model dialog --->
 
 
-<script>
-    $("#deleteThis").click(function() {
-        var dataString = "deleteId=" + $('#deleteId').val();
-        $.ajax({
-            type: 'POST',
-            url: 'taxname/taxname_ajax.php',
-            data: dataString
-        }).done(function(data) {
-        }).fail(function() {
+    <script>
+        $("#deleteThis").click(function () {
+            $("div#divLoading").addClass('show');
+            var dataString = "deleteId=" + $('#deleteId').val();
+            $.ajax({
+                type: 'POST',
+                url: 'taxname/taxname_ajax.php',
+                data: dataString
+            }).done(function (data) {
+            }).fail(function () {
+            });
+            location.reload();
         });
-        location.reload();
-    });
 
-    function setDeleteField(deleteId) {
-        document.getElementById("deleteId").value = deleteId;
-    }
-    $("#save").click(function () {
-        var json = convertFormToJSON("#basic_validate");
-        $.ajax({
-            type: 'POST',
-            url: 'taxname/savetaxname_ajax.php',
-            data: json
-        }).done(function (data) {
-        }).fail(function () {
+        function setDeleteField(deleteId) {
+            $("div#divLoading").addClass('show');
+            document.getElementById("deleteId").value = deleteId;
+        }
+        $("#save").click(function () {
+            var json = convertFormToJSON("#basic_validate");
+            $.ajax({
+                type: 'POST',
+                url: 'taxname/savetaxname_ajax.php',
+                data: json
+            }).done(function (data) {
+            }).fail(function () {
+            });
+            location.reload();
         });
-        location.reload();
-    });
 
-</script>
+    </script>

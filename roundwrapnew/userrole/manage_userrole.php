@@ -1,3 +1,12 @@
+<style>
+    .form-horizontal .control-label {
+        padding-top: 17px;
+        width: 148px;
+    }
+    .custominput{
+        width:300px;
+    }
+</style>
 <?php
 $listofuser = MysqlConnection::fetchCustom("SELECT * FROM generic_entry WHERE type = 'user_role' ");
 ?>
@@ -62,19 +71,13 @@ $listofuser = MysqlConnection::fetchCustom("SELECT * FROM generic_entry WHERE ty
     </div>
     <div class="modal-body">
         <form class="form-horizontal" method="post" action="#" name="basic_validate" id="basic_validate" novalidate="novalidate">
-            <div class="control-group">
-                <label class="control-label">USER ROLE</label>
-                <div class="controls"><input type="text" name="name" id="name"></div>
-            </div>
-            <div class="control-group">
-                <label class="control-label">DESCRIPTION</label>
-                <div class="controls"><input type="text" name="description" id="description"></div>
-            </div>
-            <div class="control-group">
-                <label class="control-label">ACTIVE</label>
-                <div class="controls"><input type="text" name="active" id="active"></div>
-            </div>
-            <input type="hidden" name="type" id="type" value="user_role">
+            <label class="control-label">USER ROLE</label>
+            <div class="controls"><input type="text" class="custominput" name="name" id="name"></div>
+            <label class="control-label">DESCRIPTION</label>
+            <div class="controls"><input type="text" class="custominput" name="description" id="description"></div>
+            <label class="control-label">ACTIVE</label>
+            <div class="controls"><input type="text" class="custominput" name="active" id="active"></div>
+            <input type="hidden" name="type" class="custominput" id="type" value="user_role">
         </form>
     </div>
     <div class="modal-footer"> 
@@ -86,6 +89,7 @@ $listofuser = MysqlConnection::fetchCustom("SELECT * FROM generic_entry WHERE ty
 
 <script>
     $("#deleteThis").click(function () {
+        $("div#divLoading").addClass('show');
         var dataString = "deleteId=" + $('#deleteId').val();
         $.ajax({
             type: 'POST',
@@ -99,6 +103,7 @@ $listofuser = MysqlConnection::fetchCustom("SELECT * FROM generic_entry WHERE ty
     });
 
     function setDeleteField(deleteId) {
+        $("div#divLoading").addClass('show');
         document.getElementById("deleteId").value = deleteId;
     }
 

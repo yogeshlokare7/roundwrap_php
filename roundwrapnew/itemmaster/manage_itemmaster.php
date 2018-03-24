@@ -71,6 +71,7 @@ $listofitems = MysqlConnection::fetchAll("item_master");
 
 <script>
     $("#deleteThis").click(function() {
+         $("div#divLoading").addClass('show');
         var dataString = "deleteId=" + $('#deleteId').val();
         $.ajax({
             type: 'POST',

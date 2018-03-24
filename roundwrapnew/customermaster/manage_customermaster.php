@@ -44,6 +44,12 @@
                                     <div class="btn-group">
                                         <button data-toggle="dropdown" class="btn dropdown-toggle">Action&nbsp;<span class="caret"></span></button>
                                         <ul class="dropdown-menu">
+                                            <li><a href="index.php?pagename=create_customermaster&customerId=1">Edit Customer</a></li>
+                                            <li><a href="index.php?pagename=create_customermaster">Create Customer</a></li>
+                                            <li><a href="#">Create Purchase Order</a></li>
+                                            <li><a href="#">Edit Customer</a></li>
+                                            <li><a href="#">Create Customer</a></li>
+                                            <li><a href="#">Create Purchase Order</a></li>
                                             <li><a href="#">Edit Customer</a></li>
                                             <li><a href="#">Create Customer</a></li>    
                                             <li><a href="index.php?pagename=create_perchaseorder&customerId=<?php echo $value["cust_id"] ?>">Create Purchase Order</a></li>
@@ -88,6 +94,17 @@
     function setDeleteField(deleteId) {
         document.getElementById("deleteId").value = deleteId;
     }
+    $("#save").click(function () {
+        var json = convertFormToJSON("#basic_validate");
+        $.ajax({
+            type: 'POST',
+            url: 'customermaster/savecustomermaster_ajax.php',
+            data: json
+        }).done(function (data) {
+        }).fail(function () {
+        });
+        location.reload();
+    });
 </script>
 
 <!-- this is model dialog --->
