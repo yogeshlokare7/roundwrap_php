@@ -66,7 +66,11 @@
     <li class="submenu"> <a><i class="icon icon-th-list"></i> <span>Reports</span> </a>
         <ul>
             <li><a href="index.php?pagename=manage_salespersonreport">Sales Person Report</a></li>
-
+        </ul>
+    </li>
+    <li class="submenu"> <a><i class="icon icon-th-list"></i> <span>Log Out</span> </a>
+        <ul>
+            <li><a href="logout.php">Log Out</a></li>
         </ul>
     </li>
 

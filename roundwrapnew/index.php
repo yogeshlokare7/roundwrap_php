@@ -1,8 +1,12 @@
-
 <?php
 error_reporting(0);
 session_start();
 ob_start();
+
+if (empty($_SESSION["master"]["company"]) || empty($_SESSION["master"])) {
+    session_destroy();
+    header("location:login.php");
+}
 
 include './MysqlConnection.php';
 
@@ -92,7 +96,7 @@ if (count($explode) >= 2) {
 
     </head>
     <body>
-        
+
         <div id="header" style="color: white">Round Wrap</div>
         <div id="sidebar" class="sticky" ><?php include './leftmenu.php'; ?></div>
 
