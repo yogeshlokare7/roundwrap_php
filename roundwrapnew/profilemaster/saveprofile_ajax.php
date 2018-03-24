@@ -1,15 +1,5 @@
 <?php
 
-error_reporting(E_ALL);
+error_reporting(0);
 include '../MysqlConnection.php';
-// = filter_input(INPUT_POST, 'deleteId', FILTER_SANITIZE_ENCODED);
-//$decodedeleteid = base64_decode($deleteid);
-
-echo $query = "DELETE FROM rw.profile_master WHERE id = " . $deleteid;
-
-$flag = MysqlConnection::delete($query);
-if ($flag == "") {
-    echo json_encode(array("status" => "success"));
-} else {
-    echo json_encode(array("status" => "fail"));
-}
+$insert = MysqlConnection::insert("profile_master", $_POST);

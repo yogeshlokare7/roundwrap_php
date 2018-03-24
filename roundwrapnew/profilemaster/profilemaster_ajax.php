@@ -5,7 +5,7 @@ include '../MysqlConnection.php';
 $deleteid = filter_input(INPUT_POST, 'deleteId', FILTER_SANITIZE_ENCODED);
 //$decodedeleteid = base64_decode($deleteid);
 
-echo $query = "DELETE FROM rw.profile_master WHERE id = " . $deleteid;
+echo $query = "DELETE FROM profile_master WHERE id = " . $deleteid;
 
 $flag = MysqlConnection::delete($query);
 if ($flag == "") {

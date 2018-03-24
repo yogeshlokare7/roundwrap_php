@@ -45,12 +45,35 @@ if (count($explode) >= 2) {
                     $("#successMessage").hide('blind', {}, 100)
                 }, 5000);
             });
+
+            function convertFormToJSON(form) {
+                var array = $(form).serializeArray();
+                var json = {};
+
+                jQuery.each(array, function() {
+                    json[this.name] = this.value || '';
+                });
+
+                return json;
+            }
+
         </script>
+
+        <style>
+            .sticky {
+                position: fixed;
+                top: 0;
+                width: 100%
+            }
+        </style>
+
+
     </head>
     <body>
         <div id="header" style="color: white">Round Wrap</div>
-        <div id="sidebar"  ><?php include './leftmenu.php'; ?></div>
+        <div id="sidebar" class="sticky" ><?php include './leftmenu.php'; ?></div>
 
+        <img src="img/ajaxloading.gif" id="img" style="display:none" />
         <!-- this is model dialog --->
         <div id="myAlert" class="modal hide" style="width: 400px;top: 30%;left: 50%;">
             <div class="modal-header">
@@ -91,6 +114,7 @@ if (count($explode) >= 2) {
     <script src="js/maruti.tables.js"></script>
     <script src="js/jquery.dataTables.min.js"></script> 
     <script type="text/javascript">
+
             // This function is called from the pop-up menus to transfer to
             // a different page. Ignore if the value returned is a null string:
             function goPage(newURL) {

@@ -52,22 +52,6 @@
     </div>
 </div>
 
-<script>
-    $("#deleteThis").click(function() {
-        var dataString = "deleteId=" + $('#deleteId').val();
-        $.ajax({
-            type: 'POST',
-            url: 'taxname/taxname_ajax.php',
-            data: dataString
-        }).done(function(data) {
-        }).fail(function() {
-        });
-        location.reload();
-    });
-    function setDeleteField(deleteId) {
-        document.getElementById("deleteId").value = deleteId;
-    }
-</script>
 
 <!-- this is custom model dialog --->
 <div id="addData" class="modal hide" style="top: 10%;left: 50%;">
@@ -78,35 +62,60 @@
     <div class="modal-body">
         <form class="form-horizontal" method="post" action="#" name="basic_validate" id="basic_validate" novalidate="novalidate">
             <div class="control-group">
-                <label class="control-label">Your Name</label>
+                <label class="control-label">Profile Name</label>
                 <div class="controls">
-                    <input type="text" name="required" id="required">
+                    <input type="text" name="profile_name" id="profile_name">
                 </div>
             </div>
             <div class="control-group">
-                <label class="control-label">Your Email</label>
+                <label class="control-label">Label Name</label>
                 <div class="controls">
-                    <input type="text" name="email" id="email">
-
+                    <input type="text" name="label_name" id="label_name">
                 </div>
             </div>
             <div class="control-group">
-                <label class="control-label">Date (only Number)</label>
+                <label class="control-label">Label Value</label>
                 <div class="controls">
-                    <input type="text" name="date" id="date">
-                </div>
-            </div>
-            <div class="control-group">
-                <label class="control-label">URL (Start with http://)</label>
-                <div class="controls">
-                    <input type="text" name="url" id="url">
+                    <input type="text" name="label_value" id="label_value">
                 </div>
             </div>
         </form>
     </div>
     <div class="modal-footer"> 
-        <a id="save" data-dismiss="modal" class="btn btn-primary">Save</a> 
+        <a id="save" class="btn btn-primary">Save</a> 
         <a data-dismiss="modal" class="btn" href="#">Cancel</a> 
     </div>
 </div>
+
+<script>
+    $("#deleteThis").click(function() {
+        $('#img').show();
+        var dataString = "deleteId=" + $('#deleteId').val();
+        $.ajax({
+            type: 'POST',
+            url: 'taxname/taxname_ajax.php',
+            data: dataString
+        }).done(function(data) {
+            $('#img').hide();
+        }).fail(function() {
+        });
+        location.reload();
+    });
+    function setDeleteField(deleteId) {
+        document.getElementById("deleteId").value = deleteId;
+    }
+
+    $("#save").click(function() {
+        var json = convertFormToJSON("#basic_validate");
+        $.ajax({
+            type: 'POST',
+            url: 'profilemaster/saveprofile_ajax.php',
+            data: json
+        }).done(function(data) {
+        }).fail(function() {
+        });
+        location.reload();
+    });
+</script>
+
 <!-- this is model dialog --->
