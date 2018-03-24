@@ -90,14 +90,14 @@
 
 <script>
     $("#deleteThis").click(function() {
-        $('#img').show();
+        $("div#divLoading").addClass('show');
         var dataString = "deleteId=" + $('#deleteId').val();
         $.ajax({
             type: 'POST',
             url: 'taxname/taxname_ajax.php',
             data: dataString
         }).done(function(data) {
-            $('#img').hide();
+//            $('#img').hide();
         }).fail(function() {
         });
         location.reload();
@@ -108,6 +108,7 @@
 
     $("#save").click(function() {
         var json = convertFormToJSON("#basic_validate");
+        
         $.ajax({
             type: 'POST',
             url: 'profilemaster/saveprofile_ajax.php',

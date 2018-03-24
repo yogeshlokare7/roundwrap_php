@@ -34,6 +34,7 @@ if (count($explode) >= 2) {
         <link rel="stylesheet" href="css/bootstrap-responsive.min.css" />
         <link rel="stylesheet" href="css/select2.css" />
         <link rel="stylesheet" href="css/uniform.css" />
+        <link rel="stylesheet" href="css/loder.css" />
 
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
         <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
@@ -91,6 +92,7 @@ if (count($explode) >= 2) {
 
     </head>
     <body>
+        
         <div id="header" style="color: white">Round Wrap</div>
         <div id="sidebar" class="sticky" ><?php include './leftmenu.php'; ?></div>
 
@@ -110,14 +112,9 @@ if (count($explode) >= 2) {
             </div>
         </div>
         <!-- this is model dialog --->
-
-
-
+        <div id="divLoading"></div>
         <div id="content"><?php include '' . $include . ".php"; ?></div>
         <div class="row-fluid"><div id="footer" class="span12"></a> </div></div>
-
-
-
     </body>
     <script src="js/jquery.ui.custom.js"></script> 
     <script src="js/bootstrap.min.js"></script> 
