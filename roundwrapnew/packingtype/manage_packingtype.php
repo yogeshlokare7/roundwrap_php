@@ -35,7 +35,7 @@ $listofpackingtype = MysqlConnection::fetchCustom("SELECT * FROM generic_entry W
                         ?>
                         <tr class="gradeX">
                             <td><a href="#" class="tip-top" data-original-title="Edit Record"><i  class="icon-edit"></i></a></td>
-                            <td><a href="#myAlert" onclick="setDeleteField('<?php echo $value["psd_id"] ?>')" data-toggle="modal"  class="tip-top" data-original-title="Delete Record"><i class="icon-remove"></i></a> </td>
+                            <td><a href="#myAlert" onclick="setDeleteField('<?php echo $value["id"] ?>')" data-toggle="modal"  class="tip-top" data-original-title="Delete Record"><i class="icon-remove"></i></a> </td>
                             <td><?php echo $value["name"] ?></td>
                             <td><?php echo $value["description"] ?></td>
                             <td><?php echo $value["active"] ?></td>
@@ -61,18 +61,18 @@ $listofpackingtype = MysqlConnection::fetchCustom("SELECT * FROM generic_entry W
     <div class="modal-body">
         <form class="form-horizontal" method="post" action="#" name="basic_validate" id="basic_validate" novalidate="novalidate">
             <div class="control-group">
-                <label class="control-label">PACKINGSLIP DETAIL TYPE *:</label>
+                <label class="control-label">Packingslip Detail Type *:</label>
                 <div class="controls"><input type="text" name="type" id="type"></div>
             </div>
             <div class="control-group">
-                <label class="control-label">DESCRIPTION</label>
+                <label class="control-label">Description</label>
                 <div class="controls"><input type="text" name="description" id="description"></div>
             </div>
             <div class="control-group">
-                <label class="control-label">ACTIVE</label>
+                <label class="control-label">Active</label>
                 <div class="controls"><input type="text" name="active" id="active"></div>
             </div>
-            <input type="hidden" name="type" id="type" value="tax_type">
+            <input type="hidden" name="type" id="type" value="packingslip_detail_type">
         </form>
     </div>
     <div class="modal-footer"> 
@@ -92,7 +92,7 @@ $listofpackingtype = MysqlConnection::fetchCustom("SELECT * FROM generic_entry W
 //            location.reload();
         }).fail(function () {
         });
-        location.reload();
+        //location.reload();
     });
 
     function setDeleteField(deleteId) {

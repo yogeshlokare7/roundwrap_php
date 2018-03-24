@@ -45,8 +45,8 @@
                                         <button data-toggle="dropdown" class="btn dropdown-toggle">Action&nbsp;<span class="caret"></span></button>
                                         <ul class="dropdown-menu">
                                             <li><a href="#">Edit Customer</a></li>
-                                            <li><a href="#">Create Customer</a></li>
-                                            <li><a href="#">Create Purchase Order</a></li>
+                                            <li><a href="#">Create Customer</a></li>    
+                                            <li><a href="index.php?pagename=create_perchaseorder&customerId=<?php echo $value["cust_id"] ?>">Create Purchase Order</a></li>
                                             <li><a href="#">Create Invoice</a></li>
                                         </ul>
                                     </div>
