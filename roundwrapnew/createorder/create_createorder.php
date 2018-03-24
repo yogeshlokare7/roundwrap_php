@@ -81,5 +81,9 @@
             </div>
         </div>
     </div>
+    <div class="modal-footer"> 
+        <a id="save" class="btn btn-primary">Save</a> 
+        <a data-dismiss="modal" class="btn" href="#">Cancel</a> 
+    </div>
 </div>
 

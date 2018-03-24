@@ -12,10 +12,10 @@
                 <div class="widget-title"> <span class="icon"> <i class="icon-align-justify"></i> </span>
                     <h5>Create Purchase Order</h5>
                 </div>
-                
-                
-                
-                
+
+
+
+
                 <div class="widget-content nopadding">
                     <form action="#" method="get" class="form-horizontal">
                         <div class="control-group span11">
@@ -28,20 +28,20 @@
                                     <div class="span2">Billing Address: :</div>
                                     <div class="span10"><input type="text" class="span10" placeholder="Billing Address" /></div>
                                     <div class="span2">Shipping Address:*:</div>
-                                      <div class="span10"><input type="text" class="span10" placeholder="Shipping Address" /></div>
+                                    <div class="span10"><input type="text" class="span10" placeholder="Shipping Address" /></div>
                                     <div class="span2">Expected Delivery:*</div>
-                                      <div class="span10"><input type="text" class="span10" placeholder="Expected Delivery" /></div>
+                                    <div class="span10"><input type="text" class="span10" placeholder="Expected Delivery" /></div>
                                     <div class="span2">Ship Via:*</div>
-                                      <div class="span10"><input type="text" class="span10" placeholder="Ship Via" /></div>
+                                    <div class="span10"><input type="text" class="span10" placeholder="Ship Via" /></div>
                                     <div class="span2">Remark / Note :</div>
-                                      <div class="span10"><input type="text" class="span10" placeholder="Remark / Note :" /></div>
+                                    <div class="span10"><input type="text" class="span10" placeholder="Remark / Note :" /></div>
                                 </div>
                             </div>
                         </div>
-                        
-                        
-                        
-                        
+
+
+
+
                         <div class="widget-box">
                             <div class="widget-title"> <span class="icon">
                                 </span>
@@ -64,6 +64,10 @@
                 </div>
             </div>
         </div>
+    </div>
+    <div class="modal-footer"> 
+        <a id="save" class="btn btn-primary">Save</a> 
+        <a data-dismiss="modal" class="btn" href="#">Cancel</a> 
     </div>
 </div>
 

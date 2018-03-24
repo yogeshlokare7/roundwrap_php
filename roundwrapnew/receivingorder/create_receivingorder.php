@@ -10,13 +10,52 @@
         <div class="span12">
             <div class="widget-box">
                 <div class="widget-title"> <span class="icon"> <i class="icon-align-justify"></i> </span>
-                    <h5>Create Receiving Order</h5>
+                    <h5>Create Receive Order</h5>
                 </div>
+                <div class="widget-content nopadding">
+                    <form action="#" method="get" class="form-horizontal">
+                        <div class="control-group span11">
+                            <div class="span11" style="margin-left: 20px;">
+                                <div class="controls span6" style="float: left">
+                                    <div class="span2">PO ID:</div>
+                                    <div class="span10"><input type="text" class="span10" placeholder="PO ID" /></div>
+                                    <div class="span2">Supplier Name:</div>
+                                    <div class="span10"><input type="text" class="span10" placeholder="Supplier Name" /></div>
+                                    <div class="span2">Billing Address: :</div>
+                                    <div class="span10"><input type="text" class="span10" placeholder="Billing Address" /></div>
+                                    <div class="span2">Shipping Address:*:</div>
+                                    <div class="span10"><input type="text" class="span10" placeholder="Shipping Address" /></div>
+                                    <div class="span2">Receiving Delivery:*</div>
+                                    <div class="span10"><input type="text" class="span10" placeholder="Expected Delivery" /></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="widget-box">
+                            <div class="widget-title"> <span class="icon">
+                                </span>
+                                <h5>Static table with Check Boxes</h5>
+                            </div>
+                            <div class="widget-content nopadding">
+                                <table class="table table-bordered table-striped with-check">
+                                    <thead>
+                                        <tr>
+                                            <th>Item Details</th>
+                                            <th>Ordered</th>
+                                            <th>Receive</th>
+                                        </tr>
+                                    </thead>
+                                </table>
+                            </div>
+                        </div>
+                    </form>
                 </div>
-                </form>
             </div>
         </div>
     </div>
-</div>
+    <div class="modal-footer"> 
+        <a id="save" class="btn btn-primary">Save</a> 
+        <a data-dismiss="modal" class="btn" href="#">Cancel</a> 
+    </div>
 </div>
 

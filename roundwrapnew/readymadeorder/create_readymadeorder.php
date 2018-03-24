@@ -12,10 +12,10 @@
                 <div class="widget-title"> <span class="icon"> <i class="icon-align-justify"></i> </span>
                     <h5>Create Readymade Order</h5>
                 </div>
-                
-                
-                
-                
+
+
+
+
                 <div class="widget-content nopadding">
                     <form action="#" method="get" class="form-horizontal">
                         <div class="control-group span11">
@@ -28,26 +28,26 @@
                                     <div class="span2">Street Name*:</div>
                                     <div class="span10"><input type="text" class="span10" placeholder="Street Name" /></div>
                                     <div class="span2">Country*:</div>
-                                      <div class="span10"><input type="text" class="span10" placeholder="Country" /></div>
+                                    <div class="span10"><input type="text" class="span10" placeholder="Country" /></div>
                                     <div class="span2">	Province*:</div>
-                                      <div class="span10"><input type="text" class="span10" placeholder="Province" /></div>
+                                    <div class="span10"><input type="text" class="span10" placeholder="Province" /></div>
                                     <div class="span2">Phone No*</div>
-                                      <div class="span10"><input type="text" class="span10" placeholder="Phone No" /></div>
+                                    <div class="span10"><input type="text" class="span10" placeholder="Phone No" /></div>
                                     <div class="span2">Email</div>
-                                      <div class="span10"><input type="text" class="span10" placeholder="Email" /></div>
+                                    <div class="span10"><input type="text" class="span10" placeholder="Email" /></div>
                                     <div class="span2">Expected Delivery*:</div>
-                                      <div class="span10"><input type="text" class="span10" placeholder="Expected Delivery" /></div>
+                                    <div class="span10"><input type="text" class="span10" placeholder="Expected Delivery" /></div>
                                     <div class="span2">Ship Via*:</div>
-                                      <div class="span10"><input type="text" class="span10" placeholder="Ship Via:" /></div>
+                                    <div class="span10"><input type="text" class="span10" placeholder="Ship Via:" /></div>
                                     <div class="span2">Remark / Note :</div>
-                                      <div class="span10"><input type="text" class="span10" placeholder="Remark / Note :" /></div>
+                                    <div class="span10"><input type="text" class="span10" placeholder="Remark / Note :" /></div>
                                 </div>
                             </div>
                         </div>
-                        
-                        
-                        
-                        
+
+
+
+
                         <div class="widget-box">
                             <div class="widget-title"> <span class="icon">
                                 </span>
@@ -74,6 +74,10 @@
                 </div>
             </div>
         </div>
+    </div>
+    <div class="modal-footer"> 
+        <a id="save" class="btn btn-primary">Save</a> 
+        <a data-dismiss="modal" class="btn" href="#">Cancel</a> 
     </div>
 </div>
 

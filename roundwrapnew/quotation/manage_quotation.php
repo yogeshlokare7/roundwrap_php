@@ -9,6 +9,8 @@ $quotationSlip = MysqlConnection::fetchAll("packslip");
 </div>
 
 <div class="container-fluid">
+    <br/>
+    <a class="btn" href="index.php?pagename=create_quotation" >Quotation</a>
     <div class="widget-box">
         <div class="widget-title">
             <span class="icon"><i class="icon-th"></i></span> 

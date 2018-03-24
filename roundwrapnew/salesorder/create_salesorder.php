@@ -12,15 +12,18 @@
                 <div class="widget-title"> <span class="icon"> <i class="icon-align-justify"></i> </span>
                     <h5>Create Sales Order</h5>
                 </div>
-                
-                
-                
-                
 
-                    </form>
-                </div>
+
+
+
+
+                </form>
             </div>
         </div>
+    </div>
+    <div class="modal-footer"> 
+        <a id="save" class="btn btn-primary">Save</a> 
+        <a data-dismiss="modal" class="btn" href="#">Cancel</a> 
     </div>
 </div>
 

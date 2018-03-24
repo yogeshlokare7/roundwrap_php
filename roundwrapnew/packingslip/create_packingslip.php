@@ -13,9 +13,6 @@
                     <h5>Create Purchase Order</h5>
                 </div>
 
-
-
-
                 <div class="widget-content nopadding">
                     <form action="#" method="get" class="form-horizontal">
                         <div class="control-group span11">
@@ -32,40 +29,42 @@
                                     <div class="span2">Required Date:</div>
                                     <div class="span10"><input type="text" class="span10" placeholder="Required Date" /></div>
                                     <div class="span2 controls">Square#:</div>
-                                        <select>
-                                            <option>First option</option>
-                                            <option>Second option</option>
-                                            <option>Third option</option>
-                                        </select>
-                                    </div>
+                                    <select>
+                                        <option value="1">First option</option>
+                                        <option value="2">Second option</option>
+                                        <option value="3">Third option</option>
+                                        <option value="4">Fourth option</option>
+                                    </select>
                                 </div>
                             </div>
+                        </div>
 
-
-
-
-                            <div class="widget-box">
-                                <div class="widget-title"> <span class="icon">
-                                    </span>
-                                    <h5>Static table with Check Boxes</h5>
-                                </div>
-                                <div class="widget-content nopadding">
-                                    <table class="table table-bordered table-striped with-check">
-                                        <thead>
-                                            <tr>
-                                                <th>Item</th>
-                                                <th>Quantity</th>
-                                                <th>Rate</th>
-                                                <th>Amount</th>
-                                            </tr>
-                                        </thead>
-                                    </table>
-                                </div>
+                        <div class="widget-box">
+                            <div class="widget-title"> <span class="icon">
+                                </span>
+                                <h5>Static table with Check Boxes</h5>
                             </div>
+                            <div class="widget-content nopadding">
+                                <table class="table table-bordered table-striped with-check">
+                                    <thead>
+                                        <tr>
+                                            <th>Item</th>
+                                            <th>Quantity</th>
+                                            <th>Rate</th>
+                                            <th>Amount</th>
+                                        </tr>
+                                    </thead>
+                                </table>
+                            </div>
+                        </div>
                     </form>
                 </div>
             </div>
         </div>
+    </div>
+    <div class="modal-footer"> 
+        <a id="save" class="btn btn-primary">Save</a> 
+        <a data-dismiss="modal" class="btn" href="#">Cancel</a> 
     </div>
 </div>
 
