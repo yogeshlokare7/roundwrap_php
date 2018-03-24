@@ -60,6 +60,7 @@ $workOrderDashboard = MysqlConnection::fetchAll("packslip");
 
 <script>
     $("#deleteThis").click(function () {
+        $("div#divLoading").addClass('show');
         var dataString = "deleteId=" + $('#deleteId').val();
         $.ajax({
             type: 'POST',

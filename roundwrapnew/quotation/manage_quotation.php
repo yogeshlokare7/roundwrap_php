@@ -65,6 +65,7 @@ $quotationSlip = MysqlConnection::fetchAll("packslip");
 </div>
 <script>
     $("#deleteThis").click(function () {
+        $("div#divLoading").addClass('show');
         var dataString = "deleteId=" + $('#deleteId').val();
         $.ajax({
             type: 'POST',
