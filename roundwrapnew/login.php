@@ -5,9 +5,8 @@ ob_start();
 $sql = "SELECT * FROM `company_master`";
 
 $array = getResultSet($sql);
-foreach ($array as $key => $value) {
-    
-}
+ 
+
 if (count($_POST) > 0) {
     $sqlcompny = "SELECT * FROM `company_master` where cmp_id = " . $_POST['cmp_id'];
     $resultcompany = getResultSet($sqlcompny);

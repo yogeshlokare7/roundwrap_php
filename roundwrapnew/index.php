@@ -3,6 +3,7 @@ error_reporting(0);
 session_start();
 ob_start();
 
+
 if (empty($_SESSION["master"]["company"]) || empty($_SESSION["master"])) {
     session_destroy();
     header("location:login.php");

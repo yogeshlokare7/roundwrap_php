@@ -67,7 +67,6 @@
                 </table> 
             </div>
             <div id="tab2" class="tab-pane">
-dsads
             </div>
             <div id="tab3" class="tab-pane">
 

@@ -7,7 +7,7 @@
 </div>
 <div class="container-fluid" >
     <br/>
-    <a class="btn" href="#addData"  data-toggle="modal">ADD CUSTOMER</a>
+    <a class="btn" href="index.php?pagename=create_customermaster" >ADD CUSTOMER</a>
     <div class="widget-box">
         <div class="widget-title">
             <span class="icon"><i class="icon-th"></i></span> 
@@ -46,14 +46,8 @@
                                         <ul class="dropdown-menu">
                                             <li><a href="index.php?pagename=create_customermaster&customerId=1">Edit Customer</a></li>
                                             <li><a href="index.php?pagename=create_customermaster">Create Customer</a></li>
-                                            <li><a href="#">Create Purchase Order</a></li>
-                                            <li><a href="#">Edit Customer</a></li>
-                                            <li><a href="#">Create Customer</a></li>
-                                            <li><a href="#">Create Purchase Order</a></li>
-                                            <li><a href="#">Edit Customer</a></li>
-                                            <li><a href="#">Create Customer</a></li>    
-                                            <li><a href="index.php?pagename=create_perchaseorder&customerId=<?php echo $value["cust_id"] ?>">Create Purchase Order</a></li>
-                                            <li><a href="#">Create Invoice</a></li>
+                                            <li><a href="index.php?pagename=create_perchaseorder">Create Purchase Order</a></li>
+                                            <li><a href="index.php?pagename=manage_invoice">Create Invoice</a></li>
                                         </ul>
                                     </div>
                                 </td>
@@ -78,30 +72,30 @@
 </div>
 
 <script>
-    $("#deleteThis").click(function () {
+    $("#deleteThis").click(function() {
         $('#img').show();
         var dataString = "deleteId=" + $('#deleteId').val();
         $.ajax({
             type: 'POST',
             url: 'customermaster/customermaster_ajax.php',
             data: dataString
-        }).done(function (data) {
+        }).done(function(data) {
             $('#img').hide();
-        }).fail(function () {
+        }).fail(function() {
         });
         location.reload();
     });
     function setDeleteField(deleteId) {
         document.getElementById("deleteId").value = deleteId;
     }
-    $("#save").click(function () {
+    $("#save").click(function() {
         var json = convertFormToJSON("#basic_validate");
         $.ajax({
             type: 'POST',
             url: 'customermaster/savecustomermaster_ajax.php',
             data: json
-        }).done(function (data) {
-        }).fail(function () {
+        }).done(function(data) {
+        }).fail(function() {
         });
         location.reload();
     });
