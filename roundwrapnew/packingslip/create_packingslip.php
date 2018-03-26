@@ -10,55 +10,130 @@
         <div class="span12">
             <div class="widget-box">
                 <div class="widget-title"> <span class="icon"> <i class="icon-align-justify"></i> </span>
-                    <h5>Create Purchase Order</h5>
+                    <h5>Create Packing Slip</h5>
                 </div>
+                <form action="#" method="get" class="form-horizontal">
+                    <div class="widget-content tab-content">
+                        <div id="tab1" class="tab-pane active">
+                            <table style="width: 100%;">
+                                <tr style="vertical-align: top;">
+                                    <td style="width:50%">
+                                        <table style="width: 80%;">
+                                            <tr>
+                                                <td style="width: 30%;"><label class="control-label">Company Name:*</label></td>
+                                                <td style="width: 60%;" colspan="3"><input type="text" placeholder="Comapny name" class="span11" style="width:100%;"/></td> 
+                                            </tr>
+                                            <tr>
+                                                <td style="width: 30%;"><label class="control-label">SO No:*</label></td>
+                                                <td style="width: 60%;"><input type="text" placeholder="So no." class="span11" style="width:100%;"/></td> 
+                                            </tr>
+                                            <tr>
+                                                <td style="width: 30%;"><label class="control-label">PO No:*</label></td>
+                                                <td style="width: 60%;"><input type="text" placeholder="PO no." class="span11" style="width:100%;"/></td> 
+                                            </tr>
+                                            <tr>
+                                                <td style="width: 30%;"><label class="control-label">Received Date:*</label></td>
+                                                <td style="width: 60%;"><div data-date="12-02-2012" class="input-append date datepicker">
+                                                        <input type="text" value="12-02-2012"  data-date-format="mm-dd-yyyy" class="span11" >
+                                                        <span class="add-on"><i class="icon-th"></i></span> </div></td> 
+                                            </tr>
+                                            <tr>
+                                                <td style="width: 30%;"><label class="control-label">Required Date:*</label></td>
+                                                <td style="width: 60%;"><div data-date="12-02-2012" class="input-append date datepicker">
+                                                        <input type="text" value="12-02-2012"  data-date-format="mm-dd-yyyy" class="span11" >
+                                                        <span class="add-on"><i class="icon-th"></i></span> </div></td> 
+                                            </tr>
+                                            <tr>
+                                                <td style="width: 30%;"><label class="control-label">Square:*</label></td>
+                                                <td style="width: 60%;"><select><option value="">Select</option></select></td>
+                                            </tr>
+                                        </table> 
+                                    </td>
+                                    <td style="width:50%">
+                                        <table style="width: 80%;">
+                                            <tr >
+                                                <td style="width: 30%;"><label class="control-label">Select Profile:*</label></td>
+                                                <td style="width: 60%;"><select><option value="">Select</option></select></td>
+                                            </tr>
 
-                <div class="widget-content nopadding">
-                    <form action="#" method="get" class="form-horizontal">
-                        <div class="control-group span11">
-                            <div class="span11" style="margin-left: 20px;">
-                                <div class="controls span6" style="float: left">
-                                    <div class="span2">Company Name:</div>
-                                    <div class="span10"><input type="text" class="span10" placeholder="Company Name" /></div>
-                                    <div class="span2">SO#:</div>
-                                    <div class="span10"><input type="text" class="span10" placeholder="SO" /></div>
-                                    <div class="span2">PO #:</div>
-                                    <div class="span10"><input type="text" class="span10" placeholder="PO" /></div>
-                                    <div class="span2">Received Date:</div>
-                                    <div class="span10"><input type="text" class="span10" placeholder="Received Date" /></div>
-                                    <div class="span2">Required Date:</div>
-                                    <div class="span10"><input type="text" class="span10" placeholder="Required Date" /></div>
-                                    <div class="span2 controls">Square#:</div>
-                                    <select>
-                                        <option value="1">First option</option>
-                                        <option value="2">Second option</option>
-                                        <option value="3">Third option</option>
-                                        <option value="4">Fourth option</option>
-                                    </select>
-                                </div>
-                            </div>
+                                        </table> 
+                                    </td>
+                                </tr>
+                            </table> 
                         </div>
-
+                    </div>
+                    <div class="widget-content nopadding">
                         <div class="widget-box">
-                            <div class="widget-title"> <span class="icon">
+<!--                            <div class="widget-title"> <span class="icon">
                                 </span>
                                 <h5>Static table with Check Boxes</h5>
-                            </div>
+                            </div>-->
                             <div class="widget-content nopadding">
                                 <table class="table table-bordered table-striped with-check">
                                     <thead>
                                         <tr>
-                                            <th>Item</th>
-                                            <th>Quantity</th>
-                                            <th>Rate</th>
-                                            <th>Amount</th>
+                                            <th style="width:5%">Pcs</th>
+                                            <th style="width:20%">Type</th>
+                                            <th style="width:10%">(W) MM</th>
+                                            <th style="width:10%">(H) MM</th>
+                                            <th style="width:10%">(W) INCH</th>
+                                            <th style="width:10%">(H) INCH</th>
+                                            <th style="width:15%">SQ-FT</th>
                                         </tr>
                                     </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td><input type="text"  style="width: 100%;" class="span11"/></td>
+                                            <td><input type="text"  style="width: 100%;" class="span11"/></td>
+                                            <td><input type="text" style="width: 100%;" class="span11"/></td>
+                                            <td><input type="text"  style="width: 100%;" class="span11"/></td>
+                                            <td><input type="text"  style="width: 100%;" class="span11"/></td>
+                                            <td><input type="text"   style="width: 100%;" class="span11"/></td>
+                                            <td><input type="text"   style="width: 100%;" class="span11"/></td>
+                                        </tr> 
+                                        <tr>
+                                            <td><input type="text"  style="width: 100%;" class="span11"/></td>
+                                            <td><input type="text"  style="width: 100%;" class="span11"/></td>
+                                            <td><input type="text" style="width: 100%;" class="span11"/></td>
+                                            <td><input type="text"  style="width: 100%;" class="span11"/></td>
+                                            <td><input type="text"  style="width: 100%;" class="span11"/></td>
+                                            <td><input type="text"   style="width: 100%;" class="span11"/></td>
+                                            <td><input type="text"   style="width: 100%;" class="span11"/></td>
+                                        </tr> 
+                                        <tr>
+                                            <td><input type="text"  style="width: 100%;" class="span11"/></td>
+                                            <td><input type="text"  style="width: 100%;" class="span11"/></td>
+                                            <td><input type="text" style="width: 100%;" class="span11"/></td>
+                                            <td><input type="text"  style="width: 100%;" class="span11"/></td>
+                                            <td><input type="text"  style="width: 100%;" class="span11"/></td>
+                                            <td><input type="text"   style="width: 100%;" class="span11"/></td>
+                                            <td><input type="text"   style="width: 100%;" class="span11"/></td>
+                                        </tr> 
+                                        <tr>
+                                            <td><input type="text"  style="width: 100%;" class="span11"/></td>
+                                            <td><input type="text"  style="width: 100%;" class="span11"/></td>
+                                            <td><input type="text" style="width: 100%;" class="span11"/></td>
+                                            <td><input type="text"  style="width: 100%;" class="span11"/></td>
+                                            <td><input type="text"  style="width: 100%;" class="span11"/></td>
+                                            <td><input type="text"   style="width: 100%;" class="span11"/></td>
+                                            <td><input type="text"   style="width: 100%;" class="span11"/></td>
+                                        </tr> 
+                                        <tr>
+                                            <td><input type="text"  style="width: 100%;" class="span11"/></td>
+                                            <td><input type="text"  style="width: 100%;" class="span11"/></td>
+                                            <td><input type="text" style="width: 100%;" class="span11"/></td>
+                                            <td><input type="text"  style="width: 100%;" class="span11"/></td>
+                                            <td><input type="text"  style="width: 100%;" class="span11"/></td>
+                                            <td><input type="text"   style="width: 100%;" class="span11"/></td>
+                                            <td><input type="text"   style="width: 100%;" class="span11"/></td>
+                                        </tr> 
+                                        
+                                    </tbody>
                                 </table>
                             </div>
                         </div>
-                    </form>
-                </div>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
@@ -67,4 +142,9 @@
         <a data-dismiss="modal" class="btn" href="#">Cancel</a> 
     </div>
 </div>
-
+<script src="js/jquery.min.js"></script> 
+<script src="js/bootstrap.min.js"></script> 
+<script src="js/bootstrap-colorpicker.js"></script> 
+<script src="js/bootstrap-datepicker.js"></script> 
+<script src="js/maruti.js"></script> 
+<script src="js/maruti.form_common.js"></script>
