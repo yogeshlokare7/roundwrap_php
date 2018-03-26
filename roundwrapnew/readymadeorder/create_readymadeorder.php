@@ -24,43 +24,33 @@
                             <table style="width: 100%;">
                                <tr>
                                     <td style="width: 15%;">Customer Name:*</td>
-                                    <td style="width: 35%;"><input type="text" placeholder="Customer Name" /></td>
+                                    <td style="width: 35%;"><input type="text" placeholder="Customer Name" class="span11"/></td>
                                     <td style="width: 15%;">Customer Email:*</td>
-                                    <td style="width: 35%;"><input type="text" placeholder="Customer Emial" /></td>
+                                    <td style="width: 35%;"><input type="text" placeholder="Customer Emial" class="span11"/></td>
                                 </tr>
                                 <tr>
                                    <td style="width: 15%;">Phone No:</td>
-                                    <td style="width: 35%;"><input type="text" placeholder="Phone No" /></td>
+                                    <td style="width: 35%;"><input type="text" placeholder="Phone No" class="span11"/></td>
                                     <td style="width: 15%;">Fax:</td>
-                                    <td style="width: 35%;"><input type="text" placeholder="Fax" /></td>
-                                </tr>
-                                <tr>
-                                    <td style="width: 15%;">Street No:</td>
-                                    <td style="width: 35%;"><input type="text" placeholder="Street No" /></td>
-                                    <td style="width: 15%;">Street Name:</td>
-                                    <td style="width: 35%;"><input type="text" placeholder="Street Name" /></td>
-                                </tr>
-                                <tr>
-                                    <td style="width: 15%;">City:</td>
-                                    <td style="width: 35%;"><input type="text" placeholder="City" /></td>
-                                    <td style="width: 15%;">Postal Code:</td>
-                                    <td style="width: 35%;"><input type="text" placeholder="Postal Code" /></td>
+                                    <td style="width: 35%;"><input type="text" placeholder="Fax" class="span11"/></td>
                                 </tr>
                                  <tr>
-                                    <td style="width: 15%;">Country:</td>
-                                    <td style="width: 35%;"><input type="text" placeholder="Country" /></td>
-                                    <td style="width: 15%;">Province:</td>
-                                    <td style="width: 35%;"><input type="text" placeholder="Province" /></td>
+                                    <td style="width: 15%;"><label class="control-label">Billing Address:</label></td>
+                                    <td style="width: 35%;"><textarea class="span11"></textarea></td>
+                                    <td style="width: 15%;"><label class="control-label">Shipping Address:*</label></td>
+                                    <td style="width: 35%;"><textarea class="span11"></textarea></td>
                                 </tr>
-                               <tr>
-                                    <td style="width: 15%;">Expected Delivery:*</td>
-                                    <td style="width: 35%;"><input type="text"  placeholder="Expected Delivery" /></td>
-                                    <td style="width: 15%;">Ship Via:*</td>
-                                    <td style="width: 35%;"><input type="text"  placeholder="Ship Via" /></td>
+                                <tr>
+                                    <td style="width: 15%;"><label class="control-label">Expected Delivery:*</label></td>
+                                    <td style="width: 35%;">    <div data-date="12-02-2012" class="input-append date datepicker">
+                                                <input type="text" value="12-02-2012"  data-date-format="mm-dd-yyyy" class="span11" >
+                                                <span class="add-on"><i class="icon-th"></i></span> </div></td>
+                                    <td style="width: 15%;"><label class="control-label">Ship Via:*</label></td>
+                                     <td style="width: 35%;"><select><option value="select">Select</option></select></td>
                                 </tr>
                                 <tr>
                                     <td style="width: 15%;">Remark / Note :</td>
-                                    <td style="width: 35%;"><input type="text"  placeholder="Remark / Note :" /></td>
+                                    <td style="width: 35%;"><input type="text"  placeholder="Remark / Note :" class="span11"/></td>
                                 </tr>
                             </table> 
                         </div>
@@ -88,26 +78,25 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td ><input type="text"   placeholder="Enter Item" style="width: 100%;"/></td>
-                                    <td ><input type="text"   placeholder="" style="width: 100%;"/></td>
-                                    <td><input type="text"   placeholder="Enter Order" style="width: 100%;"/></td>
-                                    <td ><input type="text"   placeholder="" style="width: 100%;"/></td>
-                                    <td ><input type="text"   placeholder="" style="width: 100%;"/></td>
-                                    <td><input type="text"   placeholder="Enter Rate" style="width: 100%;"/></td>
-                                    <td><input type="text"   placeholder="Enter Discount" style="width: 100%;"/></td>
-                                    <td ><input type="text"   placeholder="" style="width: 100%;" /></td>
+                                    <td ><input type="text"   placeholder="Enter Item" style="width: 100%;" class="span11"/></td>
+                                    <td ><input type="text"   placeholder="" style="width: 100%;" class="span11"/></td>
+                                    <td><input type="text"   placeholder="" style="width: 100%;" class="span11"/></td>
+                                    <td ><input type="text"   placeholder="" style="width: 100%;" class="span11"/></td>
+                                    <td ><input type="text"   placeholder="" style="width: 100%;" class="span11"/></td>
+                                    <td><input type="text"   placeholder="Enter Rate" style="width: 100%;" class="span11"/></td>
+                                    <td><input type="text"   placeholder="Enter Discount" style="width: 100%;" class="span11"/></td>
+                                    <td ><input type="text"   placeholder="" style="width: 100%;" class="span11"/></td>
                                 </tr>
-                                  <tr>
-                                    <td ><input type="text"   placeholder="Enter Item" style="width: 100%;"/></td>
-                                    <td ><input type="text"   placeholder="" style="width: 100%;"/></td>
-                                    <td><input type="text"   placeholder="Enter Order" style="width: 100%;"/></td>
-                                    <td ><input type="text"   placeholder="" style="width: 100%;"/></td>
-                                    <td ><input type="text"   placeholder="" style="width: 100%;"/></td>
-                                    <td><input type="text"   placeholder="Enter Rate" style="width: 100%;"/></td>
-                                    <td><input type="text"   placeholder="Enter Discount" style="width: 100%;"/></td>
-                                    <td ><input type="text"   placeholder="" style="width: 100%;" /></td>
+                                   <tr>
+                                    <td ><input type="text"   placeholder="Enter Item" style="width: 100%;" class="span11"/></td>
+                                    <td ><input type="text"   placeholder="" style="width: 100%;" class="span11"/></td>
+                                    <td><input type="text"   placeholder="" style="width: 100%;" class="span11"/></td>
+                                    <td ><input type="text"   placeholder="" style="width: 100%;" class="span11"/></td>
+                                    <td ><input type="text"   placeholder="" style="width: 100%;" class="span11"/></td>
+                                    <td><input type="text"   placeholder="Enter Rate" style="width: 100%;" class="span11"/></td>
+                                    <td><input type="text"   placeholder="Enter Discount" style="width: 100%;" class="span11"/></td>
+                                    <td ><input type="text"   placeholder="" style="width: 100%;" class="span11"/></td>
                                 </tr>
-                                
                             </tbody>
                         </table>
                     </div>
@@ -121,4 +110,11 @@
         <a data-dismiss="modal" class="btn" href="#">Cancel</a> 
     </div>
 </div>
+<script src="js/jquery.min.js"></script> 
+<script src="js/bootstrap.min.js"></script> 
+<script src="js/bootstrap-colorpicker.js"></script> 
+<script src="js/bootstrap-datepicker.js"></script> 
+<script src="js/select2.min.js"></script> 
+<script src="js/maruti.js"></script> 
+<script src="js/maruti.form_common.js"></script>
 

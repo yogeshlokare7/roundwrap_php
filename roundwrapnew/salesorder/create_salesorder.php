@@ -20,15 +20,15 @@
                             <table style="width: 100%;">
                                <tr>
                                     <td style="width: 10%;">SO NO:*</td>
-                                    <td style="width: 40%;"><input type="text" placeholder="SO ID" /></td>
+                                    <td style="width: 40%;"><input type="text" placeholder="SO ID" class="span11"/></td>
                                     <td style="width: 10%;">Customer Name:*</td>
-                                    <td style="width: 40%;"><input type="text" placeholder="Customer Name" /></td>
+                                    <td style="width: 40%;"><input type="text" placeholder="Customer Name" class="span11"/></td>
                                 </tr>
                               <tr>
-                                    <td style="width: 10%;">Bill TO:*</td>
-                                    <td style="width: 40%;"><input type="text"  placeholder="Billing Address" /></td>
-                                    <td style="width: 10%;">Ship To:*</td>
-                                    <td style="width: 40%;"><input type="text"  placeholder="Shipping Address" /></td>
+                                    <td style="width: 15%;"><label class="control-label">Billing Address:*</label></td>
+                                    <td style="width: 35%;"><textarea class="span11"></textarea></td>
+                                    <td style="width: 15%;"><label class="control-label">Shipping Address:*</label></td>
+                                    <td style="width: 35%;"><textarea class="span11"></textarea></td>
                                 </tr>
 <!--                               <tr>
                                     <td style="width: 15%;">Delivery Date:*</td>
@@ -55,20 +55,20 @@
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td ><input type="text"  placeholder="Item" style="width: 100%;"/></td>
-                                            <td ><input type="text"  placeholder="item description" style="width: 100%;"/></td>
-                                            <td ><input type="text"  placeholder="ordered quantity" style="width: 100%;"/></td>
-                                            <td ><input type="text"  placeholder="stock quantity" style="width: 100%;"/></td>
-                                            <td ><input type="text"  placeholder="stock status" style="width: 100%;"/></td>
-                                            <td ><input type="text"  placeholder="sales qty" style="width: 100%;"/></td>
+                                            <td ><input type="text"  class="span11" placeholder="Item" style="width: 100%;"/></td>
+                                            <td ><input type="text"  class="span11" placeholder="item description" style="width: 100%;"/></td>
+                                            <td ><input type="text"  class="span11" placeholder="ordered quantity" style="width: 100%;"/></td>
+                                            <td ><input type="text"  class="span11" placeholder="stock quantity" style="width: 100%;"/></td>
+                                            <td ><input type="text"  class="span11" placeholder="stock status" style="width: 100%;"/></td>
+                                            <td ><input type="text"  class="span11" placeholder="sales qty" style="width: 100%;"/></td>
                                         </tr>
                                         <tr>
-                                            <td ><input type="text"  placeholder="Item" style="width: 100%;"/></td>
-                                            <td ><input type="text"  placeholder="item description" style="width: 100%;"/></td>
-                                            <td ><input type="text"  placeholder="ordered quantity" style="width: 100%;"/></td>
-                                            <td ><input type="text"  placeholder="stock quantity" style="width: 100%;"/></td>
-                                            <td ><input type="text"  placeholder="stock status" style="width: 100%;"/></td>
-                                            <td ><input type="text"  placeholder="sales qty" style="width: 100%;"/></td>
+                                            <td ><input type="text"  class="span11" placeholder="Item" style="width: 100%;"/></td>
+                                            <td ><input type="text"  class="span11" placeholder="item description" style="width: 100%;"/></td>
+                                            <td ><input type="text"  class="span11" placeholder="ordered quantity" style="width: 100%;"/></td>
+                                            <td ><input type="text"  class="span11" placeholder="stock quantity" style="width: 100%;"/></td>
+                                            <td ><input type="text"  class="span11" placeholder="stock status" style="width: 100%;"/></td>
+                                            <td ><input type="text"  class="span11" placeholder="sales qty" style="width: 100%;"/></td>
                                         </tr>
                                     </tbody>
                                 </table>

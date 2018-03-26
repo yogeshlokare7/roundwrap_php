@@ -1,7 +1,7 @@
 <div id="content-header">
     <div id="breadcrumb"> 
         <a class="tip-bottom"><i class="icon-home"></i> Home</a>
-        <a class="tip-bottom"><i class="icon-home"></i>Supplier Purchase Order Entry</a>
+        <a class="tip-bottom"><i class="icon-home"></i>Receiving Order Entry</a>
     </div>
 </div>
 
@@ -12,7 +12,7 @@
         <div class="span12">
             <div class="widget-box">
                 <div class="widget-title"> <span class="icon"> <i class="icon-align-justify"></i> </span>
-                    <h5>Create Receive Order</h5>
+                    <h5>Create Receiving Order</h5>
                 </div>
                 <div class="widget-content tab-content">
                         <div id="tab1" class="tab-pane active">
@@ -20,19 +20,21 @@
                             <table style="width: 100%;">
                                <tr>
                                     <td style="width: 10%;">PO ID:*</td>
-                                    <td style="width: 40%;"><input type="text" placeholder="PO ID" /></td>
+                                    <td style="width: 40%;"><input type="text" placeholder="PO ID" class="span11"/></td>
                                     <td style="width: 10%;">Supplier Name</td>
-                                    <td style="width: 40%;"><input type="text" placeholder="Supplier Name" /></td>
+                                    <td style="width: 40%;"><input type="text" placeholder="Supplier Name" class="span11"/></td>
                                 </tr>
                               <tr>
-                                    <td style="width: 10%;">Billing Address:</td>
-                                    <td style="width: 40%;"><input type="text"  placeholder="Billing Address" /></td>
-                                    <td style="width: 10%;">Shipping Address:*</td>
-                                    <td style="width: 40%;"><input type="text"  placeholder="Shipping Address" /></td>
+                                    <td style="width: 15%;"><label class="control-label">Billing Address:</label></td>
+                                    <td style="width: 35%;"><textarea class="span11"></textarea></td>
+                                    <td style="width: 15%;"><label class="control-label">Shipping Address:*</label></td>
+                                    <td style="width: 35%;"><textarea class="span11"></textarea></td>
                                 </tr>
                                <tr>
                                     <td style="width: 15%;">Receiving Delivery:*</td>
-                                    <td style="width: 35%;"><input type="text"  placeholder="Expected Delivery" /></td>
+                                    <td style="width: 35%;"><div data-date="12-02-2012" class="input-append date datepicker">
+                                                <input type="text" value="12-02-2012"  data-date-format="mm-dd-yyyy" class="span11" >
+                                                <span class="add-on"><i class="icon-th"></i></span> </div></td>
                                    
                                 </tr>
                                
@@ -52,15 +54,15 @@
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td ><input type="text"  placeholder="Enter Item" style="width: 100%;"/></td>
-                                            <td ><input type="text"  placeholder="ordered item " style="width: 100%;"/></td>
-                                            <td ><input type="text"  placeholder="received item " style="width: 100%;"/></td>
+                                            <td ><input type="text"  placeholder="Enter Item" style="width: 100%;" class="span11"/></td>
+                                            <td ><input type="text"  placeholder="ordered item " style="width: 100%;" class="span11"/></td>
+                                            <td ><input type="text"  placeholder="received item " style="width: 100%;" class="span11"/></td>
                                         </tr>
-<!--                                        <tr>
-                                            <td><input type="text"  placeholder="Enter Item" /></td>
-                                            <td><input type="text"  placeholder="ordered item " /></td>
-                                            <td><input type="text"  placeholder="received item " /></td>
-                                        </tr>-->
+                                        <tr>
+                                            <td ><input type="text"  placeholder="Enter Item" style="width: 100%;" class="span11"/></td>
+                                            <td ><input type="text"  placeholder="ordered item " style="width: 100%;" class="span11"/></td>
+                                            <td ><input type="text"  placeholder="received item " style="width: 100%;" class="span11"/></td>
+                                        </tr>
                                     </tbody>
                                 </table>
                             </div>
@@ -75,4 +77,11 @@
         <a data-dismiss="modal" class="btn" href="#">Cancel</a> 
     </div>
 </div>
+<script src="js/jquery.min.js"></script> 
+<script src="js/bootstrap.min.js"></script> 
+<script src="js/bootstrap-colorpicker.js"></script> 
+<script src="js/bootstrap-datepicker.js"></script> 
+<script src="js/select2.min.js"></script> 
+<script src="js/maruti.js"></script> 
+<script src="js/maruti.form_common.js"></script>
 
