@@ -28,34 +28,34 @@ $listofunit = MysqlConnection::fetchCustom("SELECT * FROM generic_entry WHERE ty
         </div>
         <div class="widget-content nopadding">
             <form name="unit" id="unit" method="POST">
-            <table class="table table-bordered data-table">
-                <thead>
-                    <tr>
-                        <th style="width: 2.3%">#</th>
-                        <th style="width: 2.3%">#</th> 
-                        <th>Name</th>
-                        <th>Description</th>
-                        <th>Active</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php
-                    foreach ($listofunit as $key => $value) {
-                        ?>
-                        <tr class="gradeX">
-                            <td><a href="index.php?pagename=edit_unit&id=('<?php echo $value["id"]?>')" class="tip-top" data-original-title="Edit Record"><i  class="icon-edit"></i></a></td>
-                            <td><a href="#myAlert" onclick="setDeleteField('<?php echo $value["id"] ?>')" data-toggle="modal"  class="tip-top" data-original-title="Delete Record"><i class="icon-remove"></i></a> </td>
-                            <td><?php echo $value["name"] ?></td>
-                            <td><?php echo $value["description"] ?></td>
-                            <td><?php echo $value["active"] ?></td>
+                <table class="table table-bordered data-table">
+                    <thead>
+                        <tr>
+                            <th style="width: 2.3%">#</th>
+                            <th style="width: 2.3%">#</th> 
+                            <th>Name</th>
+                            <th>Description</th>
+                            <th>Active</th>
                         </tr>
+                    </thead>
+                    <tbody>
                         <?php
-                    }
-                    ?>
+                        foreach ($listofunit as $key => $value) {
+                            ?>
+                            <tr class="gradeX">
+                                <td><a href="index.php?pagename=edit_unit&id=('<?php echo $value["id"] ?>')" class="tip-top" data-original-title="Edit Record"><i  class="icon-edit"></i></a></td>
+                                <td><a href="#myAlert" onclick="setDeleteField('<?php echo $value["id"] ?>')" data-toggle="modal"  class="tip-top" data-original-title="Delete Record"><i class="icon-remove"></i></a> </td>
+                                <td><?php echo $value["name"] ?></td>
+                                <td><?php echo $value["description"] ?></td>
+                                <td><?php echo $value["active"] ?></td>
+                            </tr>
+                            <?php
+                        }
+                        ?>
 
-                </tbody>
-            </table>
-                 <input type="hidden" id="deleteId" name="cid" value="">
+                    </tbody>
+                </table>
+                <input type="hidden" id="deleteId" name="cid" value="">
                 <input type="hidden" id="flag" name="flag" value="">
             </form>
         </div>
@@ -72,14 +72,14 @@ $listofunit = MysqlConnection::fetchCustom("SELECT * FROM generic_entry WHERE ty
             <div class="control-group">
                 <label class="control-label">UNIT NAME *:</label>
                 <div class="controls"><input type="text" class="custominput" name="name" id="name"></div>
-          
+
                 <label class="control-label">DESCRIPTION</label>
                 <div class="controls"><input type="text"  class="custominput" name="description" id="description"></div>
-          
+
                 <label class="control-label">ACTIVE</label>
                 <div class="controls"><input type="text" class="custominput"  name="active" id="active"></div>
-            
-            <input type="hidden" name="type"  id="type" value="unit_name">
+
+                <input type="hidden" name="type"  id="type" value="unit_name">
             </div>
         </form>
     </div>
@@ -93,7 +93,7 @@ $listofunit = MysqlConnection::fetchCustom("SELECT * FROM generic_entry WHERE ty
 
 <script>
     $("#deleteThis").click(function () {
-         $("div#divLoading").addClass('show');
+        $("div#divLoading").addClass('show');
         var dataString = "deleteId=" + $('#deleteId').val();
         $.ajax({
             type: 'POST',
@@ -107,7 +107,7 @@ $listofunit = MysqlConnection::fetchCustom("SELECT * FROM generic_entry WHERE ty
     });
 
     function setDeleteField(deleteId) {
-         $("div#divLoading").addClass('show');
+        $("div#divLoading").addClass('show');
         document.getElementById("deleteId").value = deleteId;
     }
     $("#save").click(function () {
