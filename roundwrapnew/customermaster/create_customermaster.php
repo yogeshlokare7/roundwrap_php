@@ -110,23 +110,21 @@
                         </td>
                     </tr>
                     <tr>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                        <td></td>
-                        <td></td>
+                        <td>Business No</td>
+                        <td><input type="text" name="alteremail" id="alteremail"  value="<?php echo filter_input(INPUT_POST, "alteremail") ?>" ></td>
+                        <td>Image</td>
+                        <td><input type="file"></td>
                     </tr>
                     <tr>
                         <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                        <td></td>
+                        <td><input type="checkbox">&nbsp;Use customer tax code</td>
+                        <td>
+                            
+                        </td>
                         <td></td>
                     </tr>
+                    <tr><td colspan="4">&nbsp;</td></tr>
+                    <tr><td colspan="4">&nbsp;</td></tr>
                 </table>
             </div>
             <div id="tab3" class="tab-pane">
@@ -254,7 +252,7 @@
             </div>
         </form>
     </div>
-    
+
     <div class="modal-footer"> 
         <a id="savePaymentT" data-dismiss="modal" class="btn btn-primary">Save</a> 
         <a data-dismiss="modal" class="btn" href="#">Cancel</a> 
@@ -359,7 +357,7 @@
                     }
                 }
             });
-            
+
             $.ajax({
                 type: 'GET',
                 url: 'customermaster/listpaymentterm_ajax.php',
