@@ -16,12 +16,12 @@ $listofinventory = MysqlConnection::fetchAll("item_master");
             <h5>Inventory Master</h5>
         </div>
         <div class="widget-content nopadding">
-            <form name="itemmaster" id="itemmaster" method="POST">
+            <form name="inventorymaster" id="inventorymaster" method="POST">
                 <table class="table table-bordered data-table">
                     <thead>
                         <tr>
-<!--                            <th style="width: 2.3%">#</th>
-                            <th style="width: 2.3%">#</th>                 							-->
+                            <th style="width: 2.3%">#</th>
+                            <th style="width: 2.3%">#</th>                 							
                             <th>Item Code</th>
                             <th>Item Description</th>
                             <th>Item Quantity</th>

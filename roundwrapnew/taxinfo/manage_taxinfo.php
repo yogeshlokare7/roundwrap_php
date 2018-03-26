@@ -45,7 +45,7 @@ $listoftaxinfo = MysqlConnection::fetchAll("taxinfo_table");
                         foreach ($listoftaxinfo as $key => $value) {
                             ?>
                             <tr class="gradeX">
-                                <td><a href="#" class="tip-top" data-original-title="Edit Record"><i  class="icon-edit"></i></a></td>
+                                <td><a href="index.php?pagename=edit_taxinfo&id=<?php echo $value["id"] ?>" class="tip-top" data-original-title="Edit Record"><i  class="icon-edit"></i></a></td>
                                 <td><a href="#myAlert" data-toggle="modal"  onclick="setDeleteField('<?php echo $value["id"] ?>')"  class="tip-top" data-original-title="Delete Record"><i class="icon-remove"></i></a> </td>
                                 <td><?php echo $value["country"] ?></td>
                                 <td><?php echo $value["province"] ?></td>

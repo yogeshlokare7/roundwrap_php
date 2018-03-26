@@ -43,7 +43,7 @@ $listofunit = MysqlConnection::fetchCustom("SELECT * FROM generic_entry WHERE ty
                     foreach ($listofunit as $key => $value) {
                         ?>
                         <tr class="gradeX">
-                            <td><a href="#" class="tip-top" data-original-title="Edit Record"><i  class="icon-edit"></i></a></td>
+                            <td><a href="index.php?pagename=edit_unit&id=('<?php echo $value["id"]?>')" class="tip-top" data-original-title="Edit Record"><i  class="icon-edit"></i></a></td>
                             <td><a href="#myAlert" onclick="setDeleteField('<?php echo $value["id"] ?>')" data-toggle="modal"  class="tip-top" data-original-title="Delete Record"><i class="icon-remove"></i></a> </td>
                             <td><?php echo $value["name"] ?></td>
                             <td><?php echo $value["description"] ?></td>
