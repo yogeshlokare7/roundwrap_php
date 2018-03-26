@@ -2,5 +2,5 @@
 
 error_reporting(0);
 include '../MysqlConnection.php';
-$resultset = MysqlConnection::fetchCustom("SELECT * FROM sales_order ORDER BY id DESC LIMIT 0,1");
+$resultset = MysqlConnection::fetchCustom("SELECT * FROM company_master ORDER BY id DESC LIMIT 0,1");
 echo json_encode($resultset[0]);
