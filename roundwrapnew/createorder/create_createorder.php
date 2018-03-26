@@ -6,79 +6,96 @@
 </div>
 
 <div class="container-fluid">
+     <br/>
+    <h5 style="font-family: verdana;font-size: 12px;">CREATE CUSTOMER ORDER</h5>
     <div class="row-fluid">
         <div class="span12">
-            <div class="widget-box">
-                <div class="widget-title"> <span class="icon"> <i class="icon-align-justify"></i> </span>
-                    <h5>Create  Order</h5>
+            <form action="#" method="post">
+            <div class="widget-box" style="width: 55%;float: left">
+                <div class="widget-title">
+                    <ul class="nav nav-tabs">
+                        <li class="active"><a data-toggle="tab" href="#tab1">Create Order</a></li>
+                    </ul>
                 </div>
+                    <div class="widget-content tab-content">
+                        <div id="tab1" class="tab-pane active">
+                            <hr/>
 
-
-
-
-                <div class="widget-content nopadding">
-                    <form action="#" method="get" class="form-horizontal">
-                        <div class="control-group span11">
-                            <div class="span11" style="margin-left: 20px;">
-                                <div class="controls span6" style="float: left">
-                                    <div class="span2">Customer Id:</div>
-                                    <div class="span10"><input type="text" class="span10" placeholder="PO Number" /></div>
-                                    <div class="span2">Company Name:</div>
-                                    <div class="span10"><input type="text" class="span10" placeholder="Supplier Name" /></div>
-                                    <div class="span2">Billing Address: :</div>
-                                    <div class="span10"><input type="text" class="span10" placeholder="Billing Address" /></div>
-                                    <div class="span2">Shipping Address:*:</div>
-                                    <div class="span10"><input type="text" class="span10" placeholder="Shipping Address" /></div>
-                                    <div class="span2">Expected Delivery:*</div>
-                                    <div class="span10"><input type="text" class="span10" placeholder="Expected Delivery" /></div>
-                                    <div class="span2">Ship Via:*</div>
-                                    <div class="span10"><input type="text" class="span10" placeholder="Ship Via" /></div>
-                                    <div class="span2">Remark / Note :</div>
-                                    <div class="span10"><input type="text" class="span10" placeholder="Remark / Note :" /></div>
-                                </div>
-                            </div>
+                            <table style="width: 100%;">
+                               <tr>
+                                    <td style="width: 15%;">Customer No*</td>
+                                    <td style="width: 35%;"><input type="text" placeholder="PO Number" /></td>
+                                    <td style="width: 15%;">Company Name</td>
+                                    <td style="width: 35%;"><input type="text" placeholder="Company Name" /></td>
+                                </tr>
+                              <tr>
+                                    <td style="width: 15%;">Billing Address:</td>
+                                    <td style="width: 35%;"><input type="text"  placeholder="Billing Address" /></td>
+                                    <td style="width: 15%;">Shipping Address:*</td>
+                                    <td style="width: 35%;"><input type="text"  placeholder="Shipping Address" /></td>
+                                </tr>
+                               <tr>
+                                    <td style="width: 15%;">Expected Delivery:*</td>
+                                    <td style="width: 35%;"><input type="text"  placeholder="Expected Delivery" /></td>
+                                    <td style="width: 15%;">Ship Via:*</td>
+                                    <td style="width: 35%;"><input type="text"  placeholder="Ship Via" /></td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 15%;">Remark / Note :</td>
+                                    <td style="width: 35%;"><input type="text"  placeholder="Remark / Note :" /></td>
+                                </tr>
+                            </table> 
                         </div>
-
-
-
-
-                        <div class="widget-box">
-                            <div class="widget-title"> <span class="icon">
-                                </span>
-                                <h5>Static table with Check Boxes</h5>
-                            </div>
-                            <div class="widget-content nopadding">
-                                <table class="table table-bordered table-striped with-check">
-                                    <thead>
-                                        <tr>
-                                            <th>Item</th>
-                                            <th>Stock</th>
-                                            <th>Ordered</th>
-                                            <th>Diff</th>
-                                            <th>Unit</th>
-                                            <th>Rate</th>
-                                            <th>Discount</th>
-                                            <th>Amount</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <th>Item</th>
-                                            <th>Stock</th>
-                                            <th>Ordered</th>
-                                            <th>Diff</th>
-                                            <th>Unit</th>
-                                            <th>Rate</th>
-                                            <th>Discount</th>
-                                            <th>Amount</th>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </form>
+                    </div>
+            </div>
+            <div class="widget-content nopadding">
+                <div class="widget-box">
+<!--                    <div class="widget-title"> <span class="icon">
+                        </span>
+                        <h5>Static table with Check Boxes</h5>
+                    </div>-->
+                    <div class="widget-content nopadding">
+                        <table class="table table-bordered table-striped with-check">
+                            <thead>
+                                <tr>
+                                    <th style="width: 50%;">Item</th>
+                                    <th style="width: 5%;">Stock</th>
+                                    <th style="width: 5%;">Order</th>
+                                    <th style="width: 5%;">Diff</th>
+                                    <th style="width: 5%;">Unit</th>
+                                    <th style="width: 10%;">Rate</th>
+                                    <th style="width: 10%;">Discount</th>
+                                    <th style="width: 10%;" >Amount</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td ><input type="text"   placeholder="Enter Item" style="width: 100%;"/></td>
+                                    <td ><input type="text"   placeholder="" style="width: 100%;"/></td>
+                                    <td><input type="text"   placeholder="Enter Order" style="width: 100%;"/></td>
+                                    <td ><input type="text"   placeholder="" style="width: 100%;"/></td>
+                                    <td ><input type="text"   placeholder="" style="width: 100%;"/></td>
+                                    <td><input type="text"   placeholder="Enter Rate" style="width: 100%;"/></td>
+                                    <td><input type="text"   placeholder="Enter Discount" style="width: 100%;"/></td>
+                                    <td ><input type="text"   placeholder="" style="width: 100%;" /></td>
+                                </tr>
+                                  <tr>
+                                    <td ><input type="text"   placeholder="Enter Item" style="width: 100%;"/></td>
+                                    <td ><input type="text"   placeholder="" style="width: 100%;"/></td>
+                                    <td><input type="text"   placeholder="Enter Order" style="width: 100%;"/></td>
+                                    <td ><input type="text"   placeholder="" style="width: 100%;"/></td>
+                                    <td ><input type="text"   placeholder="" style="width: 100%;"/></td>
+                                    <td><input type="text"   placeholder="Enter Rate" style="width: 100%;"/></td>
+                                    <td><input type="text"   placeholder="Enter Discount" style="width: 100%;"/></td>
+                                    <td ><input type="text"   placeholder="" style="width: 100%;" /></td>
+                                </tr>
+                                
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
+            </form>
         </div>
     </div>
     <div class="modal-footer"> 
