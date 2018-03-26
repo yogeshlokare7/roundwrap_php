@@ -118,9 +118,18 @@
                     <tr>
                         <td>&nbsp;</td>
                         <td><input type="checkbox">&nbsp;Use customer tax code</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>&nbsp;</td>
                         <td>
-                            
+                            <select name="taxInformation" id="taxInformation">
+                                <option value="">&nbsp;&nbsp;</option>
+                                <option value="1" ><< ADD NEW >></option>
+                            </select>
                         </td>
+                        <td></td>
                         <td></td>
                     </tr>
                     <tr><td colspan="4">&nbsp;</td></tr>
@@ -260,6 +269,49 @@
 </div>
 <!-- this is model dialog --->
 
+
+
+<!-- this is custom model dialog --->
+<div id="addTaxInformation" class="modal hide" style="top: 10%;left: 50%;">
+    <div class="modal-header">
+        <button data-dismiss="modal" class="close" type="button">×</button>
+        <h3>Add Tax Information</h3>
+    </div>
+    <div class="modal-body">
+        <form class="form-horizontal" method="post" action="#" name="addTaxInformation" id="addTaxInformation" novalidate="novalidate">
+            <label class="control-label">Code:</label>
+            <div class="controls"><input type="text" name="taxcode" id="taxcode"></div>
+            <label class="control-label">Description:</label>
+            <div class="controls"><textarea name="taxdescription" id="taxdescription" style="resize: none;height: 50px"></textarea></div>
+            <div class="control-group">
+                <table class="table">
+                    <tr>
+                        <td>Tax Name</td>
+                        <td>Percent</td>
+                        <td>Exempt</td>
+                    </tr>
+                    <tr>
+                        <td>GST</td>
+                        <td><input type="text" name="gst"></td>
+                        <td><input type="checkbox" name="gstexempt"></td>
+                    </tr>
+                    <tr>
+                        <td>PST</td>
+                        <td><input type="text" name="pst"></td>
+                        <td><input type="checkbox" name="pstexempt"></td>
+                    </tr>
+                </table>
+            </div>
+        </form>
+    </div>
+
+    <div class="modal-footer"> 
+        <a id="saveTaxInformation" data-dismiss="modal" class="btn btn-primary">Save</a> 
+        <a data-dismiss="modal" class="btn" href="#">Cancel</a> 
+    </div>
+</div>
+<!-- this is model dialog --->
+
 <script>
     reload();
     $("#customerType").click(function() {
@@ -330,6 +382,33 @@
         });
     });
 
+    $("#taxInformation").click(function() {
+        var valueModel = $("#taxInformation").val();
+        if (valueModel === "1") {
+            $('#addTaxInformation').modal('show');
+        }
+    });
+    $("#saveTaxInformation").click(function() {
+
+        var taxcode = $("#taxcode").val();
+        var taxdescription = $("#taxdescription").val();
+        var gst = $("#gst").val();
+        var pst = $("#pst").val();
+        var gstexempt = $("#gstexempt").val();
+        var pstexempt = $("#pstexempt").val();
+        var description = $("#termdescription").val();
+
+        var dataString = "taxcode=" + taxcode + "&taxdescription=" + taxdescription + "&gst=" + gst + "&pst=" + pst+"&gstexempt="+gstexempt+"&pstexempt="+pstexempt+"&description"+description;
+        $.ajax({
+            type: 'POST',
+            url: 'customermaster/savepayterm_ajax.php',
+            data: dataString
+        }).done(function(data) {
+            reload();
+        }).fail(function() {
+        });
+    });
+
 
 
     function reload() {
@@ -354,6 +433,18 @@
                     var rep = ('#rep');
                     for (var i = 0; i < data.length; i++) {
                         $(rep).append('<option value=' + data[i].id + '>' + data[i].name + ' ' + data[i].description + '</option>');
+                    }
+                }
+            });
+
+            $.ajax({
+                type: 'GET',
+                url: 'customermaster/listpaymentterm_ajax.php',
+                dataType: "json",
+                success: function(data) {
+                    var paymentTerm = ('#paymentTerm');
+                    for (var i = 0; i < data.length; i++) {
+                        $(paymentTerm).append('<option value=' + data[i].id + '>(' + data[i].code + ')' + data[i].name + '</option>');
                     }
                 }
             });
