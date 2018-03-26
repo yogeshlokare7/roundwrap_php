@@ -1,6 +1,6 @@
 
 <?php
-$listofscanners = MysqlConnection::fetchAll("");
+$listofscanners = MysqlConnection::fetchAll("tbl_scanner");
 ?>
 <div id="content-header">
     <div id="breadcrumb"> 
