@@ -1,6 +1,6 @@
 <hr/>
 <table style="width: 100%;">
-    
+
     <tr>
         <td><label class="control-label">Customer Type</label></td>
         <td>
@@ -45,7 +45,7 @@
     </tr>
     <tr>
         <td>&nbsp;</td>
-        <td><input type="checkbox">&nbsp;Use customer tax code</td>
+        <td><input type="checkbox" id="taxcheckbox">&nbsp;Use customer tax code</td>
         <td></td>
         <td></td>
     </tr>
@@ -183,7 +183,7 @@
             <label class="control-label">Description:</label>
             <div class="controls"><textarea name="taxdescription" id="taxdescription" style="resize: none;height: 50px"></textarea></div>
             <div class="control-group">
-                <table class="table">
+                <table class="table" id="addtax">
                     <tr>
                         <td>Tax Name</td>
                         <td>Percent</td>
@@ -197,7 +197,8 @@
                     <tr>
                         <td>PST</td>
                         <td><input type="text" name="pst"></td>
-                        <td><input type="checkbox" name="pstexempt"></td>
+                        <td><input  type="checkbox" name="pstexempt"><a style="margin-left: 20px;float:center;margin-bottom: 10px;" class="icon-plus" href="#"  ></a></td>
+
                     </tr>
                 </table>
             </div>
@@ -205,13 +206,35 @@
     </div>
 
     <div class="modal-footer"> 
-        <a id="saveTaxInformation" data-dismiss="modal" class="btn btn-primary">Save</a> 
+        <a id="saveTaxInformation" data-dismiss="modal" class="btn btn-primary ">Save</a> 
         <a data-dismiss="modal" class="btn" href="#">Cancel</a> 
     </div>
 </div>
 <!-- this is model dialog --->
 
 <script>
+    jQuery(function () {
+        var counter = 1;
+        jQuery('a.icon-plus').click(function (event) {
+            event.preventDefault();
+
+            var newRow = jQuery('<tr><td><input type="text" name="" style="width:50px;"></td>' +
+                    counter + '<td><input type="text" name=""></td>' +
+                    counter + '<td><input style="width: 15px;height: 19px; filter: alpha(opacity:0);display: inline-block;background: none;margin-left: 2px;" type="checkbox" name="pstexempt" class="checker input" >\n\
+                               <a class="icon-trash" href="#"  style="margin-left: 27px;" ></a></td>');
+            counter++;
+            jQuery('#addtax').append(newRow);
+
+        });
+    });
+
+    $(document).ready(function () {
+
+        $("#addtax").on('click', 'a.icon-trash', function () {
+            $(this).closest('tr').remove();
+        });
+
+    });
     reload();
     $("#customerType").click(function () {
         var valueModel = $("#customerType").val();
@@ -360,5 +383,17 @@
                 }
             });
         });
+    }
+
+    $(function () {
+        $('#taxcheckbox').click('#taxInformation', toggleSelection);
+    });
+
+    function toggleSelection(element) {
+        if (this.checked) {
+            $(element.data).attr('disabled', 'disabled');
+        } else {
+            $(element.data).removeAttr('disabled');
+        }
     }
 </script>

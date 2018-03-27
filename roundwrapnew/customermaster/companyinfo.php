@@ -72,7 +72,7 @@
 
             var newRow = jQuery('<tr><td><label class="control-label">Name</label></td><td><input type="text" name="contact_person[]" value="<?php echo filter_input(INPUT_POST, "contact_person") ?>"  id="contact_person"></td>' +
                     counter + '<td><label class="control-label">Email</label></td><td><input type="text" name="email" autofocus="" value="<?php echo filter_input(INPUT_POST, "email") ?>" id="email"></td>' +
-                    counter + '<td><label class="control-label">Phone</label></td> <td><input type="text" name="firstname" id="firstname"  value="<?php echo filter_input(INPUT_POST, "firstname") ?>" ><a style="margin-left: 20px;float:center;margin-bottom: 10px;" class="icon-remove" href="#"  ></a></td>');
+                    counter + '<td><label class="control-label">Phone</label></td> <td><input type="text" name="firstname" id="firstname"  value="<?php echo filter_input(INPUT_POST, "firstname") ?>" ><a style="margin-left: 20px;float:center;margin-bottom: 10px;" class="icon-trash" href="#"  ></a></td>');
             counter++;
             jQuery('#companyInfo').append(newRow);
 
@@ -81,7 +81,7 @@
 
     $(document).ready(function () {
 
-        $("#companyInfo").on('click', 'a.icon-remove', function () {
+        $("#companyInfo").on('click', 'a.icon-trash', function () {
             $(this).closest('tr').remove();
         });
 
