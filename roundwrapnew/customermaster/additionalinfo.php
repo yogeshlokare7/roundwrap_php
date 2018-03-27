@@ -20,8 +20,6 @@
                 <?php } ?>
             </select>
         </td>
-    </tr>
-    <tr>
         <td><label class="control-label">Term</label></td>
         <td>
             <select name="paymentTerm" id="paymentTerm" style="margin-top: 5px;">
@@ -29,6 +27,9 @@
                 <option value="1" ><< ADD NEW >></option>
             </select>
         </td>
+    </tr>
+    <tr>
+
         <td><label class="control-label">Rep</label></td>
         <td>
             <select name="sales_person_name" id="sales_person_name">
@@ -36,13 +37,12 @@
                 <option value="1" ><< ADD NEW >></option>
             </select>
         </td>
-    </tr>
-    <tr>
         <td>Business No</td>
         <td><input type="text" name="alteremail" id="alteremail"  value="<?php echo filter_input(INPUT_POST, "alteremail") ?>" ></td>
-        <td>Image</td>
+        <td>Certificate</td>
         <td><input type="file"></td>
     </tr>
+   
     <tr>
         <td>&nbsp;</td>
         <td><input type="checkbox" id="taxcheckbox">&nbsp;Use customer tax code</td>
