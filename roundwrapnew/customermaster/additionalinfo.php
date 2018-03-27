@@ -38,7 +38,7 @@
             </select>
         </td>
         <td>Business No</td>
-        <td><input type="text" name="alteremail" id="alteremail"  value="<?php echo filter_input(INPUT_POST, "alteremail") ?>" ></td>
+        <td><input type="text" name="businessno" id="businessno"  value="<?php echo filter_input(INPUT_POST, "businessno") ?>" ></td>
         <td>Certificate</td>
         <td><input type="file"></td>
     </tr>
