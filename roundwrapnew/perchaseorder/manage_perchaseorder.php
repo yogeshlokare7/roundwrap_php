@@ -1,6 +1,9 @@
 <?php
 $listPerchaseOrders = MysqlConnection::fetchAll("purchase_order");
 ?>
+<link href="https://swisnl.github.io/jQuery-contextMenu/dist/jquery.contextMenu.css" rel="stylesheet" type="text/css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="https://swisnl.github.io/jQuery-contextMenu/dist/jquery.contextMenu.js" type="text/javascript"></script>
 <div id="content-header">
     <div id="breadcrumb"> 
         <a class="tip-bottom"><i class="icon-home"></i> Home</a>
@@ -18,11 +21,10 @@ $listPerchaseOrders = MysqlConnection::fetchAll("purchase_order");
         </div>
         <div class="widget-content nopadding">
             <form name="perchaseorder" id="perchaseorder" method="POST">
-                <table class="table table-bordered data-table">
+                <table id="tbl1" class="table table-bordered data-table">
                     <thead>
                         <tr>
                             <th style="width: 2.3%">#</th>
-                            <th style="width: 2.3%">#</th>  
                             <th>PO ID</th>
                             <th>Supplier Name</th>
                             <th>Expected Date</th>
@@ -40,22 +42,9 @@ $listPerchaseOrders = MysqlConnection::fetchAll("purchase_order");
                         <?php
                         foreach ($listPerchaseOrders as $key => $value) {
                             ?>
-                            <tr class="gradeX">
+                            <tr id="'<?php echo $value["id"] ?>'" class="context-menu-one" onclick="setId('<?php echo $value["id"] ?>')">
 
                                 <td><a href="#myAlert"  onclick="setDeleteField('<?php echo $value["purchaseOrderId"] ?>')" data-toggle="modal"  class="tip-top" data-original-title="Delete Record"><i class="icon-remove"></i></a> </td>
-
-                                <td>
-                                    <div class="btn-group">
-                                        <button data-toggle="dropdown" class="btn dropdown-toggle">Action&nbsp;<span class="caret"></span></button>
-                                        <ul class="dropdown-menu">
-                                            <li><a href="#">View Purchase Order</a></li>
-                                            <li><a href="#">Delete Purchase Order</a></li>   
-                                            <li><a href="#">Edit Purchase Order</a></li>   
-                                            <li><a href="#">Enter Receiving order</a></li> 
-                                        </ul>
-                                    </div>
-                                </td>
-
                                 <td><?php echo $value["purchaseOrderId"] ?></td>
                                 <td><?php echo $value["supplier_id"] ?></td>
                                 <td><?php echo $value["expected_date"] ?></td>
@@ -75,12 +64,16 @@ $listPerchaseOrders = MysqlConnection::fetchAll("purchase_order");
                 </table>
                 <input type="hidden" id="deleteId" name="cid" value="">
                 <input type="hidden" id="flag" name="flag" value="">
+                <input type="hidden" id="rightClikId" name="rightClikId" value="">
             </form>
         </div>
+    
     </div>
 </div>
 <script>
+    
     $("#deleteThis").click(function () {
+        alert("Hello");
         $("div#divLoading").addClass('show');
         var dataString = "deleteId=" + $('#deleteId').val();
         $.ajax({
@@ -96,5 +89,48 @@ $listPerchaseOrders = MysqlConnection::fetchAll("purchase_order");
     function setDeleteField(deleteId) {
         document.getElementById("deleteId").value = deleteId;
     }
+    
+    function setId(val){
+        document.getElementById("rightClikId").value = val;
+    }
 
 </script>
+<script type="text/javascript">
+        $(function() {
+        $.contextMenu({
+            selector: '.context-menu-one', 
+            callback: function(key, options) {
+               var m = "clicked row: " + key;
+               var id = $(this).attr('id'); 
+               alert("ID for edit/delete:"+id)
+               switch(key) {
+                case "edit":
+                        alert("edit");
+                        break;
+                case "delete":
+                        document.getElementById("deleteThis").click();
+                        break;
+                case "copy":
+                        alert("copy");
+                        break;
+                default:
+                         alert("default");
+                }
+               //window.console && console.log(m) || alert(m+"    id:"+id); 
+            },
+            items: {
+                "edit": {name: "Edit", icon: "edit"},
+                "copy": {name: "Copy", icon: "copy"},
+                "delete": {name: "Delete", icon: "delete"},
+                "sep1": "---------",
+                "quit": {name: "Quit", icon: function(){
+                    return 'context-menu-icon context-menu-icon-quit';
+                }}
+            }
+        });
+
+//        $('.context-menu-one').on('click', function(e){
+//            console.log('clicked', this);
+//       })    
+    });
+    </script>

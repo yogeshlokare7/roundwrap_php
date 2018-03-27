@@ -4,7 +4,6 @@
         <a class="tip-bottom"><i class="icon-home"></i>Supplier Purchase Order Entry</a>
     </div>
 </div>
-
 <div class="container-fluid">
      <br/>
     <h5 style="font-family: verdana;font-size: 12px;">CREATE PURCHASE ORDER</h5>

@@ -1,4 +1,7 @@
 <?php $listofcustomers = MysqlConnection::fetchAll("customer_master"); ?>
+<link href="https://swisnl.github.io/jQuery-contextMenu/dist/jquery.contextMenu.css" rel="stylesheet" type="text/css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="https://swisnl.github.io/jQuery-contextMenu/dist/jquery.contextMenu.js" type="text/javascript"></script>
 <div id="content-header">
     <div id="breadcrumb"> 
         <a href="index.php" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a>
@@ -20,7 +23,7 @@
 
                         <tr>
                             <th style="width: 2.3%">#</th>
-                            <th style="width: 2.3%">#</th>
+<!--                            <th style="width: 2.3%">#</th>-->
                             <th>Company Name</th>
                             <th>Address</th>
                             <th>Contact No</th>
@@ -34,13 +37,13 @@
                         foreach ($listofcustomers as $key => $value) {
                             ?>
 
-                            <tr class="gradeX">
+                            <tr id="'<?php echo $value["cust_id"] ?>'" class="context-menu-one">
                                 <td>
                                     <a onclick="setDeleteField('<?php echo $value["cust_id"] ?>')" href="#myAlert" data-toggle="modal"  class="tip-top" data-original-title="Delete Record" data-id="<? echo $value['id'] ?>">
                                         <i class="icon-remove"></i>
                                     </a> 
                                 </td>
-                                <td>
+<!--                                <td>
                                     <div class="btn-group">
                                         <button data-toggle="dropdown" class="btn dropdown-toggle">Action&nbsp;<span class="caret"></span></button>
                                         <ul class="dropdown-menu">
@@ -50,7 +53,7 @@
                                             <li><a href="index.php?pagename=manage_invoice">Create Invoice</a></li>
                                         </ul>
                                     </div>
-                                </td>
+                                </td>-->
 
                                 <td><?php echo $value["cust_companyname"] ?></td>
                                 <td><?php echo $value[""] ?></td>
@@ -100,5 +103,48 @@
         location.reload();
     });
 </script>
+<script type="text/javascript">
+        $(function() {
+        $.contextMenu({
+            selector: '.context-menu-one', 
+            callback: function(key, options) {
+               var m = "clicked row: " + key;
+               var id = $(this).attr('id'); 
+               //alert("ID for edit/delete:"+id)
+               switch(key) {
+                case "edit_customer":
+                        window.location = "index.php?pagename=create_customermaster&customerId=1";
+                        break;
+                case "create_customer":
+                        window.location = "index.php?pagename=create_customermaster";
+                        break;
+                case "create_purchase_order":
+                        window.location = "index.php?pagename=create_perchaseorder";
+                        break;
+                case "create_invoice":
+                        window.location = "index.php?pagename=manage_invoice";
+                        break;
+                default:
+                        window.location = "index.php?pagename=manage_customermaster";
+                }
+               //window.console && console.log(m) || alert(m+"    id:"+id); 
+            },
+            items: {
+                "edit_customer": {name: "Edit Customer", icon: "edit"},
+                "create_customer": {name: "Create Customer", icon: "add"},
+                "create_purchase_order": {name: "Create Purchase Order", icon: "add"},
+                "create_invoice": {name: "Create Invoice", icon: "add"},
+                "sep1": "---------",
+                "quit": {name: "Quit", icon: function(){
+                    return 'context-menu-icon context-menu-icon-quit';
+                }}
+            }
+        });
+
+//        $('.context-menu-one').on('click', function(e){
+//            console.log('clicked', this);
+//       })    
+    });
+    </script>
 
 <!-- this is model dialog --->
