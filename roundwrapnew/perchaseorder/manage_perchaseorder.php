@@ -1,9 +1,9 @@
 <?php
 $listPerchaseOrders = MysqlConnection::fetchAll("purchase_order");
 ?>
-<link href="https://swisnl.github.io/jQuery-contextMenu/dist/jquery.contextMenu.css" rel="stylesheet" type="text/css" />
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<script src="https://swisnl.github.io/jQuery-contextMenu/dist/jquery.contextMenu.js" type="text/javascript"></script>
+<link href="css/jquery.contextMenu.css" rel="stylesheet" type="text/css" />
+<script src="js/jquery.min_1.11.3.js"></script>
+<script src="js/jquery.contextMenu.js" type="text/javascript"></script>
 <div id="content-header">
     <div id="breadcrumb"> 
         <a class="tip-bottom"><i class="icon-home"></i> Home</a>

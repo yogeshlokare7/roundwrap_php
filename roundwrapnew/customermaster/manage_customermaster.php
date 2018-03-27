@@ -1,7 +1,7 @@
 <?php $listofcustomers = MysqlConnection::fetchAll("customer_master"); ?>
-<link href="https://swisnl.github.io/jQuery-contextMenu/dist/jquery.contextMenu.css" rel="stylesheet" type="text/css" />
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<script src="https://swisnl.github.io/jQuery-contextMenu/dist/jquery.contextMenu.js" type="text/javascript"></script>
+<link href="css/jquery.contextMenu.css" rel="stylesheet" type="text/css" />
+<script src="js/jquery.min_1.11.3.js"></script>
+<script src="js/jquery.contextMenu.js" type="text/javascript"></script>
 <div id="content-header">
     <div id="breadcrumb"> 
         <a href="index.php" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a>
@@ -112,11 +112,14 @@
                var id = $(this).attr('id'); 
                //alert("ID for edit/delete:"+id)
                switch(key) {
+                case "create_customer":
+                        window.location = "index.php?pagename=create_customermaster";
+                        break;  
                 case "edit_customer":
                         window.location = "index.php?pagename=create_customermaster&customerId=1";
                         break;
-                case "create_customer":
-                        window.location = "index.php?pagename=create_customermaster";
+                case "delete_customer":
+                        //document.getElementById("deleteThis").click();
                         break;
                 case "create_purchase_order":
                         window.location = "index.php?pagename=create_perchaseorder";
@@ -130,8 +133,9 @@
                //window.console && console.log(m) || alert(m+"    id:"+id); 
             },
             items: {
-                "edit_customer": {name: "Edit Customer", icon: "edit"},
                 "create_customer": {name: "Create Customer", icon: "add"},
+                "edit_customer": {name: "Edit Customer", icon: "edit"},
+//                "delete_customermaster": {name: "Delete Customer", icon: "delete"},
                 "create_purchase_order": {name: "Create Purchase Order", icon: "add"},
                 "create_invoice": {name: "Create Invoice", icon: "add"},
                 "sep1": "---------",
