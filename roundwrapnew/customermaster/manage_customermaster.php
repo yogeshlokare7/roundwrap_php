@@ -3,7 +3,6 @@
 <script src="js/jquery.min_1.11.3.js"></script>
 <script src="js/jquery.contextMenu.js" type="text/javascript"></script>
 <script>
-
     $("#liveTableSearch").on("keyup", function() {
         var value = $(this).val();
         $("table tr").each(function(index) {

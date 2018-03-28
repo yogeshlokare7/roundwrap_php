@@ -54,7 +54,7 @@
     </tr>
 </table>
 <hr/>
-<input type="button" id="btnCmpNext1" value="Next" class="btn btn-info" href="#tab2">
+<input type="button" id="btnCmpNext1" value="Next" class="btn btn-info" ><a href="customermaster/additionalcontact.php"></a>
 
 <script>
     function  fillAddress()

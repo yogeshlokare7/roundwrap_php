@@ -20,7 +20,7 @@
                 <div id="tab1" class="tab-pane active">
                     <?php include 'customermaster/companyinfo.php'; ?>
                 </div>
-                <div id="tab2" class="tab-pane active">
+                <div id="tab2" class="tab-pane ">
                     <?php include 'customermaster/additionalcontact.php'; ?>
                 </div>
                 <div id="tab3" class="tab-pane">
@@ -49,7 +49,7 @@
         $('#tdTab3').addClass('active');
     });
     
-  //btnCmpPrev2 btnCmpNext3  
+   
      $('#btnCmpPrev2').on('click', function () {
         $('#tdTab3').removeClass('active');
         $('#acTab2').addClass('active');

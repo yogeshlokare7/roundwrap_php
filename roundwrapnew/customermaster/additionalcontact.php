@@ -5,7 +5,7 @@
 </script>
 
 <hr/>
-<table style="width: 100%;" id="addcontacts"> 
+<table style="width: 100%;" id="addcontacts" name="table1"> 
     <tr>
         <td><label class="control-label">Name</label></td>
         <td><input type="text" name="contact_person[]" value="<?php echo filter_input(INPUT_POST, "contact_person[]") ?>" minlenght="2" maxlength="30"  id="contact_person"></td>
@@ -18,6 +18,8 @@
 <hr/>
 <input type="button" id="btnCmpPrev1" value="Previous" class="btn btn-info" href="#tab1">
 <input type="button" id="btnCmpNext2" value="Next" class="btn btn-info" href="#tab2">
+
+
 <script type="text/javascript">
     jQuery(function () {
         var counter = 1;

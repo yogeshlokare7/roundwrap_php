@@ -16,9 +16,17 @@
     <tr>
         <td><label class="control-label">Account No</label></td>
         <td><input type="text" name="cust_accnt_no" onkeypress="return chkNumericKey(event)" autofocus="" value="<?php echo filter_input(INPUT_POST, "cust_accnt_no") ?>" minlenght="2" maxlength="13" id="cust_accnt_no"></td>
+
+        <td>Currency</td>
+        <td><select name="currency" id="currency">
+                <option value="CAN">Canada Dollar</option>
+                <option value="INR" >Indian Rupee</option>
+            </select></td>
+
+        <td>Balance</td>
+        <td><input type="text" name="balance" onkeypress="return chkNumericKey(event)" minlenght="2" maxlength="50" id="balance"  value="<?php echo filter_input(INPUT_POST, "balance") ?>" ></td>
         <td><label class="control-label">Credit Limit</label></td>
         <td><input type="text" name="creditlimit" onkeypress="return chkNumericKey(event)" autofocus="" value="<?php echo filter_input(INPUT_POST, "creditlimit") ?>" minlenght="2" maxlength="" id="creditlimit"></td>
-
     </tr>
     <tr>
         <td><label class="control-label">Credit Card No.</label></td>
@@ -47,7 +55,7 @@
                     counter + '<td><label class="control-label">Exp. Date</label></td><td><input type="date" name="expdate[]" id="expdate"  value="<?php echo filter_input(INPUT_POST, "expdate[]") ?>" ></td>' +
                     counter + '<td><label class="control-label">CVV</label></td><td><input style="width: 40px" type="text" onkeypress="return chkNumericKey(event)" minlenght="2" maxlength="3" name="cvv[]" id="nameoncard"  value="<?php echo filter_input(INPUT_POST, "nameoncard[]") ?>" ><a style="margin-left: 20px;float:center;margin-bottom: 10px;" class="icon-trash" href="#"  ></a></td>');
             $("#creditcardno" + counter).mask("9999-9999-9999-9999");
-            
+
             counter++;
             jQuery('#payment').append(newRow);
 
