@@ -42,7 +42,7 @@ $listofsupplier = MysqlConnection::fetchAll("supplier_master");
                                 <td><a href="#myAlert" onclick="setDeleteField('<?php echo $value["supp_id"] ?>')" data-toggle="modal"  class="tip-top" data-original-title="Delete Record"><i class="icon-remove"></i></a> </td>
                                 <td><?php echo $value["supp_id"] ?></td>
                                 <td><?php echo $value["supp_name"] ?></td>
-                                <td><?php echo $value[""] ?></td>
+                                <td><?php echo $value["supp_streetNo"] ?> <?php echo $value["supp_streetName"]?> <?php echo $value["supp_city"] ?> <?php echo $value["postal_code"] ?></td>
                                 <td><?php echo $value["supp_phoneNo"] ?></td>
                                 <td><?php echo $value["supp_fax"] ?></td>
                                 <td><?php echo $value["supp_website"] ?></td>
