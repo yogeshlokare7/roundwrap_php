@@ -38,7 +38,7 @@
             </select>
         </td>
         <td>Business No</td>
-        <td><input type="text" name="businessno" id="businessno"  value="<?php echo filter_input(INPUT_POST, "businessno") ?>" ></td>
+        <td><input type="number" name="businessno" id="businessno"  value="<?php echo filter_input(INPUT_POST, "businessno") ?>" ></td>
         <td>Certificate</td>
         <td><input type="file"></td>
     </tr>
@@ -63,7 +63,9 @@
     <tr><td colspan="4">&nbsp;</td></tr>
     <tr><td colspan="4">&nbsp;</td></tr>
 </table>
-
+<hr/>
+<input type="button" id="btnCmpPrev1" value="Previous" class="btn btn-info" href="#tab3">
+<input type="button" id="btnCmpNext2" value="Next" class="btn btn-info" href="#tab4">
 
 <!-- this is custom model dialog --->
 <div id="addCustomerType" class="modal hide" style="top: 10%;left: 50%;">
@@ -391,9 +393,10 @@
 
     function toggleSelection(element) {
         if (this.checked) {
-            $(element.data).attr('disabled', 'disabled');
-        } else {
             $(element.data).removeAttr('disabled');
+        } else {
+            
+            $(element.data).attr('disabled', 'desabled')
         }
     }
 </script>

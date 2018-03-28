@@ -2,18 +2,20 @@
 <table style="width: 100%;" id="payment">
     <tr>
         <td><label class="control-label">Account No</label></td>
-        <td><input type="text" name="cust_accnt_no" autofocus="" value="<?php echo filter_input(INPUT_POST, "cust_accnt_no") ?>" id="cust_accnt_no"></td>
+        <td><input type="number" name="cust_accnt_no" autofocus="" value="<?php echo filter_input(INPUT_POST, "cust_accnt_no") ?>" minlenght="2" maxlength="13" id="cust_accnt_no"></td>
         <td><label class="control-label">Credit Limit</label></td>
-        <td><input type="text" name="creditlimit" autofocus="" value="<?php echo filter_input(INPUT_POST, "creditlimit") ?>" id="creditlimit"></td>
+        <td><input type="number" name="creditlimit" autofocus="" value="<?php echo filter_input(INPUT_POST, "creditlimit") ?>" minlenght="2" maxlength="" id="creditlimit"></td>
 
     </tr>
     <tr>
         <td><label class="control-label">Credit Card No.</label></td>
-        <td><input type="text" name="creditcardno[]" id="creditcardno"  value="<?php echo filter_input(INPUT_POST, "creditcardno[]") ?>" ></td>
+        <td><input type="number" name="creditcardno[]" id="creditcardno" minlenght="2" maxlength="13"  value="<?php echo filter_input(INPUT_POST, "creditcardno[]") ?>" ></td>
         <td><label class="control-label">Name on Card</label></td>
-        <td><input type="text" name="nameoncard[]" id="nameoncard"  value="<?php echo filter_input(INPUT_POST, "nameoncard[]") ?>" ></td>
+        <td><input type="text" name="nameoncard[]" id="nameoncard"  minlenght="2" maxlength="30"  value="<?php echo filter_input(INPUT_POST, "nameoncard[]") ?>" ></td>
         <td><label class="control-label">Exp. Date</label></td>
-        <td><input type="text" name="expdate[]" id="expdate"  value="<?php echo filter_input(INPUT_POST, "expdate[]") ?>" ><a style="margin-left: 20px;float:center;margin-bottom: 10px;" class="icon-plus" href="#"  ></a></td>
+        <td><input type="date" name="expdate[]" id="expdate"  value="<?php echo filter_input(INPUT_POST, "expdate[]") ?>" ></td>
+        <td><label class="control-label">CVV</label></td>
+        <td><input style="width: 40px" type="number" name="cvv[]" id="cvv" minlength="2" maxlength="3" value="<?php echo filter_input(INPUT_POST, "cvv[]") ?>" ><a style="  margin-left: 20px;float:center;margin-bottom: 10px;" class="icon-plus" href="#"  ></a></td>
     </tr>
 </table> 
 <br/>
@@ -32,9 +34,10 @@
         jQuery('a.icon-plus').click(function (event) {
             event.preventDefault();
 
-            var newRow = jQuery('<tr><td><label class="control-label">Credit Card No.</label></td><td><input type="text" name="creditcardno" id="creditcardno"  value="<?php echo filter_input(INPUT_POST, "creditcardno") ?>" ></td>' +
-                    counter + '<td><label class="control-label">Name on Card</label></td><td><input type="text" name="nameoncard" id="nameoncard"  value="<?php echo filter_input(INPUT_POST, "nameoncard") ?>" ></td>' +
-                    counter + '<td><label class="control-label">Exp. Date</label></td><td><input type="text" name="cust_email" id="cust_email"  value="<?php echo filter_input(INPUT_POST, "cust_email") ?>" ><a style="margin-left: 20px;float:center;margin-bottom: 10px;" class="icon-trash" href="#"  ></a></td>');
+            var newRow = jQuery('<tr><td><label class="control-label">Credit Card No.</label></td><td><input type="text" name="creditcardno" minlenght="2" maxlength="13" id="creditcardno"  value="<?php echo filter_input(INPUT_POST, "creditcardno") ?>" ></td>' +
+                    counter + '<td><label class="control-label">Name on Card</label></td><td><input type="text" name="nameoncard" minlenght="2" maxlength="30"  id="nameoncard"  value="<?php echo filter_input(INPUT_POST, "nameoncard") ?>" ></td>' +
+                    counter + '<td><label class="control-label">Exp. Date</label></td><td><input type="date" name="expdate[]" id="expdate"  value="<?php echo filter_input(INPUT_POST, "expdate[]") ?>" ></td>'+
+                    counter + '<td><label class="control-label">CVV</label></td><td><input style="width: 40px" type="number" minlenght="2" maxlength="3" name="cvv[]" id="nameoncard"  value="<?php echo filter_input(INPUT_POST, "nameoncard[]") ?>" ><a style="margin-left: 20px;float:center;margin-bottom: 10px;" class="icon-trash" href="#"  ></a></td>');
             counter++;
             jQuery('#payment').append(newRow);
 

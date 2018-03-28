@@ -47,6 +47,7 @@
                             <th>Contact No</th>
                             <th>Email</th>
                             <th>Currency</th>
+                             <th>Balance</th>
                             <th>Sales Person Name</th>
                         </tr>
                     </thead>
@@ -67,6 +68,7 @@
                                 <td><?php echo $value["phno"] ?></td>
                                 <td><?php echo $value["cust_email"] ?></td>
                                 <td><?php echo $value["currency"] ?></td>
+                                <td><?php echo $value["balance"] ?></td>
                                 <td><?php echo $value["sales_person_name"] ?></td>
                             </tr>
                             <?php

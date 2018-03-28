@@ -35,7 +35,7 @@
         <td><input type="text" name="website" id="website" plceholder="Enter Company Website" value="<?php echo filter_input(INPUT_POST, "website") ?>" ></td>
         <td><label class="control-label">Fax</label></td>
         <td><input type="text" name="cust_fax" id="cust_fax"  value="<?php echo filter_input(INPUT_POST, "cust_fax") ?>" ></td>
-        <td><label class="control-label">Currency</label></td>
+        
     </tr>
 
     <tr>
