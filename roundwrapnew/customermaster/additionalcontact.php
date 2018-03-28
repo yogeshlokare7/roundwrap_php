@@ -8,10 +8,13 @@
         <td><input type="text" name="alterno1[]" id="alterno1"  value="<?php echo filter_input(INPUT_POST, "alterno1[]") ?>" ><a style="margin-left: 20px;float:center;margin-bottom: 10px;" class="icon-plus" href="#"  ></a></td>
     </tr>
 </table> 
+<hr/>
+<input type="button" id="btnCmpPrev1" value="Next" class="btn btn-info" href="#tab2">
+<input type="button" id="btnCmpNext2" value="Next" class="btn btn-info" href="#tab2">
 <script type="text/javascript">
-    jQuery(function () {
+    jQuery(function() {
         var counter = 1;
-        jQuery('a.icon-plus').click(function (event) {
+        jQuery('a.icon-plus').click(function(event) {
             event.preventDefault();
 
             var newRow = jQuery('<tr><td><label class="control-label">Name</label></td><td><input type="text" name="contact_person[]" value="<?php echo filter_input(INPUT_POST, "contact_person") ?>"  id="contact_person"></td>' +
@@ -23,9 +26,9 @@
         });
     });
 
-    $(document).ready(function () {
+    $(document).ready(function() {
 
-        $("#addcontacts").on('click', 'a.icon-trash', function () {
+        $("#addcontacts").on('click', 'a.icon-trash', function() {
             $(this).closest('tr').remove();
         });
 

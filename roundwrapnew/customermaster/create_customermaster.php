@@ -35,8 +35,17 @@
 </div>
 
 <script>
+//    btnCmpPrev1  btnCmpNext2
     $('#btnCmpNext1').on('click', function() {
         $('#ciTab1').removeClass('active');
         $('#acTab2').addClass('active');
+    });
+    $('#btnCmpPrev1').on('click', function() {
+        $('#acTab2').removeClass('active');
+        $('#ciTab1').addClass('active');
+    });
+    $('#btnCmpNext2').on('click', function() {
+        $('#acTab2').removeClass('active');
+        $('#tdTab3').addClass('active');
     });
 </script>

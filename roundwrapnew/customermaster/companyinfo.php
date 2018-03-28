@@ -52,9 +52,7 @@
     </tr>
 </table>
 <hr/>
-<a href="#tab2">
-    <input type="button" id="btnCmpNext1" value="Next" class="btn btn-info">
-</a>
+<input type="button" id="btnCmpNext1" value="Next" class="btn btn-info" href="#tab2">
 
 <script>
     function  fillAddress()
