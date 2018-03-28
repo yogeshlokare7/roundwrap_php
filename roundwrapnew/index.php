@@ -43,9 +43,9 @@ if (count($explode) >= 2) {
 
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
         <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-        <script src="js/jquery.mask.js"></script> 
         <script src="js/jquery.min.js"></script> 
         <script src="js/maruti.js"></script> 
+        <script src="js/jquery.mask.js"></script> 
 
 
         <script>
