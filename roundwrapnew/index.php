@@ -6,7 +6,7 @@ ob_start();
 
 if (empty($_SESSION["master"]["company"]) || empty($_SESSION["master"])) {
     session_destroy();
-    header("location:login.php");
+    header("location:login/");
 }
 
 include './MysqlConnection.php';
