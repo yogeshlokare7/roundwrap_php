@@ -5,15 +5,14 @@
     </div>
 </div>
 <div class="container-fluid" >
-    <br/>
     <h5 style="font-family: verdana;font-size: 12px;">CREATE NEW CUSTOMER</h5>
-    <div class="widget-box" style="width: 90%;float: left">
+    <div class="widget-box" style="width: 90%;float: left;margin-top: -5px;">
         <div class="widget-title">
             <ul class="nav nav-tabs">
-                <li class="active"><a data-toggle="tab" href="#tab1">Company Information </a></li>
-                <li><a data-toggle="tab" href="#tab2">Additional Contacts</a></li>
-                <li><a data-toggle="tab" href="#tab3">Tax and Discount</a></li>
-                <li><a data-toggle="tab" href="#tab4">Deposits and Payment Information</a></li>
+                <li id="ciTab1" class="active"><a data-toggle="tab" href="#tab1">Company Information </a></li>
+                <li id="acTab2"><a data-toggle="tab" href="#tab2">Additional Contacts</a></li>
+                <li id="tdTab3"><a data-toggle="tab" href="#tab3">Tax and Discount</a></li>
+                <li id="dpiTab4"><a data-toggle="tab" href="#tab4">Deposits and Payment Information</a></li>
             </ul>
         </div>
         <form name="frmCustomerSubmit" id="frmCustomerSubmit" method="post">
@@ -34,3 +33,10 @@
         </form>
     </div>
 </div>
+
+<script>
+    $('#btnCmpNext1').on('click', function() {
+        $('#ciTab1').removeClass('active');
+        $('#acTab2').addClass('active');
+    });
+</script>

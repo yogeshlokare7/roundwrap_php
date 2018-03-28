@@ -1,11 +1,11 @@
 <script>
-    $(document).ready(function ($) {
+    $(document).ready(function($) {
         $("#phno").mask("(99) 9999-9999");
         $("#cust_fax").mask("(99) 9999-9999");
     });
 </script>
 <hr/>
-<table style="width: 100%;" id="companyInfo">
+<table style="width: 100%;" id="companyInfo1">
     <tr>
         <td><label class="control-label">Salutation</label></td>
         <td>
@@ -51,6 +51,10 @@
         <td><textarea   style="height: 80px;line-height: 20px;"  name="shipto" id="shipto"></textarea></td>
     </tr>
 </table>
+<hr/>
+<a href="#tab2">
+    <input type="button" id="btnCmpNext1" value="Next" class="btn btn-info">
+</a>
 
 <script>
     function  fillAddress()

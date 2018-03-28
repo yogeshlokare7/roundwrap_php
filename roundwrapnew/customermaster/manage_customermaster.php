@@ -2,22 +2,40 @@
 <link href="css/jquery.contextMenu.css" rel="stylesheet" type="text/css" />
 <script src="js/jquery.min_1.11.3.js"></script>
 <script src="js/jquery.contextMenu.js" type="text/javascript"></script>
+<script>
+
+    $("#liveTableSearch").on("keyup", function() {
+        var value = $(this).val();
+        $("table tr").each(function(index) {
+            if (index !== 0) {
+                $row = $(this);
+                var id = $row.find("td:first").text();
+                if (id.indexOf(value) !== 0) {
+                    $(this).hide();
+                }
+                else {
+                    $(this).show();
+                }
+            }
+        });
+    });
+</script>
 <div id="content-header">
     <div id="breadcrumb"> 
         <a href="index.php" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a>
         <a title="View Customer Master" class="tip-bottom">View Customer Master</a>
     </div>
 </div>
-<div class="container-fluid" >
-    <br/>
-    <a class="btn" href="index.php?pagename=create_customermaster" >ADD CUSTOMER</a>
-    <div class="widget-box">
-        <div class="widget-title">
-            <span class="icon"><i class="icon-th"></i></span> 
-            <h5>Customer Master</h5>
-        </div>
-        <div class="widget-content nopadding">
-            <form name="customermaster" id="customermaster" method="POST">
+<form name="customermaster" id="customermaster" method="POST">
+    <div class="container-fluid" >
+        <br/>
+        <a class="btn" href="index.php?pagename=create_customermaster" >ADD CUSTOMER</a>
+        <div class="widget-box">
+            <div class="widget-title">
+                <span class="icon"><i class="icon-th"></i></span> 
+                <h5>Customer Master</h5>
+            </div>
+            <div class="widget-content nopadding">
                 <table class="table table-bordered data-table">
                     <thead>
 
@@ -56,47 +74,47 @@
                         ?>
                     </tbody>
                 </table>
-                <input type="hidden" id="deleteId" name="cid" value="">
-                <input type="hidden" id="flag" name="flag" value="">
-            </form>
+
+            </div>
         </div>
     </div>
-</div>
-
+    <input type="hidden" id="deleteId" name="cid" value="">
+    <input type="hidden" id="flag" name="flag" value="">
+</form>
 <script>
-    $("#deleteThis").click(function () {
+    $("#deleteThis").click(function() {
         $('#img').show();
         var dataString = "deleteId=" + $('#deleteId').val();
         $.ajax({
             type: 'POST',
             url: 'customermaster/customermaster_ajax.php',
             data: dataString
-        }).done(function (data) {
+        }).done(function(data) {
             $('#img').hide();
-        }).fail(function () {
+        }).fail(function() {
         });
         location.reload();
     });
     function setDeleteField(deleteId) {
         document.getElementById("deleteId").value = deleteId;
     }
-    $("#save").click(function () {
+    $("#save").click(function() {
         var json = convertFormToJSON("#basic_validate");
         $.ajax({
             type: 'POST',
             url: 'customermaster/savecustomermaster_ajax.php',
             data: json
-        }).done(function (data) {
-        }).fail(function () {
+        }).done(function(data) {
+        }).fail(function() {
         });
         location.reload();
     });
 </script>
 <script type="text/javascript">
-    $(function () {
+    $(function() {
         $.contextMenu({
             selector: '.context-menu-one',
-            callback: function (key, options) {
+            callback: function(key, options) {
                 var m = "clicked row: " + key;
                 var id = $(this).attr('id');
                 //alert("ID for edit/delete:"+id)
@@ -128,7 +146,7 @@
                 "create_purchase_order": {name: "Create Purchase Order", icon: "add"},
                 "create_invoice": {name: "Create Invoice", icon: "add"},
                 "sep1": "---------",
-                "quit": {name: "Quit", icon: function () {
+                "quit": {name: "Quit", icon: function() {
                         return 'context-menu-icon context-menu-icon-quit';
                     }}
             }
