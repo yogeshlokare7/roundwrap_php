@@ -51,15 +51,15 @@
     
   //btnCmpPrev2 btnCmpNext3  
      $('#btnCmpPrev2').on('click', function () {
-        $('#dpiTab4').removeClass('active');
+        $('#tdTab3').removeClass('active');
         $('#acTab2').addClass('active');
     });
     $('#btnCmpNext3').on('click', function () {
-        $('#acTab3').removeClass('active');
+        $('#tdTab3').removeClass('active');
         $('#dpiTab4').addClass('active');
     });
     $('#btnCmpPrev3').on('click', function () {
-        $('#acTab3').removeClass('active');
+        $('#dpiTab4').removeClass('active');
         $('#tdTab3').addClass('active');
     });
     

@@ -32,7 +32,8 @@
 <hr/>
 <table style="width: 100%">
     <tr style="text-align: center">
-        <td><input type="button" id="btnCmpPrev3" value="Previous" class="btn btn-info" href="#tab1"></td>
+        <td style="text-align: left">
+            <input type="button" id="btnCmpPrev3" value="Previous" class="btn btn-info" href="#tab1"></td>
         <td  style="text-align: center">
             <div style="margin: 0 auto">
                 <input type="submit" name="btnSubmitFullForm" id="btnSubmitFullForm" value="Submit" class="btn btn-success">

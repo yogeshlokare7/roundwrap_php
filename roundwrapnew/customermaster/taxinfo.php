@@ -70,8 +70,7 @@
         <td></td>
         <td></td>
     </tr>
-<!--    <tr><td colspan="4">&nbsp;</td></tr>
-    <tr><td colspan="4">&nbsp;</td></tr>-->
+
 </table>
 <hr/>
 <input type="button" id="btnCmpPrev2" value="Previous" class="btn btn-info" href="#tab2">
