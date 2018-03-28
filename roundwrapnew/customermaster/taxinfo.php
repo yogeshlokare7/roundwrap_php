@@ -259,8 +259,8 @@
         });
     });
 
-    $("#rep").click(function () {
-        var valueModel = $("#rep").val();
+    $("#sales_person_name").click(function () {
+        var valueModel = $("#sales_person_name").val();
         if (valueModel === "1") {
             $('#addRepresentative').modal('show');
         }

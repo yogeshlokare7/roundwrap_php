@@ -23,12 +23,12 @@
 
                         <tr>
                             <th style="width: 2.3%">#</th>
-<!--                            <th style="width: 2.3%">#</th>-->
+                            <th>Full Name</th>
                             <th>Company Name</th>
                             <th>Address</th>
                             <th>Contact No</th>
                             <th>Email</th>
-                            <th>Type</th>
+                            <th>Currency</th>
                             <th>Sales Person Name</th>
                         </tr>
                     </thead>
@@ -43,23 +43,12 @@
                                         <i class="icon-remove"></i>
                                     </a> 
                                 </td>
-<!--                                <td>
-                                    <div class="btn-group">
-                                        <button data-toggle="dropdown" class="btn dropdown-toggle">Action&nbsp;<span class="caret"></span></button>
-                                        <ul class="dropdown-menu">
-                                            <li><a href="index.php?pagename=create_customermaster&customerId=1">Edit Customer</a></li>
-                                            <li><a href="index.php?pagename=create_customermaster">Create Customer</a></li>
-                                            <li><a href="index.php?pagename=create_perchaseorder">Create Purchase Order</a></li>
-                                            <li><a href="index.php?pagename=manage_invoice">Create Invoice</a></li>
-                                        </ul>
-                                    </div>
-                                </td>-->
-
+                                <td><?php echo $value["firstname"] ?>&nbsp;<?php echo $value["lastname"] ?></td>
                                 <td><?php echo $value["cust_companyname"] ?></td>
-                                <td><?php echo $value[""] ?></td>
+                                <td><?php echo buildAddress($value) ?></td>
                                 <td><?php echo $value["phno"] ?></td>
                                 <td><?php echo $value["cust_email"] ?></td>
-                                <td><?php echo $value[""] ?></td>
+                                <td><?php echo $value["currency"] ?></td>
                                 <td><?php echo $value["sales_person_name"] ?></td>
                             </tr>
                             <?php
@@ -75,62 +64,62 @@
 </div>
 
 <script>
-    $("#deleteThis").click(function() {
+    $("#deleteThis").click(function () {
         $('#img').show();
         var dataString = "deleteId=" + $('#deleteId').val();
         $.ajax({
             type: 'POST',
             url: 'customermaster/customermaster_ajax.php',
             data: dataString
-        }).done(function(data) {
+        }).done(function (data) {
             $('#img').hide();
-        }).fail(function() {
+        }).fail(function () {
         });
         location.reload();
     });
     function setDeleteField(deleteId) {
         document.getElementById("deleteId").value = deleteId;
     }
-    $("#save").click(function() {
+    $("#save").click(function () {
         var json = convertFormToJSON("#basic_validate");
         $.ajax({
             type: 'POST',
             url: 'customermaster/savecustomermaster_ajax.php',
             data: json
-        }).done(function(data) {
-        }).fail(function() {
+        }).done(function (data) {
+        }).fail(function () {
         });
         location.reload();
     });
 </script>
 <script type="text/javascript">
-        $(function() {
+    $(function () {
         $.contextMenu({
-            selector: '.context-menu-one', 
-            callback: function(key, options) {
-               var m = "clicked row: " + key;
-               var id = $(this).attr('id'); 
-               //alert("ID for edit/delete:"+id)
-               switch(key) {
-                case "create_customer":
+            selector: '.context-menu-one',
+            callback: function (key, options) {
+                var m = "clicked row: " + key;
+                var id = $(this).attr('id');
+                //alert("ID for edit/delete:"+id)
+                switch (key) {
+                    case "create_customer":
                         window.location = "index.php?pagename=create_customermaster";
-                        break;  
-                case "edit_customer":
+                        break;
+                    case "edit_customer":
                         window.location = "index.php?pagename=create_customermaster&customerId=1";
                         break;
-                case "delete_customer":
+                    case "delete_customer":
                         //document.getElementById("deleteThis").click();
                         break;
-                case "create_purchase_order":
+                    case "create_purchase_order":
                         window.location = "index.php?pagename=create_perchaseorder";
                         break;
-                case "create_invoice":
+                    case "create_invoice":
                         window.location = "index.php?pagename=manage_invoice";
                         break;
-                default:
+                    default:
                         window.location = "index.php?pagename=manage_customermaster";
                 }
-               //window.console && console.log(m) || alert(m+"    id:"+id); 
+                //window.console && console.log(m) || alert(m+"    id:"+id); 
             },
             items: {
                 "create_customer": {name: "Create Customer", icon: "add"},
@@ -139,9 +128,9 @@
                 "create_purchase_order": {name: "Create Purchase Order", icon: "add"},
                 "create_invoice": {name: "Create Invoice", icon: "add"},
                 "sep1": "---------",
-                "quit": {name: "Quit", icon: function(){
-                    return 'context-menu-icon context-menu-icon-quit';
-                }}
+                "quit": {name: "Quit", icon: function () {
+                        return 'context-menu-icon context-menu-icon-quit';
+                    }}
             }
         });
 
@@ -149,6 +138,21 @@
 //            console.log('clicked', this);
 //       })    
     });
-    </script>
-
+</script>
 <!-- this is model dialog --->
+<?php
+
+function buildAddress($value) {
+    if (trim($value["shipto"]) == "") {
+        return $value["streetNo"]
+                . " " . $value["streetName"]
+                . " " . $value["city"]
+                . " " . $value["s_postalcode"]
+                . " " . $value["cust_province"]
+                . " " . $value["country"]
+        ;
+    } else {
+        return $value["shipto"];
+    }
+}
+?>

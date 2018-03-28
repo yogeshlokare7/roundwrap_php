@@ -45,9 +45,12 @@ if (count($explode) >= 2) {
         <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
         <script src="js/maruti.js"></script> 
         <script src="js/jquery.min.js"></script> 
+        <script src="js/jquery.mask.js"></script> 
+
+
         <script>
-            $(function() {
-                setTimeout(function() {
+            $(function () {
+                setTimeout(function () {
                     $("#successMessage").hide('blind', {}, 100)
                 }, 5000);
             });
@@ -56,7 +59,7 @@ if (count($explode) >= 2) {
                 var array = $(form).serializeArray();
                 var json = {};
 
-                jQuery.each(array, function() {
+                jQuery.each(array, function () {
                     json[this.name] = this.value || '';
                 });
 
@@ -65,7 +68,7 @@ if (count($explode) >= 2) {
 
 
             function setNavBar() {
-                window.onscroll = function() {
+                window.onscroll = function () {
                     myFunction();
                 };
                 var header = document.getElementById("sidebar");

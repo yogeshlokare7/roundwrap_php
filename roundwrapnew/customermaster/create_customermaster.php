@@ -11,8 +11,9 @@
         <div class="widget-title">
             <ul class="nav nav-tabs">
                 <li class="active"><a data-toggle="tab" href="#tab1">Company Information </a></li>
-                <li><a data-toggle="tab" href="#tab2">Additional Information</a></li>
-                <li><a data-toggle="tab" href="#tab3">Payment Information</a></li>
+                <li><a data-toggle="tab" href="#tab2">Additional Contacts</a></li>
+                <li><a data-toggle="tab" href="#tab3">Tax and Discount</a></li>
+                <li><a data-toggle="tab" href="#tab4">Deposits and Payment Information</a></li>
             </ul>
         </div>
         <form name="frmCustomerSubmit" id="frmCustomerSubmit" method="post">
@@ -20,10 +21,13 @@
                 <div id="tab1" class="tab-pane active">
                     <?php include 'customermaster/companyinfo.php'; ?>
                 </div>
-                <div id="tab2" class="tab-pane">
-                    <?php include 'customermaster/additionalinfo.php'; ?>
+                <div id="tab2" class="tab-pane active">
+                    <?php include 'customermaster/additionalcontact.php'; ?>
                 </div>
                 <div id="tab3" class="tab-pane">
+                    <?php include 'customermaster/taxinfo.php'; ?>
+                </div>
+                <div id="tab4" class="tab-pane">
                     <?php include 'customermaster/paymentinfo.php'; ?>
                 </div>
             </div>  
