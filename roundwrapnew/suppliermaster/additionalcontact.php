@@ -7,11 +7,11 @@
 <table style="width: 100%;" id="supplierInfo">
     <tr>
         <td><label class="control-label">Name</label></td>
-        <td><input type="text" name="contact_person[0]" value="<?php echo filter_input(INPUT_POST, "contact_person[0]") ?>"  id="contact_person" minlength="2" maxlength="30"></td>
+        <td><input type="text" name="contact_person[]" value="<?php echo filter_input(INPUT_POST, "contact_person[]") ?>"  id="contact_person" minlength="2" maxlength="30"></td>
         <td><label class="control-label">Email</label></td>
-        <td><input type="email" name="email[0]" autofocus="" value="<?php echo filter_input(INPUT_POST, "email[0]") ?>" id="email" minlength="2" maxlength="30"></td>
+        <td><input type="email" name="email[]" autofocus="" value="<?php echo filter_input(INPUT_POST, "email[]") ?>" id="email" minlength="2" maxlength="30"></td>
         <td><label class="control-label">Phone</label></td>
-        <td><input type="text" id="alterno" name="alterno[0]"  value="<?php echo filter_input(INPUT_POST, "alterno[0]") ?>" minlength="2" maxlength="20"><a style="margin-left: 20px;float:center;margin-bottom: 10px;" class="icon-plus" href="#"  ></a></td>
+        <td><input type="text" id="alterno" name="alterno[]"  value="<?php echo filter_input(INPUT_POST, "alterno[]") ?>" minlength="2" maxlength="20"><a style="margin-left: 20px;float:center;margin-bottom: 10px;" class="icon-plus" href="#"  ></a></td>
     </tr>
 </table>
 <table style="width: 100%">
@@ -29,9 +29,9 @@
         var counter = 1;
         jQuery('a.icon-plus').click(function (event) {
             event.preventDefault();
-            var newRow = jQuery('<tr><td><label class="control-label">Name</label></td><td><input type="text" name="contact_person[' + counter + ']" value="<?php echo filter_input(INPUT_POST, "contact_person") ?>"  id="contact_person" minlength="2" maxlength="30"></td>' +
-                    counter + '<td><label class="control-label">Email</label></td><td><input type="email" name="email[' + counter + ']" autofocus="" value="<?php echo filter_input(INPUT_POST, "email") ?>" id="email" minlength="2" maxlength="30"></td>' +
-                    counter + '<td><label class="control-label">Phone</label></td> <td><input type="text" id="alterno' + counter + '" name="alterno[' + counter + ']"  value="<?php echo filter_input(INPUT_POST, "alterno") ?>" minlength="2" maxlength="20">\n\
+            var newRow = jQuery('<tr><td><label class="control-label">Name</label></td><td><input type="text" name="contact_person[]" value="<?php echo filter_input(INPUT_POST, "contact_person") ?>"  id="contact_person' + counter + '" minlength="2" maxlength="30"></td>' +
+                    counter + '<td><label class="control-label">Email</label></td><td><input type="email" name="email[]" autofocus="" value="<?php echo filter_input(INPUT_POST, "email") ?>" id="email' + counter + '" minlength="2" maxlength="30"></td>' +
+                    counter + '<td><label class="control-label">Phone</label></td> <td><input type="text" id="alterno' + counter + '" name="alterno[]"  value="<?php echo filter_input(INPUT_POST, "alterno") ?>" minlength="2" maxlength="20">\n\
                                <a style="margin-left: 20px;float:center;margin-bottom: 10px;" class="icon-trash" href="#"  ></a></td>');
             $("#alterno" + counter).mask("(999) 999-9999");
             counter++;

@@ -25,7 +25,7 @@ $supplierarray["postal_code"] = filter_input(INPUT_POST, "postal_code");
 $id = MysqlConnection::insert("supplier_master", $supplierarray);
 
 $contact_person = $_POST["contact_person"];
-for ($index = 1; $index <= count($contact_person); $index++) {
+for ($index =0; $index < count($contact_person); $index++) {
     $namearray = $contact_person;
     $emailarray = $_POST["email"];
     $contactarray = $_POST["alterno1"];
@@ -41,7 +41,7 @@ for ($index = 1; $index <= count($contact_person); $index++) {
 }
 
 $tax_info= $_POST["tax_name"];
-for ($index = 1; $index <= count($tax_info); $index++) {
+for ($index = 0; $index < count($tax_info); $index++) {
     $tax_namearray = $tax_info;
     $tax_checkarray = $_POST["tax_check"];
     $tax_percentarray = $_POST["tax_percentage"];
