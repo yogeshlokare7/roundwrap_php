@@ -48,7 +48,7 @@
             </select>
         </td>
         <td>Business No</td>
-        <td><input type="text" name="businessno" onkeypress="return chkNumericKey(event)" id="businessno"  value="<?php echo filter_input(INPUT_POST, "businessno") ?>" ></td>
+        <td><input type="text" name="businessno" minlenght="2" maxlength="20" id="businessno"  value="<?php echo filter_input(INPUT_POST, "businessno") ?>" ></td>
         <td>Certificate</td>
         <td><input type="file"></td>
     </tr>
