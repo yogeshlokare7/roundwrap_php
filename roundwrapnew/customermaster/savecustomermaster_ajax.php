@@ -32,6 +32,7 @@ for ($index = 0; $index <count($contact_person); $index++) {
     $custcontactrarray["cust_id"] = $id;
     MysqlConnection::insert("customer_contact", $custcontactrarray);
 }
+header("location:index.php?pagename=manage_customermaster");
 
 
 
