@@ -229,8 +229,8 @@
         jQuery('a.icon-plus').click(function (event) {
             event.preventDefault();
 
-            var newRow = jQuery('<tr><td><input type="text" name="" style="width:50px;"></td>' +
-                    counter + '<td><input type="text" name=""></td>' +
+            var newRow = jQuery('<tr><td><input type="text" name="[]" style="width:50px;"></td>' +
+                    counter + '<td><input type="text" name="[]"></td>' +
                     counter + '<td><input style="width: 15px;height: 19px; filter: alpha(opacity:0);display: inline-block;background: none;margin-left: 2px;" type="checkbox" name="pstexempt" class="checker input" >\n\
                                <a class="icon-trash" href="#"  style="margin-left: 27px;" ></a></td>');
             counter++;

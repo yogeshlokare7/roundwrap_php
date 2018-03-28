@@ -7,6 +7,9 @@
             return false;
         }
     }
+    $(document).ready(function ($) {
+        $("#creditcardno").mask("9999-9999-9999-9999");
+    });
 </script>
 <hr/>
 <table style="width: 100%;" id="payment">
@@ -32,18 +35,19 @@
 <hr/>
 
 <input type="button" id="btnCmpPrev3" value="Previous" class="btn btn-info" href="#tab1"></td>
-<input type="submit" name="btnSubmitFullForm" id="btnSubmitFullForm" value="Submit" class="btn btn-success">
+<button type="submit" id="btnSubmitFullForm" class="btn btn-success">Submit</button>
 
 <script type="text/javascript">
     jQuery(function () {
         var counter = 1;
         jQuery('a.icon-plus').click(function (event) {
             event.preventDefault();
-
-            var newRow = jQuery('<tr><td><label class="control-label">Credit Card No.</label></td><td><input type="text" name="creditcardno" onkeypress="return chkNumericKey(event)" minlenght="2" maxlength="13" id="creditcardno"  value="<?php echo filter_input(INPUT_POST, "creditcardno") ?>" ></td>' +
-                    counter + '<td><label class="control-label">Name on Card</label></td><td><input type="text" name="nameoncard" minlenght="2" maxlength="30"  id="nameoncard"  value="<?php echo filter_input(INPUT_POST, "nameoncard") ?>" ></td>' +
+            var newRow = jQuery('<tr><td><label class="control-label">Credit Card No.</label></td><td><input type="text" name="creditcardno[]" onkeypress="return chkNumericKey(event)" minlenght="2" maxlength="13" id="creditcardno' + counter + '"  value="<?php echo filter_input(INPUT_POST, "creditcardno") ?>" ></td>' +
+                    counter + '<td><label class="control-label">Name on Card</label></td><td><input type="text" name="nameoncard[]" minlenght="2" maxlength="30"  id="nameoncard"  value="<?php echo filter_input(INPUT_POST, "nameoncard") ?>" ></td>' +
                     counter + '<td><label class="control-label">Exp. Date</label></td><td><input type="date" name="expdate[]" id="expdate"  value="<?php echo filter_input(INPUT_POST, "expdate[]") ?>" ></td>' +
                     counter + '<td><label class="control-label">CVV</label></td><td><input style="width: 40px" type="text" onkeypress="return chkNumericKey(event)" minlenght="2" maxlength="3" name="cvv[]" id="nameoncard"  value="<?php echo filter_input(INPUT_POST, "nameoncard[]") ?>" ><a style="margin-left: 20px;float:center;margin-bottom: 10px;" class="icon-trash" href="#"  ></a></td>');
+            $("#creditcardno" + counter).mask("9999-9999-9999-9999");
+            
             counter++;
             jQuery('#payment').append(newRow);
 

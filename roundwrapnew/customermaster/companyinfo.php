@@ -12,10 +12,10 @@
         <td><label class="control-label">Salutation</label></td>
         <td>
             <select name="salutation" style="width: 60px;" id="salutation">
-                <option value="">Mr.</option>
-                <option value="" >Mrs.</option>
-                <option value="">Miss.</option>
-                <option value="">Ms.</option>
+                <option value="Mr">Mr.</option>
+                <option value="Mrs" >Mrs.</option>
+                <option value="Miss">Miss.</option>
+                <option value="Ms">Ms.</option>
             </select>
         </td>
         <td><label class="control-label">First Name</label></td>
