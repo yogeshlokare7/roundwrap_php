@@ -17,7 +17,7 @@
                 <li><a data-toggle="tab" href="#tab4">Contact Person Details</a></li>
             </ul>
         </div>
-        <form name="frmCustomerSubmit" id="frmSupplierSubmit" method="post">
+        <form name="frmCustomerSubmit" id="frmSupplierSubmit" method="post" action="suppliermaster/save_supplierajax.php">
         <div class="widget-content tab-content">
             <div id="tab1" class="tab-pane active">
                 <?php include 'suppliermaster/supplierinfo.php'; ?>
