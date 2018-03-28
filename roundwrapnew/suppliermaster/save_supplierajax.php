@@ -28,7 +28,7 @@ $contact_person = $_POST["contact_person"];
 for ($index =0; $index < count($contact_person); $index++) {
     $namearray = $contact_person;
     $emailarray = $_POST["email"];
-    $contactarray = $_POST["alterno1"];
+    $contactarray = $_POST["alterno"];
 
     echo $namearray[$index] . " == " . $emailarray[$index] . " " . $contactarray[$index];
     $suppcontactrarray = array();
@@ -36,7 +36,9 @@ for ($index =0; $index < count($contact_person); $index++) {
     $suppcontactrarray["person_email"] =  $emailarray[$index];
     $suppcontactrarray["person_phoneNo"] =  $contactarray[$index];
     $suppcontactrarray["supp_id"] = $id;
-    MysqlConnection::insert("supplier_contact", $suppcontactrarray);
+    if($suppcontactrarray["person_name"]!='' && $suppcontactrarray["person_name"]!=''){
+         MysqlConnection::insert("supplier_contact", $suppcontactrarray);
+    }
     echo "<br/>";
 }
 
@@ -56,6 +58,7 @@ for ($index = 0; $index < count($tax_info); $index++) {
     MysqlConnection::insert("supplier_tax", $taxinfoarray);
     echo "<br/>";
 }
+header("location:index.php?pagename=manage_suppliermaster");
 
 
 
