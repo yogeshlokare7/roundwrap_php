@@ -3,6 +3,8 @@
         $("#phno").mask("(99) 9999-9999");
         $("#cust_fax").mask("(99) 9999-9999");
     });
+    
+    
 </script>
 <hr/>
 <table style="width: 100%;" id="companyInfo1">

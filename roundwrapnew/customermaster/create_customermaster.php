@@ -15,7 +15,7 @@
                 <li id="dpiTab4"><a data-toggle="tab" href="#tab4">Deposits and Payment Information</a></li>
             </ul>
         </div>
-        <form name="frmCustomerSubmit" id="frmCustomerSubmit" method="post">
+        <form name="frmCustomerSubmit" id="frmCustomerSubmit" method="post" action="customermaster/savecustomermaster_ajax.php">
             <div class="widget-content tab-content">
                 <div id="tab1" class="tab-pane active">
                     <?php include 'customermaster/companyinfo.php'; ?>
@@ -36,16 +36,32 @@
 
 <script>
 //    btnCmpPrev1  btnCmpNext2
-    $('#btnCmpNext1').on('click', function() {
+    $('#btnCmpNext1').on('click', function () {
         $('#ciTab1').removeClass('active');
         $('#acTab2').addClass('active');
     });
-    $('#btnCmpPrev1').on('click', function() {
+    $('#btnCmpPrev1').on('click', function () {
         $('#acTab2').removeClass('active');
         $('#ciTab1').addClass('active');
     });
-    $('#btnCmpNext2').on('click', function() {
+    $('#btnCmpNext2').on('click', function () {
         $('#acTab2').removeClass('active');
         $('#tdTab3').addClass('active');
     });
+    
+  //btnCmpPrev2 btnCmpNext3  
+     $('#btnCmpPrev2').on('click', function () {
+        $('#dpiTab4').removeClass('active');
+        $('#acTab2').addClass('active');
+    });
+    $('#btnCmpNext3').on('click', function () {
+        $('#acTab3').removeClass('active');
+        $('#dpiTab4').addClass('active');
+    });
+    $('#btnCmpPrev3').on('click', function () {
+        $('#acTab3').removeClass('active');
+        $('#tdTab3').addClass('active');
+    });
+    
+    
 </script>

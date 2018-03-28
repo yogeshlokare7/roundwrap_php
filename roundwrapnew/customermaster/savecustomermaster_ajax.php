@@ -1,5 +1,8 @@
 <?php
 
 error_reporting(0);
-include '../MysqlConnection.php';
-$insert = MysqlConnection::insert("customer_master", $_POST);
+//include '../MysqlConnection.php';
+
+echo "<pre>";
+print_r($_POST);
+echo "</pre>";

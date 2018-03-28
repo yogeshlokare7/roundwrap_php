@@ -1,3 +1,13 @@
+<script>
+    function chkNumericKey(event) {
+        var charCode = (event.which) ? event.which : event.keyCode;
+        if ((charCode >= 48 && charCode <= 57) || charCode == 46 || charCode == 45) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+</script>
 <hr/>
 <table style="width: 100%;">
 
@@ -38,11 +48,11 @@
             </select>
         </td>
         <td>Business No</td>
-        <td><input type="number" name="businessno" id="businessno"  value="<?php echo filter_input(INPUT_POST, "businessno") ?>" ></td>
+        <td><input type="text" name="businessno" onkeypress="return chkNumericKey(event)" id="businessno"  value="<?php echo filter_input(INPUT_POST, "businessno") ?>" ></td>
         <td>Certificate</td>
         <td><input type="file"></td>
     </tr>
-   
+
     <tr>
         <td>&nbsp;</td>
         <td><input type="checkbox" id="taxcheckbox">&nbsp;Use customer tax code</td>
@@ -60,12 +70,12 @@
         <td></td>
         <td></td>
     </tr>
-    <tr><td colspan="4">&nbsp;</td></tr>
-    <tr><td colspan="4">&nbsp;</td></tr>
+<!--    <tr><td colspan="4">&nbsp;</td></tr>
+    <tr><td colspan="4">&nbsp;</td></tr>-->
 </table>
 <hr/>
-<input type="button" id="btnCmpPrev1" value="Previous" class="btn btn-info" href="#tab3">
-<input type="button" id="btnCmpNext2" value="Next" class="btn btn-info" href="#tab4">
+<input type="button" id="btnCmpPrev2" value="Previous" class="btn btn-info" href="#tab2">
+<input type="button" id="btnCmpNext3" value="Next" class="btn btn-info" href="#tab4">
 
 <!-- this is custom model dialog --->
 <div id="addCustomerType" class="modal hide" style="top: 10%;left: 50%;">
@@ -395,7 +405,7 @@
         if (this.checked) {
             $(element.data).removeAttr('disabled');
         } else {
-            
+
             $(element.data).attr('disabled', 'desabled')
         }
     }
