@@ -6,8 +6,8 @@ ob_start();
 class MysqlConnection {
 
     static function connect() {
-        session_start();
-        ob_start();
+//        session_start();
+//        ob_start();
         $company = $_SESSION["master"]["company"];
         $DB_NAME = $company["databasename"];
         $DB_HOST = $company["databaseurl"];
@@ -46,7 +46,8 @@ class MysqlConnection {
             }
             $query = " INSERT INTO $tbl (" . substr($keysset, 0, strlen($keysset) - 1) . ") VALUES (" . substr($valuesset, 0, strlen($valuesset) - 1) . ");";
             MysqlConnection::executeQuery($query);
-            return mysqli_insert_id();
+            $connect = MysqlConnection::connect();
+            return mysqli_insert_id($connect);
         } catch (Exception $exc) {
             echo "<span style='color:red'>SQL QUERY ERROR !!! INSERT !!!<span>";
         }
