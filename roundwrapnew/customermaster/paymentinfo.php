@@ -30,17 +30,10 @@
 </table> 
 <br/>
 <hr/>
-<table style="width: 100%">
-    <tr style="text-align: center">
-        <td style="text-align: left">
-            <input type="button" id="btnCmpPrev3" value="Previous" class="btn btn-info" href="#tab1"></td>
-        <td  style="text-align: center">
-            <div style="margin: 0 auto">
-                <input type="submit" name="btnSubmitFullForm" id="btnSubmitFullForm" value="Submit" class="btn btn-success">
-            </div>
-        </td>
-    </tr>
-</table>
+
+<input type="button" id="btnCmpPrev3" value="Previous" class="btn btn-info" href="#tab1"></td>
+<input type="submit" name="btnSubmitFullForm" id="btnSubmitFullForm" value="Submit" class="btn btn-success">
+
 <script type="text/javascript">
     jQuery(function () {
         var counter = 1;
@@ -49,7 +42,7 @@
 
             var newRow = jQuery('<tr><td><label class="control-label">Credit Card No.</label></td><td><input type="text" name="creditcardno" onkeypress="return chkNumericKey(event)" minlenght="2" maxlength="13" id="creditcardno"  value="<?php echo filter_input(INPUT_POST, "creditcardno") ?>" ></td>' +
                     counter + '<td><label class="control-label">Name on Card</label></td><td><input type="text" name="nameoncard" minlenght="2" maxlength="30"  id="nameoncard"  value="<?php echo filter_input(INPUT_POST, "nameoncard") ?>" ></td>' +
-                    counter + '<td><label class="control-label">Exp. Date</label></td><td><input type="date" name="expdate[]" id="expdate"  value="<?php echo filter_input(INPUT_POST, "expdate[]") ?>" ></td>'+
+                    counter + '<td><label class="control-label">Exp. Date</label></td><td><input type="date" name="expdate[]" id="expdate"  value="<?php echo filter_input(INPUT_POST, "expdate[]") ?>" ></td>' +
                     counter + '<td><label class="control-label">CVV</label></td><td><input style="width: 40px" type="text" onkeypress="return chkNumericKey(event)" minlenght="2" maxlength="3" name="cvv[]" id="nameoncard"  value="<?php echo filter_input(INPUT_POST, "nameoncard[]") ?>" ><a style="margin-left: 20px;float:center;margin-bottom: 10px;" class="icon-trash" href="#"  ></a></td>');
             counter++;
             jQuery('#payment').append(newRow);
