@@ -37,7 +37,7 @@ if (count($explode) >= 2) {
         <link rel="stylesheet" href="css/maruti-style.css" />
         <link rel="stylesheet" href="css/maruti-media.css" class="skin-color" />
         <link rel="stylesheet" href="css/bootstrap-responsive.min.css" />
-        <link rel="stylesheet" href="css/select2.css" />
+        <!--<link rel="stylesheet" href="css/select2.css" />-->
         <link rel="stylesheet" href="css/uniform.css" />
         <link rel="stylesheet" href="css/loder.css" />
 
@@ -92,6 +92,14 @@ if (count($explode) >= 2) {
                 font-weight: normal;
                 line-height: 10px;
             }
+            select{
+                width: 212px;
+                height: 28px;
+            }
+            textarea{
+                resize: none;
+                min-height: 60px;
+            }
         </style>
 
 
@@ -124,7 +132,7 @@ if (count($explode) >= 2) {
     <script src="js/jquery.ui.custom.js"></script> 
     <script src="js/bootstrap.min.js"></script> 
     <script src="js/jquery.uniform.js"></script> 
-    <script src="js/select2.min.js"></script> 
+    <!--<script src="js/select2.min.js"></script>--> 
 
     <script src="js/excanvas.min.js"></script> 
     <script src="js/maruti.tables.js"></script>
