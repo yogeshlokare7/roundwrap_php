@@ -7,7 +7,12 @@ print_r($_POST);
 echo "</pre>";
 
 $supplierarray = array();
+$supplierarray["salutation"] = filter_input(INPUT_POST, "salutation");
+$supplierarray["firstname"] = filter_input(INPUT_POST, "firstname");
+$supplierarray["lastname"] = filter_input(INPUT_POST, "lastname");
 $supplierarray["supp_name"] = filter_input(INPUT_POST, "supp_name");
+$supplierarray["address"] = filter_input(INPUT_POST, "address");
+$supplierarray["companyname"] = filter_input(INPUT_POST, "companyname");
 $supplierarray["supp_email"] = filter_input(INPUT_POST, "supp_email");
 $supplierarray["supp_phoneNo"] = filter_input(INPUT_POST, "supp_phoneNo");
 $supplierarray["supp_fax"] = filter_input(INPUT_POST, "supp_fax");

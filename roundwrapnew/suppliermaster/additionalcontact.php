@@ -14,16 +14,10 @@
         <td><input type="text" id="alterno" name="alterno[]"  value="<?php echo filter_input(INPUT_POST, "alterno[]") ?>" minlength="2" maxlength="20"><a style="margin-left: 20px;float:center;margin-bottom: 10px;" class="icon-plus" href="#"  ></a></td>
     </tr>
 </table>
-<table style="width: 100%">
-    <tr style="text-align: center">
-        <td  style="text-align: center">
-            <br/>
-            <div style="margin: 0 auto">
-                <button type="submit" id="btnSubmitFullForm" class="btn btn-success">Submit</button>
-            </div>
-        </td>
-    </tr>
-</table>
+<hr/>
+<input type="button" id="btnVenPrev1" value="Previous" class="btn btn-info" href="#tab1"></td>
+<button type="submit" id="btnSubmitFullForm" class="btn btn-success">Submit</button>
+
 
 <script type="text/javascript">
     jQuery(function () {

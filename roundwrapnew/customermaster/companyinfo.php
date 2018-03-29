@@ -57,6 +57,10 @@
 <input type="button" id="btnCmpNext1" value="Next" class="btn btn-info" ><a href="customermaster/additionalcontact.php"></a>
 
 <script>
+    
+//     document.getElementById("btnCmpNext1").onclick = function () {
+//        location.href = "customermaster/additionalcontact.php";
+//    };
     function  fillAddress()
     {
         document.getElementById("billto").value = "";

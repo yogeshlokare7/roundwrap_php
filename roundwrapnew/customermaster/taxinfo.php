@@ -67,7 +67,7 @@
                 <option value="1" ><< ADD NEW >></option>
             </select>
         </td>
-        </tr>
+    </tr>
 
 </table>
 <hr/>

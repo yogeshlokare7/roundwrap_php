@@ -11,7 +11,7 @@ $listofitems = MysqlConnection::fetchAll("item_master");
 </div>
 <div class="container-fluid">
     <br/>
-    <a class="btn" href="#addData"  data-toggle="modal">ADD ITEM</a>
+    <a class="btn" href="index.php?pagename=create_itemmaster" >ADD ITEM</a>
     <div class="widget-box">
         <div class="widget-title">
             <span class="icon"><i class="icon-th"></i></span> 
@@ -24,17 +24,15 @@ $listofitems = MysqlConnection::fetchAll("item_master");
                         <tr>
                             <th style="width: 2.3%">#</th>
                             <th style="width: 2.3%">#</th>
-                            <th>ID</th>                 							
-                            <th>Code</th>
-                            <th>Description(Purchase)</th>
-                            <th>Description (Sales)</th>
-                            <th>Unit</th>
-                            <th>Opening Stock</th>
-                            <th>Min Stock</th>
-                            <th>Order Quantity</th>
-                            <th>Purchase Rate</th>
-                            <th>Sell Rate</th>
-                            <th>Added By</th>
+                                            							
+                            <th>Name</th>
+                            <th>Description</th>
+                            <th>Type</th>
+                            <th>Account</th>
+                            <th>On Hand</th>
+                            <th>On Sales</th>
+                            <th>Price</th>
+                            
                         </tr>
                     </thead>
                     <tbody>
@@ -44,17 +42,15 @@ $listofitems = MysqlConnection::fetchAll("item_master");
                             <tr class="gradeX">
                                 <td><a href="#" class="tip-top" data-original-title="Edit Record"><i  class="icon-edit"></i></a></td>
                                 <td><a href="#myAlert" data-toggle="modal" onclick="setDeleteField('<?php echo $value["item_id"] ?>')" class="tip-top" data-original-title="Delete Record"><i class="icon-remove"></i></a> </td>
-                                <td><?php echo $value["item_id"] ?></td>
+                             
                                 <td><?php echo $value["item_code"] ?></td>
-                                <td><?php echo $value["item_desc"] ?></td>
-                                <td><?php echo $value["item_desc_sales"] ?></td>
-                                <td><?php echo $value["unit"] ?></td>
-                                <td><?php echo $value["opening_stock"] ?></td>
-                                <td><?php echo $value["stockLevel"] ?></td>
-                                <td><?php echo $value["orderQuanity"] ?></td>
+                                <td><?php echo $value["item_desc"] ?>&nbsp; Qty:&nbsp;<?php echo $value["orderQuanity"] ?></td>
+                                <td><?php echo $value["type"] ?></td>
+                                <td><?php echo $value["account"] ?></td>
                                 <td><?php echo $value["purchase_rate"] ?></td>
                                 <td><?php echo $value["sell_rate"] ?></td>
-                                <td><?php echo $value["add_by"] ?></td>
+                                <td><?php echo $value["price"] ?></td>
+                                
                             </tr>
                             <?php
                         }

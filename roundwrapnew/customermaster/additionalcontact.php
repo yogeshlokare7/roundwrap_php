@@ -21,6 +21,7 @@
 
 
 <script type="text/javascript">
+    
     jQuery(function () {
         var counter = 1;
         jQuery('a.icon-plus').click(function (event) {
