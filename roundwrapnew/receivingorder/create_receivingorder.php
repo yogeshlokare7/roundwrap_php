@@ -22,18 +22,18 @@
                                     <td style="width: 10%;">PO ID:*</td>
                                     <td style="width: 40%;"><input type="text" placeholder="PO ID" class="span11"/></td>
                                     <td style="width: 10%;">Supplier Name</td>
-                                    <td style="width: 40%;"><input type="text" placeholder="Supplier Name" class="span11"/></td>
+                                    <td style="width: 40%;"><input type="text" placeholder="Supplier Name" class="span11" minlenght="2" maxlength="30"/></td>
                                 </tr>
                               <tr>
                                     <td style="width: 15%;"><label class="control-label">Billing Address:</label></td>
-                                    <td style="width: 35%;"><textarea class="span11"></textarea></td>
+                                    <td style="width: 35%;"><textarea class="span11" minlenght="2" maxlength="60"></textarea></td>
                                     <td style="width: 15%;"><label class="control-label">Shipping Address:*</label></td>
-                                    <td style="width: 35%;"><textarea class="span11"></textarea></td>
+                                    <td style="width: 35%;"><textarea class="span11" minlenght="2" maxlength="60"></textarea></td>
                                 </tr>
                                <tr>
                                     <td style="width: 15%;">Receiving Delivery:*</td>
                                     <td style="width: 35%;"><div data-date="12-02-2012" class="input-append date datepicker">
-                                                <input type="text" value="12-02-2012"  data-date-format="mm-dd-yyyy" class="span11" >
+                                            <input type="text" value="12-02-2012"  data-date-format="mm-dd-yyyy" class="span11" >
                                                 <span class="add-on"><i class="icon-th"></i></span> </div></td>
                                    
                                 </tr>

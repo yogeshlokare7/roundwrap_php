@@ -55,7 +55,7 @@
                         foreach ($listofcustomers as $key => $value) {
                             ?>
 
-                            <tr id="'<?php echo $value["cust_id"] ?>'" class="context-menu-one">
+                            <tr id="<?php echo $value["id"] ?>" class="context-menu-one">
                                 <td>
                                     <a onclick="setDeleteField('<?php echo $value["cust_id"] ?>')" href="#myAlert" data-toggle="modal"  class="tip-top" data-original-title="Delete Record" data-id="<? echo $value['id'] ?>">
                                         <i class="icon-remove"></i>
@@ -118,13 +118,12 @@
             callback: function(key, options) {
                 var m = "clicked row: " + key;
                 var id = $(this).attr('id');
-                //alert("ID for edit/delete:"+id)
                 switch (key) {
                     case "create_customer":
                         window.location = "index.php?pagename=create_customermaster";
                         break;
                     case "edit_customer":
-                        window.location = "index.php?pagename=create_customermaster&customerId=1";
+                        window.location = "index.php?pagename=create_customermaster&customerId="+id;
                         break;
                     case "delete_customer":
                         //document.getElementById("deleteThis").click();

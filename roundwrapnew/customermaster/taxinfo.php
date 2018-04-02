@@ -14,7 +14,7 @@
     <tr>
         <td><label class="control-label">Customer Type</label></td>
         <td>
-            <select name="customerType" id="customerType"> 
+            <select name="cust_type" id="cust_type"> 
                 <option value="">&nbsp;&nbsp;</option>
                 <option value="1" ><< ADD NEW >></option>
                 <option value=""></option>
@@ -23,7 +23,7 @@
         <td><label class="control-label">Discount</label></td>
         <td>
             <select name="discount" id="discount">
-                <option value="1">&nbsp;</option>
+                <option value="0">&nbsp;</option>
                 <option value="1">1 %</option>
                 <?php for ($index = 5; $index <= 100; $index+=5) { ?>
                     <option value="<?php echo $index ?>"><?php echo $index ?>%</option>

@@ -1,10 +1,13 @@
 <?php
 $customerid = filter_input(INPUT_GET, "customerId");
+
 if (!empty($customerid)) {
-    $customerarray = MysqlConnection::fetchCustom("SELECT * FROM customer_master WHERE cust_id = $customerid ");
-    print_r($customerarray);
+    echo "SELECT * FROM customer_master WHERE id = $customerid ";
+    $customerarray = MysqlConnection::fetchCustom("SELECT * FROM customer_master WHERE id = 1");
+    $customer = $customerarray[0];
 }
 ?>
+
 <div id="content-header">
     <div id="breadcrumb"> 
         <a href="index.php" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a>
@@ -37,75 +40,39 @@ if (!empty($customerid)) {
                     <?php include 'customermaster/paymentinfo.php'; ?>
                 </div>
             </div>  
+            <input type="hidden" value="<?php echo $customerid ?>" name="customerid">
         </form>
     </div>
 </div>
-<input type="button" id="btnPrevious" value="Previous" style = "display:none"/>
-<input type="button" id="btnNext" value="Next" />
-
 <script>
-    var currentTab = 0;
-    $(function() {
-        $("#tabs").tabs({
-            select: function(e, i) {
-                currentTab = i.index;
-            }
-        });
+//    btnCmpPrev1  btnCmpNext2
+    $('#btnCmpNext1').on('click', function () {
+        $('#ciTab1').removeClass('active');
+        $('#acTab2').addClass('active');
+        window.location = "#tab2";
     });
-    $("#btnNext").live("click", function() {
-        var tabs = $('#tabs').tabs();
-        var c = $('#tabs').tabs("length");
-        currentTab = currentTab == (c - 1) ? currentTab : (currentTab + 1);
-        tabs.tabs('select', currentTab);
-        $("#btnPrevious").show();
-        if (currentTab == (c - 1)) {
-            $("#btnNext").hide();
-        } else {
-            $("#btnNext").show();
-        }
+    $('#btnCmpPrev1').on('click', function () {
+        $('#acTab2').removeClass('active');
+        $('#ciTab1').addClass('active');
     });
-    $("#btnPrevious").live("click", function() {
-        var tabs = $('#tabs').tabs();
-        var c = $('#tabs').tabs("length");
-        currentTab = currentTab == 0 ? currentTab : (currentTab - 1);
-        tabs.tabs('select', currentTab);
-        if (currentTab == 0) {
-            $("#btnNext").show();
-            $("#btnPrevious").hide();
-        }
-        if (currentTab < (c - 1)) {
-            $("#btnNext").show();
-        }
+    $('#btnCmpNext2').on('click', function () {
+        $('#acTab2').removeClass('active');
+        $('#tdTab3').addClass('active');
     });
 
-//    btnCmpPrev1  btnCmpNext2
-//    $('#btnCmpNext1').on('click', function () {
-//        $('#ciTab1').removeClass('active');
-//        $('#acTab2').addClass('active');
-//     window.location = "#tab2";
-//    });
-//    $('#btnCmpPrev1').on('click', function () {
-//        $('#acTab2').removeClass('active');
-//        $('#ciTab1').addClass('active');
-//    });
-//    $('#btnCmpNext2').on('click', function () {
-//        $('#acTab2').removeClass('active');
-//        $('#tdTab3').addClass('active');
-//    });
-//    
-//   
-//     $('#btnCmpPrev2').on('click', function () {
-//        $('#tdTab3').removeClass('active');
-//        $('#acTab2').addClass('active');
-//    });
-//    $('#btnCmpNext3').on('click', function () {
-//        $('#tdTab3').removeClass('active');
-//        $('#dpiTab4').addClass('active');
-//    });
-//    $('#btnCmpPrev3').on('click', function () {
-//        $('#dpiTab4').removeClass('active');
-//        $('#tdTab3').addClass('active');
-//    });
+
+    $('#btnCmpPrev2').on('click', function () {
+        $('#tdTab3').removeClass('active');
+        $('#acTab2').addClass('active');
+    });
+    $('#btnCmpNext3').on('click', function () {
+        $('#tdTab3').removeClass('active');
+        $('#dpiTab4').addClass('active');
+    });
+    $('#btnCmpPrev3').on('click', function () {
+        $('#dpiTab4').removeClass('active');
+        $('#tdTab3').addClass('active');
+    });
 //    
 //    
 </script>

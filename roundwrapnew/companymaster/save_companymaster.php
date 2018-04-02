@@ -1,3 +1,10 @@
+<script>
+    $(document).ready(function($) {
+        $("#phno").mask("(99) 9999-9999");
+        $("#cmp_fax").mask("(99) 9999-9999");
+    });
+
+</script>
 <?php
 $tblname = "company_master";
 if (count($_POST) > 0) {
@@ -61,7 +68,7 @@ if ($_GET['cmp_id'] > 0) {
                 <div class="control-group">
                     <label class="control-label">Name:</label>
                     <div class="controls">
-                        <input type="text" class="span11" name="cmp_name" value="<?php echo $resultsetCompany["cmp_name"] ?>" placeholder="Enter Company Name" />
+                        <input type="text" class="span11" name="cmp_name"  minlenght="2" maxlength="60" value="<?php echo $resultsetCompany["cmp_name"] ?>" placeholder="Enter Company Name" />
                     </div>
                 </div>
                 <div class="control-group">
@@ -85,7 +92,7 @@ if ($_GET['cmp_id'] > 0) {
                 <div class="control-group">
                     <label class="control-label">Email:</label>
                     <div class="controls">
-                        <input type="text" class="span11" name="cmp_email" value="<?php echo $resultsetCompany["cmp_email"] ?>" placeholder="Enter Email" />
+                        <input type="email" class="span11" name="cmp_email" value="<?php echo $resultsetCompany["cmp_email"] ?>" placeholder="Enter Email" />
                     </div>
                 </div>
                 <div class="control-group">
