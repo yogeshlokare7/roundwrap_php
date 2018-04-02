@@ -2,7 +2,7 @@
 $customerid = filter_input(INPUT_GET, "customerId");
 
 if (!empty($customerid)) {
-    echo "SELECT * FROM customer_master WHERE id = $customerid ";
+//    echo "SELECT * FROM customer_master WHERE id = $customerid ";
     $customerarray = MysqlConnection::fetchCustom("SELECT * FROM customer_master WHERE id = 1");
     $customer = $customerarray[0];
 }

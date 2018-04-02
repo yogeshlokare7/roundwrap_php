@@ -199,15 +199,14 @@
                         <td>Exempt</td>
                     </tr>
                     <tr>
-                        <td>GST</td>
-                        <td><input type="text" name="gst"></td>
-                        <td><input type="checkbox" name="gstexempt"></td>
+                        <td>GST<input type="hidden" name="taxname[]" id="taxname[]" value="GST"></td>
+                        <td><input type="text" name="taxvalues[]"  id="taxvalues[]"></td>
+                        <td><input type="checkbox" name="gstexempt[]" id="gstexempt[]" value="Y"></td>
                     </tr>
                     <tr>
-                        <td>PST</td>
-                        <td><input type="text" name="pst"></td>
-                        <td><input  type="checkbox" name="pstexempt"><a style="margin-left: 20px;float:center;margin-bottom: 10px;" class="icon-plus" href="#"  ></a></td>
-
+                        <td>PST<input type="hidden" name="taxname[]" id="taxname[]" value="PST"></td>
+                        <td><input type="text" name="taxvalues[]" id="taxvalues[]" ></td>
+                        <td><input  type="checkbox" name="isExempt[]" id="isExempt[]"><a style="margin-left: 20px;float:center;margin-bottom: 10px;" class="icon-plus" href="#"  ></a></td>
                     </tr>
                 </table>
             </div>
@@ -226,14 +225,12 @@
         var counter = 1;
         jQuery('a.icon-plus').click(function (event) {
             event.preventDefault();
-
-            var newRow = jQuery('<tr><td><input type="text" name="[]" style="width:50px;"></td>' +
-                    counter + '<td><input type="text" name="[]"></td>' +
-                    counter + '<td><input style="width: 15px;height: 19px; filter: alpha(opacity:0);display: inline-block;background: none;margin-left: 2px;" type="checkbox" name="pstexempt" class="checker input" >\n\
+            var newRow = jQuery('<tr><td><input type="text" name="taxname[]" id="taxname[]" style="width:50px;"></td>' +
+                    counter + '<td><input type="text" name="taxvalues[]" id="taxvalues[]"></td>' +
+                    counter + '<td><input style="width: 15px;height: 19px; filter: alpha(opacity:0);display: inline-block;background: none;margin-left: 2px;" type="checkbox" name="isExempt[]" id="isExempt[]" class="checker input" >\n\
                                <a class="icon-trash" href="#"  style="margin-left: 27px;" ></a></td>');
             counter++;
             jQuery('#addtax').append(newRow);
-
         });
     });
 
@@ -263,7 +260,7 @@
             url: 'customertype/savecustomertype_ajax.php',
             data: dataString
         }).done(function (data) {
-            reload();
+
         }).fail(function () {
         });
     });
@@ -285,7 +282,7 @@
             url: 'customermaster/saverepresentative_ajax.php',
             data: dataString
         }).done(function (data) {
-            reload();
+
         }).fail(function () {
         });
     });
@@ -308,7 +305,7 @@
             url: 'customermaster/savepayterm_ajax.php',
             data: dataString
         }).done(function (data) {
-            reload();
+
         }).fail(function () {
         });
     });
@@ -321,21 +318,26 @@
     });
     $("#saveTaxInformation").click(function () {
 
+//        var dataString = convertFormToJSON("addTaxInformation");
+        alert(dataString);
         var taxcode = $("#taxcode").val();
         var taxdescription = $("#taxdescription").val();
-        var gst = $("#gst").val();
-        var pst = $("#pst").val();
-        var gstexempt = $("#gstexempt").val();
-        var pstexempt = $("#pstexempt").val();
-        var description = $("#termdescription").val();
-
-        var dataString = "taxcode=" + taxcode + "&taxdescription=" + taxdescription + "&gst=" + gst + "&pst=" + pst + "&gstexempt=" + gstexempt + "&pstexempt=" + pstexempt + "&description" + description;
+        var taxname = $("input[name='taxname[]']").map(function () {
+            return $(this).val();
+        }).get();
+        var taxvalues = $("input[name='taxvalues[]']").map(function () {
+            return $(this).val();
+        }).get();
+        var isExempt = $("input[name='isExempt[]']").map(function () {
+            return $(this).val();
+        }).get();
+        var dataString = "taxcode=" + taxcode + "&taxdescription=" + taxdescription + "&taxname=" + taxname + "&taxvalues=" + taxvalues + "&isExempt=" + isExempt;
         $.ajax({
             type: 'POST',
-            url: 'customermaster/savepayterm_ajax.php',
+            url: 'customermaster/savetaxinfo_ajax.php',
             data: dataString
         }).done(function (data) {
-            reload();
+//            reload();
         }).fail(function () {
         });
     });

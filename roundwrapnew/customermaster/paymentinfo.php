@@ -50,7 +50,7 @@ if (!empty($customerid)) {
                     <input style="width: 40px" type="text" onkeypress="return chkNumericKey(event)" name="cvvno[]" id="cvvno" minlength="2" maxlength="3" value="<?php echo $value["cvvno"] ?>" >
                     <?php
                     if ($index == 1) {
-                        echo '<a style="margin-left: 20px;float:center;margin-bottom: 10px;" class="icon-plus" href="#" id="icon-plus" ></a>';
+                        echo '<a style="margin-left: 20px;float:center;margin-bottom: 10px;" class="icon-plus" href="#" id="paymentInfoFrm" ></a>';
                     } else {
                         echo '<a style="margin-left: 20px;float:center;margin-bottom: 10px;" class="icon-trash" href="#" id="icon-trash" ></a>';
                     }

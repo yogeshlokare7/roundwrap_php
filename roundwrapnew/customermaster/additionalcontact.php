@@ -42,7 +42,7 @@ if (!empty($customerid)) {
             <td><label class="control-label">Email</label></td>
             <td><input type="email" name="email[]" autofocus=""  value="" id="email"></td>
             <td><label class="control-label">Phone</label></td>
-            <td><input type="tel" name="alternos[]" id="alterno"  value="" >
+            <td><input type="tel" name="alterno[]" id="alterno"  value="" >
                 <a style="margin-left: 20px;float:center;margin-bottom: 10px;" class="icon-plus" href="#" id="icon-plus" ></a>
             </td>
         </tr>
