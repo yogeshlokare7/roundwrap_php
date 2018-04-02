@@ -1461,3 +1461,7 @@ form {
         text-align: center;
     }
 }
+
+.highlight { 
+    background-color: rgb(220,220,220);
+}

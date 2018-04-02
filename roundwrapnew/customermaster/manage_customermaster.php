@@ -35,7 +35,7 @@
                 <h5>Customer Master</h5>
             </div>
             <div class="widget-content nopadding">
-                <table class="table table-bordered data-table">
+                <table class="table table-bordered data-table" id="data">
                     <thead>
 
                         <tr>
