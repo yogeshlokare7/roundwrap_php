@@ -64,19 +64,17 @@
             <div class="control-group">
                 <label class="control-label">Profile Name</label>
                 <div class="controls">
-                    <input type="text" name="profile_name" id="profile_name">
+                    <input type="text" name="profile_name" id="profile_name" minlenght="2" maxlength="30">
                 </div>
-            </div>
-            <div class="control-group">
+            
                 <label class="control-label">Label Name</label>
                 <div class="controls">
-                    <input type="text" name="label_name" id="label_name">
+                    <input type="text" name="label_name" id="label_name" minlenght="2" maxlength="30">
                 </div>
-            </div>
-            <div class="control-group">
+           
                 <label class="control-label">Label Value</label>
                 <div class="controls">
-                    <input type="text" name="label_value" id="label_value">
+                    <input type="text" name="label_value" id="label_value" minlenght="2" maxlength="30">
                  
                 </div>
             </div>

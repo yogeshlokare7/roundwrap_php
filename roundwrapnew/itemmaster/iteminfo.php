@@ -28,7 +28,7 @@
 
     <tr>
         <td><label class="control-label">Description</label></td>
-        <td rowspan="2"><textarea style="height: 80px;;line-height: 20px;" name="firstname" id="firstname"  value="<?php echo filter_input(INPUT_POST, "firstname") ?>" autofocus="" required="true" minlenght="2" maxlength="30" ></textarea></td>
+        <td rowspan="2"><textarea style="height: 80px;;line-height: 20px;" name="firstname" id="firstname"  value="<?php echo filter_input(INPUT_POST, "firstname") ?>" autofocus="" required="true" minlenght="2" maxlength="90" ></textarea></td>
         <td>
             <select name="taxInformation" id="taxInformation">
                 <option value="">&nbsp;&nbsp;</option>

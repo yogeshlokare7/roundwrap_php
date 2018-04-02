@@ -8,7 +8,7 @@ $listofcustomertype = MysqlConnection::fetchCustom("SELECT * FROM generic_entry 
     </div>
 </div>
 <div class="container-fluid">
-     <br/>
+    <br/>
     <a class="btn" href="#addData"  data-toggle="modal">ADD CUSTOMER TYPE</a>
     <div class="widget-box">
         <div class="widget-title">
@@ -55,14 +55,14 @@ $listofcustomertype = MysqlConnection::fetchCustom("SELECT * FROM generic_entry 
 </div>
 
 <script>
-    $("#deleteThis").click(function() {
+    $("#deleteThis").click(function () {
         var dataString = "deleteId=" + $('#deleteId').val();
         $.ajax({
             type: 'POST',
             url: 'customertype/customertype_ajax.php',
             data: dataString
-        }).done(function(data) {
-        }).fail(function() {
+        }).done(function (data) {
+        }).fail(function () {
         });
         location.reload();
     });
@@ -84,31 +84,21 @@ $listofcustomertype = MysqlConnection::fetchCustom("SELECT * FROM generic_entry 
             <div class="control-group">
                 <label class="control-label">CUSTOMER TYPE *:</label>
                 <div class="controls">
-                    <input type="text" name="" id="itemcode">
+                    <input type="text" name="" id="itemcode" minlenght="2" maxlength="30" >
                 </div>
-            </div>
-            <div class="control-group">
                 <label class="control-label">DESCRIPTION:</label>
                 <div class="controls">
-                    <input type="text" name="" id="">
-
+                    <input type="text" name="" id="" minlenght="2" maxlength="30" >
                 </div>
-            </div>
-            <div class="control-group">
                 <label class="control-label">ACTIVE:</label>
                 <div class="controls">
-                    <input type="text" name="" id="">
-
+                    <input type="text" name="" id="" minlenght="2" maxlength="30">
                 </div>
-            </div>
-            <div class="control-group">
                 <label class="control-label">DISCOUNT:</label>
                 <div class="controls">
-                    <input type="text" name="" id="">
+                    <input type="text" name="" id="" minlenght="2" maxlength="30">
                 </div>
             </div>
-            
-            
         </form>
     </div>
     <div class="modal-footer"> 
