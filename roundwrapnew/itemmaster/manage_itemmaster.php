@@ -18,56 +18,58 @@ $listofitems = MysqlConnection::fetchAll("item_master");
             <h5>Item Master</h5>
         </div>
         <div class="widget-content nopadding">
-            <form name="profilemaster" id="profilemaster" method="POST">
-                <table class="table table-bordered data-table">
-                    <thead>
-                        <tr>
-                            <th style="width: 2.3%">#</th>
-                            <th style="width: 2.3%">#</th>
-                                            							
-                            <th>Name</th>
-                            <th>Description</th>
-                            <th>Type</th>
-                            <th>Account</th>
-                            <th>On Hand</th>
-                            <th>On Sales</th>
-                            <th>Price</th>
-                            
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php
-                        foreach ($listofitems as $key => $value) {
-                            ?>
-                            <tr class="gradeX">
-                                <td><a href="#" class="tip-top" data-original-title="Edit Record"><i  class="icon-edit"></i></a></td>
-                                <td><a href="#myAlert" data-toggle="modal" onclick="setDeleteField('<?php echo $value["item_id"] ?>')" class="tip-top" data-original-title="Delete Record"><i class="icon-remove"></i></a> </td>
-                             
-                                <td><?php echo $value["item_code"] ?></td>
-                                <td><?php echo $value["item_desc"] ?>&nbsp; Qty:&nbsp;<?php echo $value["orderQuanity"] ?></td>
-                                <td><?php echo $value["type"] ?></td>
-                                <td><?php echo $value["account"] ?></td>
-                                <td><?php echo $value["purchase_rate"] ?></td>
-                                <td><?php echo $value["sell_rate"] ?></td>
-                                <td><?php echo $value["price"] ?></td>
-                                
-                            </tr>
-                            <?php
-                        }
-                        ?>
+            <div class="sticky-table sticky-headers sticky-ltr-cells">
+                <form name="profilemaster" id="profilemaster" method="POST">
+                    <table class="table table-bordered data-table sticky-row table-striped table-striped">
+                        <thead>
+                            <tr>
+                                <th style="width: 2.3%">#</th>
+                                <th style="width: 2.3%">#</th>
 
-                    </tbody>
-                </table>
-                <input type="hidden" id="deleteId" name="cid" value="">
-                <input type="hidden" id="flag" name="flag" value="">
-            </form>
+                                <th>Name</th>
+                                <th>Description</th>
+                                <th>Type</th>
+                                <th>Account</th>
+                                <th>On Hand</th>
+                                <th>On Sales</th>
+                                <th>Price</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php
+                            foreach ($listofitems as $key => $value) {
+                                ?>
+                                <tr class="gradeX">
+                                    <td><a href="#" class="tip-top" data-original-title="Edit Record"><i  class="icon-edit"></i></a></td>
+                                    <td><a href="#myAlert" data-toggle="modal" onclick="setDeleteField('<?php echo $value["item_id"] ?>')" class="tip-top" data-original-title="Delete Record"><i class="icon-remove"></i></a> </td>
+
+                                    <td><?php echo $value["item_code"] ?></td>
+                                    <td><?php echo $value["item_desc"] ?>&nbsp; Qty:&nbsp;<?php echo $value["orderQuanity"] ?></td>
+                                    <td><?php echo $value["type"] ?></td>
+                                    <td><?php echo $value["account"] ?></td>
+                                    <td><?php echo $value["purchase_rate"] ?></td>
+                                    <td><?php echo $value["sell_rate"] ?></td>
+                                    <td><?php echo $value["price"] ?></td>
+
+                                </tr>
+                                <?php
+                            }
+                            ?>
+
+                        </tbody>
+                    </table>
+                    <input type="hidden" id="deleteId" name="cid" value="">
+                    <input type="hidden" id="flag" name="flag" value="">
+                </form>
+            </div>
         </div>
     </div>
 </div>
 
 <script>
     $("#deleteThis").click(function() {
-         $("div#divLoading").addClass('show');
+        $("div#divLoading").addClass('show');
         var dataString = "deleteId=" + $('#deleteId').val();
         $.ajax({
             type: 'POST',

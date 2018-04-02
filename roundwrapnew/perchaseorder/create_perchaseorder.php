@@ -1,99 +1,95 @@
+<?php
+$sqlgetsupplier = "SELECT * FROM supplier_master WHERE supp_id = " . filter_input(INPUT_GET, "supplierid");
+MysqlConnection::fetchCustom($query)
+?>
 <div id="content-header">
     <div id="breadcrumb"> 
-        <a class="tip-bottom"><i class="icon-home"></i> Home</a>
-        <a class="tip-bottom"><i class="icon-home"></i>Supplier Purchase Order Entry</a>
+        <a class="tip-bottom"><i class="icon-home"></i>HOME</a>
+        <a class="tip-bottom"><i class="icon-home"></i>PURCHASE ORDER ENTRY</a>
     </div>
 </div>
+<style>
+    input,textarea,select,date{
+        width: 90%;
+    }
+    .control-label{ margin-left: 10px; }
+    tr,td{ vertical-align: middle; font-size: 12px;padding: 0px;margin: 0px;}
+</style>
 <div class="container-fluid">
-     <br/>
-    <h5 style="font-family: verdana;font-size: 12px;">CREATE PURCHASE ORDER</h5>
     <div class="row-fluid">
         <div class="span12">
             <form action="#" method="post">
-            <div class="widget-box" style="width: 55%;float: left">
-                <div class="widget-title">
-                    <ul class="nav nav-tabs">
-                        <li class="active"><a data-toggle="tab" href="#tab1">Create Purchase Order</a></li>
-                    </ul>
-                </div>
-                    <div class="widget-content tab-content">
-                        <div id="tab1" class="tab-pane active">
-                            <hr/>
-
-                            <table style="width: 100%;">
-                               <tr>
-                                    <td style="width: 15%;"><label class="control-label">PO Number:*</label></td>
-                                    <td style="width: 35%;"><input type="text" placeholder="PO Number" class="span11"/></td>
-                                    <td style="width: 15%;"><label class="control-label">Supplier Name</label></td>
-                                    <td style="width: 35%;"><input type="text" placeholder="Supplier Name" class="span11"/></td>
-                                </tr>
-                              <tr>
-                                    <td style="width: 15%;"><label class="control-label">Billing Address:</label></td>
-                                    <td style="width: 35%;"><textarea class="span11"></textarea></td>
-                                    <td style="width: 15%;"><label class="control-label">Shipping Address:*</label></td>
-                                    <td style="width: 35%;"><textarea class="span11"></textarea></td>
+                <div class="widget-box" style="width: 100%;float: left">
+                    <div class="widget-title">
+                        <ul class="nav nav-tabs">
+                            <li class="active"><a data-toggle="tab" href="#tab1">CREATE PURCHASE ORDER</a></li>
+                        </ul>
+                    </div>
+                    <div class="widget-content tab-content" style="background: white">
+                        <div id="tab1" class="tab-pane active" >
+                            <table style="width: 100%" border="0">
+                                <tr>
+                                    <td style="width: 10%"><label class="control-label" >PO NUMBER&nbsp;:&nbsp;</label></td>
+                                    <td><input  type="text" value="PO10101" readonly=""/></td>
+                                    <td style="width: 10%"><label class="control-label"  class="control-label">SUPPLIER NAME&nbsp;:&nbsp</label></td>
+                                    <td><input  type="text" placeholder="Supplier Name" /></td>
+                                    <td style="width: 10%"><label class="control-label">SHIP VIA&nbsp;:&nbsp</label></td>
+                                    <td><input  type="text" placeholder="Supplier Name" /></td>
                                 </tr>
                                 <tr>
-                                    <td style="width: 15%;"><label class="control-label">Expected Delivery</label></td>
-                                    <td style="width: 35%;">
-                                            <div data-date="12-02-2012" class="input-append date datepicker">
-                                                <input type="text" value="12-02-2012"  data-date-format="mm-dd-yyyy" class="span11" >
-                                                <span class="add-on"><i class="icon-th"></i></span> </div>
-                                        </td>
-                                    <td style="width: 15%;"><label class="control-label">Ship Via:*</label></td>
-                                    <td style="width: 35%;"><select><option value="select">Select</option></select></td>
+                                    <td ><label class="control-label">REMARK / NOTE&nbsp;:&nbsp</label></td>
+                                    <td colspan="3"><input type="text"  placeholder="Remark / Note :" style="width: 96%" /></td>
+                                    <td><label class="control-label">EXPECTED DELIVERY&nbsp;:&nbsp</label></td>
+                                    <td><input type="text" value="12-02-2012"  data-date-format="mm-dd-yyyy"  ></td>
                                 </tr>
                                 <tr>
-                                    <td style="width: 15%;"><label class="control-label">Remark / Note :</label></td>
-                                    <td style="width: 35%;" colspan="3"><input type="text"  placeholder="Remark / Note :" class="span11"/></td>
-<!--                                    <input type="text" value="12-02-2012" data-date-format="mm-dd-yyyy" class="span11">-->
+                                    <td style="width: 10%"><label  class="control-label"  class="control-label">BILLING ADDRESS&nbsp;:&nbsp</label></td>
+                                    <td><textarea   ></textarea></td>
+                                    <td><label class="control-label">SHIPPING ADDRESS&nbsp;:&nbsp</label></td>
+                                    <td><textarea ></textarea></td>
+                                    <td></td>
+                                    <td></td>
                                 </tr>
                             </table> 
                         </div>
                     </div>
-            </div>
-            <div class="widget-content nopadding">
-                <div class="widget-box">
-<!--                    <div class="widget-title"> <span class="icon">
-                        </span>
-                        <h5>Static table with Check Boxes</h5>
-                    </div>-->
-                    <div class="widget-content nopadding">
-                        <table class="table table-bordered table-striped with-check">
-                            <thead>
-                                <tr>
-                                    <th style="width: 55%;">Item</th>
-                                    <th style="width: 10%;">Quantity</th>
-                                    <th style="width: 10%;">Unit</th>
-                                    <th style="width: 10%;">Rate</th>
-                                    <th style="width: 15%;" >Amount</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td ><input type="text"   placeholder="Enter Item" style="width: 100%;" class="span11"/></td>
-                                    <td><input type="text"   placeholder="Enter Qunatity" style="width: 100%;" class="span11"/></td>
-                                    <td ><input type="text"   placeholder="" style="width: 100%;" class="span11"/></td>
-                                    <td><input type="text"   placeholder="Enter Rate" style="width: 100%;" class="span11"/></td>
-                                    <td ><input type="text"   placeholder="" style="width: 100%;" class="span11"/></td>
-                                </tr>
-                                  <tr>
-                                    <td ><input type="text"   placeholder="Enter Item" style="width: 100%;" class="span11"/></td>
-                                    <td><input type="text"   placeholder="Enter Qunatity" style="width: 100%;" class="span11"/></td>
-                                    <td ><input type="text"   placeholder="" style="width: 100%;" class="span11"/></td>
-                                    <td><input type="text"   placeholder="Enter Rate" style="width: 100%;" class="span11"/></td>
-                                    <td ><input type="text"   placeholder="" style="width: 100%;" class="span11"/></td>
-                                </tr>
-                                
-                            </tbody>
-                        </table>
+                </div>
+                <div class="widget-content nopadding" style="width: 50%">
+                    <div class="widget-box">
+                        <div class="widget-content nopadding" style="min-height: 50px;height: 200px;overflow: auto;">
+                            <table class="table table-bordered table-striped with-check" id="mytable">
+                                <thead>
+                                    <tr>
+                                        <th style="width: 55%;">Item</th>
+                                        <th style="width: 10%;">Quantity</th>
+                                        <th style="width: 10%;">Unit</th>
+                                        <th style="width: 10%;">Rate</th>
+                                        <th style="width: 15%;" >Amount</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                    for ($index = 0; $index < 30; $index++) {
+                                        ?>
+                                        <tr>
+                                            <td ><input type="text"   placeholder="Enter Item" style="width: 100%;" /></td>
+                                            <td><input type="text"   placeholder="Enter Qunatity" style="width: 100%;" /></td>
+                                            <td ><input type="text"   placeholder="" style="width: 100%;" /></td>
+                                            <td><input type="text"   placeholder="Enter Rate" style="width: 100%;" /></td>
+                                            <td ><input type="text"   placeholder="" style="width: 100%;" /></td>
+                                        </tr>
+                                        <?php
+                                    }
+                                    ?>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
-            </div>
             </form>
         </div>
     </div>
-    <div class="modal-footer"> 
+    <div class="modal-footer fixfooterbar"> 
         <a id="save" class="btn btn-primary">Save</a> 
         <a data-dismiss="modal" class="btn" href="#">Cancel</a> 
     </div>
@@ -105,4 +101,8 @@
 <script src="js/select2.min.js"></script> 
 <script src="js/maruti.js"></script> 
 <script src="js/maruti.form_common.js"></script>
-
+<script>
+    $(document).ready(function() {
+        $('.table-fixed-header').prepFixedHeader().fixedHeader();
+    });
+</script>

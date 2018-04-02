@@ -2,15 +2,7 @@
 error_reporting(0);
 session_start();
 ob_start();
-
-
-if (empty($_SESSION["master"]["company"]) || empty($_SESSION["master"])) {
-    session_destroy();
-    header("location:login/");
-}
-
 include './MysqlConnection.php';
-
 $pagename = $_GET["pagename"];
 $explode = explode("_", $pagename);
 $include = "";
@@ -29,7 +21,7 @@ if (count($explode) >= 2) {
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>RoundWrap</title>
+        <title>Round Wrap</title>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="stylesheet" href="css/bootstrap.min.css" />
@@ -40,13 +32,14 @@ if (count($explode) >= 2) {
         <!--<link rel="stylesheet" href="css/select2.css" />-->
         <link rel="stylesheet" href="css/uniform.css" />
         <link rel="stylesheet" href="css/loder.css" />
-
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
         <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
         <script src="js/jquery.min.js"></script> 
         <script src="js/maruti.js"></script> 
         <script src="js/jquery.mask.js"></script> 
 
+        <link rel="stylesheet" href="css/jquery.stickytable.css" />
+        <script src="js/jquery.stickytable.js"></script> 
 
         <script>
             $(function() {
@@ -87,14 +80,28 @@ if (count($explode) >= 2) {
                 resize: none;
                 min-height: 60px;
             }
+            .navbar {
+                overflow: hidden;
+                position: fixed; /* Set the navbar to fixed position */
+                top: 0; /* Position the navbar at the top of the page */
+                width: 100%; /* Full width */
+            }
+            .fixfooterbar{
+                position: fixed;
+                left: 0;
+                bottom: 0;
+                width: 100%;
+                color: white;
+                text-align: center;
+            }
         </style>
 
 
     </head>
     <body>
 
-        <div id="header" style="color: white">Round Wrap</div>
-        <div id="sidebar" class="sticky" ><?php include './leftmenu.php'; ?></div>
+        <div id="header" >Round Wrap</div>
+        <div id="sidebar" ><?php include './leftmenu.php'; ?></div>
 
         <img src="img/ajaxloading.gif" id="img" style="display:none" />
         <!-- this is model dialog --->

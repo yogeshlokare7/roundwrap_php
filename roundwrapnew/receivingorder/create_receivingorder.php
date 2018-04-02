@@ -72,7 +72,7 @@
             </div>
         </div>
     </div>
-    <div class="modal-footer"> 
+    <div class="modal-footer fixfooterbar"> 
         <a id="save" class="btn btn-primary">Save</a> 
         <a data-dismiss="modal" class="btn" href="#">Cancel</a> 
     </div>

@@ -1,6 +1,6 @@
-<a href="index.php?pagename=manage_" class="visible-phone"><i class="icon icon-home"></i> Dashboard</a>
+<a href="index.php?pagename=manage_" class="visible-phone"><i class="icon icon-home"></i> Main Screen</a>
 <ul>
-    <li class="active"><a href="index.php?pagename=manage_"><i class="icon icon-home"></i> <span>Dashboard</span></a> </li>
+    <li class="active"><a href="index.php?pagename=manage_"><i class="icon icon-home"></i> <span> Main Screen</span></a> </li>
 
     <!-- this is system menus  -->
     <li class="submenu"> <i class="icon icon-th-list"></i><span>System</span></a>
