@@ -1,3 +1,10 @@
+<?php
+$customerid = filter_input(INPUT_GET, "customerId");
+if (!empty($customerid)) {
+    $customerarray = MysqlConnection::fetchCustom("SELECT * FROM customer_master WHERE cust_id = $customerid ");
+    print_r($customerarray);
+}
+?>
 <div id="content-header">
     <div id="breadcrumb"> 
         <a href="index.php" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a>
@@ -37,15 +44,15 @@
 <input type="button" id="btnNext" value="Next" />
 
 <script>
-        var currentTab = 0;
-    $(function () {
+    var currentTab = 0;
+    $(function() {
         $("#tabs").tabs({
-            select: function (e, i) {
+            select: function(e, i) {
                 currentTab = i.index;
             }
         });
     });
-    $("#btnNext").live("click", function () {
+    $("#btnNext").live("click", function() {
         var tabs = $('#tabs').tabs();
         var c = $('#tabs').tabs("length");
         currentTab = currentTab == (c - 1) ? currentTab : (currentTab + 1);
@@ -57,7 +64,7 @@
             $("#btnNext").show();
         }
     });
-    $("#btnPrevious").live("click", function () {
+    $("#btnPrevious").live("click", function() {
         var tabs = $('#tabs').tabs();
         var c = $('#tabs').tabs("length");
         currentTab = currentTab == 0 ? currentTab : (currentTab - 1);
@@ -70,7 +77,7 @@
             $("#btnNext").show();
         }
     });
-  
+
 //    btnCmpPrev1  btnCmpNext2
 //    $('#btnCmpNext1').on('click', function () {
 //        $('#ciTab1').removeClass('active');
