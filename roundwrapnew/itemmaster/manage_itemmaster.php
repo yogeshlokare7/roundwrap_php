@@ -20,7 +20,7 @@ $listofitems = MysqlConnection::fetchAll("item_master");
         <div class="widget-content nopadding">
             <div class="sticky-table sticky-headers sticky-ltr-cells">
                 <form name="profilemaster" id="profilemaster" method="POST">
-                    <table class="table table-bordered data-table sticky-row table-striped table-striped">
+                    <table class="table table-bordered data-table" id="data">
                         <thead>
                             <tr>
                                 <th style="width: 2.3%">#</th>

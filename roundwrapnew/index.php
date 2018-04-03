@@ -97,6 +97,7 @@ if (count($explode) >= 2) {
             table {
                 width: 100%;
                 display:block;
+                cursor: pointer; 
             }
             thead {
                 display: inline-block;
@@ -156,8 +157,6 @@ if (count($explode) >= 2) {
     <script src="js/jquery.ui.custom.js"></script> 
     <script src="js/bootstrap.min.js"></script> 
     <script src="js/jquery.uniform.js"></script> 
-    <!--<script src="js/select2.min.js"></script>--> 
-
     <script src="js/excanvas.min.js"></script> 
     <script src="js/maruti.tables.js"></script>
     <script src="js/jquery.peity.min.js"></script> 

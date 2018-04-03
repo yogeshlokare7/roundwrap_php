@@ -2,7 +2,6 @@
 $listofinventory = MysqlConnection::fetchAll("item_master");
 ?>
 <title>RoundWrap</title>
-
 <div id="content-header">
     <div id="breadcrumb"> 
         <a href="index.php" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a>
@@ -33,7 +32,9 @@ $listofinventory = MysqlConnection::fetchAll("item_master");
                             ?>
                             <tr class="gradeX">
                               <td><a href="#" class="tip-top" data-original-title="Edit Record"><i  class="icon-edit"></i></a></td>
-                                <td><a href="#myAlert" onclick="setDeleteField('<?php echo $value["id"] ?>')" data-toggle="modal"  class="tip-top" data-original-title="Delete Record"><i class="icon-remove"></i></a> </td>-->
+                                <td>
+                                    <a href="#myAlert" onclick="setDeleteField('<?php echo $value["id"] ?>')" data-toggle="modal"  class="tip-top" data-original-title="Delete Record"><i class="icon-remove"></i></a> 
+                                </td>
                                 <td><?php echo $value["item_code"] ?></td>
                                 <td><?php echo $value["item_desc"] ?></td>
                                 <td><?php echo $value["quantity"] ?></td>
