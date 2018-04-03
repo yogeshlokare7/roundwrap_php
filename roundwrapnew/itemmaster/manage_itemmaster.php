@@ -1,8 +1,7 @@
 <?php
 $listofitems = MysqlConnection::fetchAll("item_master");
 ?>
-<title>RoundWrap</title>
-
+<title>Round Wrap</title>
 <div id="content-header">
     <div id="breadcrumb"> 
         <a href="index.php" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a>
@@ -41,7 +40,7 @@ $listofitems = MysqlConnection::fetchAll("item_master");
                             foreach ($listofitems as $key => $value) {
                                 ?>
                                 <tr class="gradeX">
-                                    <td><a href="#" class="tip-top" data-original-title="Edit Record"><i  class="icon-edit"></i></a></td>
+                                    <td><a href="index.php?pagename=create_itemmaster&itemPrimary=<?php echo $value["item_id"] ?>" class="tip-top" data-original-title="Edit Record"><i  class="icon-edit"></i></a></td>
                                     <td><a href="#myAlert" data-toggle="modal" onclick="setDeleteField('<?php echo $value["item_id"] ?>')" class="tip-top" data-original-title="Delete Record"><i class="icon-remove"></i></a> </td>
 
                                     <td><?php echo $value["item_code"] ?></td>
@@ -68,15 +67,15 @@ $listofitems = MysqlConnection::fetchAll("item_master");
 </div>
 
 <script>
-    $("#deleteThis").click(function() {
+    $("#deleteThis").click(function () {
         $("div#divLoading").addClass('show');
         var dataString = "deleteId=" + $('#deleteId').val();
         $.ajax({
             type: 'POST',
             url: 'itemmaster/itemmaster_ajax.php',
             data: dataString
-        }).done(function(data) {
-        }).fail(function() {
+        }).done(function (data) {
+        }).fail(function () {
         });
         location.reload();
     });

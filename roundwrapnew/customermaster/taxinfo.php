@@ -75,17 +75,17 @@
 <input type="button" id="btnCmpNext3" value="Next" class="btn btn-info" href="#tab4">
 
 <!-- this is custom model dialog --->
-<div id="addCustomerType" class="modal hide" style="top: 10%;left: 50%;">
+<div id="cust_type" class="modal hide" style="top: 10%;left: 50%;">
     <div class="modal-header">
         <button data-dismiss="modal" class="close" type="button">×</button>
         <h3>Add New Customer Type</h3>
     </div>
     <div class="modal-body">
-        <form class="form-horizontal" method="post" action="#" name="addCustomerType" id="addCustomerType" novalidate="novalidate">
+        <form class="form-horizontal" method="post" action="#" name="cust_type" id="cust_type" novalidate="novalidate">
             <div class="control-group">
                 <label class="control-label">CUSTOMER TYPE *:</label>
                 <div class="controls">
-                    <input type="text" name="	cust_type" id="	cust_type">
+                    <input type="text" name="cust_type" id="cust_type">
                 </div>
             </div>
             <div class="control-group">
@@ -93,12 +93,6 @@
                 <div class="controls">
                     <input type="text" name="adddescription" id="adddescription">
 
-                </div>
-            </div>
-            <div class="control-group">
-                <label class="control-label">DISCOUNT:</label>
-                <div class="controls">
-                    <input type="text" name="adddiscount" id="adddiscount">
                 </div>
             </div>
         </form>
@@ -192,7 +186,7 @@
             <label class="control-label">Description:</label>
             <div class="controls"><textarea name="taxdescription" id="taxdescription" style="resize: none;height: 50px"></textarea></div>
             <div class="control-group">
-                <table class="table" id="addtax">
+                <table class="table" id="addtax" style="width: 50%">
                     <tr>
                         <td>Tax Name</td>
                         <td>Percent</td>
@@ -241,11 +235,10 @@
         });
 
     });
-    reload();
-    $("#customerType").click(function () {
-        var valueModel = $("#customerType").val();
+    $("#cust_type").click(function () {
+        var valueModel = $("#cust_type").val();
         if (valueModel === "1") {
-            $('#addCustomerType').modal('show');
+            $('#cust_type').modal('show');
         }
     });
     $("#saveCustomerType").click(function () {
