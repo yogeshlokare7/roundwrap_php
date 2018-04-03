@@ -103,14 +103,14 @@ if (!empty($itemPrimary)) {
             <tr style="vertical-align: top">
                 <td>
                     <table  border="0">
-                        <tr>
+                        <tr style="vertical-align: top">
                             <td colspan="2"><label class="control-label">Description on Purchase Transactions</label>
                                 <textarea style="height: 30px;;line-height: 20px; width: 98%" name="item_desc_purch" id="item_desc_purch"  value="<?php echo $item["item_desc_purch"] ?>" autofocus="" required="true" minlenght="2" maxlength="90" ></textarea>
                             </td>
                             <td></td>
                         </tr>
-                        <tr >
-                            <td style="width: 40%"><label class="control-label">Cost</label></td>
+                        <tr style="vertical-align: top">
+                            <td style="width: 40%; "><label class="control-label">Cost</label></td>
 
                             <td><input type="text" name="purchase_rate" onkeypress="return chkNumericKey(event)" id="purchase_rate" value="<?php echo $item["purchase_rate"] ?>" autofocus="" required="true" minlenght="2" maxlength="30" ></td>   
                         </tr>
@@ -134,7 +134,7 @@ if (!empty($itemPrimary)) {
                 </td>
                 <td>
                     <table  border="0">
-                        <tr>
+                        <tr >
                             <td colspan="2"><label class="control-label">Description on Sales Transactions</label>
                                 <textarea style="height: 30px;;line-height: 20px; width: 98%" name="item_desc_sales" id="item_desc_sales"  value="<?php echo $item["item_desc_sales"] ?>" autofocus="" required="true" minlenght="2" maxlength="90" ></textarea>
                             </td>
@@ -142,7 +142,6 @@ if (!empty($itemPrimary)) {
                         </tr>
                         <tr >
                             <td style="width: 40%"><label class="control-label">Sales Price</label></td>
-
                             <td><input type="text" name="sell_rate" id="sell_rate"  value="<?php echo $item["sell_rate"] ?>" autofocus="" required="true" minlenght="2" maxlength="30" ></td>   
                         </tr>
                         <tr >
@@ -156,33 +155,35 @@ if (!empty($itemPrimary)) {
                     </table>
                 </td>
                 <td>
-                    <table   border="0">
-                        <tr>
-                            <td style="width: 150px;">Asset Account
-                                <input type="text" name="assetaccount" id="assetaccount" value="<?php echo $item["assetaccount"] ?>"  autofocus="" required="true" minlenght="2" maxlength="30" >
-                            </td>
+                    <table  border="0">
+                        <tr >
+                            <td></td>
+                            <td></td>
                         </tr>
-                        <tr>
-                            <td style="width: 150px;">Reorder Point
-                                <input type="text" name="reorder" id="reorder" value="<?php echo $item["reorder"] ?>"  autofocus="" required="true" minlenght="2" maxlength="30" >
-                            </td>
+                      
+                       
+                        <tr  >
+                            <td style="width: 40%"><label class="control-label">Asset Account</label></td>
+                            <td style="vertical-align: bottom"><input type="text" name="assetaccount" id="assetaccount"  value="<?php echo $item["assetaccount"] ?>" autofocus="" required="true" minlenght="2" maxlength="30" ></td>   
                         </tr>
-                        <tr>
-                            <td style="width: 150px;">On Hand
-                                <input type="text" name="onhand" id="onhand" value="<?php echo $item["onhand"] ?>"   autofocus="" required="true" minlenght="2" maxlength="30" >
-                            </td>
+                        <tr >
+                            <td><label class="control-label">Reorder Point</label></td>
+                            <td style="vertical-align: bottom"><input type="text" name="reorder" id="reorder"  value="<?php echo $item["reorder"] ?>" autofocus="" required="true" minlenght="2" maxlength="30" ></td>   
                         </tr>
-                        <tr>
-                            <td style="width: 150px;">Total Value
-                                <input type="text" name="totalvalue" id="totalvalue" value="<?php echo $item["totalvalue"] ?>"  autofocus="" required="true" minlenght="2" maxlength="30" >
-                            </td>
-                        </tr> 
-                        <tr>
-                            <td style="width: 150px;">As of
-                                <input type="date" name="asof" id="asof" value="<?php echo $item["asof"] ?>"  autofocus="" required="true" minlenght="2" maxlength="30" >
-                            </td>
+                        <tr >
+                            <td><label class="control-label">On Hand</label></td>
+                            <td style="vertical-align: bottom"><input type="text" name="onhand" id="onhand"  value="<?php echo $item["onhand"] ?>" autofocus="" required="true" minlenght="2" maxlength="30" ></td>   
+                        </tr>
+                        <tr >
+                            <td><label class="control-label">Total Value</label></td>
+                            <td style="vertical-align: bottom" ><input type="text" name="totalvalue" id="totalvalue"  value="<?php echo $item["totalvalue"] ?>" autofocus="" required="true" minlenght="2" maxlength="30" ></td>   
+                        </tr>
+                        <tr >
+                            <td><label class="control-label">As of</label></td>
+                            <td style="vertical-align: bottom" ><input type="text" name="asof"   id="asof"  value="<?php echo $item["asof"] ?>" autofocus="" required="true" minlenght="2" maxlength="30" ></td>   
                         </tr>
                     </table>
+
                 </td>
             </tr>
         </table>
