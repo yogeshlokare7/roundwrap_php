@@ -94,8 +94,24 @@ if (count($explode) >= 2) {
                 color: white;
                 text-align: center;
             }
+            table {
+                width: 100%;
+                display:block;
+            }
+            thead {
+                display: inline-block;
+                width: 100%;
+                height: 27px;
+                background-color: #efefef;
+                border-bottom: 1px solid #CDCDCD
+            }
+            tbody {
+                height: 300px;
+                display: inline-block;
+                width: 100%;
+                overflow: auto;
+            }
         </style>
-
 
     </head>
     <body>
