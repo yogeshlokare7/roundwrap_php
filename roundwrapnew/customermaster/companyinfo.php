@@ -1,3 +1,21 @@
+<style>
+
+    tbody {
+        height: auto;
+    }
+    td{
+        /*padding-top:  10px;*/
+        padding-left:   10px;
+        padding-right:   10px;
+    }
+    select {
+        width: 212px;
+        height: 24px;
+    }
+    tr{
+        /*background-color: rgb(240,240,240);*/
+    }
+</style>
 <script>
     $(document).ready(function($) {
         $("#phno").mask("(99) 9999-9999");
@@ -5,7 +23,7 @@
     });
 </script>
 <hr/>
-<table style="width: 100%;" id="companyInfo1">
+<table style="width: 100%;" id="companyInfo1" border="1">
     <tr>
         <td><label class="control-label">Salutation</label></td>
         <td>
@@ -35,18 +53,28 @@
         <td><input type="text" name="website" id="website" plceholder="Enter Company Website" value="<?php echo $customer["website"] ?>" ></td>
         <td><label class="control-label">Fax</label></td>
         <td><input type="text" name="cust_fax" id="cust_fax"  value="<?php echo $customer["cust_fax"] ?>" ></td>
+        <td></td>
+        <td></td>
     </tr>
     <tr>
-
         <td>Bill To</td>
         <td><textarea style="height: 80px;;line-height: 20px;" name="billto" onfocus="fillAddress()"  id="billto" ><?php echo $customer["billto"] ?></textarea></td>
-        <td colspan="2" style="text-align: center" >
+        <td>Ship To </td>
+        <td><textarea   style="height: 80px;line-height: 20px;"  name="shipto" id="shipto"><?php echo $customer["shipto"] ?></textarea></td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td></td>
+        <td  style="text-align: right" >
             <a   onclick="copyOrRemove('0')"><< Remove</a>
             &nbsp;|&nbsp;
             <a onclick="copyOrRemove('1')">copy >></a>
         </td>
-        <td>Ship To </td>
-        <td><textarea   style="height: 80px;line-height: 20px;"  name="shipto" id="shipto"><?php echo $customer["shipto"] ?></textarea></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
     </tr>
 </table>
 <input type="hidden" value="<?php echo $customerid ?>" name="customerid">
@@ -54,7 +82,7 @@
 <input type="button" id="btnCmpNext1" value="Next" class="btn btn-info" ><a href="customermaster/additionalcontact.php"></a>
 
 <script>
-    
+
 //     document.getElementById("btnCmpNext1").onclick = function () {
 //        location.href = "customermaster/additionalcontact.php";
 //    };
