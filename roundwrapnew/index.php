@@ -38,9 +38,6 @@ if (count($explode) >= 2) {
         <script src="js/maruti.js"></script> 
         <script src="js/jquery.mask.js"></script> 
 
-        <link rel="stylesheet" href="css/jquery.stickytable.css" />
-        <script src="js/jquery.stickytable.js"></script> 
-
         <script>
             $(function() {
                 setTimeout(function() {
@@ -93,24 +90,6 @@ if (count($explode) >= 2) {
                 width: 100%;
                 color: white;
                 text-align: center;
-            }
-            table {
-                width: 100%;
-                display:block;
-                cursor: pointer; 
-            }
-            thead {
-                display: inline-block;
-                width: 100%;
-                height: 27px;
-                background-color: #efefef;
-                border-bottom: 1px solid #CDCDCD
-            }
-            tbody {
-                height: 300px;
-                display: inline-block;
-                width: 100%;
-                overflow: auto;
             }
         </style>
 
