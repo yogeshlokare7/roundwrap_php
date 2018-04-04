@@ -95,7 +95,7 @@
             </tr>
         </table>
         <div style="height: 310px;overflow: auto;overflow-x: auto">
-            <table class="customtable" style="margin-top: -1px;"  border="1">
+            <table class="customtable" style="margin-top: -1px;"  border="0">
                 <?php
                 foreach ($listofcustomers as $key => $value) {
                     ?>
