@@ -68,9 +68,8 @@
                 <th>Profile Name</th>
                 <th >Label Name</th>
                 <th >Label Value</th>
-                 <th style="width: 14.8px;"></th>
+<!--                <th style="width: 14.8px;"></th>-->
             </tr>
-            </thead>
         </table>
         <div style="height: 310px;overflow: auto;overflow-x: auto">
             <table class="customtable" style="margin-top: -1px;" >
@@ -90,9 +89,6 @@
                 }
                 ?>
             </table>
-<!--            <input type="hidden" id="deleteId" name="cid" value="">
-            <input type="hidden" id="flag" name="flag" value="">
-            </form>-->
         </div>
         <table class="customtable" border="1">
             <tr style="height: 30px;background-color: rgb(240,240,240);">

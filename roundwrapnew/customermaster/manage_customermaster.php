@@ -1,4 +1,47 @@
 <?php $listofcustomers = MysqlConnection::fetchAll("customer_master"); ?>
+<style>
+    .customtable{
+        width: 100%;
+        height: auto;
+        min-height: 50%;
+        font-family: verdana;
+        border: solid 1px gray;
+        border-color: gray;
+    }
+    .customtable tr{
+        height: 25px;
+        border-color: gray;
+    }
+    .customtable tr td{
+        padding: 5px;
+        border-color: gray;
+    }
+    .thead{
+        height: 35px;
+    }
+    .brdright{
+        border-right: solid 1px rgb(220,220,220);
+    }
+</style>
+
+<script>
+    $("#search").on("keyup", function () {
+        var value = $(this).val();
+        $("table tr").each(function (index) {
+            if (index !== 0) {
+                $row = $(this);
+                var id = $row.find("td:first").text();
+                if (id.indexOf(value) !== 0) {
+                    $(this).hide();
+                }
+                else {
+                    $(this).show();
+                }
+            }
+        });
+    });
+    ​
+</script>
 <link href="css/jquery.contextMenu.css" rel="stylesheet" type="text/css" />
 <script src="js/jquery.min_1.11.3.js"></script>
 <script src="js/jquery.contextMenu.js" type="text/javascript"></script>
@@ -25,63 +68,67 @@
         <a title="View Customer Master" class="tip-bottom">View Customer Master</a>
     </div>
 </div>
-<form name="customermaster" id="customermaster" method="POST">
-    <div class="container-fluid" >
-        <br/>
-        <a class="btn" href="index.php?pagename=create_customermaster" >ADD CUSTOMER</a>
-        <div class="widget-box">
-            <div class="widget-title">
-                <span class="icon"><i class="icon-th"></i></span> 
-                <h5>Customer Master</h5>
-            </div>
-            <div class="widget-content nopadding">
-                <table class="table table-bordered data-table" id="data">
-                    <thead>
+<!--<form name="customermaster" id="customermaster" method="POST">-->
+<div class="container-fluid" >
+    <br/>
+    <table class="customtable" style="border: 0px;">
+        <tr style="height: 30px;background-color: rgb(240,240,240);;height: 40px;">
+            <td style="width: 8%"><a class="btn" href="index.php?pagename=create_customermaster" >ADD CUSTOMER</a></td>
+            <th style="width: 2.3%">&nbsp;Search&nbsp;:&nbsp;</th>
+            <th colspan="9" style="text-align: left">
+                <input type="text" id="searchinput" name="searchinput" style="width: 50%">
+            </th>
+        </tr>
+    </table>
+    <div class="widget-box">
+        <table class="customtable" border="1">
+            <tr style="height: 30px;background-color: rgb(240,240,240);">
+                <th style="width: 2.3%">#</th>
+                <th>Full Name</th>
+                <th>Company Name</th>
+                <th style="width:300px">Address</th>
+                <th>Contact No</th>
+                <th style="width:200px">  Email</th>
+                <th>Currency</th>
+                <th>Balance</th>
+                <th>Sales Person Name</th>
+            </tr>
+        </table>
+        <div style="height: 310px;overflow: auto;overflow-x: auto">
+            <table class="customtable" style="margin-top: -1px;"  border="1">
+                <?php
+                foreach ($listofcustomers as $key => $value) {
+                    ?>
 
-                        <tr>
-                            <th style="width: 2.3%">#</th>
-                            <th>Full Name</th>
-                            <th>Company Name</th>
-                            <th>Address</th>
-                            <th>Contact No</th>
-                            <th>Email</th>
-                            <th>Currency</th>
-                            <th>Balance</th>
-                            <th>Sales Person Name</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php
-                        foreach ($listofcustomers as $key => $value) {
-                            ?>
-
-                            <tr id="<?php echo $value["id"] ?>" class="context-menu-one">
-                                <td>
-                                    <a onclick="setDeleteField('<?php echo $value["cust_id"] ?>')" href="#myAlert" data-toggle="modal"  class="tip-top" data-original-title="Delete Record" data-id="<? echo $value['id'] ?>">
-                                        <i class="icon-remove"></i>
-                                    </a> 
-                                </td>
-                                <td><?php echo $value["firstname"] ?>&nbsp;<?php echo $value["lastname"] ?></td>
-                                <td><?php echo $value["cust_companyname"] ?></td>
-                                <td><?php echo buildAddress($value) ?></td>
-                                <td><?php echo $value["phno"] ?></td>
-                                <td><?php echo $value["cust_email"] ?></td>
-                                <td><?php echo $value["currency"] ?></td>
-                                <td><?php echo $value["balance"] ?></td>
-                                <td><?php echo $value["sales_person_name"] ?></td>
-                            </tr>
-                            <?php
-                        }
-                        ?>
-                    </tbody>
-                </table>
-
-            </div>
+                    <tr id="<?php echo $value["id"] ?>" class="context-menu-one" style="border-bottom: solid 1px rgb(220,220,220);text-align: center;">
+                        <td style="width: 2.3%">
+                            <a onclick="setDeleteField('<?php echo $value["cust_id"] ?>')" href="#myAlert" data-toggle="modal"  class="tip-top" data-original-title="Delete Record" data-id="<? echo $value['id'] ?>">
+                                <i class="icon-remove"></i>
+                            </a> 
+                        </td>
+                        <td style="width:130px"><?php echo $value["firstname"] ?>&nbsp;<?php echo $value["lastname"] ?></td>
+                        <td style="width:206px"><?php echo $value["cust_companyname"] ?></td>
+                        <td style="width:292px"><?php echo buildAddress($value) ?></td>
+                        <td style="width:142px"><?php echo $value["phno"] ?></td>
+                        <td style="width:192px"><?php echo $value["cust_email"] ?></td>
+                        <td style="width:116px"><?php echo $value["currency"] ?></td>
+                        <td style="width:101px"><?php echo $value["balance"] ?></td>
+                        <td><?php echo $value["sales_person_name"] ?></td>
+                    </tr>
+                    <?php
+                }
+                ?>
+            </table>
         </div>
+        <table class="customtable" border="1">
+            <tr style="height: 30px;background-color: rgb(240,240,240);">
+                <th colspan="5"></th>
+            </tr>
+        </table>
     </div>
-    <input type="hidden" id="deleteId" name="cid" value="">
-    <input type="hidden" id="flag" name="flag" value="">
-</form>
+</div>
+
+<!--</form>-->
 <script>
     $("#deleteThis").click(function () {
         $('#img').show();

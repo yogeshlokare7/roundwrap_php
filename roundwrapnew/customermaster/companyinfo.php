@@ -23,7 +23,7 @@
     });
 </script>
 <hr/>
-<table style="width: 100%;" id="companyInfo1" border="1">
+<table style="width: 100%;" id="companyInfo1" >
     <tr>
         <td><label class="control-label">Salutation</label></td>
         <td>
