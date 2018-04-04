@@ -1,6 +1,52 @@
 <?php
 $listofitems = MysqlConnection::fetchAll("item_master");
 ?>
+<style>
+    .customtable{
+        width: 100%;
+        height: auto;
+        min-height: 50%;
+        font-family: verdana;
+        border: solid 1px gray;
+        border-color: gray;
+    }
+    .customtable tr{
+        height: 25px;
+        border-color: gray;
+    }
+    .customtable tr td{
+        padding: 5px;
+        border-color: gray;
+    }
+    .thead{
+        height: 35px;
+    }
+    .brdright{
+        border-right: solid 1px rgb(220,220,220);
+    }
+</style>
+
+<script>
+    $("#search").on("keyup", function() {
+        var value = $(this).val();
+        $("table tr").each(function(index) {
+            if (index !== 0) {
+                $row = $(this);
+                var id = $row.find("td:first").text();
+                if (id.indexOf(value) !== 0) {
+                    $(this).hide();
+                }
+                else {
+                    $(this).show();
+                }
+            }
+        });
+    });
+    ​
+</script>
+
+
+
 <title>Round Wrap</title>
 <div id="content-header">
     <div id="breadcrumb"> 
@@ -10,72 +56,71 @@ $listofitems = MysqlConnection::fetchAll("item_master");
 </div>
 <div class="container-fluid">
     <br/>
-    <a class="btn" href="index.php?pagename=create_itemmaster" >ADD ITEM</a>
+    <table class="customtable" style="border: 0px;">
+        <tr style="height: 30px;background-color: rgb(240,240,240);;height: 40px;">
+            <td style="width: 8%"><a class="btn" href="index.php?pagename=create_itemmaster" >ADD ITEM</a></td>
+            <th style="width: 2.3%">&nbsp;Search&nbsp;:&nbsp;</th>
+            <th colspan="9" style="text-align: left">
+                <input type="text" id="searchinput" name="searchinput" style="width: 50%">
+            </th>
+        </tr>
+    </table>
     <div class="widget-box">
-        <div class="widget-title">
-            <span class="icon"><i class="icon-th"></i></span> 
-            <h5>Item Master</h5>
+
+        <table class="customtable" border="1">
+            <tr style="height: 30px;background-color: rgb(240,240,240);">
+                <th style="width: 2.3%">#</th>
+                <th style="width: 2.3%">#</th>
+                <th style="width: 15%">Name</th>
+                <th>Description</th>
+                <th style="width: 100px;">Type</th>
+                <th style="width: 100px;">Account</th>
+                <th style="width: 100px;">OnHand</th>
+                <th style="width: 100px;">OnSales</th>
+                <th style="width: 100px;">Price</th>
+                <th style="width: 14.8px;"></th>
+            </tr>
+        </table>
+        <div style="height: 310px;overflow: auto;overflow-x: auto">
+            <table class="customtable" style="margin-top: -1px;">
+                <?php
+                foreach ($listofitems as $key => $value) {
+                    ?>
+                    <tr style="border-bottom: solid 1px rgb(220,220,220);text-align: center">
+                        <td style="width: 2.3%; "><a href="index.php?pagename=create_itemmaster&itemPrimary=<?php echo $value["item_id"] ?>" class="tip-top" data-original-title="Edit Record"><i  class="icon-edit"></i></a></td>
+                        <td style="width: 2.3%;"  class="brdright"><a href="#myAlert" data-toggle="modal" onclick="setDeleteField('<?php echo $value["item_id"] ?>')" class="tip-top" data-original-title="Delete Record"><i class="icon-remove"></i></a> </td>
+                        <td style="width: 15%"  class="brdright"><?php echo $value["item_code"] ?></td>
+                        <td><?php echo $value["item_desc"] ?>&nbsp; Qty:&nbsp;<?php echo $value["orderQuanity"] ?></td>
+                        <td ><?php echo $value["type"] ?></td>
+                        <td ><?php echo $value["account"] ?></td>
+                        <td ><?php echo $value["purchase_rate"] ?></td>
+                        <td ><?php echo $value["sell_rate"] ?></td>
+                        <td ><?php echo $value["price"] ?></td>
+
+                    </tr>
+                    <?php
+                }
+                ?>
+            </table>
         </div>
-        <div class="widget-content nopadding">
-            <div class="sticky-table sticky-headers sticky-ltr-cells">
-                <form name="profilemaster" id="profilemaster" method="POST">
-                    <table class="table table-bordered data-table" id="data">
-                        <thead>
-                            <tr>
-                                <th style="width: 2.3%">#</th>
-                                <th style="width: 2.3%">#</th>
-
-                                <th>Name</th>
-                                <th>Description</th>
-                                <th>Type</th>
-                                <th>Account</th>
-                                <th>On Hand</th>
-                                <th>On Sales</th>
-                                <th>Price</th>
-
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php
-                            foreach ($listofitems as $key => $value) {
-                                ?>
-                                <tr class="gradeX">
-                                    <td><a href="index.php?pagename=create_itemmaster&itemPrimary=<?php echo $value["item_id"] ?>" class="tip-top" data-original-title="Edit Record"><i  class="icon-edit"></i></a></td>
-                                    <td><a href="#myAlert" data-toggle="modal" onclick="setDeleteField('<?php echo $value["item_id"] ?>')" class="tip-top" data-original-title="Delete Record"><i class="icon-remove"></i></a> </td>
-
-                                    <td><?php echo $value["item_code"] ?></td>
-                                    <td><?php echo $value["item_desc"] ?>&nbsp; Qty:&nbsp;<?php echo $value["orderQuanity"] ?></td>
-                                    <td><?php echo $value["type"] ?></td>
-                                    <td><?php echo $value["account"] ?></td>
-                                    <td><?php echo $value["purchase_rate"] ?></td>
-                                    <td><?php echo $value["sell_rate"] ?></td>
-                                    <td><?php echo $value["price"] ?></td>
-
-                                </tr>
-                                <?php
-                            }
-                            ?>
-
-                        </tbody>
-                    </table>
-                    <input type="hidden" id="deleteId" name="cid" value="">
-                    <input type="hidden" id="flag" name="flag" value="">
-                </form>
-            </div>
-        </div>
+        <table class="customtable" border="1">
+            <tr style="height: 30px;background-color: rgb(240,240,240);">
+                <th colspan="8"></th>
+            </tr>
+        </table>
     </div>
 </div>
 
 <script>
-    $("#deleteThis").click(function () {
+    $("#deleteThis").click(function() {
         $("div#divLoading").addClass('show');
         var dataString = "deleteId=" + $('#deleteId').val();
         $.ajax({
             type: 'POST',
             url: 'itemmaster/itemmaster_ajax.php',
             data: dataString
-        }).done(function (data) {
-        }).fail(function () {
+        }).done(function(data) {
+        }).fail(function() {
         });
         location.reload();
     });
