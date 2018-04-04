@@ -69,16 +69,15 @@ $listofitems = MysqlConnection::fetchAll("item_master");
 
         <table class="customtable" border="1">
             <tr style="height: 30px;background-color: rgb(240,240,240);">
-                <th style="width: 2.3%">#</th>
-                <th style="width: 2.3%">#</th>
-                <th style="width: 15%">Name</th>
-                <th>Description</th>
+                <th style="width: 50px;">#</th>
+                <th style="width: 50px;">#</th>
+                <th style="width: 150px;">Name</th>
+                <th >Description</th>
                 <th style="width: 100px;">Type</th>
                 <th style="width: 100px;">Account</th>
                 <th style="width: 100px;">OnHand</th>
                 <th style="width: 100px;">OnSales</th>
                 <th style="width: 100px;">Price</th>
-                <th style="width: 14.8px;"></th>
             </tr>
         </table>
         <div style="height: 310px;overflow: auto;overflow-x: auto">
@@ -87,16 +86,15 @@ $listofitems = MysqlConnection::fetchAll("item_master");
                 foreach ($listofitems as $key => $value) {
                     ?>
                     <tr style="border-bottom: solid 1px rgb(220,220,220);text-align: center">
-                        <td style="width: 2.3%; "><a href="index.php?pagename=create_itemmaster&itemPrimary=<?php echo $value["item_id"] ?>" class="tip-top" data-original-title="Edit Record"><i  class="icon-edit"></i></a></td>
-                        <td style="width: 2.3%;"  class="brdright"><a href="#myAlert" data-toggle="modal" onclick="setDeleteField('<?php echo $value["item_id"] ?>')" class="tip-top" data-original-title="Delete Record"><i class="icon-remove"></i></a> </td>
-                        <td style="width: 15%"  class="brdright"><?php echo $value["item_code"] ?></td>
-                        <td><?php echo $value["item_desc"] ?>&nbsp; Qty:&nbsp;<?php echo $value["orderQuanity"] ?></td>
-                        <td ><?php echo $value["type"] ?></td>
-                        <td ><?php echo $value["account"] ?></td>
-                        <td ><?php echo $value["purchase_rate"] ?></td>
-                        <td ><?php echo $value["sell_rate"] ?></td>
-                        <td ><?php echo $value["price"] ?></td>
-
+                        <td style="width: 40px;"><a href="index.php?pagename=create_itemmaster&itemPrimary=<?php echo $value["item_id"] ?>" class="tip-top" data-original-title="Edit Record"><i  class="icon-edit"></i></a></td>
+                        <td style="width: 50px;"  ><a href="#myAlert" data-toggle="modal" onclick="setDeleteField('<?php echo $value["item_id"] ?>')" class="tip-top" data-original-title="Delete Record"><i class="icon-remove"></i></a> </td>
+                        <td style="width: 150px;text-align: left" ><?php echo $value["item_code"] ?></td>
+                        <td style="text-align: left" ><?php echo $value["item_desc"] ?>&nbsp; Qty:&nbsp;<?php echo $value["orderQuanity"] ?></td>
+                        <td style="width: 100px;"><?php echo $value["type"] ?></td>
+                        <td style="width: 100px;"><?php echo $value["account"] ?></td>
+                        <td style="width: 100px;"><?php echo $value["purchase_rate"] ?></td>
+                        <td style="width: 100px;"><?php echo $value["sell_rate"] ?></td>
+                        <td style="width: 100px;"><?php echo $value["price"] ?></td>
                     </tr>
                     <?php
                 }
