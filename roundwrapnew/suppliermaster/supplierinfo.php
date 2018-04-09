@@ -1,5 +1,5 @@
 <script>
-    $(document).ready(function ($) {
+    $(document).ready(function($) {
         $("#supp_phoneNo").mask("(999) 999-9999");
         $("#supp_fax").mask("(999) 999-9999");
 
@@ -12,7 +12,7 @@
             return false;
         }
     }
-    $(document).ready(function ($) {
+    $(document).ready(function($) {
         $("#creditcardno").mask("9999-9999-9999-9999");
     });
 </script>
@@ -41,22 +41,22 @@
         <td><input type="email" name="supp_email" id="supp_email"  value="<?php echo filter_input(INPUT_POST, "supp_email") ?>"  minlength="2" maxlength="30" required="required"></td>
         <td>Phone No*</td>
         <td><input type="tel" name="supp_phoneNo" value="<?php echo filter_input(INPUT_POST, "supp_phoneNo") ?>"  id="supp_phoneNo" minlength="2" maxlength="20" required="required"></td>
-       
+
 
 
     </tr>
     <tr>
-         <td><label class="control-label"  style="float: left">Fax </label></td>
+        <td><label class="control-label"  style="float: left">Fax </label></td>
         <td><input type="text" name="supp_fax" id="supp_fax"  value="<?php echo filter_input(INPUT_POST, "supp_fax") ?>" minlength="2" maxlength="20"></td>
         <td>Website</td>
         <td><input type="url" name="supp_website" id="supp_website"  value="<?php echo filter_input(INPUT_POST, "supp_website") ?>" minlength="2" maxlength="30"></td>
         <td>Print on cheque as</td>
         <td><input type="text" name="print_onCheck" id="cust_fax"  value="<?php echo filter_input(INPUT_POST, "print_onCheck") ?>" minlength="2" maxlength="30"></td>
-        
+
 
     </tr>
 
-    <tr>
+    <tr style="vertical-align: top">
         <td>Currency </td>
         <td><select id="currency"  type="text" required="true" name="currency"  value="<?php echo filter_input(INPUT_POST, "currency") ?>" placeholder="Select Country Here"  >
                 <option value="">Select Currency</option>
@@ -66,7 +66,7 @@
         <td><input type="text" name="exchange_rate" id="exchange_rate" onkeypress="return chkNumericKey(event)" value="<?php echo filter_input(INPUT_POST, "exchange_rate") ?>" maxlength="20"></td>
         <td>Address</td>
         <td><textarea style="height: 80px;;line-height: 20px;" name="address" onfocus="fillAddress()"  id="address" ></textarea></td>
-       
+
     </tr>
 </table> 
 <hr/>
@@ -81,7 +81,7 @@
         var supp_email = document.getElementById("supp_email").value;
         var supp_phoneNo = document.getElementById("supp_phoneNo").value;
         if (firstname !== "" && lastname !== "") {
-            document.getElementById("address").value = companyname + "\n"+firstname + "\n" + lastname + "\n" + supp_email + "\n" + supp_phoneNo;
+            document.getElementById("address").value = companyname + "\n" + firstname + "\n" + lastname + "\n" + supp_email + "\n" + supp_phoneNo;
 
         }
     }
