@@ -19,10 +19,10 @@
     <li> <a><i class="icon icon-th-large"></i> <span>Masters</span></a> 
 
         <ul>
-            <li><a href="index.php?pagename=manage_profilemaster">Profile Master</a></li>
+            <!--<li><a href="index.php?pagename=manage_profilemaster">Profile Master</a></li>-->
             <li><a href="index.php?pagename=manage_itemmaster">Item Master</a></li>
             <li><a href="index.php?pagename=manage_inventorymaster">Inventory Master</a></li>
-            <li><a href="index.php?pagename=manage_customertype">Customer Type</a></li>
+            <!--<li><a href="index.php?pagename=manage_customertype">Customer Type</a></li>-->
             <li><a href="index.php?pagename=manage_customermaster">Customer Master</a></li>
             <li><a href="index.php?pagename=manage_suppliermaster">Vendor Master</a></li>
         </ul>
