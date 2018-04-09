@@ -190,9 +190,9 @@ if (!empty($itemPrimary)) {
     </div>
 
     <hr/>
-    <input type="submit" id="btnSubmitFullForm" class="btn btn-success" onClick='submitDetailsForm()' value="Save Item"/>
+    <input type="submit" id="btnSubmitFullForm" class="btn btn-success" onClick='submitDetailsForm()' value="Save and Next"/>
     <a href="index.php?pagename=manage_itemmaster" id="btnSubmitFullForm" class="btn btn-info">Cancel</a>
-    <button type="button" id="btnSubmitFullForm" class="btn btn-warning">Next</button>
+<!--    <button type="button" id="btnSubmitFullForm" class="btn btn-warning">Next</button>-->
 </form>
 <!--<hr/>
 <input type="button" id="btnCmpNext1" value="Next" class="btn btn-info" ><a href="customermaster/additionalcontact.php"></a>-->

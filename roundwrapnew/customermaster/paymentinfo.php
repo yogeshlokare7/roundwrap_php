@@ -25,7 +25,8 @@ if (!empty($customerid)) {
         <td>Currency</td>
         <td><select name="currency" id="currency">
                 <option value="CAN">Canada Dollar</option>
-                <option value="INR" >Indian Rupee</option>
+                <option value="INR" >USD</option>
+                <option value="INR" >INR</option>
             </select></td>
 
         <td>Balance</td>

@@ -63,7 +63,7 @@
                 <option value="INR">Indian Rupee</option><option value="CAD"> Canadian Dollar</option>
             </select></td>
         <td>Exchange Rate</td>
-        <td><input type="text" name="exchange_rate" id="exchange_rate" onkeypress="return chkNumericKey(event)" value="<?php echo filter_input(INPUT_POST, "exchange_rate") ?>" maxlength="20"></td>
+        <td><input type="text" name="exchange_rate" id="exchange_rate" onkeypress="return chkNumericKey(event)" value="<?php echo filter_input(INPUT_POST, "exchange_rate") ?>" maxlength="2"></td>
         <td>Address</td>
         <td><textarea style="height: 80px;;line-height: 20px;" name="address" onfocus="fillAddress()"  id="address" ></textarea></td>
 

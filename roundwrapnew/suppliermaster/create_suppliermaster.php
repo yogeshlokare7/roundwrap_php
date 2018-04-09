@@ -33,10 +33,14 @@
     $('#btnVenNext1').on('click', function () {
         $('#siTab1').removeClass('active');
         $('#adTab2').addClass('active');
+        $('#tab1').removeClass('active');
+        $('#tab2').addClass('active');
     });
     $('#btnVenPrev1').on('click', function () {
         $('#adTab2').removeClass('active');
         $('#siTab1').addClass('active');
+         $('#tab2').removeClass('active');
+        $('#tab1').addClass('active');
     });
    
 </script>
