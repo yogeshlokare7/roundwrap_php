@@ -23,7 +23,7 @@
     });
 </script>
 <hr/>
-<table style="width: 100%;" id="companyInfo1" >
+<table style="width: 100%;" id="companyInfo1" border="0">
     <tr>
         <td><label class="control-label">Salutation</label></td>
         <td>
@@ -66,7 +66,7 @@
     </tr>
     <tr>
         <td></td>
-        <td  style="text-align: right" >
+        <td  style="text-align: center" >
             <a   onclick="copyOrRemove('0')"><< Remove</a>
             &nbsp;|&nbsp;
             <a onclick="copyOrRemove('1')">copy >></a>

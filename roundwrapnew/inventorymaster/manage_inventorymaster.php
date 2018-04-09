@@ -15,7 +15,7 @@ $listofinventory = MysqlConnection::fetchAll("item_master");
         border-color: gray;
     }
     .customtable tr td{
-/*        padding: 5px;*/
+        /*        padding: 5px;*/
         border-color: gray;
     }
     .thead{
@@ -70,7 +70,7 @@ $listofinventory = MysqlConnection::fetchAll("item_master");
                 <th style="width: 365px;">Item Code</th>
                 <th style="width: 584px;">Item Description</th>
                 <th>Item Quantity</th>
-               
+
             </tr>
         </table>
         <div style="height: 310px; overflow: auto; overflow-x: auto">
@@ -79,7 +79,7 @@ $listofinventory = MysqlConnection::fetchAll("item_master");
                 foreach ($listofinventory as $key => $value) {
                     ?>
                     <tr style="border-bottom: solid 1px rgb(220,220,220);text-align: left">
-<!--                        <td style="width: 2.3%"><a href="#" class="tip-top" data-original-title="Edit Record"><i  class="icon-edit"></i></a></td>
+    <!--                        <td style="width: 2.3%"><a href="#" class="tip-top" data-original-title="Edit Record"><i  class="icon-edit"></i></a></td>
                         <td style="width: 2.3%">
                             <a href="#myAlert" onclick="setDeleteField('<?php echo $value["id"] ?>')" data-toggle="modal"  class="tip-top" data-original-title="Delete Record"><i class="icon-remove"></i></a> 
                         </td>-->
@@ -102,7 +102,7 @@ $listofinventory = MysqlConnection::fetchAll("item_master");
 </div>
 
 <script>
-    $("#deleteThis").click(function () {
+            $("#deleteThis").click(function () {
         $("div#divLoading").addClass('show');
         var dataString = "deleteId=" + $('#deleteId').val();
         $.ajax({

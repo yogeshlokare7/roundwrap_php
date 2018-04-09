@@ -37,12 +37,12 @@ if (!empty($itemPrimary)) {
         $("#creditcardno").mask("9999-9999-9999-9999");
     });
 </script>
-<hr/>
+
 <form name="frmItemsSubmit" id="frmItemsSubmit" method="post" action="itemmaster/saveitemmaster_ajax.php">
     <table  style="width: 80%;vertical-align: top" border="0">
         <tr style="vertical-align: top">
             <td style="width: 150px;">Type</td>
-            <td>
+            <td style="width: 220px;">
                 <select name="type"  id="type" value="">
                     <option value="Service">Service</option>
                     <option value="InventoryPart" >Inventory Part</option>
@@ -56,7 +56,7 @@ if (!empty($itemPrimary)) {
         <tr>
             <td>Item Name / Code</td>
             <td  style="vertical-align: bottom"><input type="text" name="item_code" id="item_code" value="<?php echo $item["item_code"] ?>"  autofocus="" required="true" minlenght="2" maxlength="30" ></td>
-            <td  style="vertical-align: bottom">Unit of Measures<input type="text" name="unit" id="unit" value="<?php echo $item["unit"] ?>"/></td>
+            <td  style="vertical-align: bottom;width: 220px;">Unit of Measures<input type="text" name="unit" id="unit" value="<?php echo $item["unit"] ?>"/></td>
             <td  style="vertical-align: bottom">Subitem of
                 <select name="subitemof" id="subitemof" value="<?php echo $item["subitemof"] ?>">
                     <option value="">&nbsp;&nbsp;</option>
@@ -76,8 +76,8 @@ if (!empty($itemPrimary)) {
         <table style="width: 80%;" id="iteminfo" border="0">
             <tr style="vertical-align: top">
                 <td  style="width: 150px;">Description</td>
-                <td ><textarea name="item_desc" id="item_desc" value="<?php echo $item["item_desc"] ?>" minlenght="2" maxlength="60"></textarea></td>
-                <td>
+                <td  style="width: 220px;" ><textarea name="item_desc" id="item_desc" value="<?php echo $item["item_desc"] ?>" minlenght="2" maxlength="60"></textarea></td>
+                <td style="width: 220px;">
                     <label >Sales Tax Code</label>
                     <select name="salestaxcode" id="salestaxcode" value="<?php echo $item["salestaxcode"] ?>">
                         <option value="">&nbsp;&nbsp;</option>
@@ -91,7 +91,7 @@ if (!empty($itemPrimary)) {
             </tr>
 
             <tr>
-                <td colspan="2" style="text-align: right"><input type="checkbox" id="taxcheckbox">&nbsp;This service performed by subcontractor,owner or partner</td>
+                <td colspan="2" style="text-align: left"><input type="checkbox" id="taxcheckbox">&nbsp;This service performed by subcontractor,owner or partner</td>
                 <td></td>
                 <td></td>
             </tr>
@@ -122,14 +122,14 @@ if (!empty($itemPrimary)) {
                             <td><label class="control-label">COGS Account</label></td>
                             <td><input type="text" name="cogsaccount" id="cogsaccount"  value="<?php echo $item["cogsaccount"] ?>" autofocus="" required="true" minlenght="2" maxlength="30" ></td>   
                         </tr>
-                        <tr >
+<!--                        <tr >
                             <td><label class="control-label">Preferred Vendor</label></td>
                             <td> <select name="vendorid" id="vendorid" value="<?php echo $item["vendorid"] ?>">
                                     <option value="">&nbsp;&nbsp;</option>
                                     <option value="1" ><< ADD NEW >></option>
                                 </select>
                             </td>   
-                        </tr>
+                        </tr>-->
                     </table>
                 </td>
                 <td>
@@ -160,8 +160,8 @@ if (!empty($itemPrimary)) {
                             <td></td>
                             <td></td>
                         </tr>
-                      
-                       
+
+
                         <tr  >
                             <td style="width: 40%"><label class="control-label">Asset Account</label></td>
                             <td style="vertical-align: bottom"><input type="text" name="assetaccount" id="assetaccount"  value="<?php echo $item["assetaccount"] ?>" autofocus="" required="true" minlenght="2" maxlength="30" ></td>   

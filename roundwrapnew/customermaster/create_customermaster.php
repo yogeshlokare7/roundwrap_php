@@ -49,29 +49,43 @@ if (!empty($customerid)) {
     $('#btnCmpNext1').on('click', function () {
         $('#ciTab1').removeClass('active');
         $('#acTab2').addClass('active');
-        window.location = "#tab2";
+
+        $('#tab1').removeClass('active');
+        $('#tab2').addClass('active');
     });
+
     $('#btnCmpPrev1').on('click', function () {
         $('#acTab2').removeClass('active');
         $('#ciTab1').addClass('active');
+        $('#tab2').removeClass('active');
+        $('#tab1').addClass('active');
+
     });
     $('#btnCmpNext2').on('click', function () {
         $('#acTab2').removeClass('active');
         $('#tdTab3').addClass('active');
+        $('#tab2').removeClass('active');
+        $('#tab3').addClass('active');
     });
 
 
     $('#btnCmpPrev2').on('click', function () {
         $('#tdTab3').removeClass('active');
         $('#acTab2').addClass('active');
+        $('#tab3').removeClass('active');
+        $('#tab2').addClass('active');
     });
     $('#btnCmpNext3').on('click', function () {
         $('#tdTab3').removeClass('active');
         $('#dpiTab4').addClass('active');
+        $('#tab3').removeClass('active');
+        $('#tab4').addClass('active');
     });
     $('#btnCmpPrev3').on('click', function () {
         $('#dpiTab4').removeClass('active');
         $('#tdTab3').addClass('active');
+        $('#tab4').removeClass('active');
+        $('#tab3').addClass('active');
     });
 //    
 //    
