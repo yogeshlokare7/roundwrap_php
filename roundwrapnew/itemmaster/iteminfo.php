@@ -142,7 +142,7 @@ if (!empty($itemPrimary)) {
                         </tr>
                         <tr >
                             <td style="width: 40%"><label class="control-label">Sales Price</label></td>
-                            <td><input type="text" name="sell_rate" id="sell_rate"  value="<?php echo $item["sell_rate"] ?>" autofocus="" required="true" minlenght="2" maxlength="30" ></td>   
+                            <td><input type="text" name="sell_rate" id="sell_rate" onkeypress="return chkNumericKey(event)" value="<?php echo $item["sell_rate"] ?>" autofocus="" required="true" minlenght="2" maxlength="30" ></td>   
                         </tr>
                         <tr >
                             <td><label class="control-label">Sales Tax Code</label></td>
@@ -150,7 +150,7 @@ if (!empty($itemPrimary)) {
                         </tr>
                         <tr >
                             <td><label class="control-label">Income Account</label></td>
-                            <td><input type="text" name="incomeaccount" id="incomeaccount"  value="<?php echo $item["incomeaccount"] ?>" autofocus="" required="true" minlenght="2" maxlength="30" ></td>   
+                            <td><input type="text" name="incomeaccount" id="incomeaccount" onkeypress="return chkNumericKey(event)"  value="<?php echo $item["incomeaccount"] ?>" autofocus="" required="true" minlenght="2" maxlength="30" ></td>   
                         </tr>
                     </table>
                 </td>
@@ -172,11 +172,11 @@ if (!empty($itemPrimary)) {
                         </tr>
                         <tr >
                             <td><label class="control-label">On Hand</label></td>
-                            <td style="vertical-align: bottom"><input type="text" name="onhand" id="onhand"  value="<?php echo $item["onhand"] ?>" autofocus="" required="true" minlenght="2" maxlength="30" ></td>   
+                            <td style="vertical-align: bottom"><input type="text" name="onhand" id="onhand" onkeypress="return chkNumericKey(event)" value="<?php echo $item["onhand"] ?>" autofocus="" required="true" minlenght="2" maxlength="30" ></td>   
                         </tr>
                         <tr >
                             <td><label class="control-label">Total Value</label></td>
-                            <td style="vertical-align: bottom" ><input type="text" name="totalvalue" id="totalvalue"  value="<?php echo $item["totalvalue"] ?>" autofocus="" required="true" minlenght="2" maxlength="30" ></td>   
+                            <td style="vertical-align: bottom" ><input type="text" onkeypress="return chkNumericKey(event)" name="totalvalue" id="totalvalue"  value="<?php echo $item["totalvalue"] ?>" autofocus="" required="true" minlenght="2" maxlength="30" ></td>   
                         </tr>
                         <tr >
                             <td><label class="control-label">As of</label></td>

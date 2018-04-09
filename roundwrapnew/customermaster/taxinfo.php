@@ -196,7 +196,7 @@ $sqlpaymenttermdata = MysqlConnection::fetchCustom("SELECT id,name,code FROM gen
             <label class="control-label">Description:</label>
             <div class="controls"><textarea name="taxdescription" id="taxdescription" style="resize: none;height: 50px"></textarea></div>
             <div class="control-group">
-                <table class="table" id="addtax" style="width: 50%">
+                <table class="table" id="addtax" style="width: 100%">
                     <tr>
                         <td>Tax Name</td>
                         <td>Percent</td>

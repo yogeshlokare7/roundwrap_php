@@ -8,7 +8,11 @@
 </style>
 <?php
 $sqlgetsupplier = "SELECT * FROM supplier_master WHERE supp_id = " . filter_input(INPUT_GET, "supplierid");
-MysqlConnection::fetchCustom($query)
+$resultset = MysqlConnection::fetchCustom($sqlgetsupplier);
+$supplier = $resultset[0];
+echo "<pre>";    
+print_r($supplier);
+echo "</pre>";    
 ?>
 <div id="content-header">
     <div id="breadcrumb"> 
@@ -41,16 +45,16 @@ MysqlConnection::fetchCustom($query)
                             <tr>
                                 <td style="width: 10%"><label class="control-label" >PO NUMBER&nbsp;:&nbsp;</label></td>
                                 <td><input  type="text" value="PO10101" readonly=""/></td>
-                                <td style="width: 10%"><label class="control-label"  class="control-label">SUPPLIER NAME&nbsp;:&nbsp</label></td>
-                                <td><input  type="text" placeholder="Supplier Name" /></td>
+                                <td style="width: 10%"><label class="control-label"   class="control-label">SUPPLIER NAME&nbsp;:&nbsp</label></td>
+                                <td><input  type="text" placeholder="Supplier Name" value="<?php echo $supplier["supp_name"] ?>" /></td>
                                 <td style="width: 10%"><label class="control-label">SHIP VIA&nbsp;:&nbsp</label></td>
-                                <td><input  type="text" placeholder="Supplier Name" /></td>
+                                <td><input  type="text" placeholder="" /></td>
                             </tr>
                             <tr>
                                 <td style="width: 10%"><label  class="control-label"  class="control-label">BILLING ADDRESS&nbsp;:&nbsp</label></td>
                                 <td><textarea   ></textarea></td>
                                 <td><label class="control-label">SHIPPING ADDRESS&nbsp;:&nbsp</label></td>
-                                <td><textarea ></textarea></td>
+                                <td><textarea value="<?php echo $supplier["shipping_address"] ?>" ></textarea></td>
                                 <td><label class="control-label">EXPECTED&nbsp;DELIVERY&nbsp;:&nbsp</label></td>
                                 <td><input type="text" value="12-02-2012"  data-date-format="mm-dd-yyyy"  ></td>
                             </tr>

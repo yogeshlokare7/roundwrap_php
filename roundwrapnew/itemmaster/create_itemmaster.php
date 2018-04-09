@@ -1,3 +1,12 @@
+<?php
+$itemid = filter_input(INPUT_GET, "itemId");
+
+if (!empty($itemid)) {
+//    echo "SELECT * FROM customer_master WHERE id = $customerid ";
+    $itemarray = MysqlConnection::fetchCustom("SELECT * FROM  item_master WHERE item_id =$itemid");
+    $item = $itemarray[0];
+}
+?>
 <div id="content-header">
     <div id="breadcrumb"> 
         <a href="index.php" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a>

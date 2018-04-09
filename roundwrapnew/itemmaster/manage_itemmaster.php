@@ -46,7 +46,26 @@ $listofitems = MysqlConnection::fetchAll("item_master");
     });
     ​
 </script>
-
+<link href="css/jquery.contextMenu.css" rel="stylesheet" type="text/css" />
+<script src="js/jquery.min_1.11.3.js"></script>
+<script src="js/jquery.contextMenu.js" type="text/javascript"></script>
+<script> 
+    $("#liveTableSearch").on("keyup", function () {
+        var value = $(this).val();
+        $("table tr").each(function (index) {
+            if (index !== 0) {
+                $row = $(this);
+                var id = $row.find("td:first").text();
+                if (id.indexOf(value) !== 0) {
+                    $(this).hide();
+                }
+                else {
+                    $(this).show();
+                }
+            }
+        });
+    });
+</script>
 
 
 <title>Round Wrap</title>
@@ -86,7 +105,7 @@ $listofitems = MysqlConnection::fetchAll("item_master");
                 <?php
                 foreach ($listofitems as $key => $value) {
                     ?>
-                    <tr style="border-bottom: solid 1px rgb(220,220,220);text-align: left">
+                    <tr id="<?php echo $value["item_id"] ?>" class="context-menu-one" style="border-bottom: solid 1px rgb(220,220,220);text-align: left" >
                         <td style="width: 200px;text-align: left" >&nbsp;&nbsp;<?php echo $value["item_code"] ?></td>
                         <td style="width: 100px;">&nbsp;<?php echo $value["type"] ?></td>
                         <td style="width: 100px;text-align: right"><?php echo $value["account"] ?>&nbsp;&nbsp;</td>
@@ -97,8 +116,7 @@ $listofitems = MysqlConnection::fetchAll("item_master");
                         <td style="width: 100px;text-align: left" >&nbsp;&nbsp;<?php echo $value["item_desc_purch"] ?></td>
                     </tr>
                     <?php
-                }
-                ?>
+                } ?>
             </table>
         </div>
         <table class="customtable" border="1">
@@ -110,7 +128,7 @@ $listofitems = MysqlConnection::fetchAll("item_master");
 </div>
 
 <script>
-            $("#deleteThis").click(function () {
+    $("#deleteThis").click(function () {
         $("div#divLoading").addClass('show');
         var dataString = "deleteId=" + $('#deleteId').val();
         $.ajax({
@@ -127,6 +145,59 @@ $listofitems = MysqlConnection::fetchAll("item_master");
         document.getElementById("deleteId").value = deleteId;
     }
 
+</script>
+<script type="text/javascript">
+    $(function () {
+        $.contextMenu({
+            selector: '.context-menu-one',
+            callback: function (key, options) {
+                var m = "clicked row: " + key;
+                var id = $(this).attr('id');
+                alert("============"+id);
+                switch (key) {
+                    case "add_item":
+                        window.location = "index.php?pagename=create_itemmaster";
+                        break;
+                    case "edit_item":
+                        window.location = "index.php?pagename=create_itemmaster&itemId=" + id;
+                        break;
+                    case "delete_item":
+                        deleteItem(id);
+                        break;
+               
+                    default:
+                        window.location = "index.php?pagename=manage_itemmaster";
+                }
+                //window.console && console.log(m) || alert(m+"    id:"+id); 
+            },
+            items: {
+                "add_item": {name: "Create Item", icon: "add"},
+                "edit_item": {name: "Edit Item", icon: "edit"},
+                "delete_item": {name: "Delete Item", icon: "delete"},
+//                "create_sales_order": {name: "Create Sales Order", icon: "add"},
+//                "create_invoice": {name: "Create Invoice", icon: "add"},
+                "sep1": "---------",
+                "quit": {name: "Quit", icon: function () {
+                        return 'context-menu-icon context-menu-icon-quit';
+                    }}
+            }
+        });
+
+        function deleteItem(id){
+            var dataString = "deleteId=" + id;
+        $.ajax({
+            type: 'POST',
+            url: 'itemmaster/itemmaster_ajax.php',
+            data: dataString
+        }).done(function (data) {
+        }).fail(function () {
+        });
+        location.reload();
+        }
+//        $('.context-menu-one').on('click', function(e){
+//            console.log('clicked', this);
+//       })    
+    });
 </script>
 
 <!-- this is custom model dialog --->
