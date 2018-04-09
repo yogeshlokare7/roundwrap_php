@@ -63,14 +63,14 @@
     <div class="widget-box">
         <table class="customtable" border="1">
             <tr style="height: 30px;background-color: rgb(240,240,240);">
-                <th style="width: 2.3%">#</th>
-                <th style="width: 2.3%">#</th>            				
+<!--                <th style="width: 2.3%">#</th>
+                <th style="width: 2.3%">#</th>            				-->
                 <th  style="width: 270px">Vendor Name</th>
                 <th style="width: 312px">Company Name</th>
                 <th  style="width: 120px">Contact No</th>
-                <th style="width: 80px">Currency</th>
-                <th style="width: 80px">Balance</th>
-                <th style="width: 80px">Notes</th>
+                <th style="width: 100px">Currency</th>
+                <th style="width: 100px">Balance</th>
+                <th style="width: 100px">Notes</th>
                 <th >Address</th>
 
             </tr>
@@ -80,16 +80,16 @@
                 <?php
                 foreach ($listofsupplier as $key => $value) {
                     ?>
-                    <tr style="border-bottom: solid 1px rgb(220,220,220);text-align: center"  class="context-menu-one">
-                        <td style="width: 2.3%"><a href="#" class="tip-top" data-original-title="Edit Record"><i  class="icon-edit"></i></a></td>
-                        <td style="width: 2.3%"><a href="#myAlert" onclick="setDeleteField('<?php echo $value["supp_id"] ?>')" data-toggle="modal"  class="tip-top" data-original-title="Delete Record"><i class="icon-remove"></i></a> </td>
-                        <td style="width: 270px"><?php echo $value["salutation"] ?>&nbsp;<?php echo $value["firstname"] ?>&nbsp;<?php echo $value["lastname"] ?></td>
-                        <td style="width: 312px"><?php echo $value["companyname"] ?></td>
-                        <td style="width: 120px"><?php echo $value["supp_phoneNo"] ?></td>
-                        <td style="width: 80px"><?php echo $value["currency"] ?></td>
-                        <td style="width: 80px"><?php echo $value["supp_balance"] ?></td>
-                        <td style="width: 80px"><?php echo $value["notes"] ?></td>
-                        <td ><?php echo $value["address"] ?></td>
+                    <tr style="border-bottom: solid 1px rgb(220,220,220);text-align: left"  class="context-menu-one">
+<!--                        <td style="width: 2.3%"><a href="#" class="tip-top" data-original-title="Edit Record"><i  class="icon-edit"></i></a></td>
+                        <td style="width: 2.3%"><a href="#myAlert" onclick="setDeleteField('<?php echo $value["supp_id"] ?>')" data-toggle="modal"  class="tip-top" data-original-title="Delete Record"><i class="icon-remove"></i></a> </td>-->
+                        <td style="width: 270px">&nbsp;&nbsp;<?php echo $value["salutation"] ?>&nbsp;<?php echo $value["firstname"] ?>&nbsp;<?php echo $value["lastname"] ?></td>
+                        <td style="width: 312px">&nbsp;&nbsp;<?php echo $value["companyname"] ?></td>
+                        <td style="width: 120px">&nbsp;&nbsp;<?php echo $value["supp_phoneNo"] ?></td>
+                        <td style="width: 100px">&nbsp;&nbsp;<?php echo $value["currency"] ?></td>
+                        <td style="width: 100px">&nbsp;&nbsp;<?php echo $value["supp_balance"] ?></td>
+                        <td style="width: 100px">&nbsp;&nbsp;<?php echo $value["notes"] ?></td>
+                        <td >&nbsp;&nbsp;<?php echo $value["address"] ?></td>
                     </tr>
                     <?php
                 }

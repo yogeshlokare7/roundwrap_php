@@ -2,6 +2,8 @@
 $listofitems = MysqlConnection::fetchAll("item_master");
 ?>
 <style>
+    table{
+    }
     .customtable{
         width: 100%;
         height: auto;
@@ -15,7 +17,7 @@ $listofitems = MysqlConnection::fetchAll("item_master");
         border-color: gray;
     }
     .customtable tr td{
-        padding: 5px;
+        /*        padding: 5px;*/
         border-color: gray;
     }
     .thead{
@@ -27,9 +29,9 @@ $listofitems = MysqlConnection::fetchAll("item_master");
 </style>
 
 <script>
-    $("#search").on("keyup", function() {
+    $("#search").on("keyup", function () {
         var value = $(this).val();
-        $("table tr").each(function(index) {
+        $("table tr").each(function (index) {
             if (index !== 0) {
                 $row = $(this);
                 var id = $row.find("td:first").text();
@@ -69,32 +71,30 @@ $listofitems = MysqlConnection::fetchAll("item_master");
 
         <table class="customtable" border="1">
             <tr style="height: 30px;background-color: rgb(240,240,240);">
-                <th style="width: 50px;">#</th>
-                <th style="width: 50px;">#</th>
-                <th style="width: 150px;">Name</th>
-                <th >Description</th>
+                <th style="width: 200px;">Name</th>
                 <th style="width: 100px;">Type</th>
-                <th style="width: 100px;">Account</th>
-                <th style="width: 100px;">OnHand</th>
-                <th style="width: 100px;">OnSales</th>
-                <th style="width: 100px;">Price</th>
+                <th style="width: 100px;text-align: right">Account&nbsp;&nbsp;</th>
+                <th style="width: 100px;text-align: right">OnHand&nbsp;&nbsp;</th>
+                <th style="width: 100px;text-align: right">OnSales&nbsp;&nbsp;</th>
+                <th style="width: 100px;text-align: right">Price&nbsp;&nbsp;</th>
+                <th style="width: 100px;">Sales Item Description</th>
+                <th style="width: 100px;">Purchase Item Description</th>
             </tr>
         </table>
         <div style="height: 310px;overflow: auto;overflow-x: auto">
-            <table class="customtable" style="margin-top: -1px;">
+            <table class="customtable" style="margin-top: -1px;" border="1">
                 <?php
                 foreach ($listofitems as $key => $value) {
                     ?>
-                    <tr style="border-bottom: solid 1px rgb(220,220,220);text-align: center">
-                        <td style="width: 40px;"><a href="index.php?pagename=create_itemmaster&itemPrimary=<?php echo $value["item_id"] ?>" class="tip-top" data-original-title="Edit Record"><i  class="icon-edit"></i></a></td>
-                        <td style="width: 50px;"  ><a href="#myAlert" data-toggle="modal" onclick="setDeleteField('<?php echo $value["item_id"] ?>')" class="tip-top" data-original-title="Delete Record"><i class="icon-remove"></i></a> </td>
-                        <td style="width: 150px;text-align: left" ><?php echo $value["item_code"] ?></td>
-                        <td style="text-align: left" ><?php echo $value["item_desc"] ?>&nbsp; Qty:&nbsp;<?php echo $value["orderQuanity"] ?></td>
-                        <td style="width: 100px;"><?php echo $value["type"] ?></td>
-                        <td style="width: 100px;"><?php echo $value["account"] ?></td>
-                        <td style="width: 100px;"><?php echo $value["purchase_rate"] ?></td>
-                        <td style="width: 100px;"><?php echo $value["sell_rate"] ?></td>
-                        <td style="width: 100px;"><?php echo $value["price"] ?></td>
+                    <tr style="border-bottom: solid 1px rgb(220,220,220);text-align: left">
+                        <td style="width: 200px;text-align: left" >&nbsp;&nbsp;<?php echo $value["item_code"] ?></td>
+                        <td style="width: 100px;">&nbsp;<?php echo $value["type"] ?></td>
+                        <td style="width: 100px;text-align: right"><?php echo $value["account"] ?>&nbsp;&nbsp;</td>
+                        <td style="width: 100px;text-align: right"><?php echo round($value["purchase_rate"], 2); ?>&nbsp;&nbsp;&nbsp;</td>
+                        <td style="width: 100px;text-align: right"><?php echo round($value["sell_rate"], 2); ?>&nbsp;-&nbsp;&nbsp;</td>
+                        <td style="width: 100px;text-align: right">$&nbsp;<?php echo round($value["price"], 2); ?>&nbsp;&nbsp;</td>
+                        <td style="width: 100px;text-align: left" >&nbsp;&nbsp;<?php echo $value["item_desc_sales"] ?></td>
+                        <td style="width: 100px;text-align: left" >&nbsp;&nbsp;<?php echo $value["item_desc_purch"] ?></td>
                     </tr>
                     <?php
                 }
@@ -110,15 +110,15 @@ $listofitems = MysqlConnection::fetchAll("item_master");
 </div>
 
 <script>
-    $("#deleteThis").click(function() {
+            $("#deleteThis").click(function () {
         $("div#divLoading").addClass('show');
         var dataString = "deleteId=" + $('#deleteId').val();
         $.ajax({
             type: 'POST',
             url: 'itemmaster/itemmaster_ajax.php',
             data: dataString
-        }).done(function(data) {
-        }).fail(function() {
+        }).done(function (data) {
+        }).fail(function () {
         });
         location.reload();
     });

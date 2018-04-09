@@ -13,7 +13,7 @@
         border-color: gray;
     }
     .customtable tr td{
-        padding: 5px;
+/*        padding: 5px;*/
         border-color: gray;
     }
     .thead{
@@ -83,37 +83,37 @@
     <div class="widget-box">
         <table class="customtable" border="1">
             <tr style="height: 30px;background-color: rgb(240,240,240);">
-                <th style="width: 2.3%">#</th>
-                <th>Full Name</th>
-                <th>Company Name</th>
-                <th style="width:300px">Address</th>
-                <th>Contact No</th>
-                <th style="width:200px">  Email</th>
-                <th>Currency</th>
-                <th>Balance</th>
+<!--                <th style="width: 2.3%">#</th>-->
+                <th style="width:130px">Full Name</th>
+                <th style="width:130px">Company Name</th>
+                <th style="width:490px">Address</th>
+                <th style="width:130px">Contact No</th>
+                <th style="width:200px"> Email</th>
+                <th style="width:100px">Currency</th>
+                <th style="width:100px">Balance</th>
                 <th>Sales Person Name</th>
             </tr>
         </table>
         <div style="height: 310px;overflow: auto;overflow-x: auto">
-            <table class="customtable" style="margin-top: -1px;"  border="0">
+            <table class="customtable" style="margin-top: -1px;"  border="1">
                 <?php
                 foreach ($listofcustomers as $key => $value) {
                     ?>
 
-                    <tr id="<?php echo $value["id"] ?>" class="context-menu-one" style="border-bottom: solid 1px rgb(220,220,220);text-align: center;">
-                        <td style="width: 2.3%">
+                    <tr id="<?php echo $value["id"] ?>" class="context-menu-one" style="border-bottom: solid 1px rgb(220,220,220);text-align: left;">
+<!--                        <td style="width: 2.3%">
                             <a onclick="setDeleteField('<?php echo $value["cust_id"] ?>')" href="#myAlert" data-toggle="modal"  class="tip-top" data-original-title="Delete Record" data-id="<? echo $value['id'] ?>">
                                 <i class="icon-remove"></i>
                             </a> 
-                        </td>
-                        <td style="width:130px"><?php echo $value["firstname"] ?>&nbsp;<?php echo $value["lastname"] ?></td>
-                        <td style="width:206px"><?php echo $value["cust_companyname"] ?></td>
-                        <td style="width:292px"><?php echo buildAddress($value) ?></td>
-                        <td style="width:142px"><?php echo $value["phno"] ?></td>
-                        <td style="width:192px"><?php echo $value["cust_email"] ?></td>
-                        <td style="width:116px"><?php echo $value["currency"] ?></td>
-                        <td style="width:101px"><?php echo $value["balance"] ?></td>
-                        <td><?php echo $value["sales_person_name"] ?></td>
+                        </td>-->
+                        <td style="width:130px">&nbsp;&nbsp;<?php echo $value["firstname"] ?>&nbsp;<?php echo $value["lastname"] ?></td>
+                        <td style="width:130px">&nbsp;&nbsp;<?php echo $value["cust_companyname"] ?></td>
+                        <td style="width:490px">&nbsp;&nbsp;<?php echo buildAddress($value) ?></td>
+                        <td style="width:130px">&nbsp;&nbsp;<?php echo $value["phno"] ?></td>
+                        <td style="width:200px">&nbsp;&nbsp;<?php echo $value["cust_email"] ?></td>
+                        <td style="width:100px">&nbsp;&nbsp;<?php echo $value["currency"] ?></td>
+                        <td style="width:100px">&nbsp;&nbsp;<?php echo $value["balance"] ?></td>
+                        <td>&nbsp;&nbsp;<?php echo $value["sales_person_name"] ?></td>
                     </tr>
                     <?php
                 }

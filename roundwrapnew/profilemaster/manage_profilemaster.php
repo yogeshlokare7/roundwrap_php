@@ -14,7 +14,7 @@
         border-color: gray;
     }
     .customtable tr td{
-        padding: 5px;
+/*        padding: 5px;*/
         border-color: gray;
     }
     .thead{
@@ -72,11 +72,11 @@
             </tr>
         </table>
         <div style="height: 310px;overflow: auto;overflow-x: auto">
-            <table class="customtable" style="margin-top: -1px;" >
+            <table class="customtable" style="margin-top: -1px;"  border="1">
                 <?php
                 foreach ($listofprofiles as $key => $value) {
                     ?>
-                    <tr style="border-bottom: solid 1px rgb(220,220,220);text-align: center">
+                    <tr style="border-bottom: solid 1px rgb(220,220,220);text-align: left">
                         <td style="width: 2.3%"><a href="#" class="tip-top" data-original-title="Edit Record"><i  class="icon-edit"></i></a></td>
                         <td style="width: 2.3%" ><a onclick="setDeleteField('<?php echo $value["id"] ?>')" href="#myAlert" data-toggle="modal"  class="tip-top" data-original-title="Delete Record" data-id="<? echo $value['id'] ?>">
                                 <i class="icon-remove"></i>

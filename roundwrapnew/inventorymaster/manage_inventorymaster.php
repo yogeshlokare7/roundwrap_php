@@ -15,7 +15,7 @@ $listofinventory = MysqlConnection::fetchAll("item_master");
         border-color: gray;
     }
     .customtable tr td{
-        padding: 5px;
+/*        padding: 5px;*/
         border-color: gray;
     }
     .thead{
@@ -65,27 +65,27 @@ $listofinventory = MysqlConnection::fetchAll("item_master");
     <div class="widget-box">
         <table class="customtable" border="1">
             <tr style="height: 30px;background-color: rgb(240,240,240);">
-                <th style="width: 2.3%">#</th>
-                <th style="width: 2.3%">#</th>                 							
-                <th>Item Code</th>
-                <th>Item Description</th>
+<!--                <th style="width: 2.3%">#</th>
+                <th style="width: 2.3%">#</th>                 							-->
+                <th style="width: 365px;">Item Code</th>
+                <th style="width: 584px;">Item Description</th>
                 <th>Item Quantity</th>
-                <th style="width: 14.8px;"></th>
+               
             </tr>
         </table>
         <div style="height: 310px; overflow: auto; overflow-x: auto">
-            <table class="customtable" style="margin-top: -1px;" >
+            <table class="customtable" style="margin-top: -1px;" border="1" >
                 <?php
                 foreach ($listofinventory as $key => $value) {
                     ?>
-                    <tr style="border-bottom: solid 1px rgb(220,220,220);text-align: center">
-                        <td style="width: 2.3%"><a href="#" class="tip-top" data-original-title="Edit Record"><i  class="icon-edit"></i></a></td>
+                    <tr style="border-bottom: solid 1px rgb(220,220,220);text-align: left">
+<!--                        <td style="width: 2.3%"><a href="#" class="tip-top" data-original-title="Edit Record"><i  class="icon-edit"></i></a></td>
                         <td style="width: 2.3%">
                             <a href="#myAlert" onclick="setDeleteField('<?php echo $value["id"] ?>')" data-toggle="modal"  class="tip-top" data-original-title="Delete Record"><i class="icon-remove"></i></a> 
-                        </td>
-                        <td style="width: 365px;"><?php echo $value["item_code"] ?></td>
-                        <td style="width: 584px;"><?php echo $value["item_desc"] ?></td>
-                        <td><?php echo $value["quantity"] ?></td>
+                        </td>-->
+                        <td style="width: 365px;">&nbsp;&nbsp;<?php echo $value["item_code"] ?></td>
+                        <td style="width: 584px;">&nbsp;&nbsp;<?php echo $value["item_desc"] ?></td>
+                        <td>&nbsp;&nbsp;<?php echo $value["quantity"] ?></td>
 
                     </tr>
                     <?php
