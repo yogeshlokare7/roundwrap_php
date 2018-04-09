@@ -8,7 +8,18 @@
         }
     }
 </script>
+<style>
+    select{
+        text-transform: uppercase;
+    }
+</style>
 <hr/>
+
+<?php
+$sqlcustomertypepredata = MysqlConnection::fetchCustom("SELECT id,name FROM generic_entry where type = 'customer_type' ORDER BY id DESC ;");
+$sqlpaymenttermdata = MysqlConnection::fetchCustom("SELECT id,name,code FROM generic_entry where type = 'paymentterm' ORDER BY id DESC ;");
+?>
+
 <table style="width: 100%;">
 
     <tr>
@@ -17,7 +28,9 @@
             <select name="cust_type" id="cust_type"> 
                 <option value="">&nbsp;&nbsp;</option>
                 <option value="1" ><< ADD NEW >></option>
-                <option value=""></option>
+                <?php foreach ($sqlcustomertypepredata as $key => $value) { ?>
+                    <option value="<?php echo $value["id"] ?>"><?php echo $value["name"] ?></option>
+                <?php } ?>
             </select>
         </td>
         <td><label class="control-label">Discount</label></td>
@@ -35,6 +48,9 @@
             <select name="paymentTerm" id="paymentTerm" style="margin-top: 5px;">
                 <option value="">&nbsp;&nbsp;</option>
                 <option value="1" ><< ADD NEW >></option>
+                <?php foreach ($sqlpaymenttermdata as $key => $value) { ?>
+                    <option value="<?php echo $value["id"] ?>"><?php echo $value["code"] ?> - <?php echo $value["name"] ?></option>
+                <?php } ?>
             </select>
         </td>
     </tr>
@@ -75,26 +91,23 @@
 <input type="button" id="btnCmpNext3" value="Next" class="btn btn-info" href="#tab4">
 
 <!-- this is custom model dialog --->
-<div id="cust_type" class="modal hide" style="top: 10%;left: 50%;">
+<div id="custtypemodel" class="modal hide" style="top: 10%;left: 50%;width: 420px;">
     <div class="modal-header">
         <button data-dismiss="modal" class="close" type="button">×</button>
-        <h3>Add New Customer Type</h3>
+        <h3>ADD NEW CUSTOMER TYPE</h3>
     </div>
     <div class="modal-body">
         <form class="form-horizontal" method="post" action="#" name="cust_type" id="cust_type" novalidate="novalidate">
-            <div class="control-group">
-                <label class="control-label">CUSTOMER TYPE *:</label>
-                <div class="controls">
-                    <input type="text" name="cust_type" id="cust_type">
-                </div>
-            </div>
-            <div class="control-group">
-                <label class="control-label">DESCRIPTION:</label>
-                <div class="controls">
-                    <input type="text" name="adddescription" id="adddescription">
-
-                </div>
-            </div>
+            <table>
+                <tr>
+                    <td>CUSTOMER&nbsp;TYPE&nbsp;*:&nbsp;</td>
+                    <td><input type="text" autofocus="" required="true" maxlength="30" minlength="5" name="cuscusttype" id="cuscusttype"></td>
+                </tr>
+                <tr>
+                    <td>DESCRIPTION&nbsp;:&nbsp;</td>
+                    <td><input type="text" name="adddescription" id="adddescription"></td>
+                </tr>
+            </table>
         </form>
     </div>
     <div class="modal-footer"> 
@@ -115,7 +128,7 @@
             <div class="control-group">
                 <label class="control-label">First Name:</label>
                 <div class="controls">
-                    <input type="text" name="firstname" id="firstname">
+                    <input type="text" name="rfirstname" id="firstname">
 
                 </div>
             </div>
@@ -138,33 +151,30 @@
 <div id="addPaymentTerm" class="modal hide" style="top: 10%;left: 50%;">
     <div class="modal-header">
         <button data-dismiss="modal" class="close" type="button">×</button>
-        <h3>Add New Representative Type</h3>
+        <h3>ADD PAYMENT TERM</h3>
     </div>
     <div class="modal-body">
         <form class="form-horizontal" method="post" action="#" name="addPaymentT" id="addPaymentT" novalidate="novalidate">
-            <div class="control-group">
-                <label class="control-label">Code:</label>
-                <div class="controls">
-                    <input type="text" name="termcode" id="termcode">
-
-                </div>
-            </div>
-            <div class="control-group">
-                <label class="control-label">Term:</label>
-                <div class="controls">
-                    <input type="text" name="termname" id="termname">
-                </div>
-            </div>
-            <div class="control-group">
-                <label class="control-label">Description:</label>
-                <div class="controls">
-                    <textarea name="termdescription" id="termdescription" style="resize: none;height: 50px"></textarea>
-                </div>
-            </div>
+            <table style="width: 100%;vertical-align: top">
+                <tr style="height: 35px">
+                    <td style="width: 100px;">Code:</td>
+                    <td><input type="text" autofocus="" required="" minlength="3" maxlength="15" name="termcode" id="termcode" style="width: 40%"></td>
+                </tr>
+                <tr style="height: 35px">
+                    <td>Term:</td>
+                    <td><input type="text" name="termname" id="termname"  minlength="3" maxlength="30"  style="width: 90%"></td>
+                </tr>
+                <tr>
+                    <td>Description:</td>
+                    <td colspan="3">
+                        <textarea  name="termdescription" id="termdescription" style="resize: none;height: 50px;width: 90%"></textarea>
+                    </td>
+                </tr>
+            </table>
         </form>
     </div>
 
-    <div class="modal-footer"> 
+    <div class="modal-footer" style="text-align: center"> 
         <a id="savePaymentT" data-dismiss="modal" class="btn btn-primary">Save</a> 
         <a data-dismiss="modal" class="btn" href="#">Cancel</a> 
     </div>
@@ -215,9 +225,9 @@
 <!-- this is model dialog --->
 
 <script>
-    jQuery(function () {
+    jQuery(function() {
         var counter = 1;
-        jQuery('a.icon-plus').click(function (event) {
+        jQuery('a.icon-plus').click(function(event) {
             event.preventDefault();
             var newRow = jQuery('<tr><td><input type="text" name="taxname[]" id="taxname[]" style="width:50px;"></td>' +
                     counter + '<td><input type="text" name="taxvalues[]" id="taxvalues[]"></td>' +
@@ -228,44 +238,46 @@
         });
     });
 
-    $(document).ready(function () {
+    $(document).ready(function() {
 
-        $("#addtax").on('click', 'a.icon-trash', function () {
+        $("#addtax").on('click', 'a.icon-trash', function() {
             $(this).closest('tr').remove();
         });
 
     });
-    $("#cust_type").click(function () {
+    $("#cust_type").click(function() {
         var valueModel = $("#cust_type").val();
         if (valueModel === "1") {
-            $('#cust_type').modal('show');
+            $('#custtypemodel').modal('show');
         }
     });
-    $("#saveCustomerType").click(function () {
+    $("#saveCustomerType").click(function() {
         var type = "customer_type";
-        var name = $("#addname").val();
+        var name = $("#cuscusttype").val();
         var description = $("#adddescription").val();
-        var discount = $("#adddiscount").val();
 
-        var dataString = "type=" + type + "&name=" + name + "&description=" + description + "&discount=" + discount;
+        var dataString = "type=" + type + "&name=" + name + "&description=" + description;
         $.ajax({
             type: 'POST',
             url: 'customertype/savecustomertype_ajax.php',
             data: dataString
-        }).done(function (data) {
-
-        }).fail(function () {
+        }).done(function(data) {
+            $('#cust_type').append(data);
+            $("#cuscusttype").val("");
+            $("#adddescription").val("");
+        }).fail(function() {
         });
     });
 
-    $("#sales_person_name").click(function () {
+    $("#sales_person_name").click(function() {
         var valueModel = $("#sales_person_name").val();
         if (valueModel === "1") {
             $('#addRepresentative').modal('show');
         }
     });
-    $("#saveRepresentative").click(function () {
+    $("#saveRepresentative").click(function() {
         var type = "representative";
+//        cuscusttype adddescription
         var firstname = $("#firstname").val();
         var lastname = $("#lastname").val();
 
@@ -274,19 +286,19 @@
             type: 'POST',
             url: 'customermaster/saverepresentative_ajax.php',
             data: dataString
-        }).done(function (data) {
+        }).done(function(data) {
 
-        }).fail(function () {
+        }).fail(function() {
         });
     });
 
-    $("#paymentTerm").click(function () {
+    $("#paymentTerm").click(function() {
         var valueModel = $("#paymentTerm").val();
         if (valueModel === "1") {
             $('#addPaymentTerm').modal('show');
         }
     });
-    $("#savePaymentT").click(function () {
+    $("#savePaymentT").click(function() {
         var type = "paymentterm";
         var code = $("#termcode").val();
         var name = $("#termname").val();
@@ -297,31 +309,33 @@
             type: 'POST',
             url: 'customermaster/savepayterm_ajax.php',
             data: dataString
-        }).done(function (data) {
-
-        }).fail(function () {
+        }).done(function(data) {
+            $('#paymentTerm').append(data);
+            $("#termcode").val("");
+            $("#termname").val("");
+            $("#termdescription").val("");
+        }).fail(function() {
         });
     });
 
-    $("#taxInformation").click(function () {
+    $("#taxInformation").click(function() {
         var valueModel = $("#taxInformation").val();
         if (valueModel === "1") {
             $('#addTaxInformation').modal('show');
         }
     });
-    $("#saveTaxInformation").click(function () {
+    $("#saveTaxInformation").click(function() {
 
 //        var dataString = convertFormToJSON("addTaxInformation");
-        alert(dataString);
         var taxcode = $("#taxcode").val();
         var taxdescription = $("#taxdescription").val();
-        var taxname = $("input[name='taxname[]']").map(function () {
+        var taxname = $("input[name='taxname[]']").map(function() {
             return $(this).val();
         }).get();
-        var taxvalues = $("input[name='taxvalues[]']").map(function () {
+        var taxvalues = $("input[name='taxvalues[]']").map(function() {
             return $(this).val();
         }).get();
-        var isExempt = $("input[name='isExempt[]']").map(function () {
+        var isExempt = $("input[name='isExempt[]']").map(function() {
             return $(this).val();
         }).get();
         var dataString = "taxcode=" + taxcode + "&taxdescription=" + taxdescription + "&taxname=" + taxname + "&taxvalues=" + taxvalues + "&isExempt=" + isExempt;
@@ -329,67 +343,13 @@
             type: 'POST',
             url: 'customermaster/savetaxinfo_ajax.php',
             data: dataString
-        }).done(function (data) {
+        }).done(function(data) {
 //            reload();
-        }).fail(function () {
+        }).fail(function() {
         });
     });
 
-
-
-    function reload() {
-        $(document).ready(function () {
-            $.ajax({
-                type: 'GET',
-                url: 'customertype/listcustomertype_ajax.php',
-                dataType: "json",
-                success: function (data) {
-                    var customerType = ('#customerType');
-                    for (var i = 0; i < data.length; i++) {
-                        $(customerType).append('<option value=' + data[i].id + '>' + data[i].name + '</option>');
-                    }
-                }
-            });
-
-            $.ajax({
-                type: 'GET',
-                url: 'customermaster/listrepresentative_ajax.php',
-                dataType: "json",
-                success: function (data) {
-                    var rep = ('#rep');
-                    for (var i = 0; i < data.length; i++) {
-                        $(rep).append('<option value=' + data[i].id + '>' + data[i].name + ' ' + data[i].description + '</option>');
-                    }
-                }
-            });
-
-            $.ajax({
-                type: 'GET',
-                url: 'customermaster/listpaymentterm_ajax.php',
-                dataType: "json",
-                success: function (data) {
-                    var paymentTerm = ('#paymentTerm');
-                    for (var i = 0; i < data.length; i++) {
-                        $(paymentTerm).append('<option value=' + data[i].id + '>(' + data[i].code + ')' + data[i].name + '</option>');
-                    }
-                }
-            });
-
-            $.ajax({
-                type: 'GET',
-                url: 'customermaster/listpaymentterm_ajax.php',
-                dataType: "json",
-                success: function (data) {
-                    var paymentTerm = ('#paymentTerm');
-                    for (var i = 0; i < data.length; i++) {
-                        $(paymentTerm).append('<option value=' + data[i].id + '>(' + data[i].code + ')' + data[i].name + '</option>');
-                    }
-                }
-            });
-        });
-    }
-
-    $(function () {
+    $(function() {
         $('#taxcheckbox').click('#taxInformation', toggleSelection);
     });
 
