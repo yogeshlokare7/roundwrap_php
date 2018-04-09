@@ -26,7 +26,7 @@ $listofsupplier = MysqlConnection::fetchAll("supplier_master");
     }
 </style>
 
-<script>
+<!--<script>
     $("#search").on("keyup", function () {
         var value = $(this).val();
         $("table tr").each(function (index) {
@@ -43,6 +43,27 @@ $listofsupplier = MysqlConnection::fetchAll("supplier_master");
         });
     });
     ​
+</script>-->
+</script>
+<link href="css/jquery.contextMenu.css" rel="stylesheet" type="text/css" />
+<script src="js/jquery.min_1.11.3.js"></script>
+<script src="js/jquery.contextMenu.js" type="text/javascript"></script>
+<script>
+    $("#liveTableSearch").on("keyup", function () {
+        var value = $(this).val();
+        $("table tr").each(function (index) {
+            if (index !== 0) {
+                $row = $(this);
+                var id = $row.find("td:first").text();
+                if (id.indexOf(value) !== 0) {
+                    $(this).hide();
+                }
+                else {
+                    $(this).show();
+                }
+            }
+        });
+    });
 </script>
 <div id="content-header">
     <div id="breadcrumb"> 
@@ -81,7 +102,7 @@ $listofsupplier = MysqlConnection::fetchAll("supplier_master");
                 <?php
                 foreach ($listofsupplier as $key => $value) {
                     ?>
-                    <tr style="border-bottom: solid 1px rgb(220,220,220);text-align: center">
+                    <tr style="border-bottom: solid 1px rgb(220,220,220);text-align: center"  class="context-menu-one">
                         <td style="width: 2.3%"><a href="#" class="tip-top" data-original-title="Edit Record"><i  class="icon-edit"></i></a></td>
                         <td style="width: 2.3%"><a href="#myAlert" onclick="setDeleteField('<?php echo $value["supp_id"] ?>')" data-toggle="modal"  class="tip-top" data-original-title="Delete Record"><i class="icon-remove"></i></a> </td>
                         <td style="width: 270px"><?php echo $value["salutation"] ?>&nbsp;<?php echo $value["firstname"] ?>&nbsp;<?php echo $value["lastname"] ?></td>
@@ -132,5 +153,51 @@ $listofsupplier = MysqlConnection::fetchAll("supplier_master");
         }).fail(function () {
         });
         location.reload();
+    });
+</script>
+<script type="text/javascript">
+    $(function () {
+        $.contextMenu({
+            selector: '.context-menu-one',
+            callback: function (key, options) {
+                var m = "clicked row: " + key;
+                var id = $(this).attr('id');
+                switch (key) {
+                    case "create_vendor":
+                        window.location = "index.php?pagename=create_suppliermaster";
+                        break;
+                    case "edit_vendor":
+                        window.location = "index.php?pagename=create_suppliermaster&supplierid=" + id;
+                        break;
+                    case "delete_vendor":
+                        //document.getElementById("deleteThis").click();
+                        break;
+                    case "create_perchase_order":
+                        window.location = "index.php?pagename=create_perchaseorder";
+                        break;
+                    case "create_invoice":
+                        window.location = "index.php?pagename=manage_invoice";
+                        break;
+                    default:
+                        window.location = "index.php?pagename=manage_suppliermaster";
+                }
+                //window.console && console.log(m) || alert(m+"    id:"+id); 
+            },
+            items: {
+                "create_vendor": {name: "Create Vendor", icon: "add"},
+                "edit_vendor": {name: "Edit Vendor", icon: "edit"},
+//                "delete_customermaster": {name: "Delete Customer", icon: "delete"},
+                "create_perchase_order": {name: "Create perchase Order", icon: "add"},
+                "create_invoice": {name: "Create Invoice", icon: "add"},
+                "sep1": "---------",
+                "quit": {name: "Quit", icon: function () {
+                        return 'context-menu-icon context-menu-icon-quit';
+                    }}
+            }
+        });
+
+//        $('.context-menu-one').on('click', function(e){
+//            console.log('clicked', this);
+//       })    
     });
 </script>

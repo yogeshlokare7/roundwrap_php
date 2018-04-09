@@ -175,8 +175,8 @@
                     case "delete_customer":
                         //document.getElementById("deleteThis").click();
                         break;
-                    case "create_purchase_order":
-                        window.location = "index.php?pagename=create_perchaseorder";
+                    case "create_sales_order":
+                        window.location = "index.php?pagename=create_salesorder";
                         break;
                     case "create_invoice":
                         window.location = "index.php?pagename=manage_invoice";
@@ -190,7 +190,7 @@
                 "create_customer": {name: "Create Customer", icon: "add"},
                 "edit_customer": {name: "Edit Customer", icon: "edit"},
 //                "delete_customermaster": {name: "Delete Customer", icon: "delete"},
-                "create_purchase_order": {name: "Create Purchase Order", icon: "add"},
+                "create_sales_order": {name: "Create Sales Order", icon: "add"},
                 "create_invoice": {name: "Create Invoice", icon: "add"},
                 "sep1": "---------",
                 "quit": {name: "Quit", icon: function () {
