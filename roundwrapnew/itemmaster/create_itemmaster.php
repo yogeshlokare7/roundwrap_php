@@ -2,9 +2,11 @@
 $itemid = filter_input(INPUT_GET, "itemId");
 
 if (!empty($itemid)) {
-//    echo "SELECT * FROM customer_master WHERE id = $customerid ";
     $itemarray = MysqlConnection::fetchCustom("SELECT * FROM  item_master WHERE item_id =$itemid");
     $item = $itemarray[0];
+    echo "<pre>";
+    print_r($item);
+    echo "</pre>";
 }
 ?>
 <div class="container-fluid"  >
@@ -23,6 +25,5 @@ if (!empty($itemid)) {
                 <?php include 'itemmaster/iteminfo.php'; ?>
             </div>
         </div>  
-        <!--</form>-->
     </div>
 </div>

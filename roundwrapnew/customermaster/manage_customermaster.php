@@ -174,7 +174,7 @@
                         window.location = "index.php?pagename=manage_invoice";
                         break;
                     case "quit":
-                        window.location = "index.php?pagename=manage_";
+                        window.location = "index.php?pagename=manage_dashboard";
                         break;
                     default:
                         window.location = "index.php?pagename=manage_customermaster";

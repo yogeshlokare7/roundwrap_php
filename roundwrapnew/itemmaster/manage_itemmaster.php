@@ -71,10 +71,16 @@ $listofitems = MysqlConnection::fetchAll("item_master");
                         <td style="width: 200px;text-align: left" >&nbsp;&nbsp;<?php echo $value["item_code"] ?></td>
                         <td style="width: 100px;">&nbsp;<?php echo $value["type"] ?></td>
                         <td style="width: 100px;text-align: right"><?php echo $value["account"] ?>&nbsp;&nbsp;</td>
-                        <td style="width: 100px;text-align: right"><?php echo round($value["purchase_rate"], 2); ?>&nbsp;&nbsp;&nbsp;</td>
+                        <td style="width: 100px;text-align: right">
+                            <?php echo ($value["rate"] == 0 ? round($value["purchase_rate"], 2) : round($value["rate"], 2)); ?>
+                            &nbsp;$&nbsp;&nbsp;
+                        </td>
                         <td style="width: 100px;text-align: right"><?php echo round($value["sell_rate"], 2); ?>&nbsp;-&nbsp;&nbsp;</td>
                         <td style="width: 100px;text-align: right">$&nbsp;<?php echo round($value["price"], 2); ?>&nbsp;&nbsp;</td>
-                        <td style="width: 400px;text-align: left" >&nbsp;&nbsp;<?php echo $value["item_desc_sales"] ?></td>
+                        <td style="width: 400px;text-align: left" >
+                            &nbsp;&nbsp;
+                            <?php echo $value["item_desc_sales"] == "" ? $value["item_desc"] : $value["item_desc_sales"] ?>
+                        </td>
                         <td   >&nbsp;&nbsp;<?php echo $value["item_desc_purch"] ?></td>
                     </tr>
                     <?php
@@ -85,7 +91,7 @@ $listofitems = MysqlConnection::fetchAll("item_master");
                 for ($index1 = 0; $index1 < 20; $index1++) {
                     ?>
                     <tr style="border-bottom: solid 1px rgb(220,220,220);text-align: left">
-                        <td style="width: 2.3%;">&nbsp;<?php echo $index + $index1?></td>
+                        <td style="width: 2.3%;">&nbsp;<?php echo $index + $index1 ?></td>
                         <td style="width: 200px;text-align: left" ></td>
                         <td style="width: 100px;">&nbsp;</td>
                         <td style="width: 100px;text-align: right"></td>
@@ -109,15 +115,15 @@ $listofitems = MysqlConnection::fetchAll("item_master");
 </div>
 
 <script>
-    $("#deleteThis").click(function() {
+    $("#deleteThis").click(function () {
         $("div#divLoading").addClass('show');
         var dataString = "deleteId=" + $('#deleteId').val();
         $.ajax({
             type: 'POST',
             url: 'itemmaster/itemmaster_ajax.php',
             data: dataString
-        }).done(function(data) {
-        }).fail(function() {
+        }).done(function (data) {
+        }).fail(function () {
         });
         location.reload();
     });
@@ -128,10 +134,10 @@ $listofitems = MysqlConnection::fetchAll("item_master");
 
 </script>
 <script type="text/javascript">
-    $(function() {
+    $(function () {
         $.contextMenu({
             selector: '.context-menu-one',
-            callback: function(key, options) {
+            callback: function (key, options) {
                 var m = "clicked row: " + key;
                 var id = $(this).attr('id');
                 switch (key) {
@@ -158,7 +164,7 @@ $listofitems = MysqlConnection::fetchAll("item_master");
 //                "create_sales_order": {name: "Create Sales Order", icon: "add"},
 //                "create_invoice": {name: "Create Invoice", icon: "add"},
                 "sep1": "---------",
-                "quit": {name: "QUIT", icon: function() {
+                "quit": {name: "QUIT", icon: function () {
                         return 'context-menu-icon context-menu-icon-quit';
                     }}
             }
@@ -170,8 +176,8 @@ $listofitems = MysqlConnection::fetchAll("item_master");
                 type: 'POST',
                 url: 'itemmaster/itemmaster_ajax.php',
                 data: dataString
-            }).done(function(data) {
-            }).fail(function() {
+            }).done(function (data) {
+            }).fail(function () {
             });
             location.reload();
         }

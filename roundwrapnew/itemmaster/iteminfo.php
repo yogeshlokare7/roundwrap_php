@@ -31,8 +31,8 @@ $itemlist = MysqlConnection::fetchCustom("SELECT item_id,item_code FROM item_mas
                 <td style="width: 150px;">Type</td>
                 <td style="width: 220px;">
                     <select name="type"  id="type" value="">
-                        <option value="Service" <?php echo $item["type"] == "Service" ? "selected" :  "" ?> >Service</option>
-                        <option value="InventoryPart" <?php echo $item["type"] == "InventoryPart" ? "selected" :  "" ?>  >Inventory Part</option>
+                        <option value="Service" <?php echo $item["type"] == "Service" ? "selected" : "" ?> >Service</option>
+                        <option value="InventoryPart" <?php echo $item["type"] == "InventoryPart" ? "selected" : "" ?>  >Inventory Part</option>
                     </select>
                 </td>
                 <td></td>
@@ -63,7 +63,9 @@ $itemlist = MysqlConnection::fetchCustom("SELECT item_id,item_code FROM item_mas
                 <table style="width: 80%;" id="iteminfo" border="0">
                     <tr style="vertical-align: top">
                         <td  style="width: 150px;">Description</td>
-                        <td  style="width: 220px;" ><textarea name="item_desc" id="item_desc" value="<?php echo $item["item_desc"] ?>" minlenght="2" maxlength="60"></textarea></td>
+                        <td  style="width: 220px;" ><textarea name="item_desc" id="item_desc" minlenght="2" maxlength="60" style="line-height: 15px">
+                                <?php echo $item["item_desc"] ?></textarea>
+                        </td>
                         <td style="width: 220px;">
                             <label >Sales Tax Code</label>
                             <select name="salestaxcode" id="salestaxcode" value="<?php echo $item["salestaxcode"] ?>">
@@ -83,7 +85,7 @@ $itemlist = MysqlConnection::fetchCustom("SELECT item_id,item_code FROM item_mas
                     </tr>
                 </table>
             </div>
-        <?php } else if ($item["type"] == "InventoryPart" || $item["type"] == "") { ?>
+        <?php }  if ($item["type"] == "InventoryPart" || $item["type"] == "" ) { ?>
             <div id="inventorypartfrom">
                 <table border="0"> 
                     <tr style="vertical-align: top">
@@ -168,8 +170,18 @@ $itemlist = MysqlConnection::fetchCustom("SELECT item_id,item_code FROM item_mas
             </div>
         <?php } ?>
         <hr/>
-        <!--    <button type="button" id="btnSubmitFullForm" class="btn btn-warning">Next</button>-->
-        <input type="submit" id="btnSubmitFullForm" class="btn btn-success" onClick='submitDetailsForm()' value="SAVE AND NEXT"/>
+        <?php
+        if (isset($itemid)) {
+            ?>
+            <input type="submit" id="btnSubmitFullForm" class="btn btn-success" onClick='submitDetailsForm()' value="UPDATE"/>
+            <?php
+        } else {
+            ?>
+            <input type="submit" id="btnSubmitFullForm" class="btn btn-success" onClick='submitDetailsForm()' value="SAVE"/>
+            <?php
+        }
+        ?>
+        <input type="hidden" value="<?php echo $item["item_id"] ?>" id="item_id" name="item_id"/>
         <a href="index.php?pagename=manage_itemmaster" id="btnSubmitFullForm" class="btn btn-info">CANCEL</a>
     </form>
 </fieldset>
@@ -181,13 +193,13 @@ $itemlist = MysqlConnection::fetchCustom("SELECT item_id,item_code FROM item_mas
         $("#frmItemsSubmit").submit();
     }
 <?php if ($item["type"] == "") { ?>
-        $(document).ready(function() {
+        $(document).ready(function () {
             $('#inventorypartfrom').addClass('hide');
             $('#inventorypartfrom').removeClass('show');
         });
 <?php } ?>
 
-    $("#type").click(function() {
+    $("#type").click(function () {
         var valueModel = $("#type").val();
         if (valueModel === "Service") {
             $('#serviceform').addClass('show');
