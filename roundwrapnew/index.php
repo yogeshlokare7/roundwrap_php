@@ -25,7 +25,13 @@ if ($_SESSION["user"] == "") {
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>Round Wrap</title>
+        <title>
+            Welcome to
+            <?php echo $_SESSION["user"]["cmpName"] ?>
+            <?php echo $_SESSION["user"]["phone"] ?>
+            <?php echo $_SESSION["user"]["province"] ?>
+            <?php echo $_SESSION["user"]["country"] ?>
+        </title>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="stylesheet" href="css/bootstrap.min.css" />
@@ -147,7 +153,7 @@ if ($_SESSION["user"] == "") {
 
         <div  style=" flex-shrink: 0;">
             <div id="footer" ></a> 
-               <?php include './footer.php';?>
+                <?php include './footer.php'; ?>
             </div>
         </div>
     </body>

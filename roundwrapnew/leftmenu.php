@@ -35,7 +35,7 @@ ob_start();
     </li>
 
     <li style="float: right" ><a href="logout.php"><i class="icon  icon-off"></i><span>Log Out</span> </a></li>
-    <li style="float: right" ><a ><i class="icon  icon-time"></i><span><?php echo date("d-m-y h:i:s") ?></span> </a></li>
+    <li style="float: right" ><a ><i class="icon  icon-time"></i><span><?php echo $_SESSION["time"] ?></span> </a></li>
     <li style="float: right;text-transform: capitalize" >
         <a href="logout.php"><i class="icon  icon-user"></i><span>Hi <?php echo $_SESSION["user"]["firstName"] ?>&nbsp; <?php echo $_SESSION["user"]["lastName"] ?></span>
     </li>

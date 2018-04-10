@@ -16,6 +16,7 @@ if (isset($_POST["go"])) {
         $error = "Invalid username or password!!!";
     } else {
         $_SESSION["user"] = $user;
+        $_SESSION["time"] = date("d-M-Y h:i:s a");
         header("location:index.php");
     }
 }
