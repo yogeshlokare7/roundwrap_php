@@ -128,7 +128,7 @@ $listofitems = MysqlConnection::fetchAll("item_master");
                         deleteItem(id);
                         break;
                     case "quit":
-                        window.location = "index.php?pagename=manage_" ;
+                        window.location = "index.php?pagename=manage_dashboard" ;
                         break;
                     default:
                         window.location = "index.php?pagename=manage_itemmaster";
@@ -136,7 +136,7 @@ $listofitems = MysqlConnection::fetchAll("item_master");
             },
             items: {
                 "add_item": {name: "CREATE ITEM", icon: "add"},
-                "edit_item": {name: "EDIT ITEM", icon: "edit"},
+                "edit_item": {name: "EDIT ITEM", icon:"edit"},
                 "delete_item": {name: "DELETE ITEM", icon: "delete"},
 //                "create_sales_order": {name: "Create Sales Order", icon: "add"},
 //                "create_invoice": {name: "Create Invoice", icon: "add"},

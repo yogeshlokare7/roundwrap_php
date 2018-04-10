@@ -1,4 +1,9 @@
 <?php
+$itemPrimary = $_GET["itemPrimary"];
+if (!empty($itemPrimary)) {
+    $resultset = MysqlConnection::fetchCustom("SELECT * FROM  `item_master` where item_id = $itemPrimary");
+    $item = $resultset[0];
+}
 $itemlist = MysqlConnection::fetchCustom("SELECT item_id,item_code FROM item_master;");
 ?>
 
@@ -26,8 +31,8 @@ $itemlist = MysqlConnection::fetchCustom("SELECT item_id,item_code FROM item_mas
                 <td style="width: 150px;">Type</td>
                 <td style="width: 220px;">
                     <select name="type"  id="type" value="">
-                        <option value="Service" <?php echo $item["type"] == "Service" ? "selected" : "" ?> >Service</option>
-                        <option value="InventoryPart" <?php echo $item["type"] == "InventoryPart" ? "selected" : "" ?> >Inventory Part</option>
+                        <option value="Service">Service</option>
+                        <option value="InventoryPart" >Inventory Part</option>
                     </select>
                 </td>
                 <td></td>
@@ -38,7 +43,7 @@ $itemlist = MysqlConnection::fetchCustom("SELECT item_id,item_code FROM item_mas
                 <td>Item Name / Code</td>
                 <td  style="vertical-align: bottom"><input type="text" name="item_code" id="item_code" value="<?php echo $item["item_code"] ?>"  autofocus="" required="true" minlenght="2" maxlength="30" ></td>
                 <td  style="vertical-align: bottom;width: 220px;">Unit of Measures<input type="text" name="unit" id="unit" value="<?php echo $item["unit"] ?>"/></td>
-                <td  style="vertical-align: bottom">Sub Item of<br/>
+                <td  style="vertical-align: bottom">Subitem of<br/>
                     <select name="subitemof" id="subitemof" value="<?php echo $item["subitemof"] ?>">
                         <option value="">&nbsp;&nbsp;</option>
                         <?php
@@ -51,6 +56,13 @@ $itemlist = MysqlConnection::fetchCustom("SELECT item_id,item_code FROM item_mas
                     </select>
                 </td>
                 <td></td>
+    <!--            <td  style="vertical-align: bottom">
+                    Account
+                    <select name="account" id="account" value="<?php echo $item["account"] ?>">
+                        <option value="">&nbsp;&nbsp;</option>
+                        <option value="1" ><< ADD NEW >></option>
+                    </select>
+                </td>-->
             </tr>
         </table>
         <div id="serviceform">
@@ -70,6 +82,7 @@ $itemlist = MysqlConnection::fetchCustom("SELECT item_id,item_code FROM item_mas
                         <input type="text" name="rate" id="rate" onkeypress="return chkNumericKey(event)" value="<?php echo $item["rate"] ?>" minlenght="2" maxlength="30"  >
                     </td>
                 </tr>
+
                 <tr>
                     <td colspan="2" style="text-align: left"><input type="checkbox" id="taxcheckbox">&nbsp;This service performed by subcontractor,owner or partner</td>
                     <td></td>
@@ -84,8 +97,10 @@ $itemlist = MysqlConnection::fetchCustom("SELECT item_id,item_code FROM item_mas
                     <td>
                         <fieldset class="well the-fieldset">
                             <table  border="0">
+
                                 <tr style="vertical-align: top">
                                     <td style="width: 40%; "><label class="control-label">Cost</label></td>
+
                                     <td><input type="text" name="purchase_rate" onkeypress="return chkNumericKey(event)" id="purchase_rate" value="<?php echo $item["purchase_rate"] ?>" autofocus="" required="true" minlenght="2" maxlength="30" ></td>   
                                 </tr>
                                 <tr >
@@ -190,17 +205,5 @@ $itemlist = MysqlConnection::fetchCustom("SELECT item_id,item_code FROM item_mas
             $('#inventorypartfrom').addClass('show');
         }
     });
-    
-    <?php 
-        if($value["item_id"] == "InventoryPart"){
-            echo "$('#serviceform').removeClass('show');";
-            echo "$('#serviceform').addClass('hide');";
-            echo "$('#inventorypartfrom').addClass('show');";
-        }else{
-            echo "";
-            echo "";
-            echo "";
-        }
-    ?>
 </script>
 

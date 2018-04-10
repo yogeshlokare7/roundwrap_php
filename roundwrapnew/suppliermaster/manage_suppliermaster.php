@@ -43,23 +43,23 @@
         });
     });
 </script>
-<div id="content-header">
-    <div id="breadcrumb"> 
-        <a href="index.php" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a>
-        <a title="View Supplier Master" class="tip-bottom"><i class="icon-home"></i>View Vendor Master</a>
-    </div>
-</div>
 <div class="container-fluid">
-    <br/>
-    <table class="customtable" style="border: 0px;">
-        <tr style="height: 30px;background-color: rgb(240,240,240);;height: 40px;">
-            <td style="width: 11%;"><a class="btn"  href="index.php?pagename=create_suppliermaster" ><i class="icon icon-user"></i>&nbsp;ADD VENDOR</a></td>
-            <th style="width: 2.3%">&nbsp;Search&nbsp;:&nbsp;</th>
-            <th colspan="9" style="text-align: left">
-                <input type="text" id="searchinput" name="searchinput" style="width: 50%">
-            </th>
-        </tr>
-    </table>
+    <div class="cutomheader">
+        <h5 style="font-family: verdana;font-size: 12px;">LIST VENDOR'S</h5>
+    </div>
+
+    <div class="cutomheader">
+        <table>
+<!--            <table class="customtable" style="border: 0px;">-->
+            <tr >
+                <td><a class="btn"  href="index.php?pagename=create_suppliermaster" ><i class="icon icon-user"></i>&nbsp;ADD VENDOR</a></td>
+                <th >&nbsp;Search&nbsp;:&nbsp;</th>
+                <th colspan="9" > <input type="text" >
+                </th>
+            </tr>
+        </table>
+    </div>
+
     <div class="widget-box">
         <table class="customtable" border="1">
             <tr style="height: 30px;background-color: rgb(240,240,240);">
@@ -154,7 +154,7 @@
                         window.location = "index.php?pagename=manage_invoice";
                         break;
                     case "quit":
-                        window.location = "index.php?pagename=manage_";
+                        window.location = "index.php?pagename=manage_dashboard";
                         break;
                     default:
                         window.location = "index.php?pagename=manage_suppliermaster";
@@ -168,14 +168,14 @@
                 "create_perchase_order": {name: "CREATE PURCHASE ORDER", icon: "add"},
                 "create_invoice": {name: "CREATE INVOICE", icon: "add"},
                 "sep1": "---------",
-                "quit": {name: "Quit", icon: function () {
+                "quit": {name: "QUIT", icon: function () {
                         return 'context-menu-icon context-menu-icon-quit';
                     }}
             }
         });
 
-//        $('.context-menu-one').on('click', function(e){
-//            console.log('clicked', this);
-//       })    
+        //        $('.context-menu-one').on('click', function(e){
+        //            console.log('clicked', this);
+        //       })    
     });
 </script>

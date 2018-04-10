@@ -20,79 +20,79 @@ $sqlcustomertypepredata = MysqlConnection::fetchCustom("SELECT id,name FROM gene
 $sqlpaymenttermdata = MysqlConnection::fetchCustom("SELECT id,name,code FROM generic_entry where type = 'paymentterm' ORDER BY id DESC ;");
 $sqltaxinfodata = MysqlConnection::fetchCustom("SELECT * FROM taxinfo_table ORDER BY id DESC ;");
 ?>
+<fieldset class="well the-fieldset">
+    <table  style="width: 80%;vertical-align: top" border="0"> 
+        <tr>
+            <td><label class="control-label">Customer Type</label></td>
+            <td>
+                <select name="cust_type" id="cust_type"> 
+                    <option value="">&nbsp;&nbsp;</option>
+                    <option value="1" ><< ADD NEW >></option>
+                    <?php foreach ($sqlcustomertypepredata as $key => $value) { ?>
+                        <option value="<?php echo $value["id"] ?>"><?php echo $value["name"] ?></option>
+                    <?php } ?>
+                </select>
+            </td>
+            <td><label class="control-label">Discount</label></td>
+            <td>
+                <select name="discount" id="discount">
+                    <option value="0">&nbsp;</option>
+                    <option value="1">1 %</option>
+                    <?php for ($index = 5; $index <= 100; $index+=5) { ?>
+                        <option value="<?php echo $index ?>"><?php echo $index ?>%</option>
+                    <?php } ?>
+                </select>
+            </td>
+            <td><label class="control-label">Term</label></td>
+            <td>
+                <select name="paymentTerm" id="paymentTerm" style="margin-top: 5px;">
+                    <option value="">&nbsp;&nbsp;</option>
+                    <option value="1" ><< ADD NEW >></option>
+                    <?php foreach ($sqlpaymenttermdata as $key => $value) { ?>
+                        <option value="<?php echo $value["id"] ?>"><?php echo $value["code"] ?> - <?php echo $value["name"] ?></option>
+                    <?php } ?>
+                </select>
+            </td>
+        </tr>
+        <tr>
 
-<table style="width: 100%;">
+            <td><label class="control-label">Rep</label></td>
+            <td>
+                <select name="sales_person_name" id="sales_person_name">
+                    <option value="">&nbsp;&nbsp;</option>
+                    <option value="1" ><< ADD NEW >></option>
+                </select>
+            </td>
+            <td>Business No</td>
+            <td><input type="text" name="businessno" minlenght="2" maxlength="20" id="businessno"  value="<?php echo filter_input(INPUT_POST, "businessno") ?>" ></td>
+            <td>Certificate</td>
+            <td><input type="file"></td>
+        </tr>
 
-    <tr>
-        <td><label class="control-label">Customer Type</label></td>
-        <td>
-            <select name="cust_type" id="cust_type"> 
-                <option value="">&nbsp;&nbsp;</option>
-                <option value="1" ><< ADD NEW >></option>
-                <?php foreach ($sqlcustomertypepredata as $key => $value) { ?>
-                    <option value="<?php echo $value["id"] ?>"><?php echo $value["name"] ?></option>
-                <?php } ?>
-            </select>
-        </td>
-        <td><label class="control-label">Discount</label></td>
-        <td>
-            <select name="discount" id="discount">
-                <option value="0">&nbsp;</option>
-                <option value="1">1 %</option>
-                <?php for ($index = 5; $index <= 100; $index+=5) { ?>
-                    <option value="<?php echo $index ?>"><?php echo $index ?>%</option>
-                <?php } ?>
-            </select>
-        </td>
-        <td><label class="control-label">Term</label></td>
-        <td>
-            <select name="paymentTerm" id="paymentTerm" style="margin-top: 5px;">
-                <option value="">&nbsp;&nbsp;</option>
-                <option value="1" ><< ADD NEW >></option>
-                <?php foreach ($sqlpaymenttermdata as $key => $value) { ?>
-                    <option value="<?php echo $value["id"] ?>"><?php echo $value["code"] ?> - <?php echo $value["name"] ?></option>
-                <?php } ?>
-            </select>
-        </td>
-    </tr>
-    <tr>
+        <tr>
+            <td>&nbsp;</td>
+            <td><input type="checkbox" id="taxcheckbox">&nbsp;Use customer tax code</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+            <td>
+                <select name="taxInformation" id="taxInformation">
+                    <option value="">&nbsp;&nbsp;</option>
+                    <option value="1" ><< ADD NEW >></option>
+                    <?php foreach ($sqltaxinfodata as $key => $value) { ?>
+                        <option  value='<?php echo $value["id"] ?>'><?php echo $value["taxcode"] ?> - <?php echo $value["taxname"] ?> - <?php echo $value["taxvalues"] ?>%</option>
+                    <?php } ?>
+                </select>
+            </td>
+        </tr>
 
-        <td><label class="control-label">Rep</label></td>
-        <td>
-            <select name="sales_person_name" id="sales_person_name">
-                <option value="">&nbsp;&nbsp;</option>
-                <option value="1" ><< ADD NEW >></option>
-            </select>
-        </td>
-        <td>Business No</td>
-        <td><input type="text" name="businessno" minlenght="2" maxlength="20" id="businessno"  value="<?php echo filter_input(INPUT_POST, "businessno") ?>" ></td>
-        <td>Certificate</td>
-        <td><input type="file"></td>
-    </tr>
-
-    <tr>
-        <td>&nbsp;</td>
-        <td><input type="checkbox" id="taxcheckbox">&nbsp;Use customer tax code</td>
-        <td></td>
-        <td></td>
-    </tr>
-    <tr>
-        <td>&nbsp;</td>
-        <td>
-            <select name="taxInformation" id="taxInformation">
-                <option value="">&nbsp;&nbsp;</option>
-                <option value="1" ><< ADD NEW >></option>
-                <?php foreach ($sqltaxinfodata as $key => $value) { ?>
-                    <option  value='<?php echo $value["id"] ?>'><?php echo $value["taxcode"] ?> - <?php echo $value["taxname"] ?> - <?php echo $value["taxvalues"] ?>%</option>
-                <?php } ?>
-            </select>
-        </td>
-    </tr>
-
-</table>
+    </table>
+</fieldset>
 <hr/>
-<input type="button" id="btnCmpPrev2" value="Previous" class="btn btn-info" href="#tab2">
-<input type="button" id="btnCmpNext3" value="Next" class="btn btn-info" href="#tab4">
+<input type="button" id="btnCmpPrev2" value="PREVIOUS" class="btn btn-info" href="#tab2">
+<input type="button" id="btnCmpNext3" value="NEXT" class="btn btn-info" href="#tab4">
 
 <!-- this is custom model dialog --->
 <div id="custtypemodel" class="modal hide" style="top: 10%;left: 50%;width: 420px;">
@@ -231,9 +231,9 @@ $sqltaxinfodata = MysqlConnection::fetchCustom("SELECT * FROM taxinfo_table ORDE
 <!-- this is model dialog --->
 
 <script>
-    jQuery(function() {
+    jQuery(function () {
         var counter = 1;
-        jQuery('a.icon-plus').click(function(event) {
+        jQuery('a.icon-plus').click(function (event) {
             event.preventDefault();
             var newRow = jQuery('<tr>'
                     + '<td><input type="text" name="taxcode[]" style="width: 25px;" id="taxtaxname[]" ></td>'
@@ -247,19 +247,19 @@ $sqltaxinfodata = MysqlConnection::fetchCustom("SELECT * FROM taxinfo_table ORDE
         });
     });
 
-    $(document).ready(function() {
-        $("#addtax").on('click', 'a.icon-trash', function() {
+    $(document).ready(function () {
+        $("#addtax").on('click', 'a.icon-trash', function () {
             $(this).closest('tr').remove();
         });
 
     });
-    $("#cust_type").click(function() {
+    $("#cust_type").click(function () {
         var valueModel = $("#cust_type").val();
         if (valueModel === "1") {
             $('#custtypemodel').modal('show');
         }
     });
-    $("#saveCustomerType").click(function() {
+    $("#saveCustomerType").click(function () {
         var type = "customer_type";
         var name = $("#cuscusttype").val();
         var description = $("#adddescription").val();
@@ -269,21 +269,21 @@ $sqltaxinfodata = MysqlConnection::fetchCustom("SELECT * FROM taxinfo_table ORDE
             type: 'POST',
             url: 'customertype/savecustomertype_ajax.php',
             data: dataString
-        }).done(function(data) {
+        }).done(function (data) {
             $('#cust_type').append(data);
             $("#cuscusttype").val("");
             $("#adddescription").val("");
-        }).fail(function() {
+        }).fail(function () {
         });
     });
 
-    $("#sales_person_name").click(function() {
+    $("#sales_person_name").click(function () {
         var valueModel = $("#sales_person_name").val();
         if (valueModel === "1") {
             $('#addRepresentative').modal('show');
         }
     });
-    $("#saveRepresentative").click(function() {
+    $("#saveRepresentative").click(function () {
         var type = "representative";
 //        cuscusttype adddescription
         var firstname = $("#firstname").val();
@@ -294,19 +294,19 @@ $sqltaxinfodata = MysqlConnection::fetchCustom("SELECT * FROM taxinfo_table ORDE
             type: 'POST',
             url: 'customermaster/saverepresentative_ajax.php',
             data: dataString
-        }).done(function(data) {
+        }).done(function (data) {
 
-        }).fail(function() {
+        }).fail(function () {
         });
     });
 
-    $("#paymentTerm").click(function() {
+    $("#paymentTerm").click(function () {
         var valueModel = $("#paymentTerm").val();
         if (valueModel === "1") {
             $('#addPaymentTerm').modal('show');
         }
     });
-    $("#savePaymentT").click(function() {
+    $("#savePaymentT").click(function () {
         var type = "paymentterm";
         var code = $("#termcode").val();
         var name = $("#termname").val();
@@ -317,34 +317,34 @@ $sqltaxinfodata = MysqlConnection::fetchCustom("SELECT * FROM taxinfo_table ORDE
             type: 'POST',
             url: 'customermaster/savepayterm_ajax.php',
             data: dataString
-        }).done(function(data) {
+        }).done(function (data) {
             $('#paymentTerm').append(data);
             $("#termcode").val("");
             $("#termname").val("");
             $("#termdescription").val("");
-        }).fail(function() {
+        }).fail(function () {
         });
     });
 
-    $("#taxInformation").click(function() {
+    $("#taxInformation").click(function () {
         var valueModel = $("#taxInformation").val();
         if (valueModel === "1") {
             $('#addTaxInformation').modal('show');
         }
     });
-    $("#saveTaxInformation").click(function() {
+    $("#saveTaxInformation").click(function () {
 //        var dataString = convertFormToJSON("addTaxInformation"); 
 //        //taxcode  taxtaxname   taxtaxvalues   taxisExempt
-        var taxcode = $("input[name='taxcode[]']").map(function() {
+        var taxcode = $("input[name='taxcode[]']").map(function () {
             return $(this).val();
         }).get();
-        var taxtaxname = $("input[name='taxtaxname[]']").map(function() {
+        var taxtaxname = $("input[name='taxtaxname[]']").map(function () {
             return $(this).val();
         }).get();
-        var taxtaxvalues = $("input[name='taxtaxvalues[]']").map(function() {
+        var taxtaxvalues = $("input[name='taxtaxvalues[]']").map(function () {
             return $(this).val();
         }).get();
-        var taxisExempt = $("input[name='taxisExempt[]']").map(function() {
+        var taxisExempt = $("input[name='taxisExempt[]']").map(function () {
             return $(this).val();
         }).get();
         var dataString = "taxcode=" + taxcode + "&taxtaxname=" + taxtaxname + "&taxtaxvalues=" + taxtaxvalues + "&taxisExempt=" + taxisExempt;
@@ -352,16 +352,16 @@ $sqltaxinfodata = MysqlConnection::fetchCustom("SELECT * FROM taxinfo_table ORDE
             type: 'POST',
             url: 'customermaster/savetaxinfo_ajax.php',
             data: dataString
-        }).done(function(data) {
+        }).done(function (data) {
             $("input[name='taxcode[]']").val("");
             $("input[name='taxtaxname[]']").val("");
             $("input[name='taxtaxvalues[]']").val("");
             $("input[name='taxisExempt[]']").val("");
-        }).fail(function() {
+        }).fail(function () {
         });
     });
 
-    $(function() {
+    $(function () {
         $('#taxcheckbox').click('#taxInformation', toggleSelection);
     });
 

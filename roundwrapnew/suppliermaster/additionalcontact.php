@@ -3,8 +3,8 @@
         $("#alterno").mask("(999) 999-9999");
     });
 </script>
-<hr/>
-<table style="width: 100%;" id="supplierInfo">
+<fieldset class="well the-fieldset">
+<table style="width: 100%;"  id="supplierInfo" vertical-align="top">
     <tr>
         <td><label class="control-label">Name</label></td>
         <td><input type="text" name="contact_person[]" value="<?php echo filter_input(INPUT_POST, "contact_person[]") ?>"  id="contact_person" minlength="2" maxlength="30"></td>
@@ -13,10 +13,10 @@
         <td><label class="control-label">Phone</label></td>
         <td><input type="text" id="alterno" name="alterno[]"  value="<?php echo filter_input(INPUT_POST, "alterno[]") ?>" minlength="2" maxlength="20"><a style="margin-left: 20px;float:center;margin-bottom: 10px;" class="icon-plus" href="#"  ></a></td>
     </tr>
-</table>
+</table></fieldset>
 <hr/>
-<input type="button" id="btnVenPrev1" value="Previous" class="btn btn-info" href="#tab1"></td>
-<button type="submit" id="btnSubmitFullForm" class="btn btn-success">Submit</button>
+<input type="button" id="btnVenPrev1" value="PREVIOUS" class="btn btn-info" href="#tab1"></td>
+<button type="submit" id="btnSubmitFullForm" class="btn btn-success">SUBMIT</button>
 
 
 <script type="text/javascript">

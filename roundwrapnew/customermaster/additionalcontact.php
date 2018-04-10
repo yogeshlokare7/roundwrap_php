@@ -8,8 +8,8 @@ if (!empty($customerid)) {
         $("#alterno").mask("(99) 9999-9999");
     });
 </script>
-<hr/>
-<table style="width: 100%;" id="addcontacts" name="table1"> 
+<fieldset class="well the-fieldset">
+<table id="addcontacts" style="width: 80%;vertical-align: top" border="0"> 
     <?php
     if (count($customercontactarray) != 0) {
         $index = 1;
@@ -50,9 +50,11 @@ if (!empty($customerid)) {
     }
     ?>
 </table> 
+</fieldset>
 <hr/>
-<input type="button" id="btnCmpPrev1" value="Previous" class="btn btn-info" href="#tab1">
-<input type="button" id="btnCmpNext2" value="Next" class="btn btn-info" href="#tab2">
+<input type="button" id="btnCmpPrev1" value="PREVIOUS" class="btn btn-info" href="#tab1">
+<input type="button" id="btnCmpNext2" value="NEXT" class="btn btn-info" href="#tab2">
+
 <script type="text/javascript">
 
     jQuery(function () {
@@ -74,6 +76,7 @@ if (!empty($customerid)) {
         });
     });
 </script>
+
 
 
 

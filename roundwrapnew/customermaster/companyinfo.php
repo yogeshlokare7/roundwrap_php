@@ -17,68 +17,68 @@
     }
 </style>
 <script>
-    $(document).ready(function($) {
+    $(document).ready(function ($) {
         $("#phno").mask("(99) 9999-9999");
         $("#cust_fax").mask("(99) 9999-9999");
     });
 </script>
-<hr/>
-<table style="width: 100%;" id="companyInfo1" border="0">
-    <tr>
-        <td><label class="control-label">Salutation</label></td>
-        <td>
-            <select name="salutation" style="width: 60px;" id="salutation">
-                <option value=""></option>
-                <option value="Mr">Mr.</option>
-                <option value="Mrs" >Mrs.</option>
-                <option value="Miss">Miss.</option>
-                <option value="Ms">Ms.</option>
-            </select>
-            <input type="text" name="salutation1" style="width: 45%" placeholder="Add here">
-        </td>
-        <td><label class="control-label">First Name</label></td>
-        <td><input type="text" name="firstname" id="firstname"  value="<?php echo $customer["firstname"] ?>" autofocus="" required="true" minlenght="2" maxlength="30" ></td>
-        <td><label class="control-label">Last Name</label></td>
-        <td><input type="text" name="lastname" id="lastname"  value="<?php echo $customer["lastname"] ?>" minlenght="2" maxlength="30" ></td>
-    </tr>
-    <tr>
-        <td><label class="control-label">Company Name</label></td>
-        <td><input type="text" name="cust_companyname"  value="<?php echo $customer["cust_companyname"] ?>" id="cust_companyname" minlenght="2" maxlength="30"></td>
-        <td><label class="control-label">Email</label></td>
-        <td><input type="email" name="cust_email" id="cust_email"  value="<?php echo $customer["cust_email"] ?>" ></td>
-        <td><label class="control-label">Phone</label></td>
-        <td><input type="text" name="phno" id="phno"  value="<?php echo trim($customer["phno"]) ?>" ></td>
+<fieldset class="well the-fieldset">
+    <table  style="width: 80%;vertical-align: top" border="0">
+        <tr>
+            <td><label class="control-label">Salutation</label></td>
+            <td>
+                <select name="salutation" style="width: 60px;" id="salutation">
+                    <option value=""></option>
+                    <option value="Mr">Mr.</option>
+                    <option value="Mrs" >Mrs.</option>
+                    <option value="Miss">Miss.</option>
+                    <option value="Ms">Ms.</option>
+                </select>
+                <input type="text" name="salutation1" style="width: 45%" placeholder="Add here">
+            </td>
+            <td><label class="control-label">First Name</label></td>
+            <td><input type="text" name="firstname" id="firstname"  value="<?php echo $customer["firstname"] ?>" autofocus="" required="true" minlenght="2" maxlength="30" ></td>
+            <td><label class="control-label">Last Name</label></td>
+            <td><input type="text" name="lastname" id="lastname"  value="<?php echo $customer["lastname"] ?>" minlenght="2" maxlength="30" ></td>
+        </tr>
+        <tr>
+            <td><label class="control-label">Company Name</label></td>
+            <td><input type="text" name="cust_companyname"  value="<?php echo $customer["cust_companyname"] ?>" id="cust_companyname" minlenght="2" maxlength="30"></td>
+            <td><label class="control-label">Email</label></td>
+            <td><input type="email" name="cust_email" id="cust_email"  value="<?php echo $customer["cust_email"] ?>" ></td>
+            <td><label class="control-label">Phone</label></td>
+            <td><input type="text" name="phno" id="phno"  value="<?php echo trim($customer["phno"]) ?>" ></td>
 
-    </tr>
-    <tr>
-        <td><label class="control-label">Website</label></td>
-        <td><input type="text" name="website" id="website" plceholder="Enter Company Website" value="<?php echo $customer["website"] ?>" ></td>
-        <td><label class="control-label">Fax</label></td>
-        <td><input type="text" name="cust_fax" id="cust_fax"  value="<?php echo $customer["cust_fax"] ?>" ></td>
-        <td></td>
-        <td></td>
-    </tr>
-    <tr>
-        <td>Bill To</td>
-        <td><textarea style="height: 80px;;line-height: 20px;" name="billto" onfocus="fillAddress()"  id="billto" ><?php echo $customer["billto"] ?></textarea></td>
-        <td>Ship To </td>
-        <td><textarea   style="height: 80px;line-height: 20px;"  name="shipto" id="shipto"><?php echo $customer["shipto"] ?></textarea></td>
-        <td></td>
-        <td></td>
-    </tr>
-    <tr>
-        <td></td>
-        <td ><a onclick="copyOrRemove('1')">copy >></a></td>
-        <td></td>
-        <td><a onclick="copyOrRemove('0')"><< Remove</a></td>
-        <td></td>
-        <td></td>
-    </tr>
-</table>
+        </tr>
+        <tr>
+            <td><label class="control-label">Website</label></td>
+            <td><input type="text" name="website" id="website" plceholder="Enter Company Website" value="<?php echo $customer["website"] ?>" ></td>
+            <td><label class="control-label">Fax</label></td>
+            <td><input type="text" name="cust_fax" id="cust_fax"  value="<?php echo $customer["cust_fax"] ?>" ></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Bill To</td>
+            <td><textarea style="height: 80px;;line-height: 20px;" name="billto" onfocus="fillAddress()"  id="billto" ><?php echo $customer["billto"] ?></textarea></td>
+            <td>Ship To </td>
+            <td><textarea   style="height: 80px;line-height: 20px;"  name="shipto" id="shipto"><?php echo $customer["shipto"] ?></textarea></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td ><a onclick="copyOrRemove('1')">copy >></a></td>
+            <td></td>
+            <td><a onclick="copyOrRemove('0')"><< Remove</a></td>
+            <td></td>
+            <td></td>
+        </tr>
+    </table>
+</fieldset>
 <input type="hidden" value="<?php echo $customerid ?>" name="customerid">
 <hr/>
-<input type="button" id="btnCmpNext1" value="Next" class="btn btn-info" ><a href="customermaster/additionalcontact.php"></a>
-
+<input type="button" id="btnCmpNext1" value="NEXT" class="btn btn-info" ><a href="customermaster/additionalcontact.php"></a>
 <script>
 
 //     document.getElementById("btnCmpNext1").onclick = function () {

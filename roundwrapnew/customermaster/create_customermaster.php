@@ -7,16 +7,11 @@ if (!empty($customerid)) {
     $customer = $customerarray[0];
 }
 ?>
-
-<div id="content-header">
-    <div id="breadcrumb"> 
-        <a href="index.php" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a>
-        <a title="View Customer Master" class="tip-bottom">Create New Customer</a>
-    </div>
-</div>
 <div class="container-fluid" id="tabs">
-    <h5 style="font-family: verdana;font-size: 10px;">CREATE NEW CUSTOMER</h5>
-    <div class="widget-box" style="width: 90%;float: left;margin-top: -5px;">
+    <div class="cutomheader">
+        <h5 style="font-family: verdana;font-size: 12px;">CREATE NEW CUSTOMER</h5>
+    </div>
+    <div class="widget-box" >
         <div class="widget-title" >
             <ul class="nav nav-tabs" >
                 <li id="ciTab1" class="active"><a data-toggle="tab" href="#tab1">Company Information </a></li>
