@@ -63,8 +63,6 @@
     <div class="widget-box">
         <table class="customtable" border="1">
             <tr style="height: 30px;background-color: rgb(240,240,240);">
-<!--                <th style="width: 2.3%">#</th>
-                <th style="width: 2.3%">#</th>            				-->
                 <th  style="width: 270px">Vendor Name</th>
                 <th style="width: 312px">Company Name</th>
                 <th  style="width: 120px">Contact No</th>
@@ -76,13 +74,11 @@
             </tr>
         </table>
         <div style="height: 310px;overflow: auto;overflow-x: auto">
-            <table class="customtable" style="margin-top: -1px;"  border="1">
+            <table class="customtable" id="data"  style="margin-top: -1px;"  border="1">
                 <?php
                 foreach ($listofsupplier as $key => $value) {
                     ?>
                     <tr style="border-bottom: solid 1px rgb(220,220,220);text-align: left"  class="context-menu-one">
-<!--                        <td style="width: 2.3%"><a href="#" class="tip-top" data-original-title="Edit Record"><i  class="icon-edit"></i></a></td>
-                        <td style="width: 2.3%"><a href="#myAlert" onclick="setDeleteField('<?php echo $value["supp_id"] ?>')" data-toggle="modal"  class="tip-top" data-original-title="Delete Record"><i class="icon-remove"></i></a> </td>-->
                         <td style="width: 270px">&nbsp;&nbsp;<?php echo $value["salutation"] ?>&nbsp;<?php echo $value["firstname"] ?>&nbsp;<?php echo $value["lastname"] ?></td>
                         <td style="width: 312px">&nbsp;&nbsp;<?php echo $value["companyname"] ?></td>
                         <td style="width: 120px">&nbsp;&nbsp;<?php echo $value["supp_phoneNo"] ?></td>

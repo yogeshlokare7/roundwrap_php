@@ -22,11 +22,13 @@
         <td><label class="control-label">Salutation</label></td>
         <td>
             <select name="salutation" style="width: 60px;" id="salutation">
+                <option value=""></option>
                 <option value="Mr">Mr.</option>
                 <option value="Mrs" >Mrs.</option>
                 <option value="Miss">Miss.</option>
                 <option value="Ms">Ms.</option>
             </select>
+            <input type="text" name="salutation1" style="width: 45%" placeholder="Add here">
         </td>
         <td><label class="control-label" style="float: left">First Name </label></td>
         <td><input type="text" name="firstname" autofocus="" value="<?php echo filter_input(INPUT_POST, "firstname") ?>" id="firstname" minlength="2" maxlength="30" required="required"></td>
