@@ -1,117 +1,66 @@
 <?php
+
 error_reporting(0);
 session_start();
 ob_start();
-$sql = "SELECT * FROM `company_master`";
 
-$array = getResultSet($sql);
- 
+include './MysqlConnection.php';
 
-if (count($_POST) > 0) {
-    $sqlcompny = "SELECT * FROM `company_master` where cmp_id = " . $_POST['cmp_id'];
-    $resultcompany = getResultSet($sqlcompny);
-    $sqlloginuser = "SELECT * FROM " . $company["databasename"] . ".user_master WHERE username = '" . $_POST['username'] . "' AND password = '" . $_POST['password'] . "' AND cmpId = " . $company["cmp_id"];
-    $resultUser = getSubResult($sqlcompny, $company["databasename"]);
-    $arraymaster = array();
-    $arraymaster["company"] = $resultcompany[0];
-    $arraymaster["user"] = $resultUser[0];
-    $_SESSION["master"] = $arraymaster;
-    header("location:index.php");
-}
-
-function getResultSet($sql) {
-    $connect = mysqli_connect("localhost", "root", "root", "opmsconfig");
-    $mysqli_query = mysqli_query($connect, $sql);
-    $array = array();
-    while ($row = mysqli_fetch_array($mysqli_query)) {
-        $array[] = $row;
+if (isset($_POST["go"])) {
+    $username = $_POST["email"];
+    $password = $_POST["password"];
+    $sqllogin = "SELECT * from user_master  where username = '$username' and password = '$password';";
+    $sqlloginresultset = MysqlConnection::fetchCustom($sqllogin);
+    $user = $sqlloginresultset[0];
+    if ($user["user_id"] == "") {
+        $error = "Invalid username or password!!!";
+    } else {
+        $_SESSION["user"] = $user;
+        header("location:index.php");
     }
-    return $array;
-}
-
-function getSubResult($sql, $db) {
-    $connect = mysqli_connect("localhost", "root", "root", $db);
-    $mysqli_query = mysqli_query($connect, $sql);
-    $array = array();
-    while ($row = mysqli_fetch_array($mysqli_query)) {
-        $array[] = $row;
-    }
-    return $array;
 }
 ?>
 <!DOCTYPE html>
-<html lang="en">
-
+<html>
     <head>
-        <title>OPMS</title><meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="stylesheet" href="css/bootstrap.min.css" />
-        <link rel="stylesheet" href="css/bootstrap-responsive.min.css" />
-        <link rel="stylesheet" href="css/maruti-login.css" />
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name="viewport" content="width=1,initial-scale=1,user-scalable=1" />
+        <title>Login</title>
+        <link href="http://fonts.googleapis.com/css?family=Lato:100italic,100,300italic,300,400italic,400,700italic,700,900italic,900" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" type="text/css" href="assets/bootstrap/css/bootstrap.min.css" />
+        <link rel="stylesheet" type="text/css" href="assets/css/styles.css" />
     </head>
     <body>
-        <div id="loginbox">            
-            <form id="loginform" class="form-vertical" method="POST">
-                <div class="control-group normal_text"> <h3><img src="img/logo.png" alt="Logo" /></h3></div>
-                <div class="control-group">
-                    <div class="controls">
-                        <div class="main_input_box">
-                            <span class="add-on"><i class="icon-user"></i></span>
-                            <select id="cmp_id" name="cmp_id" style="height:40px; display:inline-block; width:75%;  border: 1px solid #dadada;">
-                                <?php
-                                foreach ($array as $key => $value) {
-                                    ?>
-                                    <option value="<?php echo $value["cmp_id"] ?>">
-                                        <?php echo $value["cmp_name"] ?>
-                                    </option>
-                                    <?php
-                                }
-                                ?>
+        <section class="container" style="margin-top: 80px;">
+            <section class="login-form">
+                <form method="post" role="login">
+                    <h2>Please sign in</h2>
+                    <p>To enter in your private dashboard</p>
+                    <p style="color: red"><?php echo $error ?></p>
+                    <div class="form-group">
+                        <div class="input-group">
+                            <div class="input-group-addon"><span class="text-primary glyphicon glyphicon-arrow-down"></span></div>
+                            <select class="form-control">
+                                <option>Round Wrap</option>
+                                <option>--</option>
                             </select>
                         </div>
                     </div>
-                </div>                             
-                <div class="control-group">
-                    <div class="controls">
-                        <div class="main_input_box">
-                            <span class="add-on"><i class="icon-user"></i></span><input type="text" name="username" placeholder="Username" />
+                    <div class="form-group">
+                        <div class="input-group">
+                            <div class="input-group-addon"><span class="text-primary glyphicon glyphicon-envelope"></span></div>
+                            <input type="email" name="email" placeholder="Email address" required class="form-control" />
                         </div>
                     </div>
-                </div>
-
-                <div class="control-group">
-                    <div class="controls">
-                        <div class="main_input_box">
-                            <span class="add-on"><i class="icon-lock"></i></span><input type="password" name="password" placeholder="Password" />
+                    <div class="form-group">
+                        <div class="input-group">
+                            <div class="input-group-addon"><span class="text-primary glyphicon glyphicon-lock"></span></div>
+                            <input type="password" name="password" placeholder="Password" required class="form-control" />
                         </div>
                     </div>
-                </div>
-                <div class="form-actions">
-                    <span class="pull-left"><a href="#" class="flip-link btn btn-inverse" id="to-recover">Lost password?</a></span>
-                    <span class="pull-right"><input type="submit" name="btnSubmit" class="btn btn-success" value="Login" /></span>
-                </div>
-            </form>
-            <form id="recoverform" action="#" class="form-vertical">
-                <p class="normal_text">Enter your e-mail address below and we will send you instructions how to recover a password.</p>
-
-                <div class="controls">
-                    <div class="main_input_box">
-                        <span class="add-on"><i class="icon-envelope"></i></span><input type="text" placeholder="E-mail address" />
-                    </div>
-                </div>
-
-                <div class="form-actions">
-                    <span class="pull-left"><a href="#" class="flip-link btn btn-inverse" id="to-login">&laquo; Back to login</a></span>
-                    <span class="pull-right"><button type="submit"  class="btn btn-info" value="Recover"></span>
-                </div>
-            </form>
-        </div>
-
-        <script src="js/jquery.min.js"></script>  
-        <script src="js/maruti.login.js"></script> 
+                    <button type="submit" name="go" class="btn btn-block btn-success">Sign in</button>
+                </form>
+            </section>
+        </section>
     </body>
-
 </html>
-
-
-

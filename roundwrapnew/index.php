@@ -13,9 +13,13 @@ if (count($explode) >= 2) {
     $module = $explode[1];
     $page = $explode[0] . " " . $explode[1];
 } else {
-    $include = "dashboard";
+    $include = "dashboard/manage_dashboard";
     $module = "Home";
     $page = "Dashboard";
+}
+
+if ($_SESSION["user"] == "") {
+    header("location:logout.php");
 }
 ?>
 <!DOCTYPE html>
@@ -112,7 +116,9 @@ if (count($explode) >= 2) {
     <body>
 
         <div style="height: 20%;width: 100% ;border:  solid 0px black; flex-shrink: 0;">
-            <div style="height: 40px;width: 100%;border:  solid 0px;margin-top: 10px;clear: both"></div>
+            <div style="height: 40px;width: 100%;border:  solid 0px;margin-top: 10px;clear: both;">
+                <img src="assets/images/download.png" style="width: 200px;height: 40px;margin: 0 auto;margin: 5px;">
+            </div>
             <div id="sidebar" style="margin-top: 50px;"><?php include './leftmenu.php'; ?></div>
         </div>
 
@@ -141,7 +147,7 @@ if (count($explode) >= 2) {
 
         <div  style=" flex-shrink: 0;">
             <div id="footer" ></a> 
-                This is footer
+               <?php include './footer.php';?>
             </div>
         </div>
     </body>
