@@ -47,7 +47,6 @@ $listofitems = MysqlConnection::fetchAll("item_master");
         </table>
     </div>
     <div class="widget-box">
-
         <table class="customtable" border="1">
             <tr style="height: 30px;background-color: rgb(240,240,240);">
                  <th style="width: 2.3%;">ID</th>

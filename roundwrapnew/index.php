@@ -61,7 +61,14 @@ if (count($explode) >= 2) {
                 if (!selected)
                     $(this).addClass("highlight");
             });
-
+            function chkNumericKey(event) {
+                var charCode = (event.which) ? event.which : event.keyCode;
+                if ((charCode >= 48 && charCode <= 57) || charCode === 46 || charCode === 45) {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
         </script>
 
         <style>
