@@ -49,7 +49,7 @@ $listofitems = MysqlConnection::fetchAll("item_master");
     <div class="widget-box">
         <table class="customtable" border="1">
             <tr style="height: 30px;background-color: rgb(240,240,240);">
-                 <th style="width: 2.3%;">ID</th>
+                <th style="width: 2.3%;">ID</th>
                 <th style="width: 200px;">Name</th>
                 <th style="width: 100px;">Type</th>
                 <th style="width: 100px;text-align: right">Account&nbsp;&nbsp;</th>
@@ -63,22 +63,39 @@ $listofitems = MysqlConnection::fetchAll("item_master");
         <div style="height: 310px;overflow: auto;overflow-x: auto">
             <table class="customtable" id="data"  style="margin-top: -1px;" border="1">
                 <?php
+                $index = 1;
                 foreach ($listofitems as $key => $value) {
-                    for ($index = 0; $index < 200; $index++) {
-                        ?>
-                        <tr id="<?php echo $value["item_id"] ?>" class="context-menu-one" style="border-bottom: solid 1px rgb(220,220,220);text-align: left" >
-                            <td style="width: 2.3%;">&nbsp;<?php echo $value["item_id"] ?></td>
-                            <td style="width: 200px;text-align: left" >&nbsp;&nbsp;<?php echo $value["item_code"] ?></td>
-                            <td style="width: 100px;">&nbsp;<?php echo $value["type"] ?></td>
-                            <td style="width: 100px;text-align: right"><?php echo $value["account"] ?>&nbsp;&nbsp;</td>
-                            <td style="width: 100px;text-align: right"><?php echo round($value["purchase_rate"], 2); ?>&nbsp;&nbsp;&nbsp;</td>
-                            <td style="width: 100px;text-align: right"><?php echo round($value["sell_rate"], 2); ?>&nbsp;-&nbsp;&nbsp;</td>
-                            <td style="width: 100px;text-align: right">$&nbsp;<?php echo round($value["price"], 2); ?>&nbsp;&nbsp;</td>
-                            <td style="width: 400px;text-align: left" >&nbsp;&nbsp;<?php echo $value["item_desc_sales"] ?></td>
-                            <td   >&nbsp;&nbsp;<?php echo $value["item_desc_purch"] ?></td>
-                        </tr>
-                        <?php
-                    }
+                    ?>
+                    <tr id="<?php echo $value["item_id"] ?>" class="context-menu-one" style="border-bottom: solid 1px rgb(220,220,220);text-align: left" >
+                        <td style="width: 2.3%;">&nbsp;<?php echo $index ?></td>
+                        <td style="width: 200px;text-align: left" >&nbsp;&nbsp;<?php echo $value["item_code"] ?></td>
+                        <td style="width: 100px;">&nbsp;<?php echo $value["type"] ?></td>
+                        <td style="width: 100px;text-align: right"><?php echo $value["account"] ?>&nbsp;&nbsp;</td>
+                        <td style="width: 100px;text-align: right"><?php echo round($value["purchase_rate"], 2); ?>&nbsp;&nbsp;&nbsp;</td>
+                        <td style="width: 100px;text-align: right"><?php echo round($value["sell_rate"], 2); ?>&nbsp;-&nbsp;&nbsp;</td>
+                        <td style="width: 100px;text-align: right">$&nbsp;<?php echo round($value["price"], 2); ?>&nbsp;&nbsp;</td>
+                        <td style="width: 400px;text-align: left" >&nbsp;&nbsp;<?php echo $value["item_desc_sales"] ?></td>
+                        <td   >&nbsp;&nbsp;<?php echo $value["item_desc_purch"] ?></td>
+                    </tr>
+                    <?php
+                    $index++;
+                }
+                ?>
+                <?php
+                for ($index1 = 0; $index1 < 20; $index1++) {
+                    ?>
+                    <tr style="border-bottom: solid 1px rgb(220,220,220);text-align: left">
+                        <td style="width: 2.3%;">&nbsp;<?php echo $index + $index1?></td>
+                        <td style="width: 200px;text-align: left" ></td>
+                        <td style="width: 100px;">&nbsp;</td>
+                        <td style="width: 100px;text-align: right"></td>
+                        <td style="width: 100px;text-align: right"></td>
+                        <td style="width: 100px;text-align: right"></td>
+                        <td style="width: 100px;text-align: right"></td>
+                        <td style="width: 400px;text-align: left" ></td>
+                        <td ></td>
+                    </tr>  
+                    <?php
                 }
                 ?>
             </table>
@@ -128,7 +145,7 @@ $listofitems = MysqlConnection::fetchAll("item_master");
                         deleteItem(id);
                         break;
                     case "quit":
-                        window.location = "index.php?pagename=manage_dashboard" ;
+                        window.location = "index.php?pagename=manage_dashboard";
                         break;
                     default:
                         window.location = "index.php?pagename=manage_itemmaster";
@@ -136,7 +153,7 @@ $listofitems = MysqlConnection::fetchAll("item_master");
             },
             items: {
                 "add_item": {name: "CREATE ITEM", icon: "add"},
-                "edit_item": {name: "EDIT ITEM", icon:"edit"},
+                "edit_item": {name: "EDIT ITEM", icon: "edit"},
                 "delete_item": {name: "DELETE ITEM", icon: "delete"},
 //                "create_sales_order": {name: "Create Sales Order", icon: "add"},
 //                "create_invoice": {name: "Create Invoice", icon: "add"},
