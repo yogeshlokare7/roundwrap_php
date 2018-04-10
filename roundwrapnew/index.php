@@ -29,7 +29,6 @@ if (count($explode) >= 2) {
         <link rel="stylesheet" href="css/maruti-style.css" />
         <link rel="stylesheet" href="css/maruti-media.css" class="skin-color" />
         <link rel="stylesheet" href="css/bootstrap-responsive.min.css" />
-        <!--<link rel="stylesheet" href="css/select2.css" />-->
         <link rel="stylesheet" href="css/uniform.css" />
         <link rel="stylesheet" href="css/loder.css" />
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
@@ -105,8 +104,11 @@ if (count($explode) >= 2) {
     </head>
     <body>
 
-        <div id="header" >Round Wrap</div>
-        <div id="sidebar" ><?php include './leftmenu.php'; ?></div>
+        <div style="height: 20%;width: 100% ;border:  solid 0px black; flex-shrink: 0;">
+            <div style="height: 40px;width: 100%;border:  solid 0px;margin-top: 10px;clear: both"></div>
+            <div id="sidebar" style="margin-top: 50px;"><?php include './leftmenu.php'; ?></div>
+        </div>
+
 
         <img src="img/ajaxloading.gif" id="img" style="display:none" />
         <!-- this is model dialog --->
@@ -124,9 +126,17 @@ if (count($explode) >= 2) {
             </div>
         </div>
         <!-- this is model dialog --->
-        <div id="divLoading"></div>
-        <div id="content"><?php include '' . $include . ".php"; ?></div>
-        <div class="row-fluid"><div id="footer" class="span12"></a> </div></div>
+        <div style="min-height: 80%;margin-top: 10px;" >
+            <div id="divLoading"></div>
+            <div id="content"><?php include '' . $include . ".php"; ?></div>
+        </div>
+
+
+        <div  style=" flex-shrink: 0;">
+            <div id="footer" ></a> 
+                This is footer
+            </div>
+        </div>
     </body>
     <script>
         $("#data tr").click(function() {

@@ -31,24 +31,21 @@ $listofitems = MysqlConnection::fetchAll("item_master");
 <link href="css/jquery.contextMenu.css" rel="stylesheet" type="text/css" />
 <script src="js/jquery.min_1.11.3.js"></script>
 <script src="js/jquery.contextMenu.js" type="text/javascript"></script>
-<title>Round Wrap</title>
-<div id="content-header">
-    <div id="breadcrumb"> 
-        <a href="index.php" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a>
-        <a href="index.php" title="View Item Master" class="tip-bottom"><i class="icon-home"></i>View Item Master</a>
-    </div>
-</div>
 <div class="container-fluid">
-    <br/>
-    <table class="customtable" style="border: 0px;">
-        <tr style="height: 30px;background-color: rgb(240,240,240);;height: 40px;">
-            <td style="width: 8%"><a class="btn" href="index.php?pagename=create_itemmaster" ><i class="icon-plus-sign"></i>&nbsp;ADD ITEM</a></td>
-            <th style="width: 2.3%">&nbsp;Search&nbsp;:&nbsp;</th>
-            <th colspan="9" style="text-align: left">
-                <input type="text" id="searchinput" name="searchinput" style="width: 50%">
-            </th>
-        </tr>
-    </table>
+    <div class="cutomheader">
+        <h5 style="font-family: verdana;font-size: 12px;">VIEW ITEMS</h5>
+    </div>
+    <div class="cutomheader">
+        <table >
+            <tr >
+                <td style="width: 8%"><a class="btn" href="index.php?pagename=create_itemmaster" ><i class="icon-plus-sign"></i>&nbsp;ADD ITEM</a></td>
+                <th style="width: 2.3%">&nbsp;Search&nbsp;:&nbsp;</th>
+                <th colspan="9" style="text-align: left">
+                    <input type="text" id="searchinput" name="searchinput" style="width: 50%">
+                </th>
+            </tr>
+        </table>
+    </div>
     <div class="widget-box">
 
         <table class="customtable" border="1">

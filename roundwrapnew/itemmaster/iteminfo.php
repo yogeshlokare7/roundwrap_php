@@ -21,7 +21,7 @@ $itemlist = MysqlConnection::fetchCustom("SELECT item_id,item_code FROM item_mas
         height: 24px;
     }
     tr{
-        background-color: rgb(240,240,240);
+        /*background-color: rgb(240,240,240);*/
     }
 </style>
 <script>
@@ -37,7 +37,7 @@ $itemlist = MysqlConnection::fetchCustom("SELECT item_id,item_code FROM item_mas
         $("#creditcardno").mask("9999-9999-9999-9999");
     });
 </script>
-
+<hr/>
 <form name="frmItemsSubmit" id="frmItemsSubmit" method="post" action="itemmaster/saveitemmaster_ajax.php">
     <table  style="width: 80%;vertical-align: top" border="0">
         <tr style="vertical-align: top">
@@ -52,7 +52,6 @@ $itemlist = MysqlConnection::fetchCustom("SELECT item_id,item_code FROM item_mas
             <td></td>
             <td></td>
         </tr>
-
         <tr>
             <td>Item Name / Code</td>
             <td  style="vertical-align: bottom"><input type="text" name="item_code" id="item_code" value="<?php echo $item["item_code"] ?>"  autofocus="" required="true" minlenght="2" maxlength="30" ></td>
@@ -79,6 +78,7 @@ $itemlist = MysqlConnection::fetchCustom("SELECT item_id,item_code FROM item_mas
             </td>-->
         </tr>
     </table>
+    <hr/>
     <div id="serviceform">
         <table style="width: 80%;" id="iteminfo" border="0">
             <tr style="vertical-align: top">
@@ -181,11 +181,10 @@ $itemlist = MysqlConnection::fetchCustom("SELECT item_id,item_code FROM item_mas
             </tr>
         </table>
     </div>
-
     <hr/>
-    <input type="submit" id="btnSubmitFullForm" class="btn btn-success" onClick='submitDetailsForm()' value="Save and Next"/>
-    <a href="index.php?pagename=manage_itemmaster" id="btnSubmitFullForm" class="btn btn-info">Cancel</a>
     <!--    <button type="button" id="btnSubmitFullForm" class="btn btn-warning">Next</button>-->
+    <input type="submit" id="btnSubmitFullForm" class="btn btn-success" onClick='submitDetailsForm()' value="SAVE AND NEXT"/>
+    <a href="index.php?pagename=manage_itemmaster" id="btnSubmitFullForm" class="btn btn-info">CANCEL</a>
 </form>
 <!--<hr/>
 <input type="button" id="btnCmpNext1" value="Next" class="btn btn-info" ><a href="customermaster/additionalcontact.php"></a>-->
