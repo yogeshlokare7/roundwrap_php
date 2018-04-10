@@ -10,7 +10,7 @@ $listRecieveingOrders = MysqlConnection::fetchAll("supplier_packing_slip");
 
 <div class="container-fluid">
     </br>
-    <a class="btn" href="index.php?pagename=create_receivingorder" >Create Receiving Order</a>
+    <a class="btn" href="index.php?pagename=create_receivingorder" ><i class="icon-magnet"></i>&nbsp;Create Receiving Order</a>
     <div class="widget-box">
         <div class="widget-title">
             <span class="icon"><i class="icon-th"></i></span> 

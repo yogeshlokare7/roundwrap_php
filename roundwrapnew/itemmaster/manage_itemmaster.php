@@ -42,7 +42,7 @@ $listofitems = MysqlConnection::fetchAll("item_master");
     <br/>
     <table class="customtable" style="border: 0px;">
         <tr style="height: 30px;background-color: rgb(240,240,240);;height: 40px;">
-            <td style="width: 8%"><a class="btn" href="index.php?pagename=create_itemmaster" >ADD ITEM</a></td>
+            <td style="width: 8%"><a class="btn" href="index.php?pagename=create_itemmaster" ><i class="icon-plus-sign"></i>&nbsp;ADD ITEM</a></td>
             <th style="width: 2.3%">&nbsp;Search&nbsp;:&nbsp;</th>
             <th colspan="9" style="text-align: left">
                 <input type="text" id="searchinput" name="searchinput" style="width: 50%">

@@ -21,7 +21,7 @@
                                         <table style="width: 80%;">
                                             <tr>
                                                 <td style="width: 30%;"><label class="control-label">Company Name:*</label></td>
-                                                <td style="width: 60%;" colspan="3"><input type="text" placeholder="Comapny name" class="span11" style="width:100%;"/></td> 
+                                                <td style="width: 60%;" colspan="3"><input type="text" placeholder="Comapny name" class="span11" style="width:100%;" minlenght="2" maxlength="60"/></td> 
                                             </tr>
                                             <tr>
                                                 <td style="width: 30%;"><label class="control-label">SO No:*</label></td>

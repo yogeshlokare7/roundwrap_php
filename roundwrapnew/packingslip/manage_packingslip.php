@@ -10,7 +10,7 @@ $packslip = MysqlConnection::fetchAll("packslip");
 
 <div class="container-fluid">
     <br/>
-    <a class="btn" href="index.php?pagename=create_packingslip" >Create Packing Slip</a>
+    <a class="btn" href="index.php?pagename=create_packingslip" ><i class="icon-file"></i>&nbsp;Create Packing Slip</a>
     <div class="widget-box">
         <div class="widget-title">
             <span class="icon"><i class="icon-th"></i></span> 

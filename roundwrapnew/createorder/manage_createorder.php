@@ -10,7 +10,7 @@ $listCreateOrders = MysqlConnection::fetchAll("sales_order");
 
 <div class="container-fluid">
     </br>
-    <a class="btn" href="index.php?pagename=create_createorder" >Create Order</a>
+    <a class="btn" href="index.php?pagename=create_createorder" ><i class=" icon-list-alt"></i>&nbsp;Create Order</a>
     <div class="widget-box">
         <div class="widget-title">
             <span class="icon"><i class="icon-th"></i></span> 
