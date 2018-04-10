@@ -53,6 +53,7 @@ $listofitems = MysqlConnection::fetchAll("item_master");
 
         <table class="customtable" border="1">
             <tr style="height: 30px;background-color: rgb(240,240,240);">
+                 <th style="width: 2.3%;">ID</th>
                 <th style="width: 200px;">Name</th>
                 <th style="width: 100px;">Type</th>
                 <th style="width: 100px;text-align: right">Account&nbsp;&nbsp;</th>
@@ -70,6 +71,7 @@ $listofitems = MysqlConnection::fetchAll("item_master");
                     for ($index = 0; $index < 200; $index++) {
                         ?>
                         <tr id="<?php echo $value["item_id"] ?>" class="context-menu-one" style="border-bottom: solid 1px rgb(220,220,220);text-align: left" >
+                            <td style="width: 2.3%;">&nbsp;<?php echo $value["item_id"] ?></td>
                             <td style="width: 200px;text-align: left" >&nbsp;&nbsp;<?php echo $value["item_code"] ?></td>
                             <td style="width: 100px;">&nbsp;<?php echo $value["type"] ?></td>
                             <td style="width: 100px;text-align: right"><?php echo $value["account"] ?>&nbsp;&nbsp;</td>
@@ -129,7 +131,9 @@ $listofitems = MysqlConnection::fetchAll("item_master");
                     case "delete_item":
                         deleteItem(id);
                         break;
-
+                    case "quit":
+                        window.location = "index.php?pagename=manage_" ;
+                        break;
                     default:
                         window.location = "index.php?pagename=manage_itemmaster";
                 }

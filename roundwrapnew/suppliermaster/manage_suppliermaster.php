@@ -27,9 +27,9 @@
 <script src="js/jquery.min_1.11.3.js"></script>
 <script src="js/jquery.contextMenu.js" type="text/javascript"></script>
 <script>
-    $("#liveTableSearch").on("keyup", function() {
+    $("#liveTableSearch").on("keyup", function () {
         var value = $(this).val();
-        $("table tr").each(function(index) {
+        $("table tr").each(function (index) {
             if (index !== 0) {
                 $row = $(this);
                 var id = $row.find("td:first").text();
@@ -63,6 +63,7 @@
     <div class="widget-box">
         <table class="customtable" border="1">
             <tr style="height: 30px;background-color: rgb(240,240,240);">
+                <th style="width: 2.3%;">ID</th>
                 <th  style="width: 270px">Vendor Name</th>
                 <th style="width: 312px">Company Name</th>
                 <th  style="width: 120px">Contact No</th>
@@ -79,6 +80,7 @@
                 foreach ($listofsupplier as $key => $value) {
                     ?>
                     <tr id="<?php echo $value["supp_id"] ?>" style="border-bottom: solid 1px rgb(220,220,220);text-align: left"  class="context-menu-one">
+                        <td style="width: 2.3%;">&nbsp;<?php echo $value["supp_id"] ?></td>
                         <td style="width: 270px">&nbsp;&nbsp;<?php echo $value["salutation"] ?>&nbsp;<?php echo $value["firstname"] ?>&nbsp;<?php echo $value["lastname"] ?></td>
                         <td style="width: 312px">&nbsp;&nbsp;<?php echo $value["companyname"] ?></td>
                         <td style="width: 120px">&nbsp;&nbsp;<?php echo $value["supp_phoneNo"] ?></td>
@@ -101,14 +103,14 @@
 </div>
 
 <script>
-    $("#deleteThis").click(function() {
+    $("#deleteThis").click(function () {
         var dataString = "deleteId=" + $('#deleteId').val();
         $.ajax({
             type: 'POST',
             url: 'suppliermaster/suppliermaster_ajax.php',
             data: dataString
-        }).done(function(data) {
-        }).fail(function() {
+        }).done(function (data) {
+        }).fail(function () {
         });
         location.reload();
     });
@@ -116,23 +118,23 @@
     function setDeleteField(deleteId) {
         document.getElementById("deleteId").value = deleteId;
     }
-    $("#save").click(function() {
+    $("#save").click(function () {
         var json = convertFormToJSON("#basic_validate");
         $.ajax({
             type: 'POST',
             url: 'suppliermaster/save_supplierajax.php',
             data: json
-        }).done(function(data) {
-        }).fail(function() {
+        }).done(function (data) {
+        }).fail(function () {
         });
         location.reload();
     });
 </script>
 <script type="text/javascript">
-    $(function() {
+    $(function () {
         $.contextMenu({
             selector: '.context-menu-one',
-            callback: function(key, options) {
+            callback: function (key, options) {
                 var m = "clicked row: " + key;
                 var id = $(this).attr('id');
                 switch (key) {
@@ -151,6 +153,9 @@
                     case "create_invoice":
                         window.location = "index.php?pagename=manage_invoice";
                         break;
+                    case "quit":
+                        window.location = "index.php?pagename=manage_";
+                        break;
                     default:
                         window.location = "index.php?pagename=manage_suppliermaster";
                 }
@@ -163,7 +168,7 @@
                 "create_perchase_order": {name: "CREATE PURCHASE ORDER", icon: "add"},
                 "create_invoice": {name: "CREATE INVOICE", icon: "add"},
                 "sep1": "---------",
-                "quit": {name: "Quit", icon: function() {
+                "quit": {name: "Quit", icon: function () {
                         return 'context-menu-icon context-menu-icon-quit';
                     }}
             }

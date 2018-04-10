@@ -15,7 +15,7 @@ if (!empty($customerid)) {
     </div>
 </div>
 <div class="container-fluid" id="tabs">
-    <h5 style="font-family: verdana;font-size: 12px;">CREATE NEW CUSTOMER</h5>
+    <h5 style="font-family: verdana;font-size: 10px;">CREATE NEW CUSTOMER</h5>
     <div class="widget-box" style="width: 90%;float: left;margin-top: -5px;">
         <div class="widget-title" >
             <ul class="nav nav-tabs" >

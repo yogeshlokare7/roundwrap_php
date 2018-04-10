@@ -25,9 +25,9 @@
 </style>
 
 <script>
-    $("#search").on("keyup", function() {
+    $("#search").on("keyup", function () {
         var value = $(this).val();
-        $("table tr").each(function(index) {
+        $("table tr").each(function (index) {
             if (index !== 0) {
                 $row = $(this);
                 var id = $row.find("td:first").text();
@@ -47,11 +47,11 @@
 <script src="js/jquery.min_1.11.3.js"></script>
 <script src="js/jquery.contextMenu.js" type="text/javascript"></script>
 <script>
-    $('#search_field').on('keyup', function() {
+    $('#search_field').on('keyup', function () {
         var value = $(this).val();
         var patt = new RegExp(value, "i");
 
-        $('#data').find('tr').each(function() {
+        $('#data').find('tr').each(function () {
             if (!($(this).find('td').text().search(patt) >= 0)) {
             }
             if (($(this).find('td').text().search(patt) >= 0)) {
@@ -82,6 +82,7 @@
     <div class="widget-box">
         <table class="customtable" border="1">
             <tr style="height: 30px;background-color: rgb(240,240,240);">
+                <th style="width: 2.3%;">ID</th>
                 <th style="width:230px">Full Name</th>
                 <th style="width:130px">Company Name</th>
                 <th style="width:490px">Address</th>
@@ -99,6 +100,7 @@
                     for ($index = 0; $index < 500; $index++) {
                         ?>
                         <tr id="<?php echo $value["id"] ?>" class="context-menu-one" style="border-bottom: solid 1px rgb(220,220,220);text-align: left;">
+                            <td style="width: 2.3%;">&nbsp;<?php echo $value["id"] ?></td>
                             <td style="width:230px">&nbsp;&nbsp;<?php echo $value["firstname"] ?>&nbsp;<?php echo $value["lastname"] ?></td>
                             <td style="width:130px">&nbsp;&nbsp;<?php echo $value["cust_companyname"] ?></td>
                             <td style="width:490px">&nbsp;&nbsp;<?php echo buildAddress($value) ?></td>
@@ -124,39 +126,39 @@
 
 <!--</form>-->
 <script>
-    $("#deleteThis").click(function() {
+    $("#deleteThis").click(function () {
         $('#img').show();
         var dataString = "deleteId=" + $('#deleteId').val();
         $.ajax({
             type: 'POST',
             url: 'customermaster/customermaster_ajax.php',
             data: dataString
-        }).done(function(data) {
+        }).done(function (data) {
             $('#img').hide();
-        }).fail(function() {
+        }).fail(function () {
         });
         location.reload();
     });
     function setDeleteField(deleteId) {
         document.getElementById("deleteId").value = deleteId;
     }
-    $("#save").click(function() {
+    $("#save").click(function () {
         var json = convertFormToJSON("#basic_validate");
         $.ajax({
             type: 'POST',
             url: 'customermaster/savecustomermaster_ajax.php',
             data: json
-        }).done(function(data) {
-        }).fail(function() {
+        }).done(function (data) {
+        }).fail(function () {
         });
         location.reload();
     });
 </script>
 <script type="text/javascript">
-    $(function() {
+    $(function () {
         $.contextMenu({
             selector: '.context-menu-one',
-            callback: function(key, options) {
+            callback: function (key, options) {
                 var m = "clicked row: " + key;
                 var id = $(this).attr('id');
                 switch (key) {
@@ -175,6 +177,9 @@
                     case "create_invoice":
                         window.location = "index.php?pagename=manage_invoice";
                         break;
+                    case "quit":
+                        window.location = "index.php?pagename=manage_";
+                        break;
                     default:
                         window.location = "index.php?pagename=manage_customermaster";
                 }
@@ -187,7 +192,7 @@
                 "create_sales_order": {name: "CREATE SALES ORDER", icon: "add"},
                 "create_invoice": {name: "CREATE INVOICE", icon: "add"},
                 "sep1": "---------",
-                "quit": {name: "QUIT", icon: function() {
+                "quit": {name: "QUIT", icon: function () {
                         return 'context-menu-icon context-menu-icon-quit';
                     }}
             }
@@ -198,8 +203,8 @@
                 type: 'POST',
                 url: 'customermaster/customermaster_ajax.php',
                 data: dataString
-            }).done(function(data) {
-            }).fail(function() {
+            }).done(function (data) {
+            }).fail(function () {
             });
             location.reload();
         }
