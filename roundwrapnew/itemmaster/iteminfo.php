@@ -106,7 +106,7 @@ $itemlist = MysqlConnection::fetchCustom("SELECT item_id,item_code FROM item_mas
                                     </tr>
                                     <tr style="vertical-align: top">
                                         <td colspan="2"><label class="control-label">Description on Purchase Transactions</label>
-                                            <textarea style="height: 30px;;line-height: 20px; width: 98%" name="item_desc_purch" id="item_desc_purch"  value="<?php echo $item["item_desc_purch"] ?>" autofocus="" required="true" minlenght="2" maxlength="90" ></textarea>
+                                            <textarea style="height: 30px;;line-height: 20px; width: 98%" name="item_desc_purch" id="item_desc_purch"   autofocus="" required="true" minlenght="2" maxlength="90" ><?php echo $item["item_desc_purch"] ?></textarea>
                                         </td>
                                     </tr>
                                 </table>
@@ -131,7 +131,7 @@ $itemlist = MysqlConnection::fetchCustom("SELECT item_id,item_code FROM item_mas
                                     </tr>
                                     <tr >
                                         <td colspan="2"><label class="control-label">Description on Sales Transactions</label>
-                                            <textarea style="height: 30px;;line-height: 20px; width: 98%" name="item_desc_sales" id="item_desc_sales"  value="<?php echo $item["item_desc_sales"] ?>" autofocus="" required="true" minlenght="2" maxlength="90" ></textarea>
+                                            <textarea style="height: 30px;;line-height: 20px; width: 98%" name="item_desc_sales" id="item_desc_sales"   autofocus="" required="true" minlenght="2" maxlength="90" ><?php echo $item["item_desc_sales"] ?></textarea>
                                         </td>
                                     </tr>
                                 </table>
