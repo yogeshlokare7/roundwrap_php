@@ -31,8 +31,8 @@ $itemlist = MysqlConnection::fetchCustom("SELECT item_id,item_code FROM item_mas
                 <td style="width: 150px;">Type</td>
                 <td style="width: 220px;">
                     <select name="type"  id="type" value="">
-                        <option value="Service">Service</option>
-                        <option value="InventoryPart" >Inventory Part</option>
+                        <option value="Service" <?php echo $item["type"] == "Service" ? "selected" :  "" ?> >Service</option>
+                        <option value="InventoryPart" <?php echo $item["type"] == "InventoryPart" ? "selected" :  "" ?>  >Inventory Part</option>
                     </select>
                 </td>
                 <td></td>
@@ -56,125 +56,117 @@ $itemlist = MysqlConnection::fetchCustom("SELECT item_id,item_code FROM item_mas
                     </select>
                 </td>
                 <td></td>
-    <!--            <td  style="vertical-align: bottom">
-                    Account
-                    <select name="account" id="account" value="<?php echo $item["account"] ?>">
-                        <option value="">&nbsp;&nbsp;</option>
-                        <option value="1" ><< ADD NEW >></option>
-                    </select>
-                </td>-->
             </tr>
-        </table>
-        <div id="serviceform">
-            <table style="width: 80%;" id="iteminfo" border="0">
-                <tr style="vertical-align: top">
-                    <td  style="width: 150px;">Description</td>
-                    <td  style="width: 220px;" ><textarea name="item_desc" id="item_desc" value="<?php echo $item["item_desc"] ?>" minlenght="2" maxlength="60"></textarea></td>
-                    <td style="width: 220px;">
-                        <label >Sales Tax Code</label>
-                        <select name="salestaxcode" id="salestaxcode" value="<?php echo $item["salestaxcode"] ?>">
-                            <option value="">&nbsp;&nbsp;</option>
-                            <option value="1" ><< ADD NEW >></option>
-                        </select>
-                    </td>
-                    <td>
-                        <label >Rate</label>
-                        <input type="text" name="rate" id="rate" onkeypress="return chkNumericKey(event)" value="<?php echo $item["rate"] ?>" minlenght="2" maxlength="30"  >
-                    </td>
-                </tr>
+        </table> 
+        <?php if ($item["type"] == "Service" || $item["type"] == "") { ?>
+            <div id="serviceform">
+                <table style="width: 80%;" id="iteminfo" border="0">
+                    <tr style="vertical-align: top">
+                        <td  style="width: 150px;">Description</td>
+                        <td  style="width: 220px;" ><textarea name="item_desc" id="item_desc" value="<?php echo $item["item_desc"] ?>" minlenght="2" maxlength="60"></textarea></td>
+                        <td style="width: 220px;">
+                            <label >Sales Tax Code</label>
+                            <select name="salestaxcode" id="salestaxcode" value="<?php echo $item["salestaxcode"] ?>">
+                                <option value="">&nbsp;&nbsp;</option>
+                                <option value="1" ><< ADD NEW >></option>
+                            </select>
+                        </td>
+                        <td>
+                            <label >Rate</label>
+                            <input type="text" name="rate" id="rate" onkeypress="return chkNumericKey(event)" value="<?php echo $item["rate"] ?>" minlenght="2" maxlength="30"  >
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" style="text-align: left"><input type="checkbox" id="taxcheckbox">&nbsp;This service performed by subcontractor,owner or partner</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </table>
+            </div>
+        <?php } else if ($item["type"] == "InventoryPart" || $item["type"] == "") { ?>
+            <div id="inventorypartfrom">
+                <table border="0"> 
+                    <tr style="vertical-align: top">
+                        <td>
+                            <fieldset class="well the-fieldset">
+                                <table  border="0">
+                                    <tr style="vertical-align: top">
+                                        <td style="width: 40%; "><label class="control-label">Cost</label></td>
+                                        <td><input type="text" name="purchase_rate" onkeypress="return chkNumericKey(event)" id="purchase_rate" value="<?php echo $item["purchase_rate"] ?>" autofocus="" required="true" minlenght="2" maxlength="30" ></td>   
+                                    </tr>
+                                    <tr >
+                                        <td><label class="control-label">Purch Tax Code</label></td>
+                                        <td><input type="text" name="purch_code" id="purch_code"  value="<?php echo $item["purch_code"] ?>" autofocus="" required="true" minlenght="2" maxlength="30" ></td>   
+                                    </tr>
+                                    <tr >
+                                        <td><label class="control-label">COGS Account</label></td>
+                                        <td><input type="text" name="cogsaccount" id="cogsaccount"  value="<?php echo $item["cogsaccount"] ?>" autofocus="" required="true" minlenght="2" maxlength="30" ></td>   
+                                    </tr>
+                                    <tr style="vertical-align: top">
+                                        <td colspan="2"><label class="control-label">Description on Purchase Transactions</label>
+                                            <textarea style="height: 30px;;line-height: 20px; width: 98%" name="item_desc_purch" id="item_desc_purch"  value="<?php echo $item["item_desc_purch"] ?>" autofocus="" required="true" minlenght="2" maxlength="90" ></textarea>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </fieldset>
+                        </td>
+                        <td>
+                            <fieldset class="well the-fieldset">
 
-                <tr>
-                    <td colspan="2" style="text-align: left"><input type="checkbox" id="taxcheckbox">&nbsp;This service performed by subcontractor,owner or partner</td>
-                    <td></td>
-                    <td></td>
-                </tr>
-            </table>
-        </div>
+                                <table  border="0">
 
-        <div id="inventorypartfrom">
-            <table border="0"> 
-                <tr style="vertical-align: top">
-                    <td>
-                        <fieldset class="well the-fieldset">
-                            <table  border="0">
+                                    <tr >
+                                        <td style="width: 40%"><label class="control-label">Sales Price</label></td>
+                                        <td><input type="text" name="sell_rate" id="sell_rate" onkeypress="return chkNumericKey(event)" value="<?php echo $item["sell_rate"] ?>" autofocus="" required="true" minlenght="2" maxlength="30" ></td>   
+                                    </tr>
+                                    <tr >
+                                        <td><label class="control-label">Sales Tax Code</label></td>
+                                        <td><input type="text" name="sales_code" id="sales_code"  value="<?php echo $item["sales_code"] ?>" autofocus="" required="true" minlenght="2" maxlength="30" ></td>   
+                                    </tr>
+                                    <tr >
+                                        <td><label class="control-label">Income Account</label></td>
+                                        <td><input type="text" name="incomeaccount" id="incomeaccount" onkeypress="return chkNumericKey(event)"  value="<?php echo $item["incomeaccount"] ?>" autofocus="" required="true" minlenght="2" maxlength="30" ></td>   
+                                    </tr>
+                                    <tr >
+                                        <td colspan="2"><label class="control-label">Description on Sales Transactions</label>
+                                            <textarea style="height: 30px;;line-height: 20px; width: 98%" name="item_desc_sales" id="item_desc_sales"  value="<?php echo $item["item_desc_sales"] ?>" autofocus="" required="true" minlenght="2" maxlength="90" ></textarea>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </fieldset>
+                        </td>
+                        <td>
+                            <fieldset class="well the-fieldset">
 
-                                <tr style="vertical-align: top">
-                                    <td style="width: 40%; "><label class="control-label">Cost</label></td>
+                                <table  border="0">
+                                    <tr  >
+                                        <td style="width: 40%"><label class="control-label">Asset Account</label></td>
+                                        <td style="vertical-align: bottom"><input type="text" name="assetaccount" id="assetaccount"  value="<?php echo $item["assetaccount"] ?>" autofocus="" required="true" minlenght="2" maxlength="30" ></td>   
+                                    </tr>
+                                    <tr >
+                                        <td><label class="control-label">Reorder Point</label></td>
+                                        <td style="vertical-align: bottom"><input type="text" name="reorder" id="reorder"  value="<?php echo $item["reorder"] ?>" autofocus="" required="true" minlenght="2" maxlength="30" ></td>   
+                                    </tr>
+                                    <tr >
+                                        <td><label class="control-label">On Hand</label></td>
+                                        <td style="vertical-align: bottom"><input type="text" name="onhand" id="onhand" onkeypress="return chkNumericKey(event)" value="<?php echo $item["onhand"] ?>" autofocus="" required="true" minlenght="2" maxlength="30" ></td>   
+                                    </tr>
+                                    <tr >
+                                        <td><label class="control-label">Total Value</label></td>
+                                        <td style="vertical-align: bottom" ><input type="text" onkeypress="return chkNumericKey(event)" name="totalvalue" id="totalvalue"  value="<?php echo $item["totalvalue"] ?>" autofocus="" required="true" minlenght="2" maxlength="30" ></td>   
+                                    </tr>
+                                    <tr >
+                                        <td><label class="control-label">As of</label></td>
+                                        <td style="vertical-align: bottom" ><input type="text" name="asof"   id="asof"  value="<?php echo $item["asof"] ?>" autofocus="" required="true" minlenght="2" maxlength="30" ></td>   
+                                    </tr>
+                                </table>
+                            </fieldset>
 
-                                    <td><input type="text" name="purchase_rate" onkeypress="return chkNumericKey(event)" id="purchase_rate" value="<?php echo $item["purchase_rate"] ?>" autofocus="" required="true" minlenght="2" maxlength="30" ></td>   
-                                </tr>
-                                <tr >
-                                    <td><label class="control-label">Purch Tax Code</label></td>
-                                    <td><input type="text" name="purch_code" id="purch_code"  value="<?php echo $item["purch_code"] ?>" autofocus="" required="true" minlenght="2" maxlength="30" ></td>   
-                                </tr>
-                                <tr >
-                                    <td><label class="control-label">COGS Account</label></td>
-                                    <td><input type="text" name="cogsaccount" id="cogsaccount"  value="<?php echo $item["cogsaccount"] ?>" autofocus="" required="true" minlenght="2" maxlength="30" ></td>   
-                                </tr>
-                                <tr style="vertical-align: top">
-                                    <td colspan="2"><label class="control-label">Description on Purchase Transactions</label>
-                                        <textarea style="height: 30px;;line-height: 20px; width: 98%" name="item_desc_purch" id="item_desc_purch"  value="<?php echo $item["item_desc_purch"] ?>" autofocus="" required="true" minlenght="2" maxlength="90" ></textarea>
-                                    </td>
-                                </tr>
-                            </table>
-                        </fieldset>
-                    </td>
-                    <td>
-                        <fieldset class="well the-fieldset">
-
-                            <table  border="0">
-
-                                <tr >
-                                    <td style="width: 40%"><label class="control-label">Sales Price</label></td>
-                                    <td><input type="text" name="sell_rate" id="sell_rate" onkeypress="return chkNumericKey(event)" value="<?php echo $item["sell_rate"] ?>" autofocus="" required="true" minlenght="2" maxlength="30" ></td>   
-                                </tr>
-                                <tr >
-                                    <td><label class="control-label">Sales Tax Code</label></td>
-                                    <td><input type="text" name="sales_code" id="sales_code"  value="<?php echo $item["sales_code"] ?>" autofocus="" required="true" minlenght="2" maxlength="30" ></td>   
-                                </tr>
-                                <tr >
-                                    <td><label class="control-label">Income Account</label></td>
-                                    <td><input type="text" name="incomeaccount" id="incomeaccount" onkeypress="return chkNumericKey(event)"  value="<?php echo $item["incomeaccount"] ?>" autofocus="" required="true" minlenght="2" maxlength="30" ></td>   
-                                </tr>
-                                <tr >
-                                    <td colspan="2"><label class="control-label">Description on Sales Transactions</label>
-                                        <textarea style="height: 30px;;line-height: 20px; width: 98%" name="item_desc_sales" id="item_desc_sales"  value="<?php echo $item["item_desc_sales"] ?>" autofocus="" required="true" minlenght="2" maxlength="90" ></textarea>
-                                    </td>
-                                </tr>
-                            </table>
-                        </fieldset>
-                    </td>
-                    <td>
-                        <fieldset class="well the-fieldset">
-
-                            <table  border="0">
-                                <tr  >
-                                    <td style="width: 40%"><label class="control-label">Asset Account</label></td>
-                                    <td style="vertical-align: bottom"><input type="text" name="assetaccount" id="assetaccount"  value="<?php echo $item["assetaccount"] ?>" autofocus="" required="true" minlenght="2" maxlength="30" ></td>   
-                                </tr>
-                                <tr >
-                                    <td><label class="control-label">Reorder Point</label></td>
-                                    <td style="vertical-align: bottom"><input type="text" name="reorder" id="reorder"  value="<?php echo $item["reorder"] ?>" autofocus="" required="true" minlenght="2" maxlength="30" ></td>   
-                                </tr>
-                                <tr >
-                                    <td><label class="control-label">On Hand</label></td>
-                                    <td style="vertical-align: bottom"><input type="text" name="onhand" id="onhand" onkeypress="return chkNumericKey(event)" value="<?php echo $item["onhand"] ?>" autofocus="" required="true" minlenght="2" maxlength="30" ></td>   
-                                </tr>
-                                <tr >
-                                    <td><label class="control-label">Total Value</label></td>
-                                    <td style="vertical-align: bottom" ><input type="text" onkeypress="return chkNumericKey(event)" name="totalvalue" id="totalvalue"  value="<?php echo $item["totalvalue"] ?>" autofocus="" required="true" minlenght="2" maxlength="30" ></td>   
-                                </tr>
-                                <tr >
-                                    <td><label class="control-label">As of</label></td>
-                                    <td style="vertical-align: bottom" ><input type="text" name="asof"   id="asof"  value="<?php echo $item["asof"] ?>" autofocus="" required="true" minlenght="2" maxlength="30" ></td>   
-                                </tr>
-                            </table>
-                        </fieldset>
-
-                    </td>
-                </tr>
-            </table>
-        </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        <?php } ?>
         <hr/>
         <!--    <button type="button" id="btnSubmitFullForm" class="btn btn-warning">Next</button>-->
         <input type="submit" id="btnSubmitFullForm" class="btn btn-success" onClick='submitDetailsForm()' value="SAVE AND NEXT"/>
@@ -188,10 +180,12 @@ $itemlist = MysqlConnection::fetchCustom("SELECT item_id,item_code FROM item_mas
     function submitDetailsForm() {
         $("#frmItemsSubmit").submit();
     }
-    $(document).ready(function() {
-        $('#inventorypartfrom').addClass('hide');
-        $('#inventorypartfrom').removeClass('show');
-    });
+<?php if ($item["type"] == "") { ?>
+        $(document).ready(function() {
+            $('#inventorypartfrom').addClass('hide');
+            $('#inventorypartfrom').removeClass('show');
+        });
+<?php } ?>
 
     $("#type").click(function() {
         var valueModel = $("#type").val();
