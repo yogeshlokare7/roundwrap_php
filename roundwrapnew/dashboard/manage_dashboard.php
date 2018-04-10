@@ -14,8 +14,8 @@ ob_start();
     <hr/>
     <br/>
     <table >
-        <tr style="height: 35px;"><td><i class="icon icon-user"></i></td><td><i class=""></i><a href="index.php?pagename=manage_customermaster">ADD CUSTOMER</a></td></tr>
-        <tr style="height: 35px;"><td><i class="icon icon-user"></i></td><td><i class=""></i><a href="index.php?pagename=manage_suppliermaster">ADD VENDOR</a></td></tr>
-        <tr style="height: 35px;"><td><i class="icon-plus-sign"></i></td><td><i class=""></i><a href="index.php?pagename=manage_itemmaster">ADD ITEMS</a></td></tr>
+        <tr style="height: 35px;"><td><i class="icon icon-user"></i></td><td><i class=""></i><a href="index.php?pagename=create_customermaster">ADD CUSTOMER</a></td></tr>
+        <tr style="height: 35px;"><td><i class="icon icon-user"></i></td><td><i class=""></i><a href="index.php?pagename=create_suppliermaster">ADD VENDOR</a></td></tr>
+        <tr style="height: 35px;"><td><i class="icon-plus-sign"></i></td><td><i class=""></i><a href="index.php?pagename=create_itemmaster">ADD ITEMS</a></td></tr>
     </table>
 </center>

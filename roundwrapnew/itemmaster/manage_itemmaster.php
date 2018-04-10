@@ -71,10 +71,12 @@ $listofitems = MysqlConnection::fetchAll("item_master");
                         <td style="width: 200px;text-align: left" >&nbsp;&nbsp;<?php echo $value["item_code"] ?></td>
                         <td style="width: 100px;">&nbsp;<?php echo $value["type"] ?></td>
                         <td style="width: 100px;text-align: right"><?php echo $value["account"] ?>&nbsp;&nbsp;</td>
-                        <td style="width: 100px;text-align: right">
+                        <td style="width: 100px;text-align: right">$&nbsp;<?php echo round($value["onhand"], 2); ?>&nbsp;&nbsp;</td>
+                        
+<!--                        <td style="width: 100px;text-align: right">
                             <?php echo ($value["rate"] == 0 ? round($value["purchase_rate"], 2) : round($value["rate"], 2)); ?>
                             &nbsp;$&nbsp;&nbsp;
-                        </td>
+                        </td>-->
                         <td style="width: 100px;text-align: right"><?php echo round($value["sell_rate"], 2); ?>&nbsp;-&nbsp;&nbsp;</td>
                         <td style="width: 100px;text-align: right">$&nbsp;<?php echo round($value["price"], 2); ?>&nbsp;&nbsp;</td>
                         <td style="width: 400px;text-align: left" >

@@ -159,7 +159,7 @@ $itemlist = MysqlConnection::fetchCustom("SELECT item_id,item_code FROM item_mas
                                     </tr>
                                     <tr >
                                         <td><label class="control-label">As of</label></td>
-                                        <td style="vertical-align: bottom" ><input type="text" name="asof"   id="asof"  value="<?php echo $item["asof"] ?>" autofocus="" required="true" minlenght="2" maxlength="30" ></td>   
+                                        <td style="vertical-align: bottom" ><input type="date" name="asof"   id="asof"  value="<?php echo $item["asof"] ?>" autofocus="" required="true" minlenght="2" maxlength="30" ></td>   
                                     </tr>
                                 </table>
                             </fieldset>
