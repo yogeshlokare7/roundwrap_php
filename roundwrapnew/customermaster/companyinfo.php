@@ -68,13 +68,9 @@
     </tr>
     <tr>
         <td></td>
-        <td  style="text-align: center" >
-            <a   onclick="copyOrRemove('0')"><< Remove</a>
-            &nbsp;|&nbsp;
-            <a onclick="copyOrRemove('1')">copy >></a>
-        </td>
+        <td ><a onclick="copyOrRemove('1')">copy >></a></td>
         <td></td>
-        <td></td>
+        <td><a onclick="copyOrRemove('0')"><< Remove</a></td>
         <td></td>
         <td></td>
     </tr>

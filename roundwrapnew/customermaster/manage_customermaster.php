@@ -98,7 +98,7 @@
                 foreach ($listofcustomers as $key => $value) {
                     for ($index = 0; $index < 500; $index++) {
                         ?>
-                        <tr id="<?php echo $value["cust_id"] ?>" class="context-menu-one" style="border-bottom: solid 1px rgb(220,220,220);text-align: left;">
+                        <tr id="<?php echo $value["id"] ?>" class="context-menu-one" style="border-bottom: solid 1px rgb(220,220,220);text-align: left;">
                             <td style="width:230px">&nbsp;&nbsp;<?php echo $value["firstname"] ?>&nbsp;<?php echo $value["lastname"] ?></td>
                             <td style="width:130px">&nbsp;&nbsp;<?php echo $value["cust_companyname"] ?></td>
                             <td style="width:490px">&nbsp;&nbsp;<?php echo buildAddress($value) ?></td>
@@ -170,7 +170,7 @@
                         deleteCustomer(id);
                         break;
                     case "create_sales_order":
-                        window.location = "index.php?pagename=create_salesorder";
+                        window.location = "index.php?pagename=create_salesorder&customerId=" + id;
                         break;
                     case "create_invoice":
                         window.location = "index.php?pagename=manage_invoice";
@@ -181,13 +181,13 @@
                 //window.console && console.log(m) || alert(m+"    id:"+id); 
             },
             items: {
-                "create_customer": {name: "Create Customer", icon: "add"},
-                "edit_customer": {name: "Edit Customer", icon: "edit"},
-                "delete_customermaster": {name: "Delete Customer", icon: "delete"},
-                "create_sales_order": {name: "Create Sales Order", icon: "add"},
-                "create_invoice": {name: "Create Invoice", icon: "add"},
+                "create_customer": {name: "CREATE CUSTOMER", icon: "add"},
+                "edit_customer": {name: "EDIT CUSTOMER", icon: "edit"},
+                "delete_customermaster": {name: "DELETE CUSTOMER", icon: "delete"},
+                "create_sales_order": {name: "CREATE SALES ORDER", icon: "add"},
+                "create_invoice": {name: "CREATE INVOICE", icon: "add"},
                 "sep1": "---------",
-                "quit": {name: "Quit", icon: function() {
+                "quit": {name: "QUIT", icon: function() {
                         return 'context-menu-icon context-menu-icon-quit';
                     }}
             }

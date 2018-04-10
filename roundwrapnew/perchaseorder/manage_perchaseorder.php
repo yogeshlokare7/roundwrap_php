@@ -39,7 +39,7 @@ $listPerchaseOrders = MysqlConnection::fetchAll("purchase_order");
     <br/>
     <table class="customtable" style="border: 0px;">
         <tr style="height: 30px;background-color: rgb(240,240,240);;height: 40px;">
-            <td style="width: 11%"><a class="btn" href="index.php?pagename=create_perchaseorder" ><i class="icon-inbox"></i>&nbsp;Create Purchase Order</a></td>
+            <td style="width: 25%"><a class="btn" href="index.php?pagename=create_perchaseorder" ><i class="icon-inbox"></i>&nbsp;Create&nbsp;Purchase&nbsp;Order</a></td>
             <th style="width: 2.3%">&nbsp;Search&nbsp;:&nbsp;</th>
             <th colspan="9" style="text-align: left">
                 <input type="text" id="searchinput" name="searchinput" style="width: 50%">
@@ -63,7 +63,7 @@ $listPerchaseOrders = MysqlConnection::fetchAll("purchase_order");
             </tr>
         </table>
         <div style="height: 310px;overflow: auto;overflow-x: auto">
-            <table class="customtable" style="margin-top: -1px;"  border="1">
+            <table class="customtable" id="data"  style="margin-top: -1px;"  border="1">
                 <?php
                 foreach ($listPerchaseOrders as $key => $value) {
                     ?>

@@ -10,9 +10,12 @@
 $sqlgetsupplier = "SELECT * FROM supplier_master WHERE supp_id = " . filter_input(INPUT_GET, "supplierid");
 $resultset = MysqlConnection::fetchCustom($sqlgetsupplier);
 $supplier = $resultset[0];
-echo "<pre>";    
+echo "<pre>";
 print_r($supplier);
-echo "</pre>";    
+echo "</pre>";
+
+$sqlitemarray = MysqlConnection::fetchCustom("SELECT count(id) as counter FROM sales_order");
+$itemarray = MysqlConnection::fetchCustom("SELECT * FROM item_master;");
 ?>
 <div id="content-header">
     <div id="breadcrumb"> 
@@ -88,7 +91,7 @@ echo "</pre>";
                 for ($index = 1; $index < 30; $index++) {
                     ?>
                     <tr>
-                        <td style="width: 1%;"><?php echo $index?></td>
+                        <td style="width: 1%;"><?php echo $index ?></td>
                         <td ><input type="text"   placeholder="Enter Item" style="width: 100%;" /></td>
                         <td style="width: 6%;"><input type="text"   placeholder="Enter Qunatity" style="width: 100%;" /></td>
                         <td style="width: 6%;"><input type="text"   placeholder="" style="width: 100%;" /></td>
@@ -99,7 +102,7 @@ echo "</pre>";
                 }
                 ?>
             </tbody>
-            
+
         </table>
     </div>
     <div class="modal-footer fixfooterbar"> 

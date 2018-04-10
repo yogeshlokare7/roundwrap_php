@@ -119,7 +119,6 @@ $listofitems = MysqlConnection::fetchAll("item_master");
             callback: function(key, options) {
                 var m = "clicked row: " + key;
                 var id = $(this).attr('id');
-                alert("============" + id);
                 switch (key) {
                     case "add_item":
                         window.location = "index.php?pagename=create_itemmaster";
@@ -134,16 +133,15 @@ $listofitems = MysqlConnection::fetchAll("item_master");
                     default:
                         window.location = "index.php?pagename=manage_itemmaster";
                 }
-                //window.console && console.log(m) || alert(m+"    id:"+id); 
             },
             items: {
-                "add_item": {name: "Create Item", icon: "add"},
-                "edit_item": {name: "Edit Item", icon: "edit"},
-                "delete_item": {name: "Delete Item", icon: "delete"},
+                "add_item": {name: "CREATE ITEM", icon: "add"},
+                "edit_item": {name: "EDIT ITEM", icon: "edit"},
+                "delete_item": {name: "DELETE ITEM", icon: "delete"},
 //                "create_sales_order": {name: "Create Sales Order", icon: "add"},
 //                "create_invoice": {name: "Create Invoice", icon: "add"},
                 "sep1": "---------",
-                "quit": {name: "Quit", icon: function() {
+                "quit": {name: "QUIT", icon: function() {
                         return 'context-menu-icon context-menu-icon-quit';
                     }}
             }

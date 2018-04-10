@@ -78,7 +78,7 @@
                 <?php
                 foreach ($listofsupplier as $key => $value) {
                     ?>
-                    <tr style="border-bottom: solid 1px rgb(220,220,220);text-align: left"  class="context-menu-one">
+                    <tr id="<?php echo $value["supp_id"] ?>" style="border-bottom: solid 1px rgb(220,220,220);text-align: left"  class="context-menu-one">
                         <td style="width: 270px">&nbsp;&nbsp;<?php echo $value["salutation"] ?>&nbsp;<?php echo $value["firstname"] ?>&nbsp;<?php echo $value["lastname"] ?></td>
                         <td style="width: 312px">&nbsp;&nbsp;<?php echo $value["companyname"] ?></td>
                         <td style="width: 120px">&nbsp;&nbsp;<?php echo $value["supp_phoneNo"] ?></td>
@@ -146,7 +146,7 @@
                         document.getElementById("deleteThis").click();
                         break;
                     case "create_perchase_order":
-                        window.location = "index.php?pagename=create_perchaseorder";
+                        window.location = "index.php?pagename=create_perchaseorder&supplierid=" + id;
                         break;
                     case "create_invoice":
                         window.location = "index.php?pagename=manage_invoice";
