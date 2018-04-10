@@ -28,46 +28,9 @@ $listofitems = MysqlConnection::fetchAll("item_master");
     }
 </style>
 
-<script>
-    $("#search").on("keyup", function () {
-        var value = $(this).val();
-        $("table tr").each(function (index) {
-            if (index !== 0) {
-                $row = $(this);
-                var id = $row.find("td:first").text();
-                if (id.indexOf(value) !== 0) {
-                    $(this).hide();
-                }
-                else {
-                    $(this).show();
-                }
-            }
-        });
-    });
-    ​
-</script>
 <link href="css/jquery.contextMenu.css" rel="stylesheet" type="text/css" />
 <script src="js/jquery.min_1.11.3.js"></script>
 <script src="js/jquery.contextMenu.js" type="text/javascript"></script>
-<script> 
-    $("#liveTableSearch").on("keyup", function () {
-        var value = $(this).val();
-        $("table tr").each(function (index) {
-            if (index !== 0) {
-                $row = $(this);
-                var id = $row.find("td:first").text();
-                if (id.indexOf(value) !== 0) {
-                    $(this).hide();
-                }
-                else {
-                    $(this).show();
-                }
-            }
-        });
-    });
-</script>
-
-
 <title>Round Wrap</title>
 <div id="content-header">
     <div id="breadcrumb"> 
@@ -96,27 +59,30 @@ $listofitems = MysqlConnection::fetchAll("item_master");
                 <th style="width: 100px;text-align: right">OnHand&nbsp;&nbsp;</th>
                 <th style="width: 100px;text-align: right">OnSales&nbsp;&nbsp;</th>
                 <th style="width: 100px;text-align: right">Price&nbsp;&nbsp;</th>
-                <th style="width: 100px;">Sales Item Description</th>
-                <th style="width: 100px;">Purchase Item Description</th>
+                <th style="width: 400px;">Sales Item Description</th>
+                <th  >Purchase Item Description</th>
             </tr>
         </table>
         <div style="height: 310px;overflow: auto;overflow-x: auto">
-            <table class="customtable" style="margin-top: -1px;" border="1">
+            <table class="customtable" id="data"  style="margin-top: -1px;" border="1">
                 <?php
                 foreach ($listofitems as $key => $value) {
-                    ?>
-                    <tr id="<?php echo $value["item_id"] ?>" class="context-menu-one" style="border-bottom: solid 1px rgb(220,220,220);text-align: left" >
-                        <td style="width: 200px;text-align: left" >&nbsp;&nbsp;<?php echo $value["item_code"] ?></td>
-                        <td style="width: 100px;">&nbsp;<?php echo $value["type"] ?></td>
-                        <td style="width: 100px;text-align: right"><?php echo $value["account"] ?>&nbsp;&nbsp;</td>
-                        <td style="width: 100px;text-align: right"><?php echo round($value["purchase_rate"], 2); ?>&nbsp;&nbsp;&nbsp;</td>
-                        <td style="width: 100px;text-align: right"><?php echo round($value["sell_rate"], 2); ?>&nbsp;-&nbsp;&nbsp;</td>
-                        <td style="width: 100px;text-align: right">$&nbsp;<?php echo round($value["price"], 2); ?>&nbsp;&nbsp;</td>
-                        <td style="width: 100px;text-align: left" >&nbsp;&nbsp;<?php echo $value["item_desc_sales"] ?></td>
-                        <td style="width: 100px;text-align: left" >&nbsp;&nbsp;<?php echo $value["item_desc_purch"] ?></td>
-                    </tr>
-                    <?php
-                } ?>
+                    for ($index = 0; $index < 200; $index++) {
+                        ?>
+                        <tr id="<?php echo $value["item_id"] ?>" class="context-menu-one" style="border-bottom: solid 1px rgb(220,220,220);text-align: left" >
+                            <td style="width: 200px;text-align: left" >&nbsp;&nbsp;<?php echo $value["item_code"] ?></td>
+                            <td style="width: 100px;">&nbsp;<?php echo $value["type"] ?></td>
+                            <td style="width: 100px;text-align: right"><?php echo $value["account"] ?>&nbsp;&nbsp;</td>
+                            <td style="width: 100px;text-align: right"><?php echo round($value["purchase_rate"], 2); ?>&nbsp;&nbsp;&nbsp;</td>
+                            <td style="width: 100px;text-align: right"><?php echo round($value["sell_rate"], 2); ?>&nbsp;-&nbsp;&nbsp;</td>
+                            <td style="width: 100px;text-align: right">$&nbsp;<?php echo round($value["price"], 2); ?>&nbsp;&nbsp;</td>
+                            <td style="width: 400px;text-align: left" >&nbsp;&nbsp;<?php echo $value["item_desc_sales"] ?></td>
+                            <td   >&nbsp;&nbsp;<?php echo $value["item_desc_purch"] ?></td>
+                        </tr>
+                        <?php
+                    }
+                }
+                ?>
             </table>
         </div>
         <table class="customtable" border="1">
@@ -128,15 +94,15 @@ $listofitems = MysqlConnection::fetchAll("item_master");
 </div>
 
 <script>
-    $("#deleteThis").click(function () {
+    $("#deleteThis").click(function() {
         $("div#divLoading").addClass('show');
         var dataString = "deleteId=" + $('#deleteId').val();
         $.ajax({
             type: 'POST',
             url: 'itemmaster/itemmaster_ajax.php',
             data: dataString
-        }).done(function (data) {
-        }).fail(function () {
+        }).done(function(data) {
+        }).fail(function() {
         });
         location.reload();
     });
@@ -147,13 +113,13 @@ $listofitems = MysqlConnection::fetchAll("item_master");
 
 </script>
 <script type="text/javascript">
-    $(function () {
+    $(function() {
         $.contextMenu({
             selector: '.context-menu-one',
-            callback: function (key, options) {
+            callback: function(key, options) {
                 var m = "clicked row: " + key;
                 var id = $(this).attr('id');
-                alert("============"+id);
+                alert("============" + id);
                 switch (key) {
                     case "add_item":
                         window.location = "index.php?pagename=create_itemmaster";
@@ -164,7 +130,7 @@ $listofitems = MysqlConnection::fetchAll("item_master");
                     case "delete_item":
                         deleteItem(id);
                         break;
-               
+
                     default:
                         window.location = "index.php?pagename=manage_itemmaster";
                 }
@@ -177,22 +143,22 @@ $listofitems = MysqlConnection::fetchAll("item_master");
 //                "create_sales_order": {name: "Create Sales Order", icon: "add"},
 //                "create_invoice": {name: "Create Invoice", icon: "add"},
                 "sep1": "---------",
-                "quit": {name: "Quit", icon: function () {
+                "quit": {name: "Quit", icon: function() {
                         return 'context-menu-icon context-menu-icon-quit';
                     }}
             }
         });
 
-        function deleteItem(id){
+        function deleteItem(id) {
             var dataString = "deleteId=" + id;
-        $.ajax({
-            type: 'POST',
-            url: 'itemmaster/itemmaster_ajax.php',
-            data: dataString
-        }).done(function (data) {
-        }).fail(function () {
-        });
-        location.reload();
+            $.ajax({
+                type: 'POST',
+                url: 'itemmaster/itemmaster_ajax.php',
+                data: dataString
+            }).done(function(data) {
+            }).fail(function() {
+            });
+            location.reload();
         }
 //        $('.context-menu-one').on('click', function(e){
 //            console.log('clicked', this);

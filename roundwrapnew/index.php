@@ -56,9 +56,18 @@ if (count($explode) >= 2) {
                 return json;
             }
 
+            $("#table tr").click(function() {
+                var selected = $(this).hasClass("highlight");
+                $("#table tr").removeClass("highlight");
+                if (!selected)
+                    $(this).addClass("highlight");
+            });
+
         </script>
 
         <style>
+
+            .highlight { background-color: rgb(220,220,220); } 
             .sticky {
                 position: fixed;
                 top: 0;

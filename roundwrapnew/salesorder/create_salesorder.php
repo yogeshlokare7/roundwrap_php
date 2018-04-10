@@ -1,24 +1,32 @@
 <?php
-$sqlgetsupplier = "SELECT * FROM customer_master WHERE id = " . filter_input(INPUT_GET, "customerid");
+$sqlgetsupplier = "SELECT * FROM customer_master WHERE id = " . filter_input(INPUT_GET, "customerId");
 $resultset = MysqlConnection::fetchCustom($sqlgetsupplier);
 $customer = $resultset[0];
-echo "<pre>";
-print_r($customer);
-echo "</pre>";
-?>
+$salesorderbumberarray = MysqlConnection::fetchCustom("SELECT count(id) as counter FROM sales_order");
+$sonumber = "SO100" . $salesorderbumberarray[0]["counter"];
 
+
+$sqlitemarray = MysqlConnection::fetchCustom("SELECT count(id) as counter FROM sales_order");
+
+?>
+<style>
+    input, select, textarea{
+        width: 80%;
+        line-height: 15px;
+    }
+
+</style>
 
 <div id="content-header">
     <div id="breadcrumb"> 
-        <a class="tip-bottom"><i class="icon-home"></i> Home</a>
-        <a class="tip-bottom"><i class="icon-home"></i>Supplier Purchase Order Entry</a>
+        <a class="tip-bottom"><i class="icon-home"></i>HOME</a>
+        <a class="tip-bottom"><i class="icon-home"></i>CREATE SALES ORDER</a>
     </div>
 </div>
 
 <div class="container-fluid">
-    <br/>
-    <h5 style="font-family: verdana;font-size: 12px;">CREATE RECEIVING ORDER</h5>
-    <div class="row-fluid">
+    <h5 style="font-family: verdana;font-size: 12px;">CREATE SALES ORDER</h5>
+    <div class="row-fluid" style="margin-top: -15px;">
         <div class="span12">
             <div class="widget-box">
                 <div class="widget-title"> <span class="icon"> <i class="icon-align-justify"></i> </span>
@@ -26,26 +34,19 @@ echo "</pre>";
                 </div>
                 <div class="widget-content tab-content">
                     <div id="tab1" class="tab-pane active">
-                        <hr/>
-                        <table style="width: 100%;">
-                            <tr>
-                                <td style="width: 10%;">SO NO:*</td>
-                                <td style="width: 40%;"><input type="text" placeholder="SO ID" class="span11"/></td>
-                                <td style="width: 10%;">Customer Name:*</td>
-                                <td style="width: 40%;"><input type="text" placeholder="Customer Name" value="<?php echo $value["firstname"] ?>&nbsp;<?php echo $value["lastname"] ?>" class="span11"/></td>
+                        <table style="width: 80%">
+                            <tr style="width: 50%;">
+                                <td style="width: 15%;">SO&nbsp;NO:*</td>
+                                <td style="width: 40%;"><input type="text" placeholder="SO ID" value="<?php echo $sonumber ?>" /></td>
+                                <td style="width: 15%;">Customer&nbsp;Name:*</td>
+                                <td style="width: 40%;"><input type="text" placeholder="Customer Name" value="<?php echo $customer["firstname"] ?>&nbsp;<?php echo $customer["lastname"] ?>" /></td>
                             </tr>
                             <tr>
-                                <td style="width: 15%;"><label class="control-label">Billing Address:*</label></td>
-                                <td style="width: 35%;"><textarea class="span11" value="<?php echo $supplier["billto"] ?>"></textarea></td>
-                                <td style="width: 15%;"><label class="control-label">Shipping Address:*</label></td>
-                                <td style="width: 35%;"><textarea class="span11" value="<?php echo $supplier["shipto"] ?>"></textarea></td>
+                                <td style="width: 15%;"><label class="control-label">Billing&nbsp;Address:*</label></td>
+                                <td style="width: 40%;"><textarea style="height: 60px;" ><?php echo $customer["billto"] ?></textarea></td>
+                                <td style="width: 15%;"><label class="control-label">Shipping&nbsp;Address:*</label></td>
+                                <td style="width: 40%;"><textarea  style="height: 60px;" ><?php echo $customer["shipto"] ?></textarea></td>
                             </tr>
-<!--                               <tr>
-                                <td style="width: 15%;">Delivery Date:*</td>
-                                <td style="width: 35%;"><input type="text"  placeholder="Expected date" /></td>
-                               
-                            </tr>-->
-
                         </table> 
                     </div>
                 </div>
