@@ -127,7 +127,7 @@ $itemlist = MysqlConnection::fetchCustom("SELECT item_id,item_code FROM item_mas
                                     </tr>
                                     <tr >
                                         <td><label class="control-label">Income Account</label></td>
-                                        <td><input type="text" name="incomeaccount" id="incomeaccount" onkeypress="return chkNumericKey(event)"  value="<?php echo $item["incomeaccount"] ?>" autofocus="" required="true" minlenght="2" maxlength="30" ></td>   
+                                        <td><input type="text" name="incomeaccount" id="incomeaccount"  value="<?php echo $item["incomeaccount"] ?>" autofocus="" required="true" minlenght="2" maxlength="30" ></td>   
                                     </tr>
                                     <tr >
                                         <td colspan="2"><label class="control-label">Description on Sales Transactions</label>
