@@ -60,7 +60,7 @@
         <td>Currency </td>
         <td><select id="currency"  type="text" required="true" name="currency"  value="<?php echo filter_input(INPUT_POST, "currency") ?>" placeholder="Select Country Here"  >
                 <option value="">Select Currency</option>
-                <option value="INR">Indian Rupee</option><option value="CAD"> Canadian Dollar</option>
+                <option value="INR">Indian Rupee</option><option value="CAD"> Canadian Dollar</option><option value="USD"> USD</option>
             </select></td>
         <td>Exchange Rate</td>
         <td><input type="text" name="exchange_rate" id="exchange_rate" onkeypress="return chkNumericKey(event)" value="<?php echo filter_input(INPUT_POST, "exchange_rate") ?>" maxlength="2"></td>

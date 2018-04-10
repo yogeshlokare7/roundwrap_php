@@ -13,7 +13,7 @@
         border-color: gray;
     }
     .customtable tr td{
-/*        padding: 5px;*/
+        /*        padding: 5px;*/
         border-color: gray;
     }
     .thead{
@@ -73,7 +73,7 @@
     <br/>
     <table class="customtable" style="border: 0px;">
         <tr style="height: 30px;background-color: rgb(240,240,240);;height: 40px;">
-            <td style="width: 12%"><a class="btn" href="index.php?pagename=create_customermaster" >ADD CUSTOMER</a></td>
+            <td style="width: 11%"><a class="btn" href="index.php?pagename=create_customermaster" ><i class="icon icon-user"></i>ADD CUSTOMER</a></td>
             <th style="width: 2.3%">&nbsp;Search&nbsp;:&nbsp;</th>
             <th colspan="9" style="text-align: left">
                 <input type="text" id="searchinput" name="searchinput" style="width: 50%">
@@ -100,8 +100,8 @@
                 foreach ($listofcustomers as $key => $value) {
                     ?>
 
-                    <tr id="<?php echo $value["id"] ?>" class="context-menu-one" style="border-bottom: solid 1px rgb(220,220,220);text-align: left;">
-<!--                        <td style="width: 2.3%">
+                    <tr id="<?php echo $value["cust_id"] ?>" class="context-menu-one" style="border-bottom: solid 1px rgb(220,220,220);text-align: left;">
+    <!--                        <td style="width: 2.3%">
                             <a onclick="setDeleteField('<?php echo $value["cust_id"] ?>')" href="#myAlert" data-toggle="modal"  class="tip-top" data-original-title="Delete Record" data-id="<? echo $value['id'] ?>">
                                 <i class="icon-remove"></i>
                             </a> 
@@ -173,7 +173,7 @@
                         window.location = "index.php?pagename=create_customermaster&customerId=" + id;
                         break;
                     case "delete_customer":
-                        //document.getElementById("deleteThis").click();
+                        deleteCustomer(id);
                         break;
                     case "create_sales_order":
                         window.location = "index.php?pagename=create_salesorder";
@@ -189,7 +189,7 @@
             items: {
                 "create_customer": {name: "Create Customer", icon: "add"},
                 "edit_customer": {name: "Edit Customer", icon: "edit"},
-//                "delete_customermaster": {name: "Delete Customer", icon: "delete"},
+                "delete_customermaster": {name: "Delete Customer", icon: "delete"},
                 "create_sales_order": {name: "Create Sales Order", icon: "add"},
                 "create_invoice": {name: "Create Invoice", icon: "add"},
                 "sep1": "---------",
@@ -198,7 +198,17 @@
                     }}
             }
         });
-
+        function deleteCustomer(id) {
+            var dataString = "deleteId=" + id;
+            $.ajax({
+                type: 'POST',
+                url: 'customermaster/customermaster_ajax.php',
+                data: dataString
+            }).done(function (data) {
+            }).fail(function () {
+            });
+            location.reload();
+        }
 //        $('.context-menu-one').on('click', function(e){
 //            console.log('clicked', this);
 //       })    

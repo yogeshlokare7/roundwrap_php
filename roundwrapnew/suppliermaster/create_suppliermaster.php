@@ -12,7 +12,7 @@
         <div class="widget-title">
             <ul class="nav nav-tabs">
              
-                <li id="siTab1" class="active"><a data-toggle="tab" href="#tab1">vendor Information </a></li>
+                <li id="siTab1" class="active"><a data-toggle="tab" href="#tab1">Vendor Information </a></li>
                 <li id="adTab2"><a data-toggle="tab" href="#tab2">Additional Contacts</a></li>
             </ul>
         </div>

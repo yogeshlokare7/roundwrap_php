@@ -53,7 +53,7 @@
     <br/>
     <table class="customtable" style="border: 0px;">
         <tr style="height: 30px;background-color: rgb(240,240,240);;height: 40px;">
-            <td style="width: 8%"><a class="btn" href="index.php?pagename=create_suppliermaster" >ADD VENDOR</a></td>
+            <td style="width: 9%;"><a class="btn"  href="index.php?pagename=create_suppliermaster" ><i class="icon icon-user"></i>ADD VENDOR</a></td>
             <th style="width: 2.3%">&nbsp;Search&nbsp;:&nbsp;</th>
             <th colspan="9" style="text-align: left">
                 <input type="text" id="searchinput" name="searchinput" style="width: 50%">
@@ -147,7 +147,7 @@
                         window.location = "index.php?pagename=create_suppliermaster&supplierid=" + id;
                         break;
                     case "delete_vendor":
-                        //document.getElementById("deleteThis").click();
+                        document.getElementById("deleteThis").click();
                         break;
                     case "create_perchase_order":
                         window.location = "index.php?pagename=create_perchaseorder";
@@ -163,7 +163,7 @@
             items: {
                 "create_vendor": {name: "Create Vendor", icon: "add"},
                 "edit_vendor": {name: "Edit Vendor", icon: "edit"},
-//                "delete_customermaster": {name: "Delete Customer", icon: "delete"},
+                "delete_vendor": {name: "Delete Vendor", icon: "delete"},
                 "create_perchase_order": {name: "Create perchase Order", icon: "add"},
                 "create_invoice": {name: "Create Invoice", icon: "add"},
                 "sep1": "---------",
