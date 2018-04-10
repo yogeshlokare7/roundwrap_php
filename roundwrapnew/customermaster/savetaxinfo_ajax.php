@@ -3,30 +3,30 @@
 error_reporting(0);
 include '../MysqlConnection.php';
 
-$taxcode = $_POST["taxcode"];
-$taxdescription = $_POST["taxdescription"];
-$taxname = $_POST["taxname"];
-$taxvalues = $_POST["taxvalues"];
-$isExempt = $_POST["isExempt"];
+$arrtaxcode = explode(",", $_POST["taxcode"]);
+$taxtaxname = explode(",", $_POST["taxtaxname"]);
+$taxtaxvalues = explode(",", $_POST["taxtaxvalues"]);
+$taxisExempt = explode(",", $_POST["taxisExempt"]);
 
-$arrtaxname = explode(",", $taxname);
-print_r($arrtaxname);
-$arrtaxval = explode(",", $taxvalues);
-print_r($arrtaxval);
-
-echo "<pre>";
-print_r($_POST);
-echo "</pre>";
-
-$index = 0;
-foreach ($arrtaxname as $value) {
-    $arrainsert = array();
-    $arrainsert["taxcode"] = $taxcode;
-    $arrainsert["taxdescription"] = $taxcode;
-    $arrainsert["taxname"] = $arrtaxname[$index];
-    $arrainsert["taxvalues"] = $arrtaxval[$index];
-    $arrainsert["isExempt"] = $isExempt;
-    MysqlConnection::insert("taxinfo_table", $arrainsert);
-    $index++;
+for ($index = 0; $index < count($taxtaxname); $index++) {
+    if ($arrtaxcode[$index] != "" && $taxtaxname[$index] != "" && $taxtaxvalues[$index] != "") {
+        $sqlisavailable = MysqlConnection::fetchCustom("SELECT tax FROM taxinfo_table where tax = '$taxtaxname[$index]'");
+        if ($sqlisavailable[0]["tax"] == "") {
+            $array["taxcode"] = $arrtaxcode[$index];
+            $array["taxname"] = $taxtaxname[$index];
+            $array["tax"] = $taxtaxname[$index];
+            $array["taxvalues"] = $taxtaxvalues[$index];
+            $array["isExempt"] = $taxisExempt;
+            $array["taxdescription"] = $arrtaxcode[$index] . " , " . $taxtaxname[$index];
+            MysqlConnection::insert("taxinfo_table", $array);
+        }
+    }
 }
- 
+
+$sqlisavailable = MysqlConnection::fetchCustom("SELECT * FROM taxinfo_table ORDER BY id DESC LIMIT 0,1 ");
+$sqlcustom = MysqlConnection::fetchCustom($sqlisavailable);
+$option = "";
+foreach ($array as $key => $value) {
+    $option.= "<option value='" . $value["id"] . "'>" . $value["taxcode"] . " - " . $value["taxname"] . " - " . " - " . $value["taxvalues"] . "%</option>";
+}
+
