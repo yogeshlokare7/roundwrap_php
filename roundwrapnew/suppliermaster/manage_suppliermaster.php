@@ -157,11 +157,11 @@
                 //window.console && console.log(m) || alert(m+"    id:"+id); 
             },
             items: {
-                "create_vendor": {name: "Create Vendor", icon: "add"},
-                "edit_vendor": {name: "Edit Vendor", icon: "edit"},
-                "delete_vendor": {name: "Delete Vendor", icon: "delete"},
-                "create_perchase_order": {name: "Create perchase Order", icon: "add"},
-                "create_invoice": {name: "Create Invoice", icon: "add"},
+                "create_vendor": {name: "CREATE VENDOR", icon: "add"},
+                "edit_vendor": {name: "EDIT VENDOR", icon: "edit"},
+                "delete_vendor": {name: "DELETE VENDOR", icon: "delete"},
+                "create_perchase_order": {name: "CREATE PURCHASE ORDER", icon: "add"},
+                "create_invoice": {name: "CREATE INVOICE", icon: "add"},
                 "sep1": "---------",
                 "quit": {name: "Quit", icon: function() {
                         return 'context-menu-icon context-menu-icon-quit';
