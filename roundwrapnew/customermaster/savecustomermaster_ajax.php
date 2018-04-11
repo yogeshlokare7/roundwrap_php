@@ -31,6 +31,7 @@ $customerarray["balance"] = filter_input(INPUT_POST, "balance");
 $customerarray["cust_accnt_no"] = filter_input(INPUT_POST, "cust_accnt_no");
 $customerarray["creditlimit"] = filter_input(INPUT_POST, "creditlimit");
 $customerarray["status"] = filter_input(INPUT_POST, "status");
+$customerarray["taxInformation"] = filter_input(INPUT_POST, "taxInformation");
 
 $contact_person = $_POST["contact_person"];
 $paymentinfo = $_POST["cardnumber"];
@@ -50,7 +51,6 @@ if (empty($customerid)) { //// this is save request
     MysqlConnection::edit("customer_master", $customerarray, " id = $customerid");
 }
 echo "<br/>";
-echo "<br/>";
 
 for ($index = 0; $index < count($contact_person); $index++) {
     $namearray = $contact_person;
@@ -67,9 +67,9 @@ for ($index = 0; $index < count($contact_person); $index++) {
     if (!empty($customerid)) { //// this is save request 
         MysqlConnection::delete("DELETE FROM customer_contact WHERE cust_id = $customerid ");
     }
+    echo "<br/>";
     MysqlConnection::insert("customer_contact", $custcontactrarray);
 }
-echo "<br/>";
 echo "<br/>";
 
 for ($index = 0; $index < count($paymentinfo); $index++) {
@@ -88,9 +88,9 @@ for ($index = 0; $index < count($paymentinfo); $index++) {
         MysqlConnection::delete("DELETE FROM customer_payment WHERE cust_id = $customerid ");
     }
     echo "<br/>";
-    echo "<br/>";
     MysqlConnection::insert("customer_payment", $custpaymentrarray);
 }
+echo "<br/>";
 
 
 //header("location:index.php?pagename=manage_customermaster");

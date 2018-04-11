@@ -1,6 +1,7 @@
 <?php
 if (!empty($customerid)) {
     $customercontactarray = MysqlConnection::fetchCustom("SELECT * FROM customer_contact WHERE cust_id = $customerid");
+    print_r($customercontactarray);
 }
 ?>
 <script>
