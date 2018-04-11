@@ -1,6 +1,6 @@
 <?php
 
-$customerid = filter_input(INPUT_POST, "customerId");
+$customerid = filter_input(INPUT_GET, "customerId");
 
 $arrcustomer = MysqlConnection::fetchCustom("SELECT * FROM  `customer_master` WHERE id = $customerid ");
 echo "<pre>";
