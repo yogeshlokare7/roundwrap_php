@@ -57,7 +57,7 @@ if (!empty($customerid)) {
             <tr style="vertical-align: bottom">
                 <td><input type="text" name="contact_person[]" value="" minlenght="2" maxlength="30"  id="alter_contact"></td>
                 <td><input type="email" name="email[]" autofocus=""  value="" id="email"></td>
-                <td><input type="tel" name="alterno[]" id="alterno"  value="" ></td>
+                <td><input type="tel" name="alternos[]" id="alterno"  value="" ></td>
                 <td><input type="text" name="designation[]" id="designation"  value="" ></td>
                 <td><a class="icon-plus" href="#" id="icon-plus" ></a></td>
             </tr>
@@ -76,10 +76,10 @@ if (!empty($customerid)) {
         var counter = 1;
         jQuery('#icon-plus').click(function(event) {
             event.preventDefault();
-            var newRow = jQuery('<tr><td><input type="text" minlenght="2" maxlength="30" name="contact_person[]" value="<?php echo filter_input(INPUT_POST, "contact_person") ?>"  id="contact_person"></td>' +
-                    '<td><input type="email" name="email[]" autofocus="" value="<?php echo filter_input(INPUT_POST, "email") ?>" id="email"></td>' +
-                    '<td><input type="tel" name="alternos[]" id="alterno' + counter + '"  value="<?php echo filter_input(INPUT_POST, "alterno1[]") ?>" ></td>' +
-                    '<td><input type="text" name="designation[]" id="designation' + counter + '"  value="<?php echo filter_input(INPUT_POST, "designation[]") ?>" ></td>' +
+            var newRow = jQuery('<tr><td><input type="text" minlenght="2" maxlength="30" name="contact_person[]"  id="contact_person"></td>' +
+                    '<td><input type="email" name="email[]" autofocus=""  id="email"></td>' +
+                    '<td><input type="tel" name="alternos[]" id="alterno' + counter + '"  ></td>' +
+                    '<td><input type="text" name="designation[]" id="designation' + counter + '" ></td>' +
                     '<td><a class="icon-trash" href="#" id="icon-trash" ></a></td>');
             $("#alterno" + counter).mask("(99) 9999-9999");
             counter++;

@@ -32,10 +32,11 @@ $arrsalutations = MysqlConnection::fetchCustom("SELECT distinct(`salutation`) as
                     <?php
                     foreach ($arrsalutations as $key => $value) {
                         ?>
-                        <option value="<?php echo $value ?>"><?php echo $value ?></option>
-                        <?php
-                    }
-                    ?>
+                        <option  <?php echo $value["salutation"] == $customer["salutation"] ? "selected" : "" ?>
+                            value="<?php echo $value["salutation"] ?>" ><?php echo $value["salutation"] ?></option>
+                            <?php
+                        }
+                        ?>
                 </select>
                 <input type="text" name="salutation1" style="width: 50%" placeholder="Add here">
             </td>
@@ -60,7 +61,7 @@ $arrsalutations = MysqlConnection::fetchCustom("SELECT distinct(`salutation`) as
             <td><input type="text" name="cust_fax" id="cust_fax"  value="<?php echo $customer["cust_fax"] ?>" ></td>
             <td><label class="control-label">Customer Status</label></td>
             <td style="vertical-align: middle">
-                <input type="checkbox" value="Y" checked=""/>
+                <input type="checkbox" name="status" <?php echo $customer["status"] == "Y" ? "checked" : "" ?> id="status" value="Y" />
                 Is customer active ?
             </td>
         </tr>

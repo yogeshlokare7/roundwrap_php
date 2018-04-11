@@ -20,18 +20,19 @@ $sqltaxinfodata = MysqlConnection::fetchCustom("SELECT * FROM taxinfo_table ORDE
                     <option value="">&nbsp;&nbsp;</option>
                     <option value="1" ><< ADD NEW >></option>
                     <?php foreach ($sqlcustomertypepredata as $key => $value) { ?>
-                        <option value="<?php echo $value["id"] ?>"><?php echo $value["name"] ?></option>
-                    <?php } ?>
+                        <option <?php echo $value["id"] == $customer["cust_type"] ? "selected" : "" ?>
+                            value="<?php echo $value["id"] ?>"  ><?php echo $value["name"] ?></option>
+                        <?php } ?>
                 </select>
             </td>
             <td><label class="control-label">Discount</label></td>
             <td>
                 <select name="discount" id="discount">
                     <option value="0">&nbsp;</option>
-                    <option value="1">1 %</option>
                     <?php for ($index = 5; $index <= 100; $index+=5) { ?>
-                        <option value="<?php echo $index ?>"><?php echo $index ?>%</option>
-                    <?php } ?>
+                        <option <?php echo $index == $customer["discount"] ? "selected" : "" ?>
+                            value="<?php echo $index ?>"><?php echo $index ?>%</option>
+                        <?php } ?>
                 </select>
             </td>
             <td><label class="control-label">Term</label></td>
@@ -40,8 +41,9 @@ $sqltaxinfodata = MysqlConnection::fetchCustom("SELECT * FROM taxinfo_table ORDE
                     <option value="">&nbsp;&nbsp;</option>
                     <option value="1" ><< ADD NEW >></option>
                     <?php foreach ($sqlpaymenttermdata as $key => $value) { ?>
-                        <option value="<?php echo $value["id"] ?>"><?php echo $value["code"] ?> - <?php echo $value["name"] ?></option>
-                    <?php } ?>
+                        <option <?php echo $value["id"] == $customer["paymentterm"] ? "selected" : "" ?>
+                            value="<?php echo $value["id"] ?>"><?php echo $value["code"] ?> - <?php echo $value["name"] ?></option>
+                        <?php } ?>
                 </select>
             </td>
         </tr>
@@ -54,10 +56,11 @@ $sqltaxinfodata = MysqlConnection::fetchCustom("SELECT * FROM taxinfo_table ORDE
                     <?php
                     foreach ($sqlrepresentativetermdata as $key => $value) {
                         ?>
-                        <option value="<?php echo $value["id"] ?>"><?php echo $value["name"] ?>  <?php echo $value["description"] ?></option>  
-                        <?php
-                    }
-                    ?>
+                        <option <?php echo $value["id"] == $customer["sales_person_name"] ? "selected" : "" ?>
+                            value="<?php echo $value["id"] ?>"><?php echo $value["name"] ?>  <?php echo $value["description"] ?></option>  
+                            <?php
+                        }
+                        ?>
                 </select>
             </td>
             <td>Business No</td>
@@ -79,8 +82,9 @@ $sqltaxinfodata = MysqlConnection::fetchCustom("SELECT * FROM taxinfo_table ORDE
                     <option value="">&nbsp;&nbsp;</option>
                     <option value="1" ><< ADD NEW >></option>
                     <?php foreach ($sqltaxinfodata as $key => $value) { ?>
-                        <option  value='<?php echo $value["id"] ?>'><?php echo $value["taxcode"] ?> - <?php echo $value["taxname"] ?> - <?php echo $value["taxvalues"] ?>%</option>
-                    <?php } ?>
+                        <option   <?php echo $value["id"] == $customer["taxInformation"] ? "selected" : "" ?>
+                            value='<?php echo $value["id"] ?>'><?php echo $value["taxcode"] ?> - <?php echo $value["taxname"] ?> - <?php echo $value["taxvalues"] ?>%</option>
+                        <?php } ?>
                 </select>
             </td>
         </tr>

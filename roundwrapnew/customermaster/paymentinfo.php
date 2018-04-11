@@ -12,7 +12,7 @@ if (!empty($customerid)) {
             return false;
         }
     }
-    $(document).ready(function ($) {
+    $(document).ready(function($) {
         $("#cardnumber").mask("9999-9999-9999-9999");
     });
 </script>
@@ -24,9 +24,9 @@ if (!empty($customerid)) {
 
             <td>Currency</td>
             <td><select name="currency" id="currency">
-                    <option value="CAN">Canada Dollar</option>
-                    <option value="INR" >USD</option>
-                    <option value="INR" >INR</option>
+                    <option value="CAN" <?php echo "CAN" == $customer["currency"] ? "selected" : "" ?>>Canada Dollar</option>
+                    <option value="USD" <?php echo "USD" == $customer["currency"] ? "selected" : "" ?>>USD</option>
+                    <option value="INR" <?php echo "INR" == $customer["currency"] ? "selected" : "" ?>>INR</option>
                 </select></td>
 
             <td>Balance</td>
@@ -82,14 +82,14 @@ if (!empty($customerid)) {
 </fieldset>
 
 <hr/>
-<input type="hidden" value="customerid" value="1"/>
+<input type="hidden" value="customerid" value="<?php echo $customerid ?>"/>
 <input type="button" id="btnCmpPrev3" value="PREVIOUS" class="btn btn-info" href="#tab1"></td>
 <button type="submit" id="btnSubmitFullForm" class="btn btn-success">SUBMIT</button>
 
 <script type="text/javascript">
-    jQuery(function () {
+    jQuery(function() {
         var counter = 1;
-        jQuery('#paymentInfoFrm').click(function (event) {
+        jQuery('#paymentInfoFrm').click(function(event) {
             event.preventDefault();
             var newRow = jQuery('<tr><td><label class="control-label">Credit Card No.</label></td><td><input type="text" name="cardnumber[]" onkeypress="return chkNumericKey(event)" minlenght="2" maxlength="16" id="cardnumber' + counter + '"  value="<?php echo $value["cardnumber"] ?>" ></td>' +
                     counter + '<td><label class="control-label">Name on Card</label></td><td><input type="text" name="nameoncard[]" minlenght="2" maxlength="30"  id="nameoncard"  value="<?php echo $value["nameoncard"] ?>" ></td>' +
@@ -104,25 +104,16 @@ if (!empty($customerid)) {
         });
     });
 
-    $(document).ready(function () {
+    $(document).ready(function() {
 
-        $("#payment").on('click', 'a.icon-trash', function () {
+        $("#payment").on('click', 'a.icon-trash', function() {
             $(this).closest('tr').remove();
         });
 
     });
 
 
-    $("#btnSubmitFullForm").click(function () {
-        alert("dsadas");
-        var json = convertFormToJSON("#frmCustomerSubmit");
-        console.log(json);
-//        $.ajax({
-//            type: 'POST',
-//            url: '',
-//            data: json
-//        }).done(function (data) {
-//        }).fail(function () {
-//        });
+    $("#btnSubmitFullForm").click(function() {
+        $("#frmCustomerSubmit").submit();
     });
 </script>

@@ -18,7 +18,7 @@ if (!empty($customerid)) {
                 <li id="dpiTab4"><a data-toggle="tab" href="#tab4">Deposits and Payment Information</a></li>
             </ul>
         </div>
-        <form name="frmCustomerSubmit" id="frmCustomerSubmit" method="post" action="customermaster/savecustomermaster_ajax.php">
+        <form name="frmCustomerSubmit"  enctype="multipart/form-data" id="frmCustomerSubmit" method="post" action="customermaster/savecustomermaster_ajax.php">
             <div class="widget-content tab-content">
                 <div id="tab1" class="tab-pane active">
                     <?php include 'customermaster/companyinfo.php'; ?>
