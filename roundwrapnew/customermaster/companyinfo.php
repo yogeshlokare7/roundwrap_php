@@ -1,5 +1,7 @@
+<?php 
+    MysqlConnection::fetchCustom("");
+?>
 <style>
-
     tbody {
         height: auto;
     }
@@ -13,11 +15,10 @@
         height: 24px;
     }
     tr{
-        /*background-color: rgb(240,240,240);*/
     }
 </style>
 <script>
-    $(document).ready(function ($) {
+    $(document).ready(function($) {
         $("#phno").mask("(99) 9999-9999");
         $("#cust_fax").mask("(99) 9999-9999");
     });
@@ -29,10 +30,6 @@
             <td>
                 <select name="salutation" style="width: 60px;" id="salutation">
                     <option value=""></option>
-                    <option value="Mr">Mr.</option>
-                    <option value="Mrs" >Mrs.</option>
-                    <option value="Miss">Miss.</option>
-                    <option value="Ms">Ms.</option>
                 </select>
                 <input type="text" name="salutation1" style="width: 45%" placeholder="Add here">
             </td>

@@ -18,6 +18,7 @@
 <?php
 $sqlcustomertypepredata = MysqlConnection::fetchCustom("SELECT id,name FROM generic_entry where type = 'customer_type' ORDER BY id DESC ;");
 $sqlpaymenttermdata = MysqlConnection::fetchCustom("SELECT id,name,code FROM generic_entry where type = 'paymentterm' ORDER BY id DESC ;");
+$sqlrepresentativetermdata = MysqlConnection::fetchCustom("SELECT id,name,code FROM generic_entry where type = 'representative' ORDER BY id DESC ;");
 $sqltaxinfodata = MysqlConnection::fetchCustom("SELECT * FROM taxinfo_table ORDER BY id DESC ;");
 ?>
 <fieldset class="well the-fieldset">
@@ -61,6 +62,13 @@ $sqltaxinfodata = MysqlConnection::fetchCustom("SELECT * FROM taxinfo_table ORDE
                 <select name="sales_person_name" id="sales_person_name">
                     <option value="">&nbsp;&nbsp;</option>
                     <option value="1" ><< ADD NEW >></option>
+                    <?php
+                    foreach ($sqlrepresentativetermdata as $key => $value) {
+                        ?>
+                        <option value="<?php echo $value["id"] ?>"><?php echo $value["name"] ?>  <?php echo $value["description"] ?></option>  
+                        <?php
+                    }
+                    ?>
                 </select>
             </td>
             <td>Business No</td>
@@ -125,21 +133,20 @@ $sqltaxinfodata = MysqlConnection::fetchCustom("SELECT * FROM taxinfo_table ORDE
 <div id="addRepresentative" class="modal hide" style="top: 10%;left: 50%;">
     <div class="modal-header">
         <button data-dismiss="modal" class="close" type="button">×</button>
-        <h3>Add New Representative Type</h3>
+        <h3>ADD NEW REPRESENTATIVE TYPE</h3>
     </div>
     <div class="modal-body">
         <form class="form-horizontal" method="post" action="#" name="addRepresentative" id="addRepresentative" novalidate="novalidate">
             <div class="control-group">
                 <label class="control-label">First Name:</label>
                 <div class="controls">
-                    <input type="text" name="rfirstname" id="firstname">
-
+                    <input type="text" name="firstname" id="firstname1">
                 </div>
             </div>
             <div class="control-group">
                 <label class="control-label">Last Name:</label>
                 <div class="controls">
-                    <input type="text" name="lastname" id="lastname">
+                    <input type="text" name="lastname" id="lastname1">
                 </div>
             </div>
         </form>
@@ -231,9 +238,9 @@ $sqltaxinfodata = MysqlConnection::fetchCustom("SELECT * FROM taxinfo_table ORDE
 <!-- this is model dialog --->
 
 <script>
-    jQuery(function () {
+    jQuery(function() {
         var counter = 1;
-        jQuery('a.icon-plus').click(function (event) {
+        jQuery('a.icon-plus').click(function(event) {
             event.preventDefault();
             var newRow = jQuery('<tr>'
                     + '<td><input type="text" name="taxcode[]" style="width: 25px;" id="taxtaxname[]" ></td>'
@@ -247,19 +254,19 @@ $sqltaxinfodata = MysqlConnection::fetchCustom("SELECT * FROM taxinfo_table ORDE
         });
     });
 
-    $(document).ready(function () {
-        $("#addtax").on('click', 'a.icon-trash', function () {
+    $(document).ready(function() {
+        $("#addtax").on('click', 'a.icon-trash', function() {
             $(this).closest('tr').remove();
         });
 
     });
-    $("#cust_type").click(function () {
+    $("#cust_type").click(function() {
         var valueModel = $("#cust_type").val();
         if (valueModel === "1") {
             $('#custtypemodel').modal('show');
         }
     });
-    $("#saveCustomerType").click(function () {
+    $("#saveCustomerType").click(function() {
         var type = "customer_type";
         var name = $("#cuscusttype").val();
         var description = $("#adddescription").val();
@@ -269,44 +276,44 @@ $sqltaxinfodata = MysqlConnection::fetchCustom("SELECT * FROM taxinfo_table ORDE
             type: 'POST',
             url: 'customertype/savecustomertype_ajax.php',
             data: dataString
-        }).done(function (data) {
+        }).done(function(data) {
             $('#cust_type').append(data);
             $("#cuscusttype").val("");
             $("#adddescription").val("");
-        }).fail(function () {
+        }).fail(function() {
         });
     });
 
-    $("#sales_person_name").click(function () {
+    $("#sales_person_name").click(function() {
         var valueModel = $("#sales_person_name").val();
         if (valueModel === "1") {
             $('#addRepresentative').modal('show');
         }
     });
-    $("#saveRepresentative").click(function () {
+    $("#saveRepresentative").click(function() {
         var type = "representative";
-//        cuscusttype adddescription
-        var firstname = $("#firstname").val();
-        var lastname = $("#lastname").val();
-
+        var firstname = $("#firstname1").val();
+        var lastname = $("#lastname1").val();
         var dataString = "type=" + type + "&name=" + firstname + "&description=" + lastname;
         $.ajax({
             type: 'POST',
             url: 'customermaster/saverepresentative_ajax.php',
             data: dataString
-        }).done(function (data) {
-
-        }).fail(function () {
+        }).done(function(data) {
+            $('#sales_person_name').append(data);
+            $("#firstname1").val("");
+            $("#lastname1").val("");
+        }).fail(function() {
         });
     });
 
-    $("#paymentTerm").click(function () {
+    $("#paymentTerm").click(function() {
         var valueModel = $("#paymentTerm").val();
         if (valueModel === "1") {
             $('#addPaymentTerm').modal('show');
         }
     });
-    $("#savePaymentT").click(function () {
+    $("#savePaymentT").click(function() {
         var type = "paymentterm";
         var code = $("#termcode").val();
         var name = $("#termname").val();
@@ -317,34 +324,34 @@ $sqltaxinfodata = MysqlConnection::fetchCustom("SELECT * FROM taxinfo_table ORDE
             type: 'POST',
             url: 'customermaster/savepayterm_ajax.php',
             data: dataString
-        }).done(function (data) {
+        }).done(function(data) {
             $('#paymentTerm').append(data);
             $("#termcode").val("");
             $("#termname").val("");
             $("#termdescription").val("");
-        }).fail(function () {
+        }).fail(function() {
         });
     });
 
-    $("#taxInformation").click(function () {
+    $("#taxInformation").click(function() {
         var valueModel = $("#taxInformation").val();
         if (valueModel === "1") {
             $('#addTaxInformation').modal('show');
         }
     });
-    $("#saveTaxInformation").click(function () {
+    $("#saveTaxInformation").click(function() {
 //        var dataString = convertFormToJSON("addTaxInformation"); 
 //        //taxcode  taxtaxname   taxtaxvalues   taxisExempt
-        var taxcode = $("input[name='taxcode[]']").map(function () {
+        var taxcode = $("input[name='taxcode[]']").map(function() {
             return $(this).val();
         }).get();
-        var taxtaxname = $("input[name='taxtaxname[]']").map(function () {
+        var taxtaxname = $("input[name='taxtaxname[]']").map(function() {
             return $(this).val();
         }).get();
-        var taxtaxvalues = $("input[name='taxtaxvalues[]']").map(function () {
+        var taxtaxvalues = $("input[name='taxtaxvalues[]']").map(function() {
             return $(this).val();
         }).get();
-        var taxisExempt = $("input[name='taxisExempt[]']").map(function () {
+        var taxisExempt = $("input[name='taxisExempt[]']").map(function() {
             return $(this).val();
         }).get();
         var dataString = "taxcode=" + taxcode + "&taxtaxname=" + taxtaxname + "&taxtaxvalues=" + taxtaxvalues + "&taxisExempt=" + taxisExempt;
@@ -352,16 +359,16 @@ $sqltaxinfodata = MysqlConnection::fetchCustom("SELECT * FROM taxinfo_table ORDE
             type: 'POST',
             url: 'customermaster/savetaxinfo_ajax.php',
             data: dataString
-        }).done(function (data) {
+        }).done(function(data) {
             $("input[name='taxcode[]']").val("");
             $("input[name='taxtaxname[]']").val("");
             $("input[name='taxtaxvalues[]']").val("");
             $("input[name='taxisExempt[]']").val("");
-        }).fail(function () {
+        }).fail(function() {
         });
     });
 
-    $(function () {
+    $(function() {
         $('#taxcheckbox').click('#taxInformation', toggleSelection);
     });
 
