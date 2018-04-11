@@ -1,4 +1,5 @@
 <?php
+
 include '../MysqlConnection.php';
 
 $supplierid = $_POST["supplierid"];
@@ -14,9 +15,10 @@ unset($_POST["email"]);
 unset($_POST["alterno"]);
 unset($_POST["designation"]);
 unset($_POST["salutation1"]);
+unset($_POST["supplierid"]);
 
 
-if (isset($supplierid)) {
+if (isset($supplierid) && $supplierid != "") {
     MysqlConnection::edit("supplier_master", $_POST, " 	supp_id = $supplierid ");
     MysqlConnection::delete("DELETE FROM supplier_contact WHERE supp_id = $supplierid  ");
 } else {
