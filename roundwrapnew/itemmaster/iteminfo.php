@@ -5,6 +5,8 @@ if (!empty($itemPrimary)) {
     $item = $resultset[0];
 }
 $itemlist = MysqlConnection::fetchCustom("SELECT item_id,item_code FROM item_master;");
+
+$sqltaxinfodata = MysqlConnection::fetchCustom("SELECT * FROM taxinfo_table ORDER BY id DESC ;");
 ?>
 
 <style>
@@ -68,9 +70,12 @@ $itemlist = MysqlConnection::fetchCustom("SELECT item_id,item_code FROM item_mas
                         </td>
                         <td style="width: 220px;">
                             <label >Sales Tax Code</label>
-                            <select name="salestaxcode" id="salestaxcode" value="<?php echo $item["salestaxcode"] ?>">
+                            <select name="salestaxcode" id="taxInformation1" value="<?php echo $item["salestaxcode"] ?>">
                                 <option value="">&nbsp;&nbsp;</option>
                                 <option value="1" ><< ADD NEW >></option>
+                                <?php foreach ($sqltaxinfodata as $key => $value) { ?>
+                                    <option  value='<?php echo $value["id"] ?>'><?php echo $value["taxcode"] ?> - <?php echo $value["taxname"] ?> - <?php echo $value["taxvalues"] ?>%</option>
+                                <?php } ?>
                             </select>
                         </td>
                         <td>
@@ -85,7 +90,7 @@ $itemlist = MysqlConnection::fetchCustom("SELECT item_id,item_code FROM item_mas
                     </tr>
                 </table>
             </div>
-        <?php }  if ($item["type"] == "InventoryPart" || $item["type"] == "" ) { ?>
+        <?php } if ($item["type"] == "InventoryPart" || $item["type"] == "") { ?>
             <div id="inventorypartfrom">
                 <table border="0"> 
                     <tr style="vertical-align: top">
@@ -98,7 +103,15 @@ $itemlist = MysqlConnection::fetchCustom("SELECT item_id,item_code FROM item_mas
                                     </tr>
                                     <tr >
                                         <td><label class="control-label">Purch Tax Code</label></td>
-                                        <td><input type="text" name="purch_code" id="purch_code"  value="<?php echo $item["purch_code"] ?>" autofocus="" required="true" minlenght="2" maxlength="30" ></td>   
+                                        <td>
+                                            <select name="purch_code" id="taxInformation2">
+                                                <option value="">&nbsp;&nbsp;</option>
+                                                <option value="1" ><< ADD NEW >></option>
+                                                <?php foreach ($sqltaxinfodata as $key => $value) { ?>
+                                                    <option  value='<?php echo $value["id"] ?>'><?php echo $value["taxcode"] ?> - <?php echo $value["taxname"] ?> - <?php echo $value["taxvalues"] ?>%</option>
+                                                <?php } ?>
+                                            </select>
+                                        </td>   
                                     </tr>
 <!--                                    <tr >
                                         <td><label class="control-label">COGS Account</label></td>
@@ -123,7 +136,15 @@ $itemlist = MysqlConnection::fetchCustom("SELECT item_id,item_code FROM item_mas
                                     </tr>
                                     <tr >
                                         <td><label class="control-label">Sales Tax Code</label></td>
-                                        <td><input type="text" name="sales_code" id="sales_code"  value="<?php echo $item["sales_code"] ?>" autofocus="" required="true" minlenght="2" maxlength="30" ></td>   
+                                        <td>
+                                            <select name="sales_code" id="taxInformation3">
+                                                <option value="">&nbsp;&nbsp;</option>
+                                                <option value="1" ><< ADD NEW >></option>
+                                                <?php foreach ($sqltaxinfodata as $key => $value) { ?>
+                                                    <option  value='<?php echo $value["id"] ?>'><?php echo $value["taxcode"] ?> - <?php echo $value["taxname"] ?> - <?php echo $value["taxvalues"] ?>%</option>
+                                                <?php } ?>
+                                            </select>
+                                        </td>   
                                     </tr>
 <!--                                    <tr >
                                         <td><label class="control-label">Income Account</label></td>
@@ -193,13 +214,13 @@ $itemlist = MysqlConnection::fetchCustom("SELECT item_id,item_code FROM item_mas
         $("#frmItemsSubmit").submit();
     }
 <?php if ($item["type"] == "") { ?>
-        $(document).ready(function () {
+        $(document).ready(function() {
             $('#inventorypartfrom').addClass('hide');
             $('#inventorypartfrom').removeClass('show');
         });
 <?php } ?>
 
-    $("#type").click(function () {
+    $("#type").click(function() {
         var valueModel = $("#type").val();
         if (valueModel === "Service") {
             $('#serviceform').addClass('show');
@@ -213,3 +234,133 @@ $itemlist = MysqlConnection::fetchCustom("SELECT item_id,item_code FROM item_mas
     });
 </script>
 
+
+
+<script>
+    jQuery(function() {
+        var counter = 1;
+        jQuery('a.icon-plus').click(function(event) {
+            event.preventDefault();
+            var newRow = jQuery('<tr>'
+                    + '<td><input type="text" name="taxcode[]" style="width: 25px;" id="taxtaxname[]" ></td>'
+                    + '<td><input type="text" name="taxtaxname[]" style="width: 75px;" id="taxtaxname[]" ></td>'
+                    + '<td><input type="text" name="taxtaxvalues[]" id="taxtaxvalues[]" ></td>'
+                    + '<td><input  type="checkbox" name="taxisExempt[]" id="taxisExempt[]"></td>'
+                    + '<td><a class="icon-trash" href="#"  ></a></td>'
+                    + '</tr>');
+            counter++;
+            jQuery('#addtax').append(newRow);
+        });
+    });
+
+    $(document).ready(function() {
+        $("#addtax").on('click', 'a.icon-trash', function() {
+            $(this).closest('tr').remove();
+        });
+    });
+
+    $("#taxInformation1").click(function() {
+        var valueModel = $("#taxInformation1").val();
+        if (valueModel === "1") {
+            $('#addTaxInformation').modal('show');
+        }
+    });
+
+    $("#taxInformation2").click(function() {
+        var valueModel = $("#taxInformation2").val();
+        if (valueModel === "1") {
+            $('#addTaxInformation').modal('show');
+        }
+    });
+
+    $("#taxInformation3").click(function() {
+        var valueModel = $("#taxInformation3").val();
+        if (valueModel === "1") {
+            $('#addTaxInformation').modal('show');
+        }
+    });
+
+
+
+    $("#saveTaxInformation").click(function() {
+//        var dataString = convertFormToJSON("addTaxInformation"); 
+//        //taxcode  taxtaxname   taxtaxvalues   taxisExempt
+        var taxcode = $("input[name='taxcode[]']").map(function() {
+            return $(this).val();
+        }).get();
+        var taxtaxname = $("input[name='taxtaxname[]']").map(function() {
+            return $(this).val();
+        }).get();
+        var taxtaxvalues = $("input[name='taxtaxvalues[]']").map(function() {
+            return $(this).val();
+        }).get();
+        var taxisExempt = $("input[name='taxisExempt[]']").map(function() {
+            return $(this).val();
+        }).get();
+        var dataString = "taxcode=" + taxcode + "&taxtaxname=" + taxtaxname + "&taxtaxvalues=" + taxtaxvalues + "&taxisExempt=" + taxisExempt;
+        $.ajax({
+            type: 'POST',
+            url: 'customermaster/savetaxinfo_ajax.php',
+            data: dataString
+        }).done(function(data) {
+            $("input[name='taxcode[]']").val("");
+            $("input[name='taxtaxname[]']").val("");
+            $("input[name='taxtaxvalues[]']").val("");
+            $("input[name='taxisExempt[]']").val("");
+        }).fail(function() {
+        });
+    });
+</script>
+
+<?php
+$taxinfoarray = MysqlConnection::fetchCustom("select * from taxinfo_table;");
+?>
+
+<!-- this is custom model dialog --->
+<div id="addTaxInformation" class="modal hide" style="top: 10%;left: 50%;">
+    <div class="modal-header" style="text-align: center">
+        <button data-dismiss="modal" class="close" type="button">×</button>
+        <h3>ADD TAX INFORMATION</h3>
+    </div>
+    <div class="modal-body">
+        <form class="form-horizontal" method="post" action="#" name="addTaxInformation" id="addTaxInformation" novalidate="novalidate">
+            <div class="control-group">
+                <table class="table" id="addtax" style="width: 100%">
+                    <tr>
+                        <td>Code</td>
+                        <td>Tax Name</td>
+                        <td>Percent</td>
+                        <td>Exempt</td>
+                        <td></td>
+                    </tr>
+                    <?php
+                    foreach ($taxinfoarray as $key => $value) {
+                        ?>
+                        <tr>
+                            <td><input type="text" name="taxcode[]" autofocus=""  style="width: 25px;" id="taxtaxname[]" value="<?php echo $value["taxcode"] ?>"></td>
+                            <td><input type="text" name="taxtaxname[]" style="width: 75px;" id="taxtaxname[]" value="<?php echo $value["taxname"] ?>"></td>
+                            <td><input type="text" name="taxtaxvalues[]"  id="taxtaxvalues[]" value="<?php echo $value["taxvalues"] ?>"></td>
+                            <td><input type="checkbox" name="taxgstexempt[]" id="taxgstexempt[]" value="<?php echo $value["isExempt"] ?>"></td>
+                            <td></td>
+                        </tr>
+                        <?php
+                    }
+                    ?>
+                    <tr>
+                        <td><input type="text" name="taxcode[]" style="width: 25px;" id="taxtaxname[]" ></td>
+                        <td><input type="text" name="taxtaxname[]" style="width: 75px;" id="taxtaxname[]" ></td>
+                        <td><input type="text" name="taxtaxvalues[]" id="taxtaxvalues[]" ></td>
+                        <td><input  type="checkbox" name="taxisExempt[]" id="taxisExempt[]"></td>
+                        <td><a class="icon-plus" href="#"  ></a></td>
+                    </tr>
+                </table>
+            </div>
+        </form>
+    </div>
+
+    <div class="modal-footer" style="text-align: center"> 
+        <a id="saveTaxInformation" data-dismiss="modal" class="btn btn-primary ">Save</a> 
+        <a data-dismiss="modal" class="btn" href="#">Cancel</a> 
+    </div>
+</div>
+<!-- this is model dialog --->

@@ -4,9 +4,9 @@ $itemid = filter_input(INPUT_GET, "itemId");
 if (!empty($itemid)) {
     $itemarray = MysqlConnection::fetchCustom("SELECT * FROM  item_master WHERE item_id =$itemid");
     $item = $itemarray[0];
-    echo "<pre>";
-    print_r($item);
-    echo "</pre>";
+//    echo "<pre>";
+//    print_r($item);
+//    echo "</pre>";
 }
 ?>
 <div class="container-fluid"  >
