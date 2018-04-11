@@ -1,18 +1,14 @@
 <?php
-
 session_start();
 ob_start();
 
 class MysqlConnection {
 
     static function connect() {
-//        session_start();
-//        ob_start();
-        $company = $_SESSION["master"]["company"];
-        $DB_NAME = $company["databasename"];
-        $DB_HOST = $company["databaseurl"];
-        $DB_USER = $company["dbusername"];
-        $DB_PASS = $company["dbpassword"];
+        $DB_NAME = "rw";
+        $DB_HOST = "192.168.15.154";
+        $DB_USER = "root";
+        $DB_PASS = "root";
         return mysqli_connect($DB_HOST, $DB_USER, $DB_PASS, $DB_NAME);
     }
 
@@ -36,18 +32,17 @@ class MysqlConnection {
      * but name of the database colum must equal to name of the element field
      */
     static function insert($tbl = "", $data = array()) {
+        $connect = MysqlConnection::connect();
         try {
             $str = "";
             $keysset = "";
             $valuesset = "";
             foreach ($data as $key => $values) {
                 $keysset .= "`" . $key . "`,";
-                $valuesset .= "'" . trim($values) . "',";
+                $valuesset .= "'" . mysqli_real_escape_string($connect, trim($values)) . "',";
             }
-            $query = " INSERT INTO $tbl (" . substr($keysset, 0, strlen($keysset) - 1) . ") VALUES (" . substr($valuesset, 0, strlen($valuesset) - 1) . ");";
+            echo $query = " INSERT INTO $tbl (" . substr($keysset, 0, strlen($keysset) - 1) . ") VALUES (" . substr($valuesset, 0, strlen($valuesset) - 1) . ");";
             MysqlConnection::executeQuery($query);
-            $connect = MysqlConnection::connect();
-            return mysqli_insert_id($connect);
         } catch (Exception $exc) {
             echo "<span style='color:red'>SQL QUERY ERROR !!! INSERT !!!<span>";
         }
@@ -58,15 +53,16 @@ class MysqlConnection {
      * @param string $data array of the table
      * @return string boolean values
      */
-    static function edit($tbl = "", $data = array(), $pkvalue) {
-        unset($data[$pkcolumn]);
+    static function edit($tbl = "", $data = array(), $where = "") {
+//        unset($data[$pkcolumn]);
+        $connect = MysqlConnection::connect();
         try {
             $str = "";
             $update = "";
             foreach ($data as $key => $values) {
-                $update .= "`" . $key . "` = " . "'" . trim($values) . "',";
+                $update .= "`" . $key . "` = " . "'" . mysqli_real_escape_string($connect, trim($values)) . "',";
             }
-            $query = " UPDATE $tbl SET " . substr($update, 0, strlen($update) - 1) . " WHERE txtId = $pkvalue; ";
+            echo $query = " UPDATE $tbl SET " . substr($update, 0, strlen($update) - 1) . " WHERE $where ";
             return MysqlConnection::executeQuery($query);
         } catch (Exception $exc) {
             echo "<span style='color:red'>SQL QUERY ERROR !!! EDIT !!!<span>";

@@ -27,9 +27,9 @@
 <script src="js/jquery.min_1.11.3.js"></script>
 <script src="js/jquery.contextMenu.js" type="text/javascript"></script>
 <script>
-    $("#liveTableSearch").on("keyup", function () {
+    $("#liveTableSearch").on("keyup", function() {
         var value = $(this).val();
-        $("table tr").each(function (index) {
+        $("table tr").each(function(index) {
             if (index !== 0) {
                 $row = $(this);
                 var id = $row.find("td:first").text();
@@ -82,7 +82,7 @@
                 <?php
                 foreach ($listofsupplier as $key => $value) {
                     ?>
-                    <tr id="<?php echo $value["supp_id"] ?>" style="border-bottom: solid 1px rgb(220,220,220);text-align: left"  class="context-menu-one">
+                    <tr id="<?php echo $value["supp_id"] ?>" style="border-bottom: solid 1px rgb(220,220,220);text-align: left;height: 30px;"  class="context-menu-one">
                         <td style="width: 2.3%;">&nbsp;<?php echo $value["supp_id"] ?></td>
                         <td style="width: 250px">&nbsp;&nbsp;<?php echo $value["companyname"] ?></td>
                         <td style="width: 390px">&nbsp;&nbsp;<?php echo $value["address"] ?></td>
@@ -93,7 +93,21 @@
                         <td style="width: 80px">&nbsp;&nbsp;<?php echo $value["currency"] ?></td>
                         <td style="width: 80px">&nbsp;&nbsp;<?php echo $value["supp_balance"] ?></td>
                         <td >&nbsp;&nbsp;<?php echo $value["notes"] ?></td>
-
+                    </tr>
+                    <?php
+                }
+                for ($index1 = 0; $index1 < 15; $index1++) {
+                    ?>
+                    <tr style="border-bottom: solid 1px rgb(220,220,220);text-align: left;;height: 30px;" >
+                        <td style="width: 2.3%;"></td>
+                        <td style="width: 250px"></td>
+                        <td style="width: 390px"></td>
+                        <td style="width: 230px"></td>
+                        <td style="width: 110px"></td>
+                        <td style="width: 200px"></td>
+                        <td style="width: 80px"></td>
+                        <td style="width: 80px"></td>
+                        <td></td>
                     </tr>
                     <?php
                 }
@@ -109,14 +123,14 @@
 </div>
 
 <script>
-    $("#deleteThis").click(function () {
+    $("#deleteThis").click(function() {
         var dataString = "deleteId=" + $('#deleteId').val();
         $.ajax({
             type: 'POST',
             url: 'suppliermaster/suppliermaster_ajax.php',
             data: dataString
-        }).done(function (data) {
-        }).fail(function () {
+        }).done(function(data) {
+        }).fail(function() {
         });
         location.reload();
     });
@@ -124,23 +138,23 @@
     function setDeleteField(deleteId) {
         document.getElementById("deleteId").value = deleteId;
     }
-    $("#save").click(function () {
+    $("#save").click(function() {
         var json = convertFormToJSON("#basic_validate");
         $.ajax({
             type: 'POST',
             url: 'suppliermaster/save_supplierajax.php',
             data: json
-        }).done(function (data) {
-        }).fail(function () {
+        }).done(function(data) {
+        }).fail(function() {
         });
         location.reload();
     });
 </script>
 <script type="text/javascript">
-    $(function () {
+    $(function() {
         $.contextMenu({
             selector: '.context-menu-one',
-            callback: function (key, options) {
+            callback: function(key, options) {
                 var m = "clicked row: " + key;
                 var id = $(this).attr('id');
                 switch (key) {
@@ -178,7 +192,7 @@
                 "create_perchase_order": {name: "CREATE PURCHASE ORDER", icon: "add"},
                 "create_invoice": {name: "CREATE INVOICE", icon: "add"},
                 "sep1": "---------",
-                "quit": {name: "QUIT", icon: function () {
+                "quit": {name: "QUIT", icon: function() {
                         return 'context-menu-icon context-menu-icon-quit';
                     }}
             }
@@ -188,7 +202,7 @@
         //            console.log('clicked', this);
         //       })    
     });
-    $('tr').dblclick(function () {
+    $('tr').dblclick(function() {
         var id = $(this).attr('id');
         window.location = "index.php?pagename=view_suppliermaster&supplierid=" + id;
     });
