@@ -50,12 +50,12 @@ $listofitems = MysqlConnection::fetchAll("item_master");
         <table class="customtable" border="1">
             <tr style="height: 30px;background-color: rgb(240,240,240);">
                 <th style="width: 2.3%;">#</th>
-                <th style="width: 330px;">Name</th>
-<!--                <th style="width: 100px;">Type</th>
-                <th style="width: 100px;text-align: right">Account&nbsp;&nbsp;</th>-->
-                <th style="width: 166px;">OnHand&nbsp;&nbsp;</th>
-                <th style="width: 166px;">OnSales&nbsp;&nbsp;</th>
-                <th style="width: 166px;">Price&nbsp;&nbsp;</th>
+                <th style="width: 200px;">Name</th>
+                <th style="width: 130px;">Type</th>
+                <th style="width: 130px;">Account&nbsp;&nbsp;</th>
+                <th style="width: 130px;">OnHand&nbsp;&nbsp;</th>
+                <th style="width: 130px;">OnSales&nbsp;&nbsp;</th>
+                <th style="width: 130px;">Price&nbsp;&nbsp;</th>
                 <th >Sales Item Description</th>
 <!--                <th  >Purchase Item Description</th>-->
             </tr>
@@ -68,22 +68,21 @@ $listofitems = MysqlConnection::fetchAll("item_master");
                     ?>
                     <tr id="<?php echo $value["item_id"] ?>" class="context-menu-one" style="border-bottom: solid 1px rgb(220,220,220);text-align: left" >
                         <td style="width: 2.3%;">&nbsp;<?php echo $index ?></td>
-                        <td style="width: 200px;text-align: left" >&nbsp;&nbsp;<?php echo $value["item_code"] ?></td>
-    <!--                        <td style="width: 100px;">&nbsp;<?php echo $value["type"] ?></td>
-                        <td style="width: 100px;text-align: right"><?php echo $value["account"] ?>&nbsp;&nbsp;</td>-->
-                        <td style="width: 100px;text-align: right">$&nbsp;<?php echo round($value["onhand"], 2); ?>&nbsp;&nbsp;</td>
-
-                        <td style="width: 100px;text-align: right">
+                        <td style="width: 200px;text-align: left" >&nbsp;&nbsp;<?php echo $value["item_name"] ?></td>
+                        <td style="width: 130px;">&nbsp;<?php echo $value["type"] ?></td>
+                        <td style="width: 130px;text-align: right"><?php echo $value["account"] ?>&nbsp;&nbsp;</td>
+                        <td style="width: 130px;text-align: right">$&nbsp;<?php echo round($value["onhand"], 2); ?>&nbsp;&nbsp;</td>
+<!--                        <td style="width: 100px;text-align: right">
                             <?php echo ($value["rate"] == 0 ? round($value["purchase_rate"], 2) : round($value["rate"], 2)); ?>
                             &nbsp;$&nbsp;&nbsp;
-                        </td>
-    <!--                        <td style="width: 100px;text-align: right"><?php echo round($value["sell_rate"], 2); ?>&nbsp;-&nbsp;&nbsp;</td>-->
-                        <td style="width: 100px;text-align: right">$&nbsp;<?php echo round($value["price"], 2); ?>&nbsp;&nbsp;</td>
-                        <td style="width: 400px;text-align: left" >
+                        </td>-->
+                        <td style="width: 130px;text-align: right"><?php echo round($value["sell_rate"], 2); ?>&nbsp;-&nbsp;&nbsp;</td>
+                        <td style="width: 130px;text-align: right">$&nbsp;<?php echo round($value["rate"], 2); ?>&nbsp;&nbsp;</td>
+                        <td style="text-align: left" >
                             &nbsp;&nbsp;
                             <?php echo $value["item_desc_sales"] == "" ? $value["item_desc"] : $value["item_desc_sales"] ?>
                         </td>
-    <!--                        <td   >&nbsp;&nbsp;<?php echo $value["item_desc_purch"] ?></td>-->
+<!--                        <td   >&nbsp;&nbsp;<?php echo $value["item_desc_purch"] ?></td>-->
                     </tr>
                     <?php
                     $index++;
@@ -95,13 +94,13 @@ $listofitems = MysqlConnection::fetchAll("item_master");
                     <tr style="border-bottom: solid 1px rgb(220,220,220);text-align: left">
                         <td style="width: 2.3%;">&nbsp;<?php echo $index + $index1 ?></td>
                         <td style="width: 200px;text-align: left" ></td>
-    <!--                        <td style="width: 100px;">&nbsp;</td>-->
-    <!--                        <td style="width: 100px;text-align: right"></td>-->
-                        <td style="width: 100px;text-align: right"></td>
-                        <td style="width: 100px;text-align: right"></td>
-                        <td style="width: 100px;text-align: right"></td>
-                        <td style="width: 400px;text-align: left" ></td>
-    <!--                        <td ></td>-->
+                        <td style="width: 130px;">&nbsp;</td>
+                        <td style="width: 130x;text-align: right"></td>
+                        <td style="width: 130px;text-align: right"></td>
+                        <td style="width: 130px;text-align: right"></td>
+                        <td style="width: 130px;text-align: right"></td>
+                        <td style="text-align: left" ></td>
+<!--                        <td ></td>-->
                     </tr>  
                     <?php
                 }
@@ -144,7 +143,7 @@ $listofitems = MysqlConnection::fetchAll("item_master");
                 var id = $(this).attr('id');
                 switch (key) {
                     case "view_item":
-                        window.location = "index.php?pagename=create_itemmaster";
+                        window.location = "index.php?pagename=view_itemmaster&itemId=" + id;
                         break;
                     case "add_item":
                         window.location = "index.php?pagename=create_itemmaster";
