@@ -186,9 +186,15 @@ $listofitems = MysqlConnection::fetchAll("item_master");
             });
             location.reload();
         }
+        
 //        $('.context-menu-one').on('click', function(e){
 //            console.log('clicked', this);
 //       })    
+    });
+    
+     $('tr').dblclick(function() {
+        var id = $(this).attr('id');
+        window.location = "index.php?pagename=view_itemmaster&itemId=" + id;
     });
 </script>
 
