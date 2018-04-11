@@ -23,11 +23,11 @@ $arrsalutations = MysqlConnection::fetchCustom("SELECT distinct(`salutation`) as
     });
 </script>
 <fieldset class="well the-fieldset">
-    <table  style="width: 80%;vertical-align: top" border="0">
+    <table  style="width: 80%;vertical-align: top" border="1">
         <tr>
             <td><label class="control-label">Salutation</label></td>
             <td>
-                <select name="salutation" style="width: 60px;" id="salutation">
+                <select name="salutation" style="width: 20%" id="salutation">
                     <option value=""></option>
                     <?php
                     foreach ($arrsalutations as $key => $value) {
@@ -37,7 +37,7 @@ $arrsalutations = MysqlConnection::fetchCustom("SELECT distinct(`salutation`) as
                     }
                     ?>
                 </select>
-                <input type="text" name="salutation1" style="width: 45%" placeholder="Add here">
+                <input type="text" name="salutation1" style="width: 50%" placeholder="Add here">
             </td>
             <td><label class="control-label">First Name</label></td>
             <td><input type="text" name="firstname" id="firstname"  value="<?php echo $customer["firstname"] ?>" autofocus="" required="true" minlenght="2" maxlength="30" ></td>
@@ -59,21 +59,24 @@ $arrsalutations = MysqlConnection::fetchCustom("SELECT distinct(`salutation`) as
             <td><label class="control-label">Fax</label></td>
             <td><input type="text" name="cust_fax" id="cust_fax"  value="<?php echo $customer["cust_fax"] ?>" ></td>
             <td><label class="control-label">Customer Status</label></td>
-            <td><input type="checkbox" /></td>
+            <td style="vertical-align: middle">
+                <input type="checkbox" value="Y" checked=""/>
+                Is customer active ?
+            </td>
         </tr>
         <tr style="vertical-align: top">
             <td>Bill To</td>
-            <td><textarea style="height: 120px;;line-height: 20px;" name="billto" onfocus="fillAddress()"  id="billto" ><?php echo $customer["billto"] ?></textarea></td>
+            <td><textarea style="height: 100px;;line-height: 20px;" name="billto" onfocus="fillAddress()"  id="billto" ><?php echo $customer["billto"] ?></textarea></td>
             <td>Ship To </td>
-            <td><textarea   style="height: 120px;line-height: 20px;"  name="shipto" id="shipto"><?php echo $customer["shipto"] ?></textarea></td>
+            <td><textarea   style="height: 100px;line-height: 20px;"  name="shipto" id="shipto"><?php echo $customer["shipto"] ?></textarea></td>
             <td></td>
             <td></td>
         </tr>
         <tr>
             <td></td>
-            <td><a onclick="copyOrRemove('1')">copy >></a></td>
+            <td><a onclick="copyOrRemove('1')">COPY >></a></td>
             <td></td>
-            <td><a onclick="copyOrRemove('0')"><< Remove</a></td>
+            <td><a onclick="copyOrRemove('0')"><< REMOVE</a></td>
             <td></td>
             <td></td>
         </tr>

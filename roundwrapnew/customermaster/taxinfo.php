@@ -113,7 +113,7 @@ $sqltaxinfodata = MysqlConnection::fetchCustom("SELECT * FROM taxinfo_table ORDE
     </div>
     <div class="modal-footer"> 
         <a id="saveCustomerType" data-dismiss="modal" class="btn btn-primary">Save</a> 
-        <a data-dismiss="modal" class="btn" href="#">Cancel</a> 
+        <a data-dismiss="modal" class="btn" id="cancelct" href="#">Cancel</a> 
     </div>
 </div>
 <!-- this is model dialog --->
@@ -142,7 +142,7 @@ $sqltaxinfodata = MysqlConnection::fetchCustom("SELECT * FROM taxinfo_table ORDE
     </div>
     <div class="modal-footer"> 
         <a id="saveRepresentative" data-dismiss="modal" class="btn btn-primary">Save</a> 
-        <a data-dismiss="modal" class="btn" href="#">Cancel</a> 
+        <a data-dismiss="modal" id="cancelr" class="btn" href="#">Cancel</a> 
     </div>
 </div>
 <!-- this is model dialog --->
@@ -176,12 +176,10 @@ $sqltaxinfodata = MysqlConnection::fetchCustom("SELECT * FROM taxinfo_table ORDE
 
     <div class="modal-footer" style="text-align: center"> 
         <a id="savePaymentT" data-dismiss="modal" class="btn btn-primary">Save</a> 
-        <a data-dismiss="modal" class="btn" href="#">Cancel</a> 
+        <a data-dismiss="modal" class="btn" id="cancelpt" href="#">Cancel</a> 
     </div>
 </div>
 <!-- this is model dialog --->
-
-
 
 <!-- this is custom model dialog --->
 <div id="addTaxInformation" class="modal hide" style="top: 10%;left: 50%;">
@@ -221,7 +219,7 @@ $sqltaxinfodata = MysqlConnection::fetchCustom("SELECT * FROM taxinfo_table ORDE
 
     <div class="modal-footer" style="text-align: center"> 
         <a id="saveTaxInformation" data-dismiss="modal" class="btn btn-primary ">Save</a> 
-        <a data-dismiss="modal" class="btn" href="#">Cancel</a> 
+        <a data-dismiss="modal" class="btn" id="cancelti" href="#">Cancel</a> 
     </div>
 </div>
 <!-- this is model dialog --->
@@ -368,4 +366,18 @@ $sqltaxinfodata = MysqlConnection::fetchCustom("SELECT * FROM taxinfo_table ORDE
             $(element.data).attr('disabled', 'desabled')
         }
     }
+
+    //reset index
+    $("#cancelct").click(function() {
+        $("#cust_type").val("");
+    });
+    $("#cancelr").click(function() {
+        $("#sales_person_name").val("");
+    });
+    $("#cancelpt").click(function() {
+        $("#paymentTerm").val("");
+    });
+    $("#cancelti").click(function() {
+        $("#taxInformation").val("");
+    });
 </script>
