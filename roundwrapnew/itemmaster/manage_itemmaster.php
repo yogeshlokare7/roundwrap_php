@@ -33,7 +33,7 @@ $listofitems = MysqlConnection::fetchAll("item_master");
 <script src="js/jquery.contextMenu.js" type="text/javascript"></script>
 <div class="container-fluid">
     <div class="cutomheader">
-        <h5 style="font-family: verdana;font-size: 12px;">VIEW ITEMS</h5>
+        <h5 style="font-family: verdana;font-size: 12px;">List ITEM'S</h5>
     </div>
     <div class="cutomheader">
         <table >

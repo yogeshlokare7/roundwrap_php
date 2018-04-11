@@ -156,4 +156,5 @@ $item = $arritem[0];
         <hr/>
         <a href="index.php?pagename=manage_itemmaster" id="btnSubmitFullForm" class="btn btn-info">CANCEL</a>
     </fieldset>
+    
 </div>

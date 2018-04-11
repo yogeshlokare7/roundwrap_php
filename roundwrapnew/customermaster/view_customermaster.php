@@ -32,7 +32,7 @@ $arrcustomernote = MysqlConnection::fetchCustom("SELECT * FROM  `customer_notes`
                 <li id="acTab2"><a data-toggle="tab" href="#tab2">Additional Contacts</a></li>
                 <li id="tdTab3"><a data-toggle="tab" href="#tab3">Tax and Discount</a></li>
                 <li id="dpiTab4"><a data-toggle="tab" href="#tab4">Deposits and Payment Information</a></li>
-                <li id="noteTab4"><a data-toggle="tab" href="#tab5">Notes & Comments</a></li>
+                <li id="noteTab5"><a data-toggle="tab" href="#tab5">Notes & Comments</a></li>
             </ul>
         </div>
 
@@ -86,6 +86,10 @@ $arrcustomernote = MysqlConnection::fetchCustom("SELECT * FROM  `customer_notes`
                             <td></td>
                         </tr>-->
                     </table>
+                    <hr/>
+                    <input type="hidden" value="<?php echo $customerid ?>" name="customerid"/>
+                    <a href="index.php?pagename=manage_customermaster" class="btn btn-danger">CANCEL</a>
+                    <input type="button" id="btnCmpNext1" value="NEXT" class="btn btn-info" />
                 </fieldset>
             </div>
             <div id="tab2" class="tab-pane ">
@@ -105,7 +109,11 @@ $arrcustomernote = MysqlConnection::fetchCustom("SELECT * FROM  `customer_notes`
                                 <td><input type="text"  value="<?php echo $value["designation"] ?>" readonly="" /></td>
                             </tr>
                         <?php } ?>
-                    </table> 
+                    </table>
+                    <hr/>
+                    <input type="button" id="btnCmpPrev1" value="PREVIOUS" class="btn btn-info" href="#tab1" >
+                    <input type="button" id="btnCmpNext2" value="NEXT" class="btn btn-info" href="#tab2"  >
+
                 </fieldset>
             </div>
             <div id="tab3" class="tab-pane">
@@ -138,6 +146,9 @@ $arrcustomernote = MysqlConnection::fetchCustom("SELECT * FROM  `customer_notes`
                             <td><input type="text" value="<?php echo $value["taxcode"] ?>" readonly=""/></td>
                         </tr>
                     </table>
+                    <input type="button" id="btnCmpPrev2" value="PREVIOUS" class="btn btn-info" href="#tab2">
+                    <input type="button" id="btnCmpNext3" value="NEXT" class="btn btn-info" href="#tab4">
+
                 </fieldset>
             </div>
             <div id="tab4" class="tab-pane">
@@ -167,6 +178,12 @@ $arrcustomernote = MysqlConnection::fetchCustom("SELECT * FROM  `customer_notes`
                             </tr>
                         <?php } ?>
                     </table> 
+                    <hr/>
+                    <input type="hidden" value="customerid" value="<?php echo $customerid ?>"/>
+                    <input type="button" id="btnCmpPrev3" value="PREVIOUS" class="btn btn-info" href="#tab1"></td>
+                    <input type="button" id="btnCmpNext4" value="NEXT" class="btn btn-info" href="#tab5">
+
+
                 </fieldset>
             </div>
             <div id="tab5" class="tab-pane">
@@ -187,6 +204,10 @@ $arrcustomernote = MysqlConnection::fetchCustom("SELECT * FROM  `customer_notes`
                             ?>
                         </table>
                     </div>
+                      <hr/>
+                    <input type="hidden" value="customerid" value="<?php echo $customerid ?>"/>
+                    <input type="button" id="btnCmpPrev4" value="PREVIOUS" class="btn btn-info" href="#tab1"></td>
+                    <a href="index.php?pagename=manage_customermaster" class="btn btn-danger">CANCEL</a>
                 </fieldset>
             </div>
             <hr/>
@@ -205,9 +226,64 @@ $arrcustomernote = MysqlConnection::fetchCustom("SELECT * FROM  `customer_notes`
             type: 'POST',
             url: 'customermaster/customermaster_ajax.php',
             data: dataString
-        }).done(function(data) {
-        }).fail(function() {
+        }).done(function (data) {
+        }).fail(function () {
         });
     }
+
+    $('#btnCmpNext1').on('click', function () {
+        $('#ciTab1').removeClass('active');
+        $('#acTab2').addClass('active');
+
+        $('#tab1').removeClass('active');
+        $('#tab2').addClass('active');
+    });
+
+    $('#btnCmpPrev1').on('click', function () {
+        $('#acTab2').removeClass('active');
+        $('#ciTab1').addClass('active');
+        $('#tab2').removeClass('active');
+        $('#tab1').addClass('active');
+
+    });
+    $('#btnCmpNext2').on('click', function () {
+        $('#acTab2').removeClass('active');
+        $('#tdTab3').addClass('active');
+        $('#tab2').removeClass('active');
+        $('#tab3').addClass('active');
+    });
+
+
+    $('#btnCmpPrev2').on('click', function () {
+        $('#tdTab3').removeClass('active');
+        $('#acTab2').addClass('active');
+        $('#tab3').removeClass('active');
+        $('#tab2').addClass('active');
+    });
+    $('#btnCmpNext3').on('click', function () {
+        $('#tdTab3').removeClass('active');
+        $('#dpiTab4').addClass('active');
+        $('#tab3').removeClass('active');
+        $('#tab4').addClass('active');
+    });
+    $('#btnCmpPrev3').on('click', function () {
+        $('#dpiTab4').removeClass('active');
+        $('#tdTab3').addClass('active');
+        $('#tab4').removeClass('active');
+        $('#tab3').addClass('active');
+    });
+
+    $('#btnCmpNext4').on('click', function () {
+        $('#dpiTab4').removeClass('active');
+        $('#noteTab5').addClass('active');
+        $('#tab4').removeClass('active');
+        $('#tab5').addClass('active');
+    });
+     $('#btnCmpPrev4').on('click', function () {
+        $('#noteTab5').removeClass('active');
+        $('#dpiTab4').addClass('active');
+        $('#tab5').removeClass('active');
+        $('#tab4').addClass('active');
+    });
 </script>
 

@@ -86,7 +86,10 @@
                         <td style="width: 390px">&nbsp;&nbsp;<?php echo $value["address"] ?></td>
                         <td style="width: 230px">&nbsp;&nbsp;<?php echo $value["salutation"] ?>&nbsp;<?php echo $value["firstname"] ?>&nbsp;<?php echo $value["lastname"] ?></td>
                         <td style="width: 110px">&nbsp;&nbsp;<?php echo $value["supp_phoneNo"] ?></td>
-                        <td style="width: 200px">&nbsp;&nbsp;<?php echo $value["supp_email"] ?></td>
+                        <td style="width: 200px">&nbsp;&nbsp;
+                               <a href="mailto:<?php echo $value["supp_email"] ?>?Subject=Welcome, <?php echo ucwords($value["companyname"]) ?> " target="_top">
+                                &nbsp;<?php echo $value["supp_email"] ?>
+                            </a></td>
                         <td style="width: 80px">&nbsp;&nbsp;<?php echo $value["currency"] ?></td>
                         <td style="width: 80px">&nbsp;&nbsp;<?php echo $value["supp_balance"] ?></td>
                         <td >&nbsp;&nbsp;<?php echo $value["notes"] ?></td>

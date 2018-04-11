@@ -49,7 +49,7 @@ $arrsalutations = MysqlConnection::fetchCustom("SELECT distinct(`salutation`) as
             <td><input type="text" name="companyname" id="companyname"  value="<?php echo $supplier["companyname"] ?>"  minlength="2" maxlength="30" required="required"></td>
             <td><label class="control-label"  style="float: left">Email </label></td>
             <td><input type="email" name="supp_email" id="supp_email"  value="<?php echo $supplier["supp_email"] ?>"  minlength="2" maxlength="30" required="required"></td>
-            <td>Phone No*</td>
+            <td>Phone No</td>
             <td><input type="tel" name="supp_phoneNo" value="<?php echo $supplier["supp_phoneNo"] ?>"  id="supp_phoneNo" minlength="2" maxlength="20" required="required"></td>
 
 

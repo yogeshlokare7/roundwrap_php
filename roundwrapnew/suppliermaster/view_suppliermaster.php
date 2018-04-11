@@ -1,70 +1,105 @@
 <?php
-$suppid = filter_input(INPUT_GET, "supp_id");
+$suppid = filter_input(INPUT_GET, "supplierid");
 
 $arrsupplier = MysqlConnection::fetchCustom("SELECT * FROM  `supplier_master` WHERE supp_id = $suppid ");
 $supplier = $arrsupplier[0];
+$suppliercontactarray = MysqlConnection::fetchCustom("SELECT * FROM  `supplier_contact` WHERE sc_id = $suppid ");
 ?>
+<style>
+    .widget-box input{
+        background-color: white;
+        background: white;
+    }
+    .widget-box textarea{
+        background-color: white;
+        background: white;
+    }
 
+</style>
 <div class="container-fluid"  >
     <div class="cutomheader">
         <h5 style="font-family: verdana;font-size: 12px;">VIEW VENDOR</h5>
     </div>
     <br/>
 
-    <fieldset class="well the-fieldset">
-        <table style="width: 100%; vertical-align: top">
-            <tr>
-                <td><label class="control-label">Salutation</label></td>
-                <td>
-                    <select name="salutation" style="width: 60px;" id="salutation">
-                        <option value=""></option>
-                        <option value="Mr">Mr.</option>
-                        <option value="Mrs" >Mrs.</option>
-                        <option value="Miss">Miss.</option>
-                        <option value="Ms">Ms.</option>
-                    </select>
-                    <input type="text" name="salutation1" style="width: 45%" placeholder="Add here">
-                </td>
-                <td><label class="control-label" style="float: left">First Name </label></td>
-                <td><input type="text" name="firstname" autofocus="" value="<?php echo filter_input(INPUT_POST, "firstname") ?>" id="firstname" minlength="2" maxlength="30" required="required"></td>
-                <td><label class="control-label" style="float: left">Last Name </label></td>
-                <td><input type="text" name="lastname" autofocus="" value="<?php echo filter_input(INPUT_POST, "lastname") ?>" id="lastname" minlength="2" maxlength="30" required="required"></td>
+    <div class="widget-box" style="width: 90%;float: left">
+        <div class="widget-title">
+            <ul class="nav nav-tabs">
+                <li id="siTab1" class="active"><a data-toggle="tab" href="#tab1">Vendor Information </a></li>
+                <li id="adTab2"><a data-toggle="tab" href="#tab2">Additional Contacts</a></li>
+            </ul>
+        </div>
+        <div class="widget-content tab-content">
+            <div id="tab1" class="tab-pane active">
+                <fieldset class="well the-fieldset">
+                    <table style="width: 100%; vertical-align: top">
+                        <tr>
+                            <td><label class="control-label">Salutation</label></td>
+                            <td><input type="text"  value="<?php echo $supplier["salutation"] ?>" readonly="" /></td>
+                            <td><label class="control-label" style="float: left">First Name </label></td>
+                            <td><input type="text"  value="<?php echo $supplier["firstname"] ?>" readonly="" /></td>
+                            <td><label class="control-label" style="float: left">Last Name </label></td>
+                            <td><input type="text"  value="<?php echo $supplier["lastname"] ?>" readonly="" /></td>
+                        </tr>
+                        <tr>
+                            <td><label class="control-label"  style="float: left">Company Name</label></td>
+                            <td><input type="text"  value="<?php echo $supplier["companyname"] ?>" readonly=""/></td>
+                            <td><label class="control-label"  style="float: left">Email </label></td>
+                            <td><input type="email"   value="<?php echo $supplier["supp_email"] ?>" readonly=""/></td>
+                            <td>Phone No</td>
+                            <td><input type="tel"  value="<?php echo $supplier["supp_phoneNo"] ?>"  readonly=""/></td>
+                        </tr>
+                        <tr>
+                            <td><label class="control-label"  style="float: left">Fax </label></td>
+                            <td><input type="text"  value="<?php echo $supplier["supp_fax"] ?>" readonly=""/></td>
+                            <td>Website</td>
+                            <td><input type="url" value="<?php echo $supplier["supp_website"] ?>" readonly=""/></td>
+                            <td>Print on cheque as</td>
+                            <td><input type="text"  value="<?php echo $supplier["print_onCheck"] ?>" readonly=""/></td>
+                        </tr>
+                        <tr style="vertical-align: top">
+                            <td>Currency </td>
+                            <td><input type="text"  value="<?php echo $supplier["currency"] ?>" readonly=""/></td>
+                            <td>Exchange Rate</td>
+                            <td><input type="text"  value="<?php echo $supplier["exchange_rate"] ?>" readonly=""/></td>
+                            <td>Address</td>
+                            <td><textarea style="height: 80px;;line-height: 20px;"  value="<?php echo $supplier["address"] ?>" readonly=""></textarea></td>
+                        </tr>
+                    </table>
+                    <hr/>
+                    <input type="button" id="btnVenNext1" value="NEXT" class="btn btn-info" ><a href="suppliermaster/additionalcontact.php"></a></div>
+            </fieldset>
 
-            </tr>
-            <tr>
-                <td><label class="control-label"  style="float: left">Company Name</label></td>
-                <td><input type="text" name="companyname" id="companyname"  value="<?php echo filter_input(INPUT_POST, "companyname") ?>"  minlength="2" maxlength="30" required="required"></td>
-                <td><label class="control-label"  style="float: left">Email </label></td>
-                <td><input type="email" name="supp_email" id="supp_email"  value="<?php echo filter_input(INPUT_POST, "supp_email") ?>"  minlength="2" maxlength="30" required="required"></td>
-                <td>Phone No*</td>
-                <td><input type="tel" name="supp_phoneNo" value="<?php echo filter_input(INPUT_POST, "supp_phoneNo") ?>"  id="supp_phoneNo" minlength="2" maxlength="20" required="required"></td>
+            <div id="tab2" class="tab-pane ">
 
-
-
-            </tr>
-            <tr>
-                <td><label class="control-label"  style="float: left">Fax </label></td>
-                <td><input type="text" name="supp_fax" id="supp_fax"  value="<?php echo filter_input(INPUT_POST, "supp_fax") ?>" minlength="2" maxlength="20"></td>
-                <td>Website</td>
-                <td><input type="url" name="supp_website" id="supp_website"  value="<?php echo filter_input(INPUT_POST, "supp_website") ?>" minlength="2" maxlength="30"></td>
-                <td>Print on cheque as</td>
-                <td><input type="text" name="print_onCheck" id="cust_fax"  value="<?php echo filter_input(INPUT_POST, "print_onCheck") ?>" minlength="2" maxlength="30"></td>
-
-
-            </tr>
-
-            <tr style="vertical-align: top">
-                <td>Currency </td>
-                <td><select id="currency"  type="text" required="true" name="currency"  value="<?php echo filter_input(INPUT_POST, "currency") ?>" placeholder="Select Country Here"  >
-                        <option value="">Select Currency</option>
-                        <option value="INR">Indian Rupee</option><option value="CAD"> Canadian Dollar</option><option value="USD"> USD</option>
-                    </select></td>
-                <td>Exchange Rate</td>
-                <td><input type="text" name="exchange_rate" id="exchange_rate" onkeypress="return chkNumericKey(event)" value="<?php echo filter_input(INPUT_POST, "exchange_rate") ?>" maxlength="2"></td>
-                <td>Address</td>
-                <td><textarea style="height: 80px;;line-height: 20px;" name="address" onfocus="fillAddress()"  id="address" ></textarea></td>
-
-            </tr>
-        </table> 
-    </fieldset>
-</div>
+                <fieldset class="well the-fieldset">
+                    <table style="width: 100%;"  id="supplierInfo" vertical-align="top">
+                        <tr>
+                            <td><label class="control-label">Name</label></td>
+                            <td><input type="text"  value="<?php echo $suppliercontactarray["contact_person[]"] ?>" readonly=""/></td>
+                            <td><label class="control-label">Email</label></td>
+                            <td><input type="email"  value="<?php echo $suppliercontactarray["email[]"] ?>" readonly=""/></td>
+                            <td><label class="control-label">Phone</label></td>
+                            <td><input type="text"  value="<?php echo $suppliercontactarray["alterno[]"] ?>" readonly=""/></td>
+                            <td><label class="control-label">Designation</label></td>
+                            <td><input type="text"  value="<?php echo $suppliercontactarray["designation[]"] ?>" readonly=""/></td>
+                        </tr>
+                    </table>
+                    <hr/>
+                    <input type="button" id="btnVenPrev1" value="PREVIOUS" class="btn btn-info" href="#tab1">
+                     <a href="index.php?pagename=manage_suppliermaster" class="btn btn-danger">CANCEL</a></fieldset>
+            </div></div></div>
+    <script>
+        $('#btnVenNext1').on('click', function () {
+            $('#siTab1').removeClass('active');
+            $('#adTab2').addClass('active');
+            $('#tab1').removeClass('active');
+            $('#tab2').addClass('active');
+        });
+        $('#btnVenPrev1').on('click', function () {
+            $('#adTab2').removeClass('active');
+            $('#siTab1').addClass('active');
+            $('#tab2').removeClass('active');
+            $('#tab1').addClass('active');
+        });
+    </script>
