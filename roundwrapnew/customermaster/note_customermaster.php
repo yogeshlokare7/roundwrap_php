@@ -22,7 +22,9 @@ if (isset($_POST["btnSubmitFullForm"])) {
         background-color: white;
         background: white;
     }
-
+    input, textarea{
+        width: 90%;
+    }
 </style>
 <form name="frmCustomerNote" id="frmCustomerNote" method="post">
     <div class="container-fluid" id="tabs">
@@ -63,8 +65,8 @@ if (isset($_POST["btnSubmitFullForm"])) {
                                     <textarea autofocus="" required="" name="note" style="height: 130px;line-height: 18px;overflow: auto"></textarea>
                                     <input type="hidden" name="cust_id" id="cust_id" value="<?php echo $customerid ?>">
                                 </td>
-                                <td colspan="4" style="vertical-align: top">
-                                    <div style="height:  130px;overflow: auto;background: white">
+                                <td colspan="4" style="vertical-align: top;width: 60%">
+                                    <div style="height:  130px;overflow: auto;background: white;width: 100%;float: right">
                                         <table  style="width: 100%;vertical-align: top" border="0">
                                             <tr style="height: 30px;background-color: rgb(240,240,240);">
                                                 <th>&nbsp;LAST NOTES</th>
@@ -72,7 +74,9 @@ if (isset($_POST["btnSubmitFullForm"])) {
                                             <?php
                                             foreach ($arrcustomernote as $key => $value) {
                                                 ?>
-                                                <tr style="border-bottom: solid 1px rgb(220,220,220);"><td><p style="padding: 3px;text-align: justify"><?php echo $value["note"] ?></p></td></tr>
+                                                <tr style="border-bottom: solid 1px rgb(220,220,220);">
+                                                    <td><p style="padding: 3px;text-align: justify"><?php echo $value["note"] ?></p></td>
+                                                </tr>
                                                 <?php
                                             }
                                             ?>
