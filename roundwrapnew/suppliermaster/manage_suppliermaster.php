@@ -21,7 +21,7 @@
     }
     .brdright{
         border-right: solid 1px rgb(220,220,220);
-    }
+    }                                  
 </style>
 <link href="css/jquery.contextMenu.css" rel="stylesheet" type="text/css" />
 <script src="js/jquery.min_1.11.3.js"></script>
@@ -64,13 +64,16 @@
         <table class="customtable" border="1">
             <tr style="height: 30px;background-color: rgb(240,240,240);">
                 <th style="width: 2.3%;">#</th>
-                <th  style="width: 270px">Vendor Name</th>
-                <th style="width: 312px">Company Name</th>
-                <th  style="width: 120px">Contact No</th>
-                <th style="width: 100px">Currency</th>
-                <th style="width: 100px">Balance</th>
-                <th style="width: 100px">Notes</th>
-                <th >Address</th>
+                <th style="width: 250px">Company Name</th>
+                <th style="width: 390px">Address</th>
+                <th  style="width:230px">Vendor Name</th>
+<!--                <th style="width: 312px">Company Name</th>-->
+                <th  style="width:110px">Contact No</th>
+                <th style="width:200px">Email</th>
+                <th style="width:80px">Currency</th>
+                <th style="width:80px">Balance</th>
+                <th >Notes</th>
+
 
             </tr>
         </table>
@@ -81,13 +84,16 @@
                     ?>
                     <tr id="<?php echo $value["supp_id"] ?>" style="border-bottom: solid 1px rgb(220,220,220);text-align: left"  class="context-menu-one">
                         <td style="width: 2.3%;">&nbsp;<?php echo $value["supp_id"] ?></td>
-                        <td style="width: 270px">&nbsp;&nbsp;<?php echo $value["salutation"] ?>&nbsp;<?php echo $value["firstname"] ?>&nbsp;<?php echo $value["lastname"] ?></td>
-                        <td style="width: 312px">&nbsp;&nbsp;<?php echo $value["companyname"] ?></td>
-                        <td style="width: 120px">&nbsp;&nbsp;<?php echo $value["supp_phoneNo"] ?></td>
-                        <td style="width: 100px">&nbsp;&nbsp;<?php echo $value["currency"] ?></td>
-                        <td style="width: 100px">&nbsp;&nbsp;<?php echo $value["supp_balance"] ?></td>
-                        <td style="width: 100px">&nbsp;&nbsp;<?php echo $value["notes"] ?></td>
-                        <td >&nbsp;&nbsp;<?php echo $value["address"] ?></td>
+                        <td style="width: 250px">&nbsp;&nbsp;<?php echo $value["companyname"] ?></td>
+                        <td style="width: 390px">&nbsp;&nbsp;<?php echo $value["address"] ?></td>
+                        <td style="width: 230px">&nbsp;&nbsp;<?php echo $value["salutation"] ?>&nbsp;<?php echo $value["firstname"] ?>&nbsp;<?php echo $value["lastname"] ?></td>
+    <!--                        <td style="width: 312px">&nbsp;&nbsp;<?php echo $value["companyname"] ?></td>-->
+                        <td style="width: 110px">&nbsp;&nbsp;<?php echo $value["supp_phoneNo"] ?></td>
+                        <td style="width: 200px">&nbsp;&nbsp;<?php echo $value["supp_email"] ?></td>
+                        <td style="width: 80px">&nbsp;&nbsp;<?php echo $value["currency"] ?></td>
+                        <td style="width: 80px">&nbsp;&nbsp;<?php echo $value["supp_balance"] ?></td>
+                        <td >&nbsp;&nbsp;<?php echo $value["notes"] ?></td>
+
                     </tr>
                     <?php
                 }
@@ -138,6 +144,9 @@
                 var m = "clicked row: " + key;
                 var id = $(this).attr('id');
                 switch (key) {
+                    case "view_vendor":
+                        window.location = "index.php?pagename=view_suppliermaster&supplierid=" + id;
+                        break;
                     case "create_vendor":
                         window.location = "index.php?pagename=create_suppliermaster";
                         break;
@@ -162,6 +171,7 @@
                 //window.console && console.log(m) || alert(m+"    id:"+id); 
             },
             items: {
+                "view_vendor": {name: "VIEW VENDOR", icon: "view"},
                 "create_vendor": {name: "CREATE VENDOR", icon: "add"},
                 "edit_vendor": {name: "EDIT VENDOR", icon: "edit"},
                 "delete_vendor": {name: "DELETE VENDOR", icon: "delete"},
@@ -177,5 +187,9 @@
         //        $('.context-menu-one').on('click', function(e){
         //            console.log('clicked', this);
         //       })    
+    });
+    $('tr').dblclick(function () {
+        var id = $(this).attr('id');
+        window.location = "index.php?pagename=view_suppliermaster&supplierid=" + id;
     });
 </script>

@@ -320,6 +320,10 @@ $sqltaxinfodata = MysqlConnection::fetchCustom("SELECT * FROM taxinfo_table ORDE
         }).fail(function () {
         });
     });
+    
+    $("#cancelti").click(function() {
+        $("#taxInformation1").val("");
+    });
 </script>
 
 <?php
@@ -370,7 +374,7 @@ $taxinfoarray = MysqlConnection::fetchCustom("select * from taxinfo_table;");
 
     <div class="modal-footer" style="text-align: center"> 
         <a id="saveTaxInformation" data-dismiss="modal" class="btn btn-primary ">Save</a> 
-        <a data-dismiss="modal" class="btn" href="#">Cancel</a> 
+        <a data-dismiss="modal" class="btn" id="cancelti" href="#">Cancel</a> 
     </div>
 </div>
 <!-- this is model dialog --->

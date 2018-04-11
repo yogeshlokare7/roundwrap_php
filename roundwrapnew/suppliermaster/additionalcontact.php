@@ -4,18 +4,20 @@
     });
 </script>
 <fieldset class="well the-fieldset">
-<table style="width: 100%;"  id="supplierInfo" vertical-align="top">
-    <tr>
-        <td><label class="control-label">Name</label></td>
-        <td><input type="text" name="contact_person[]" value="<?php echo filter_input(INPUT_POST, "contact_person[]") ?>"  id="contact_person" minlength="2" maxlength="30"></td>
-        <td><label class="control-label">Email</label></td>
-        <td><input type="email" name="email[]" autofocus="" value="<?php echo filter_input(INPUT_POST, "email[]") ?>" id="email" minlength="2" maxlength="30"></td>
-        <td><label class="control-label">Phone</label></td>
-        <td><input type="text" id="alterno" name="alterno[]"  value="<?php echo filter_input(INPUT_POST, "alterno[]") ?>" minlength="2" maxlength="20"><a style="margin-left: 20px;float:center;margin-bottom: 10px;" class="icon-plus" href="#"  ></a></td>
-    </tr>
-</table></fieldset>
+    <table style="width: 100%;"  id="supplierInfo" vertical-align="top">
+        <tr>
+            <td><label class="control-label">Name</label></td>
+            <td><input type="text" name="contact_person[]" value="<?php echo filter_input(INPUT_POST, "contact_person[]") ?>"  id="contact_person" minlength="2" maxlength="30"></td>
+            <td><label class="control-label">Email</label></td>
+            <td><input type="email" name="email[]" autofocus="" value="<?php echo filter_input(INPUT_POST, "email[]") ?>" id="email" minlength="2" maxlength="30"></td>
+            <td><label class="control-label">Phone</label></td>
+            <td><input type="text" id="alterno" name="alterno[]"  value="<?php echo filter_input(INPUT_POST, "alterno[]") ?>" minlength="2" maxlength="20"></td>
+            <td><label class="control-label">Designation</label></td>
+            <td><input type="text" id="designation" name="designation[]"  value="<?php echo filter_input(INPUT_POST, "designation[]") ?>" minlength="2" maxlength="20"><a style="margin-left: 20px;float:center;margin-bottom: 10px;" class="icon-plus" href="#"  ></a></td>
+        </tr>
+    </table></fieldset>
 <hr/>
-<input type="button" id="btnVenPrev1" value="PREVIOUS" class="btn btn-info" href="#tab1"></td>
+<input type="button" id="btnVenPrev1" value="PREVIOUS" class="btn btn-info" href="#tab1">
 <button type="submit" id="btnSubmitFullForm" class="btn btn-success">SUBMIT</button>
 
 
@@ -26,8 +28,8 @@
             event.preventDefault();
             var newRow = jQuery('<tr><td><label class="control-label">Name</label></td><td><input type="text" name="contact_person[]" value="<?php echo filter_input(INPUT_POST, "contact_person") ?>"  id="contact_person' + counter + '" minlength="2" maxlength="30"></td>' +
                     counter + '<td><label class="control-label">Email</label></td><td><input type="email" name="email[]" autofocus="" value="<?php echo filter_input(INPUT_POST, "email") ?>" id="email' + counter + '" minlength="2" maxlength="30"></td>' +
-                    counter + '<td><label class="control-label">Phone</label></td> <td><input type="text" id="alterno' + counter + '" name="alterno[]"  value="<?php echo filter_input(INPUT_POST, "alterno") ?>" minlength="2" maxlength="20">\n\
-                               <a style="margin-left: 20px;float:center;margin-bottom: 10px;" class="icon-trash" href="#"  ></a></td>');
+                    counter + '<td><label class="control-label">Phone</label></td> <td><input type="text" id="alterno' + counter + '" name="alterno[]"  value="<?php echo filter_input(INPUT_POST, "alterno") ?>" minlength="2" maxlength="20"></td>'+
+                      counter + '<td><label class="control-label">Designation</label></td> <td><input type="text" id="designation" name="designation[]"  value="<?php echo filter_input(INPUT_POST, "designation[]") ?>" minlength="2" maxlength="20"> <a style="margin-left: 20px;float:center;margin-bottom: 10px;" class="icon-trash" href="#"  ></a></td>');
             $("#alterno" + counter).mask("(999) 999-9999");
             counter++;
             jQuery('#supplierInfo').append(newRow);
