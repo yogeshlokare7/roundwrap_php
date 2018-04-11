@@ -43,7 +43,7 @@ $sqltaxinfodata = MysqlConnection::fetchCustom("SELECT * FROM taxinfo_table ORDE
                             </tr>
                             <tr>
                                 <td >Item Code<br/><input  type="text" name="item_code" id="item_code" value="<?php echo $item["item_code"] ?>"  autofocus="" required="true" minlenght="2" maxlength="30" /></td>
-                                <td >Item Name<br/><input type="text" name="item_name	" id="item_name	" value="<?php echo $item["item_name"] ?>"  autofocus="" required="true" minlenght="2" maxlength="30" /></td>
+                                <td >Item Name<br/><input type="text" name="item_name" id="item_name" value="<?php echo $item["item_name"] ?>"  autofocus="" required="true" minlenght="2" maxlength="30" /></td>
                                 <td >Unit of Measures<br/><input type="text" name="unit" id="unit" value="<?php echo $item["unit"] ?>"/></td>
                                 <td >Sub Item of<br/>
                                     <select name="subitemof" id="subitemof" value="<?php echo $item["subitemof"] ?>">
@@ -62,13 +62,13 @@ $sqltaxinfodata = MysqlConnection::fetchCustom("SELECT * FROM taxinfo_table ORDE
                     </fieldset>
                 </td>
             </tr>
-            
+
             <tr>
                 <td>
                     <?php if ($item["type"] == "Service" || $item["type"] == "") { ?>
                         <div id="serviceform" >
 
-                            
+
                             <fieldset class="well the-fieldset">
                                 <table style="width: 80%;" id="iteminfo" border="0">
                                     <tr style="vertical-align: top">
@@ -80,8 +80,9 @@ $sqltaxinfodata = MysqlConnection::fetchCustom("SELECT * FROM taxinfo_table ORDE
                                                 <option value="">&nbsp;&nbsp;</option>
                                                 <option value="1" ><< ADD NEW >></option>
                                                 <?php foreach ($sqltaxinfodata as $key => $value) { ?>
-                                                    <option  value='<?php echo $value["id"] ?>'><?php echo $value["taxcode"] ?> - <?php echo $value["taxname"] ?> - <?php echo $value["taxvalues"] ?>%</option>
-                                                <?php } ?>
+                                                    <option  <?php echo $value["id"] == $item["salestaxcode"] ? "selected" : "" ?> 
+                                                        value='<?php echo $value["id"] ?>'><?php echo $value["taxcode"] ?> - <?php echo $value["taxname"] ?> - <?php echo $value["taxvalues"] ?>%</option>
+                                                    <?php } ?>
                                             </select>
                                         </td>
                                         <td>Rate
@@ -90,7 +91,9 @@ $sqltaxinfodata = MysqlConnection::fetchCustom("SELECT * FROM taxinfo_table ORDE
                                     </tr>
                                     <tr>
                                         <td  style="text-align: left" colspan="3">
-                                            <input type="checkbox" name="taxcheckbox" id="taxcheckbox">&nbsp;This service performed by subcontractor,owner or partner
+                                            <input type="checkbox" name="service" 
+                                            <?php echo $item["service"] == "Y" ? "checked" : "" ?> 
+                                                   id="service">&nbsp;This service performed by subcontractor,owner or partner
                                         </td>
                                     </tr>
                                 </table>
@@ -118,8 +121,9 @@ $sqltaxinfodata = MysqlConnection::fetchCustom("SELECT * FROM taxinfo_table ORDE
                                                 <option value="">&nbsp;&nbsp;</option>
                                                 <option value="1" ><< ADD NEW >></option>
                                                 <?php foreach ($sqltaxinfodata as $key => $value) { ?>
-                                                    <option  value='<?php echo $value["id"] ?>'><?php echo $value["taxcode"] ?> - <?php echo $value["taxname"] ?> - <?php echo $value["taxvalues"] ?>%</option>
-                                                <?php } ?>
+                                                    <option  <?php echo $value["id"] == $item["purch_code"] ? "selected" : "" ?> 
+                                                        value='<?php echo $value["id"] ?>'><?php echo $value["taxcode"] ?> - <?php echo $value["taxname"] ?> - <?php echo $value["taxvalues"] ?>%</option>
+                                                    <?php } ?>
                                             </select>
                                         </td>   
                                     </tr>
@@ -150,8 +154,9 @@ $sqltaxinfodata = MysqlConnection::fetchCustom("SELECT * FROM taxinfo_table ORDE
                                                 <option value="">&nbsp;&nbsp;</option>
                                                 <option value="1" ><< ADD NEW >></option>
                                                 <?php foreach ($sqltaxinfodata as $key => $value) { ?>
-                                                    <option  value='<?php echo $value["id"] ?>'><?php echo $value["taxcode"] ?> - <?php echo $value["taxname"] ?> - <?php echo $value["taxvalues"] ?>%</option>
-                                                <?php } ?>
+                                                    <option  <?php echo $value["id"] == $item["sales_code"] ? "selected" : "" ?> 
+                                                        value='<?php echo $value["id"] ?>'><?php echo $value["taxcode"] ?> - <?php echo $value["taxname"] ?> - <?php echo $value["taxvalues"] ?>%</option>
+                                                    <?php } ?>
                                             </select>
                                         </td>   
                                     </tr>
@@ -320,8 +325,8 @@ $sqltaxinfodata = MysqlConnection::fetchCustom("SELECT * FROM taxinfo_table ORDE
         }).fail(function () {
         });
     });
-    
-    $("#cancelti").click(function() {
+
+    $("#cancelti").click(function () {
         $("#taxInformation1").val("");
     });
 </script>

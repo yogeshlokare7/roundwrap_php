@@ -109,40 +109,40 @@
 
 <!--</form>-->
 <script>
-    $("#deleteThis").click(function() {
+    $("#deleteThis").click(function () {
         $('#img').show();
         var dataString = "deleteId=" + $('#deleteId').val();
         $.ajax({
             type: 'POST',
             url: 'customermaster/customermaster_ajax.php',
             data: dataString
-        }).done(function(data) {
+        }).done(function (data) {
             $('#img').hide();
-        }).fail(function() {
+        }).fail(function () {
         });
         location.reload();
     });
     function setDeleteField(deleteId) {
         document.getElementById("deleteId").value = deleteId;
     }
-    $("#save").click(function() {
+    $("#save").click(function () {
         var json = convertFormToJSON("#basic_validate");
         $.ajax({
             type: 'POST',
             url: 'customermaster/savecustomermaster_ajax.php',
             data: json
-        }).done(function(data) {
-        }).fail(function() {
+        }).done(function (data) {
+        }).fail(function () {
         });
         location.reload();
     });
 
 
 
-    $(function() {
+    $(function () {
         $.contextMenu({
             selector: '.context-menu-one',
-            callback: function(key, options) {
+            callback: function (key, options) {
                 var m = "clicked row: " + key;
                 var id = $(this).attr('id');
                 switch (key) {
@@ -156,7 +156,7 @@
                         window.location = "index.php?pagename=create_customermaster&customerId=" + id;
                         break;
                     case "delete_customer":
-                        window.location = "index.php?pagename=delete_customermaster&customerId=" + id;
+                        window.location = "index.php?pagename=view_customermaster&customerId=" + id + "&flag=yes";
                         break;
                     case "create_sales_order":
                         window.location = "index.php?pagename=create_salesorder&customerId=" + id;
@@ -176,30 +176,19 @@
                 "view_customer": {name: "VIEW CUSTOMER", icon: "+"},
                 "create_customer": {name: "CREATE CUSTOMER", icon: "img/icons/16/book.png"},
                 "edit_customer": {name: "EDIT CUSTOMER", icon: "context-menu-icon-add"},
-                "delete_customermaster": {name: "DELETE CUSTOMER", icon: "delete"},
+                "delete_customer": {name: "DELETE CUSTOMER", icon: "delete"},
                 "sep1": "---------",
                 "create_sales_order": {name: "CREATE SALES ORDER", icon: "add"},
                 "create_invoice": {name: "CREATE INVOICE", icon: "add"},
                 "sep2": "---------",
-                "quit": {name: "QUIT", icon: function() {
+                "quit": {name: "QUIT", icon: function () {
                         return 'context-menu-icon context-menu-icon-quit';
                     }}
             }
         });
-        function deleteCustomer(id) {
-            var dataString = "deleteId=" + id;
-            alert(id);
-            $.ajax({
-                type: 'POST',
-                url: 'customermaster/customermaster_ajax.php',
-                data: dataString
-            }).done(function(data) {
-            }).fail(function() {
-            });
-        }
     });
 
-    $('tr').dblclick(function() {
+    $('tr').dblclick(function () {
         var id = $(this).attr('id');
         window.location = "index.php?pagename=view_customermaster&customerId=" + id;
     });

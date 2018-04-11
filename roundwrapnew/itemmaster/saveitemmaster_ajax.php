@@ -12,4 +12,4 @@ if (isset($_POST["item_id"]) && trim($_POST["item_id"]) != "") {
 } else {
     $insert = MysqlConnection::insert("item_master", $_POST);
 }
-//header("location:index.php?pagename=manage_itemmaster");
+header("location:../index.php?pagename=manage_itemmaster");
