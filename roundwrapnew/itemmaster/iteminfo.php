@@ -28,69 +28,79 @@ $sqltaxinfodata = MysqlConnection::fetchCustom("SELECT * FROM taxinfo_table ORDE
 </style>
 <fieldset class="well the-fieldset">
     <form name="frmItemsSubmit" id="frmItemsSubmit" method="post" action="itemmaster/saveitemmaster_ajax.php">
-        <table  style="width: 80%;vertical-align: top" border="0">
+        <table style="vertical-align: top">
             <tr style="vertical-align: top">
-                <td style="width: 150px;">Type</td>
-                <td style="width: 220px;">
-                    <select name="type"  id="type" value="">
-                        <option value="Service" <?php echo $item["type"] == "Service" ? "selected" : "" ?> >Service</option>
-                        <option value="InventoryPart" <?php echo $item["type"] == "InventoryPart" ? "selected" : "" ?>  >Inventory Part</option>
-                    </select>
+                <td style="vertical-align: top">
+                    <fieldset class="well the-fieldset">
+                        <table  style="vertical-align: top" border="0">
+                            <tr style="vertical-align: top">
+                                <td colspan="4">Type<br/>
+                                    <select name="type"  id="type" value="">
+                                        <option value="Service" <?php echo $item["type"] == "Service" ? "selected" : "" ?> >Service</option>
+                                        <option value="InventoryPart" <?php echo $item["type"] == "InventoryPart" ? "selected" : "" ?>  >Inventory Part</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td >Item Code<br/><input  type="text" name="item_code" id="item_code" value="<?php echo $item["item_code"] ?>"  autofocus="" required="true" minlenght="2" maxlength="30" /></td>
+                                <td >Item Name<br/><input type="text" name="item_name	" id="item_name	" value="<?php echo $item["item_name"] ?>"  autofocus="" required="true" minlenght="2" maxlength="30" /></td>
+                                <td >Unit of Measures<br/><input type="text" name="unit" id="unit" value="<?php echo $item["unit"] ?>"/></td>
+                                <td >Sub Item of<br/>
+                                    <select name="subitemof" id="subitemof" value="<?php echo $item["subitemof"] ?>">
+                                        <option value="">&nbsp;&nbsp;</option>
+                                        <?php
+                                        foreach ($itemlist as $key => $value) {
+                                            ?>
+                                            <option value="<?php echo $value["item_id"] ?>"><?php echo $value["item_code"] ?></option>
+                                            <?php
+                                        }
+                                        ?>
+                                    </select>
+                                </td>
+                            </tr>
+                        </table> 
+                    </fieldset>
                 </td>
-                <td></td>
-                <td></td>
-               
             </tr>
+            
             <tr>
-                <td  style="vertical-align: bottom">Item Code<input style="width: 130px;" type="text" name="item_code" id="item_code" value="<?php echo $item["item_code"] ?>"  autofocus="" required="true" minlenght="2" maxlength="30" ></td>
-                <td  style="vertical-align: bottom">Item Name<input type="text" name="item_name	" id="item_name	" value="<?php echo $item["item_name"] ?>"  autofocus="" required="true" minlenght="2" maxlength="30" ></td>
-                <td  style="vertical-align: bottom;width: 220px;">Unit of Measures<input type="text" name="unit" id="unit" value="<?php echo $item["unit"] ?>"/></td>
-                <td  style="vertical-align: bottom">Subitem of<br/>
-                    <select name="subitemof" id="subitemof" value="<?php echo $item["subitemof"] ?>">
-                        <option value="">&nbsp;&nbsp;</option>
-                        <?php
-                        foreach ($itemlist as $key => $value) {
-                            ?>
-                            <option value="<?php echo $value["item_id"] ?>"><?php echo $value["item_code"] ?></option>
-                            <?php
-                        }
-                        ?>
-                    </select>
+                <td>
+                    <?php if ($item["type"] == "Service" || $item["type"] == "") { ?>
+                        <div id="serviceform" >
+
+                            
+                            <fieldset class="well the-fieldset">
+                                <table style="width: 80%;" id="iteminfo" border="0">
+                                    <tr style="vertical-align: top">
+                                        <td  style="width: 220px;" >Description
+                                            <textarea name="item_desc" id="item_desc" minlenght="2" maxlength="60" style="line-height: 15px"><?php echo $item["item_desc"] ?></textarea>
+                                        </td>
+                                        <td style="width: 220px;">Sales Tax Code
+                                            <select name="salestaxcode" id="taxInformation1" value="<?php echo $item["salestaxcode"] ?>">
+                                                <option value="">&nbsp;&nbsp;</option>
+                                                <option value="1" ><< ADD NEW >></option>
+                                                <?php foreach ($sqltaxinfodata as $key => $value) { ?>
+                                                    <option  value='<?php echo $value["id"] ?>'><?php echo $value["taxcode"] ?> - <?php echo $value["taxname"] ?> - <?php echo $value["taxvalues"] ?>%</option>
+                                                <?php } ?>
+                                            </select>
+                                        </td>
+                                        <td>Rate
+                                            <input type="text" name="rate" id="rate" onkeypress="return chkNumericKey(event)" value="<?php echo $item["rate"] ?>" minlenght="2" maxlength="30"  >
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td  style="text-align: left" colspan="3">
+                                            <input type="checkbox" name="taxcheckbox" id="taxcheckbox">&nbsp;This service performed by subcontractor,owner or partner
+                                        </td>
+                                    </tr>
+                                </table>
+                            </fieldset>
+                        </div>
+                    <?php } ?>
                 </td>
-                
             </tr>
-        </table> 
-        <?php if ($item["type"] == "Service" || $item["type"] == "") { ?>
-            <div id="serviceform">
-                <table style="width: 80%;" id="iteminfo" border="0">
-                    <tr style="vertical-align: top">
-                        <td  style="width: 150px;">Description</td>
-                        <td  style="width: 220px;" ><textarea name="item_desc" id="item_desc" minlenght="2" maxlength="60" style="line-height: 15px">
-                                <?php echo $item["item_desc"] ?></textarea>
-                        </td>
-                        <td style="width: 220px;">
-                            <label >Sales Tax Code</label>
-                            <select name="salestaxcode" id="taxInformation1" value="<?php echo $item["salestaxcode"] ?>">
-                                <option value="">&nbsp;&nbsp;</option>
-                                <option value="1" ><< ADD NEW >></option>
-                                <?php foreach ($sqltaxinfodata as $key => $value) { ?>
-                                    <option  value='<?php echo $value["id"] ?>'><?php echo $value["taxcode"] ?> - <?php echo $value["taxname"] ?> - <?php echo $value["taxvalues"] ?>%</option>
-                                <?php } ?>
-                            </select>
-                        </td>
-                        <td>
-                            <label >Rate</label>
-                            <input type="text" name="rate" id="rate" onkeypress="return chkNumericKey(event)" value="<?php echo $item["rate"] ?>" minlenght="2" maxlength="30"  >
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan="2" style="text-align: left"><input type="checkbox" id="taxcheckbox">&nbsp;This service performed by subcontractor,owner or partner</td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                </table>
-            </div>
-        <?php } if ($item["type"] == "InventoryPart" || $item["type"] == "") { ?>
+        </table>
+        <?php if ($item["type"] == "InventoryPart" || $item["type"] == "") { ?>
             <div id="inventorypartfrom">
                 <table border="0"> 
                     <tr style="vertical-align: top">
@@ -113,7 +123,7 @@ $sqltaxinfodata = MysqlConnection::fetchCustom("SELECT * FROM taxinfo_table ORDE
                                             </select>
                                         </td>   
                                     </tr>
-<!--                                    <tr >
+    <!--                                    <tr >
                                         <td><label class="control-label">COGS Account</label></td>
                                         <td><input type="text" name="cogsaccount" id="cogsaccount"  value="<?php echo $item["cogsaccount"] ?>" autofocus="" required="true" minlenght="2" maxlength="30" ></td>   
                                     </tr>-->
@@ -127,7 +137,6 @@ $sqltaxinfodata = MysqlConnection::fetchCustom("SELECT * FROM taxinfo_table ORDE
                         </td>
                         <td>
                             <fieldset class="well the-fieldset">
-
                                 <table  border="0">
 
                                     <tr >
@@ -146,7 +155,7 @@ $sqltaxinfodata = MysqlConnection::fetchCustom("SELECT * FROM taxinfo_table ORDE
                                             </select>
                                         </td>   
                                     </tr>
-<!--                                    <tr >
+    <!--                                    <tr >
                                         <td><label class="control-label">Income Account</label></td>
                                         <td><input type="text" name="incomeaccount" id="incomeaccount"  value="<?php echo $item["incomeaccount"] ?>" autofocus="" required="true" minlenght="2" maxlength="30" ></td>   
                                     </tr>-->
@@ -162,7 +171,7 @@ $sqltaxinfodata = MysqlConnection::fetchCustom("SELECT * FROM taxinfo_table ORDE
                             <fieldset class="well the-fieldset">
 
                                 <table  border="0">
-<!--                                    <tr  >
+    <!--                                    <tr  >
                                         <td style="width: 40%"><label class="control-label">Asset Account</label></td>
                                         <td style="vertical-align: bottom"><input type="text" name="assetaccount" id="assetaccount"  value="<?php echo $item["assetaccount"] ?>" autofocus="" required="true" minlenght="2" maxlength="30" ></td>   
                                     </tr>-->
@@ -188,6 +197,7 @@ $sqltaxinfodata = MysqlConnection::fetchCustom("SELECT * FROM taxinfo_table ORDE
                         </td>
                     </tr>
                 </table>
+
             </div>
         <?php } ?>
         <hr/>
@@ -214,13 +224,13 @@ $sqltaxinfodata = MysqlConnection::fetchCustom("SELECT * FROM taxinfo_table ORDE
         $("#frmItemsSubmit").submit();
     }
 <?php if ($item["type"] == "") { ?>
-        $(document).ready(function() {
+        $(document).ready(function () {
             $('#inventorypartfrom').addClass('hide');
             $('#inventorypartfrom').removeClass('show');
         });
 <?php } ?>
 
-    $("#type").click(function() {
+    $("#type").click(function () {
         var valueModel = $("#type").val();
         if (valueModel === "Service") {
             $('#serviceform').addClass('show');
@@ -237,9 +247,9 @@ $sqltaxinfodata = MysqlConnection::fetchCustom("SELECT * FROM taxinfo_table ORDE
 
 
 <script>
-    jQuery(function() {
+    jQuery(function () {
         var counter = 1;
-        jQuery('a.icon-plus').click(function(event) {
+        jQuery('a.icon-plus').click(function (event) {
             event.preventDefault();
             var newRow = jQuery('<tr>'
                     + '<td><input type="text" name="taxcode[]" style="width: 25px;" id="taxtaxname[]" ></td>'
@@ -253,27 +263,27 @@ $sqltaxinfodata = MysqlConnection::fetchCustom("SELECT * FROM taxinfo_table ORDE
         });
     });
 
-    $(document).ready(function() {
-        $("#addtax").on('click', 'a.icon-trash', function() {
+    $(document).ready(function () {
+        $("#addtax").on('click', 'a.icon-trash', function () {
             $(this).closest('tr').remove();
         });
     });
 
-    $("#taxInformation1").click(function() {
+    $("#taxInformation1").click(function () {
         var valueModel = $("#taxInformation1").val();
         if (valueModel === "1") {
             $('#addTaxInformation').modal('show');
         }
     });
 
-    $("#taxInformation2").click(function() {
+    $("#taxInformation2").click(function () {
         var valueModel = $("#taxInformation2").val();
         if (valueModel === "1") {
             $('#addTaxInformation').modal('show');
         }
     });
 
-    $("#taxInformation3").click(function() {
+    $("#taxInformation3").click(function () {
         var valueModel = $("#taxInformation3").val();
         if (valueModel === "1") {
             $('#addTaxInformation').modal('show');
@@ -282,19 +292,19 @@ $sqltaxinfodata = MysqlConnection::fetchCustom("SELECT * FROM taxinfo_table ORDE
 
 
 
-    $("#saveTaxInformation").click(function() {
+    $("#saveTaxInformation").click(function () {
 //        var dataString = convertFormToJSON("addTaxInformation"); 
 //        //taxcode  taxtaxname   taxtaxvalues   taxisExempt
-        var taxcode = $("input[name='taxcode[]']").map(function() {
+        var taxcode = $("input[name='taxcode[]']").map(function () {
             return $(this).val();
         }).get();
-        var taxtaxname = $("input[name='taxtaxname[]']").map(function() {
+        var taxtaxname = $("input[name='taxtaxname[]']").map(function () {
             return $(this).val();
         }).get();
-        var taxtaxvalues = $("input[name='taxtaxvalues[]']").map(function() {
+        var taxtaxvalues = $("input[name='taxtaxvalues[]']").map(function () {
             return $(this).val();
         }).get();
-        var taxisExempt = $("input[name='taxisExempt[]']").map(function() {
+        var taxisExempt = $("input[name='taxisExempt[]']").map(function () {
             return $(this).val();
         }).get();
         var dataString = "taxcode=" + taxcode + "&taxtaxname=" + taxtaxname + "&taxtaxvalues=" + taxtaxvalues + "&taxisExempt=" + taxisExempt;
@@ -302,12 +312,12 @@ $sqltaxinfodata = MysqlConnection::fetchCustom("SELECT * FROM taxinfo_table ORDE
             type: 'POST',
             url: 'customermaster/savetaxinfo_ajax.php',
             data: dataString
-        }).done(function(data) {
+        }).done(function (data) {
             $("input[name='taxcode[]']").val("");
             $("input[name='taxtaxname[]']").val("");
             $("input[name='taxtaxvalues[]']").val("");
             $("input[name='taxisExempt[]']").val("");
-        }).fail(function() {
+        }).fail(function () {
         });
     });
 </script>
