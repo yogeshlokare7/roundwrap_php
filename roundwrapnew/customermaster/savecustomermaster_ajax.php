@@ -1,7 +1,7 @@
 <?php
 
 include '../MysqlConnection.php';
-echo "======>" . $customerid = filter_input(INPUT_POST, "customerid");
+$customerid = filter_input(INPUT_POST, "customerid");
 
 $customerarray = array();
 $salutation = filter_input(INPUT_POST, "salutation");
@@ -36,21 +36,18 @@ $customerarray["taxInformation"] = filter_input(INPUT_POST, "taxInformation");
 $contact_person = $_POST["contact_person"];
 $paymentinfo = $_POST["cardnumber"];
 
-
-echo "<pre>";
-print_r($_POST);
-echo "</pre>";
-
-echo "<pre>";
-print_r($_FILES);
-echo "</pre>";
+if ($_FILES["certificate"]["name"] != "") {
+    $customerarray["certificate"] = MysqlConnection::uploadFile($_FILES["certificate"], "../upload/");
+}
 
 if (empty($customerid)) { //// this is save request 
     $customerid = MysqlConnection::insert("customer_master", $customerarray);
 } else { /// this is update request
     MysqlConnection::edit("customer_master", $customerarray, " id = $customerid");
 }
-echo "<br/>";
+if (!empty($customerid)) { //// this is save request 
+    MysqlConnection::delete("DELETE FROM customer_contact WHERE cust_id = $customerid ");
+}
 
 for ($index = 0; $index < count($contact_person); $index++) {
     $namearray = $contact_person;
@@ -64,14 +61,11 @@ for ($index = 0; $index < count($contact_person); $index++) {
     $custcontactrarray["person_phoneNo"] = $contactarray[$index];
     $custcontactrarray["designation"] = $designationarray[$index];
     $custcontactrarray["cust_id"] = $customerid;
-    if (!empty($customerid)) { //// this is save request 
-        MysqlConnection::delete("DELETE FROM customer_contact WHERE cust_id = $customerid ");
-    }
-    echo "<br/>";
     MysqlConnection::insert("customer_contact", $custcontactrarray);
 }
-echo "<br/>";
-
+if (!empty($customerid)) { //// this is save request 
+    MysqlConnection::delete("DELETE FROM customer_payment WHERE cust_id = $customerid ");
+}
 for ($index = 0; $index < count($paymentinfo); $index++) {
     $cardarray = $paymentinfo;
     $cardnamearray = $_POST["nameoncard"];
@@ -84,16 +78,9 @@ for ($index = 0; $index < count($paymentinfo); $index++) {
     $custpaymentrarray["expdate"] = $expdatearray[$index];
     $custpaymentrarray["cvvno"] = $cvvnoarray[$index];
     $custpaymentrarray["cust_id"] = $customerid;
-    if (!empty($customerid)) { //// this is save request 
-        MysqlConnection::delete("DELETE FROM customer_payment WHERE cust_id = $customerid ");
-    }
-    echo "<br/>";
     MysqlConnection::insert("customer_payment", $custpaymentrarray);
 }
-echo "<br/>";
-
-
-//header("location:index.php?pagename=manage_customermaster");
+header("location:../index.php?pagename=manage_customermaster");
 
 
 

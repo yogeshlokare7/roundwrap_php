@@ -23,7 +23,7 @@ $arrsalutations = MysqlConnection::fetchCustom("SELECT distinct(`salutation`) as
     });
 </script>
 <fieldset class="well the-fieldset">
-    <table  style="width: 80%;vertical-align: top" border="1">
+    <table  style="width: 80%;vertical-align: top" border="0">
         <tr>
             <td><label class="control-label">Salutation</label></td>
             <td>
@@ -84,8 +84,9 @@ $arrsalutations = MysqlConnection::fetchCustom("SELECT distinct(`salutation`) as
     </table>
 </fieldset>
 <hr/>
-<input type="hidden" value="<?php echo $customerid ?>" name="customerid">
-<input type="button" id="btnCmpNext1" value="NEXT" class="btn btn-info" ><a href="customermaster/additionalcontact.php"></a>
+<input type="hidden" value="<?php echo $customerid ?>" name="customerid"/>
+<a href="index.php?pagename=manage_customermaster" class="btn btn-danger">CANCEL</a>
+<input type="button" id="btnCmpNext1" value="NEXT" class="btn btn-info" />
 <script>
     function  fillAddress()
     {

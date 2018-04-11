@@ -1,7 +1,6 @@
 <?php
 if (!empty($customerid)) {
     $customercontactarray = MysqlConnection::fetchCustom("SELECT * FROM customer_contact WHERE cust_id = $customerid");
-    print_r($customercontactarray);
 }
 ?>
 <script>
@@ -11,7 +10,7 @@ if (!empty($customerid)) {
 </script>
 <style>
     .ctable{
-        
+
     }
     .ctable tr td{
         height: 30px;

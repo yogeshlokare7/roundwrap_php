@@ -66,7 +66,17 @@ $sqltaxinfodata = MysqlConnection::fetchCustom("SELECT * FROM taxinfo_table ORDE
             <td>Business No</td>
             <td><input type="text" name="businessno" minlenght="2" maxlength="20" id="businessno"  value="<?php echo $customer["businessno"] ?>" ></td>
             <td>Certificate</td>
-            <td><input type="file" name="certificate" id="certificate"></td>
+            <td>
+                <input type="file" name="certificate" id="certificate">
+                <?php
+                if ($customer["certificate"] != "") {
+                    ?>
+                    <br/>
+                    <a href="" target="_blank">view</a>
+                    <?php
+                }
+                ?>
+            </td>
         </tr>
 
         <tr>
@@ -204,10 +214,10 @@ $sqltaxinfodata = MysqlConnection::fetchCustom("SELECT * FROM taxinfo_table ORDE
                     </tr>
                     <?php foreach ($sqltaxinfodata as $key => $value) { ?>
                         <tr>
-                            <td><input type="text" name="taxcode[]" autofocus=""   style="width: 25px;" id="taxtaxname[]" value="<?php echo $value["taxcode"]?>"></td>
-                            <td><input type="text" name="taxtaxname[]" style="width: 75px;" id="taxtaxname[]" value="<?php echo $value["taxname"]?>"></td>
-                            <td><input type="text" name="taxtaxvalues[]"  id="taxtaxvalues[]" value="<?php echo $value["taxvalues"]?>"></td>
-                            <td><input type="checkbox" name="taxgstexempt[]" id="taxgstexempt[]" value="<?php echo $value["isExempt"]?>"></td>
+                            <td><input type="text" name="taxcode[]" autofocus=""   style="width: 25px;" id="taxtaxname[]" value="<?php echo $value["taxcode"] ?>"></td>
+                            <td><input type="text" name="taxtaxname[]" style="width: 75px;" id="taxtaxname[]" value="<?php echo $value["taxname"] ?>"></td>
+                            <td><input type="text" name="taxtaxvalues[]"  id="taxtaxvalues[]" value="<?php echo $value["taxvalues"] ?>"></td>
+                            <td><input type="checkbox" name="taxgstexempt[]" id="taxgstexempt[]" value="<?php echo $value["isExempt"] ?>"></td>
                             <td></td>
                         </tr>
                     <?php } ?>
