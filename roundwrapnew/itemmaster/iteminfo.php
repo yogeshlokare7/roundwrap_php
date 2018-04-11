@@ -37,11 +37,11 @@ $itemlist = MysqlConnection::fetchCustom("SELECT item_id,item_code FROM item_mas
                 </td>
                 <td></td>
                 <td></td>
-                <td></td>
+               
             </tr>
             <tr>
-                <td>Item Name / Code</td>
-                <td  style="vertical-align: bottom"><input type="text" name="item_code" id="item_code" value="<?php echo $item["item_code"] ?>"  autofocus="" required="true" minlenght="2" maxlength="30" ></td>
+                <td  style="vertical-align: bottom">Item Code<input style="width: 130px;" type="text" name="item_code" id="item_code" value="<?php echo $item["item_code"] ?>"  autofocus="" required="true" minlenght="2" maxlength="30" ></td>
+                <td  style="vertical-align: bottom">Item Name<input type="text" name="item_name	" id="item_name	" value="<?php echo $item["item_name"] ?>"  autofocus="" required="true" minlenght="2" maxlength="30" ></td>
                 <td  style="vertical-align: bottom;width: 220px;">Unit of Measures<input type="text" name="unit" id="unit" value="<?php echo $item["unit"] ?>"/></td>
                 <td  style="vertical-align: bottom">Subitem of<br/>
                     <select name="subitemof" id="subitemof" value="<?php echo $item["subitemof"] ?>">
@@ -55,7 +55,7 @@ $itemlist = MysqlConnection::fetchCustom("SELECT item_id,item_code FROM item_mas
                         ?>
                     </select>
                 </td>
-                <td></td>
+                
             </tr>
         </table> 
         <?php if ($item["type"] == "Service" || $item["type"] == "") { ?>
@@ -100,10 +100,10 @@ $itemlist = MysqlConnection::fetchCustom("SELECT item_id,item_code FROM item_mas
                                         <td><label class="control-label">Purch Tax Code</label></td>
                                         <td><input type="text" name="purch_code" id="purch_code"  value="<?php echo $item["purch_code"] ?>" autofocus="" required="true" minlenght="2" maxlength="30" ></td>   
                                     </tr>
-                                    <tr >
+<!--                                    <tr >
                                         <td><label class="control-label">COGS Account</label></td>
                                         <td><input type="text" name="cogsaccount" id="cogsaccount"  value="<?php echo $item["cogsaccount"] ?>" autofocus="" required="true" minlenght="2" maxlength="30" ></td>   
-                                    </tr>
+                                    </tr>-->
                                     <tr style="vertical-align: top">
                                         <td colspan="2"><label class="control-label">Description on Purchase Transactions</label>
                                             <textarea style="height: 30px;;line-height: 20px; width: 98%" name="item_desc_purch" id="item_desc_purch"   autofocus="" required="true" minlenght="2" maxlength="90" ><?php echo $item["item_desc_purch"] ?></textarea>
@@ -125,10 +125,10 @@ $itemlist = MysqlConnection::fetchCustom("SELECT item_id,item_code FROM item_mas
                                         <td><label class="control-label">Sales Tax Code</label></td>
                                         <td><input type="text" name="sales_code" id="sales_code"  value="<?php echo $item["sales_code"] ?>" autofocus="" required="true" minlenght="2" maxlength="30" ></td>   
                                     </tr>
-                                    <tr >
+<!--                                    <tr >
                                         <td><label class="control-label">Income Account</label></td>
                                         <td><input type="text" name="incomeaccount" id="incomeaccount"  value="<?php echo $item["incomeaccount"] ?>" autofocus="" required="true" minlenght="2" maxlength="30" ></td>   
-                                    </tr>
+                                    </tr>-->
                                     <tr >
                                         <td colspan="2"><label class="control-label">Description on Sales Transactions</label>
                                             <textarea style="height: 30px;;line-height: 20px; width: 98%" name="item_desc_sales" id="item_desc_sales"   autofocus="" required="true" minlenght="2" maxlength="90" ><?php echo $item["item_desc_sales"] ?></textarea>
@@ -141,10 +141,10 @@ $itemlist = MysqlConnection::fetchCustom("SELECT item_id,item_code FROM item_mas
                             <fieldset class="well the-fieldset">
 
                                 <table  border="0">
-                                    <tr  >
+<!--                                    <tr  >
                                         <td style="width: 40%"><label class="control-label">Asset Account</label></td>
                                         <td style="vertical-align: bottom"><input type="text" name="assetaccount" id="assetaccount"  value="<?php echo $item["assetaccount"] ?>" autofocus="" required="true" minlenght="2" maxlength="30" ></td>   
-                                    </tr>
+                                    </tr>-->
                                     <tr >
                                         <td><label class="control-label">Reorder Point</label></td>
                                         <td style="vertical-align: bottom"><input type="text" name="reorder" id="reorder"  value="<?php echo $item["reorder"] ?>" autofocus="" required="true" minlenght="2" maxlength="30" ></td>   

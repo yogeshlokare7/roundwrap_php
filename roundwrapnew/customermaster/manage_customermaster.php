@@ -202,7 +202,7 @@
     $('tr').dblclick(function() {
         var id = $(this).attr('id');
         window.location = "index.php?pagename=view_customermaster&customerId=" + id;
-    })
+    });
 </script>
 <!-- this is model dialog --->
 <?php
