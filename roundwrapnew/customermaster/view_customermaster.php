@@ -7,9 +7,7 @@ $customer = $arrcustomer[0];
 
 $customercontactarray = MysqlConnection::fetchCustom("SELECT * FROM  `customer_contact` WHERE cust_id = $customerid ");
 $customerpaymentarray = MysqlConnection::fetchCustom("SELECT * FROM  `customer_payment` WHERE  cust_id = $customerid ");
-//echo "<pre>";
-//print_r($arrcustomercontact);
-//echo "</pre>";
+$arrcustomernote = MysqlConnection::fetchCustom("SELECT * FROM  `customer_notes` WHERE cust_id = $customerid  ORDER BY ID DESC LIMIT 0,20");
 ?>
 <style>
     .widget-box input{
@@ -34,6 +32,7 @@ $customerpaymentarray = MysqlConnection::fetchCustom("SELECT * FROM  `customer_p
                 <li id="acTab2"><a data-toggle="tab" href="#tab2">Additional Contacts</a></li>
                 <li id="tdTab3"><a data-toggle="tab" href="#tab3">Tax and Discount</a></li>
                 <li id="dpiTab4"><a data-toggle="tab" href="#tab4">Deposits and Payment Information</a></li>
+                <li id="noteTab4"><a data-toggle="tab" href="#tab5">Notes & Comments</a></li>
             </ul>
         </div>
 
@@ -170,6 +169,26 @@ $customerpaymentarray = MysqlConnection::fetchCustom("SELECT * FROM  `customer_p
                     </table> 
                 </fieldset>
             </div>
+            <div id="tab5" class="tab-pane">
+                <fieldset class="well the-fieldset">
+                    <div style="height:  230px;overflow: auto;background: white;width: 100%;float: right">
+                        <table  style="width: 100%;vertical-align: top" border="0">
+                            <tr style="height: 30px;background-color: rgb(240,240,240);">
+                                <th>&nbsp;LAST NOTES</th>
+                            </tr>
+                            <?php
+                            foreach ($arrcustomernote as $key => $value) {
+                                ?>
+                                <tr style="border-bottom: solid 1px rgb(220,220,220);">
+                                    <td><p style="padding: 3px;text-align: justify"><?php echo $value["note"] ?></p></td>
+                                </tr>
+                                <?php
+                            }
+                            ?>
+                        </table>
+                    </div>
+                </fieldset>
+            </div>
             <hr/>
             <?php if (isset($flag) && $flag != "") { ?>
                 <input type="submit" name="Delete" class="btn btn-danger">
@@ -186,8 +205,8 @@ $customerpaymentarray = MysqlConnection::fetchCustom("SELECT * FROM  `customer_p
             type: 'POST',
             url: 'customermaster/customermaster_ajax.php',
             data: dataString
-        }).done(function (data) {
-        }).fail(function () {
+        }).done(function(data) {
+        }).fail(function() {
         });
     }
 </script>
