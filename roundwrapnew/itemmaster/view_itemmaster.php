@@ -21,7 +21,7 @@ $item = $arritem[0];
                             </tr>
                             <tr>
                                 <td >Item Code<br/><input  type="text" name="item_code" id="item_code" value="<?php echo $item["item_code"] ?>"  autofocus="" required="true" minlenght="2" maxlength="30" /></td>
-                                <td >Item Name<br/><input type="text" name="item_name	" id="item_name	" value="<?php echo $item["item_name"] ?>"  autofocus="" required="true" minlenght="2" maxlength="30" /></td>
+                                <td >Item Name<br/><input type="text" name="item_name	" id="item_name	" value="<?php echo $item["item_name"] ?>"  autofocus="" required="true" minlenght="2" maxlength="60" /></td>
                                 <td >Unit of Measures<br/><input type="text" name="unit" id="unit" value="<?php echo $item["unit"] ?>"/></td>
                                 <td >Sub Item of<br/></td>
                             </tr>

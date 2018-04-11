@@ -67,7 +67,7 @@ $listofitems = MysqlConnection::fetchAll("item_master");
                     <tr id="<?php echo $value["item_id"] ?>" class="context-menu-one" style="border-bottom: solid 1px rgb(220,220,220);text-align: left" >
                         <td style="width: 2.3%;">&nbsp;<?php echo $index ?></td>
                         <td style="width: 300px;text-align: left" >
-                            &nbsp;&nbsp;
+<!--                            &nbsp;&nbsp;-->
                             <?php echo $value["item_code"] ?>
                             <?php echo $value["item_name"] ?>
                         </td>
@@ -77,8 +77,8 @@ $listofitems = MysqlConnection::fetchAll("item_master");
                         </td>
                         <td style="width: 110px;">&nbsp;<?php echo $value["type"] ?></td>
                         <td style="width: 110px;text-align: right"><?php echo round($value["onhand"], 2); ?>&nbsp;&nbsp;</td>
-                        <td style="width: 110px;text-align: right"><?php echo round($value["sell_rate"], 2); ?>&nbsp;-&nbsp;&nbsp;</td>
-                        <td style="text-align: right">$&nbsp;<?php echo round($value["rate"], 2); ?>&nbsp;&nbsp;</td>
+                        <td style="width: 110px;text-align: right"><?php echo round($value["sell_rate"], 2); ?>&nbsp;&nbsp;</td>
+                        <td style="text-align: right">$&nbsp;<?php echo round($value["totalvalue"], 2); ?>&nbsp;&nbsp;</td>
                     </tr>
                     <?php
                     $index++;
