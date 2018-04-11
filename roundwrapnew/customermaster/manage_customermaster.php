@@ -109,40 +109,40 @@
 
 <!--</form>-->
 <script>
-    $("#deleteThis").click(function () {
+    $("#deleteThis").click(function() {
         $('#img').show();
         var dataString = "deleteId=" + $('#deleteId').val();
         $.ajax({
             type: 'POST',
             url: 'customermaster/customermaster_ajax.php',
             data: dataString
-        }).done(function (data) {
+        }).done(function(data) {
             $('#img').hide();
-        }).fail(function () {
+        }).fail(function() {
         });
         location.reload();
     });
     function setDeleteField(deleteId) {
         document.getElementById("deleteId").value = deleteId;
     }
-    $("#save").click(function () {
+    $("#save").click(function() {
         var json = convertFormToJSON("#basic_validate");
         $.ajax({
             type: 'POST',
             url: 'customermaster/savecustomermaster_ajax.php',
             data: json
-        }).done(function (data) {
-        }).fail(function () {
+        }).done(function(data) {
+        }).fail(function() {
         });
         location.reload();
     });
 
 
 
-    $(function () {
+    $(function() {
         $.contextMenu({
             selector: '.context-menu-one',
-            callback: function (key, options) {
+            callback: function(key, options) {
                 var m = "clicked row: " + key;
                 var id = $(this).attr('id');
                 switch (key) {
@@ -151,6 +151,9 @@
                         break;
                     case "create_customer":
                         window.location = "index.php?pagename=create_customermaster";
+                        break;
+                    case "create_note":
+                        window.location = "index.php?pagename=note_customermaster&customerId=" + id;
                         break;
                     case "edit_customer":
                         window.location = "index.php?pagename=create_customermaster&customerId=" + id;
@@ -178,17 +181,18 @@
                 "edit_customer": {name: "EDIT CUSTOMER", icon: "context-menu-icon-add"},
                 "delete_customer": {name: "DELETE CUSTOMER", icon: "delete"},
                 "sep1": "---------",
+                "create_note": {name: "CREATE NOTE", icon: "add"},
                 "create_sales_order": {name: "CREATE SALES ORDER", icon: "add"},
                 "create_invoice": {name: "CREATE INVOICE", icon: "add"},
                 "sep2": "---------",
-                "quit": {name: "QUIT", icon: function () {
+                "quit": {name: "QUIT", icon: function() {
                         return 'context-menu-icon context-menu-icon-quit';
                     }}
             }
         });
     });
 
-    $('tr').dblclick(function () {
+    $('tr').dblclick(function() {
         var id = $(this).attr('id');
         window.location = "index.php?pagename=view_customermaster&customerId=" + id;
     });
