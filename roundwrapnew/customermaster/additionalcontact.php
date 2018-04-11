@@ -4,74 +4,91 @@ if (!empty($customerid)) {
 }
 ?>
 <script>
-    $(document).ready(function ($) {
+    $(document).ready(function($) {
         $("#alterno").mask("(99) 9999-9999");
     });
 </script>
+<style>
+    .ctable{
+        
+    }
+    .ctable tr td{
+        height: 30px;
+        vertical-align: middle;
+    }
+    .ctable tr td input{
+        margin-top: 5px;
+    }
+</style>
 <fieldset class="well the-fieldset">
-<table id="addcontacts" style="width: 80%;vertical-align: top" border="0"> 
-    <?php
-    if (count($customercontactarray) != 0) {
-        $index = 1;
-        foreach ($customercontactarray as $key => $value) {
-            ?>
-            <tr>
-                <td><label class="control-label">Name</label></td>
-                <td><input type="text" name="contact_person[]" value="<?php echo $value["person_name"] ?>" minlenght="2" maxlength="30"  id="alter_contact"></td>
-                <td><label class="control-label">Email</label></td>
-                <td><input type="email" name="email[]" autofocus=""  value="<?php echo $value["person_email"] ?>" id="email"></td>
-                <td><label class="control-label">Phone</label></td>
-                <td><input type="tel" name="alternos[]" id="alterno"  value="<?php echo $value["person_phoneNo"] ?>" >
-                    <?php
-                    if ($index == 1) {
-                        echo '<a style="margin-left: 20px;float:center;margin-bottom: 10px;" class="icon-plus" href="#" id="icon-plus" ></a>';
-                    } else {
-                        echo '<a style="margin-left: 20px;float:center;margin-bottom: 10px;" class="icon-trash" href="#" id="icon-trash" ></a>';
-                    }
-                    ?>
-                </td>
-            </tr>
-            <?php
-            $index++;
-        }
-    } else {
-        ?>
-        <tr>
-            <td><label class="control-label">Name</label></td>
-            <td><input type="text" name="contact_person[]" value="" minlenght="2" maxlength="30"  id="alter_contact"></td>
-            <td><label class="control-label">Email</label></td>
-            <td><input type="email" name="email[]" autofocus=""  value="" id="email"></td>
-            <td><label class="control-label">Phone</label></td>
-            <td><input type="tel" name="alterno[]" id="alterno"  value="" >
-                <a style="margin-left: 20px;float:center;margin-bottom: 10px;" class="icon-plus" href="#" id="icon-plus" ></a>
-            </td>
+    <table id="addcontacts"  border="0" class="ctable"> 
+        <tr style="height: 25px;background-color: rgb(220,220,220);font-family: verdana;text-align: center">
+            <td>Name</td>
+            <td>Email</td>
+            <td>Phone</td>
+            <td>Designation</td>
+            <td></td>
         </tr>
         <?php
-    }
-    ?>
-</table> 
+        if (count($customercontactarray) != 0) {
+            $index = 1;
+            foreach ($customercontactarray as $key => $value) {
+                ?>
+                <tr style="vertical-align: bottom">
+                    <td><input type="text" name="contact_person[]" value="<?php echo $value["person_name"] ?>" minlenght="2" maxlength="30"  id="alter_contact"></td>
+                    <td><input type="email" name="email[]" autofocus=""  value="<?php echo $value["person_email"] ?>" id="email"></td>
+                    <td><input type="tel" name="alternos[]" id="alterno"  value="<?php echo $value["person_phoneNo"] ?>" ></td>
+                    <td><input type="text" name="designation[]" id="alterno"  value="<?php echo $value["designation"] ?>" ></td>
+                    <td>
+                        <?php
+                        if ($index == 1) {
+                            echo '<a  class="icon-plus" href="#" id="icon-plus" ></a>';
+                        } else {
+                            echo '<a class="icon-trash" href="#" id="icon-trash" ></a>';
+                        }
+                        ?>
+                    </td>
+                </tr>
+                <?php
+                $index++;
+            }
+        } else {
+            ?>
+            <tr style="vertical-align: bottom">
+                <td><input type="text" name="contact_person[]" value="" minlenght="2" maxlength="30"  id="alter_contact"></td>
+                <td><input type="email" name="email[]" autofocus=""  value="" id="email"></td>
+                <td><input type="tel" name="alterno[]" id="alterno"  value="" ></td>
+                <td><input type="text" name="designation[]" id="designation"  value="" ></td>
+                <td><a class="icon-plus" href="#" id="icon-plus" ></a></td>
+            </tr>
+            <?php
+        }
+        ?>
+    </table> 
 </fieldset>
 <hr/>
-<input type="button" id="btnCmpPrev1" value="PREVIOUS" class="btn btn-info" href="#tab1">
-<input type="button" id="btnCmpNext2" value="NEXT" class="btn btn-info" href="#tab2">
+<input type="button" id="btnCmpPrev1" value="PREVIOUS" class="btn btn-info" href="#tab1" >
+<input type="button" id="btnCmpNext2" value="NEXT" class="btn btn-info" href="#tab2"  >
 
 <script type="text/javascript">
 
-    jQuery(function () {
+    jQuery(function() {
         var counter = 1;
-        jQuery('#icon-plus').click(function (event) {
+        jQuery('#icon-plus').click(function(event) {
             event.preventDefault();
-            var newRow = jQuery('<tr><td><label class="control-label">Name</label></td><td><input type="text" minlenght="2" maxlength="30" name="contact_person[]" value="<?php echo filter_input(INPUT_POST, "contact_person") ?>"  id="contact_person"></td>' +
-                    counter + '<td><label class="control-label">Email</label></td><td><input type="email" name="email[]" autofocus="" value="<?php echo filter_input(INPUT_POST, "email") ?>" id="email"></td>' +
-                    counter + '<td><label class="control-label">Phone</label></td><td><input type="tel" name="alternos[]" id="alterno' + counter + '"  value="<?php echo filter_input(INPUT_POST, "alterno1[]") ?>" ><a style="margin-left: 20px;float:center;margin-bottom: 10px;" class="icon-trash" href="#" id="icon-trash" ></a></td>');
+            var newRow = jQuery('<tr><td><input type="text" minlenght="2" maxlength="30" name="contact_person[]" value="<?php echo filter_input(INPUT_POST, "contact_person") ?>"  id="contact_person"></td>' +
+                    '<td><input type="email" name="email[]" autofocus="" value="<?php echo filter_input(INPUT_POST, "email") ?>" id="email"></td>' +
+                    '<td><input type="tel" name="alternos[]" id="alterno' + counter + '"  value="<?php echo filter_input(INPUT_POST, "alterno1[]") ?>" ></td>' +
+                    '<td><input type="text" name="designation[]" id="designation' + counter + '"  value="<?php echo filter_input(INPUT_POST, "designation[]") ?>" ></td>' +
+                    '<td><a class="icon-trash" href="#" id="icon-trash" ></a></td>');
             $("#alterno" + counter).mask("(99) 9999-9999");
             counter++;
             jQuery('#addcontacts').append(newRow);
         });
     });
 
-    $(document).ready(function () {
-        $("#addcontacts").on('click', '#icon-trash', function () {
+    $(document).ready(function() {
+        $("#addcontacts").on('click', '#icon-trash', function() {
             $(this).closest('tr').remove();
         });
     });

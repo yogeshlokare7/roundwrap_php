@@ -1,13 +1,3 @@
-<script>
-    function chkNumericKey(event) {
-        var charCode = (event.which) ? event.which : event.keyCode;
-        if ((charCode >= 48 && charCode <= 57) || charCode == 46 || charCode == 45) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-</script>
 <style>
     select{
         text-transform: uppercase;
@@ -56,7 +46,6 @@ $sqltaxinfodata = MysqlConnection::fetchCustom("SELECT * FROM taxinfo_table ORDE
             </td>
         </tr>
         <tr>
-
             <td><label class="control-label">Rep</label></td>
             <td>
                 <select name="sales_person_name" id="sales_person_name">
@@ -74,7 +63,7 @@ $sqltaxinfodata = MysqlConnection::fetchCustom("SELECT * FROM taxinfo_table ORDE
             <td>Business No</td>
             <td><input type="text" name="businessno" minlenght="2" maxlength="20" id="businessno"  value="<?php echo filter_input(INPUT_POST, "businessno") ?>" ></td>
             <td>Certificate</td>
-            <td><input type="file"></td>
+            <td><input type="file" name="certificate" id="certificate"></td>
         </tr>
 
         <tr>
@@ -258,7 +247,7 @@ $sqltaxinfodata = MysqlConnection::fetchCustom("SELECT * FROM taxinfo_table ORDE
         $("#addtax").on('click', 'a.icon-trash', function() {
             $(this).closest('tr').remove();
         });
-
+        $('#taxcheckbox').click('#taxInformation', toggleSelection);
     });
     $("#cust_type").click(function() {
         var valueModel = $("#cust_type").val();

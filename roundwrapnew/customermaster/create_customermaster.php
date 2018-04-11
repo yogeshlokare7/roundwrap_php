@@ -1,8 +1,6 @@
 <?php
 $customerid = filter_input(INPUT_GET, "customerId");
-
 if (!empty($customerid)) {
-//    echo "SELECT * FROM customer_master WHERE id = $customerid ";
     $customerarray = MysqlConnection::fetchCustom("SELECT * FROM customer_master WHERE id =$customerid");
     $customer = $customerarray[0];
 }
@@ -41,7 +39,7 @@ if (!empty($customerid)) {
 </div>
 <script>
 //    btnCmpPrev1  btnCmpNext2
-    $('#btnCmpNext1').on('click', function () {
+    $('#btnCmpNext1').on('click', function() {
         $('#ciTab1').removeClass('active');
         $('#acTab2').addClass('active');
 
@@ -49,14 +47,14 @@ if (!empty($customerid)) {
         $('#tab2').addClass('active');
     });
 
-    $('#btnCmpPrev1').on('click', function () {
+    $('#btnCmpPrev1').on('click', function() {
         $('#acTab2').removeClass('active');
         $('#ciTab1').addClass('active');
         $('#tab2').removeClass('active');
         $('#tab1').addClass('active');
 
     });
-    $('#btnCmpNext2').on('click', function () {
+    $('#btnCmpNext2').on('click', function() {
         $('#acTab2').removeClass('active');
         $('#tdTab3').addClass('active');
         $('#tab2').removeClass('active');
@@ -64,19 +62,19 @@ if (!empty($customerid)) {
     });
 
 
-    $('#btnCmpPrev2').on('click', function () {
+    $('#btnCmpPrev2').on('click', function() {
         $('#tdTab3').removeClass('active');
         $('#acTab2').addClass('active');
         $('#tab3').removeClass('active');
         $('#tab2').addClass('active');
     });
-    $('#btnCmpNext3').on('click', function () {
+    $('#btnCmpNext3').on('click', function() {
         $('#tdTab3').removeClass('active');
         $('#dpiTab4').addClass('active');
         $('#tab3').removeClass('active');
         $('#tab4').addClass('active');
     });
-    $('#btnCmpPrev3').on('click', function () {
+    $('#btnCmpPrev3').on('click', function() {
         $('#dpiTab4').removeClass('active');
         $('#tdTab3').addClass('active');
         $('#tab4').removeClass('active');

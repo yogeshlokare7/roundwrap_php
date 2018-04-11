@@ -1,12 +1,11 @@
-<?php 
-    MysqlConnection::fetchCustom("");
+<?php
+$arrsalutations = MysqlConnection::fetchCustom("SELECT distinct(`salutation`) as salutation FROM `customer_master`");
 ?>
 <style>
     tbody {
         height: auto;
     }
     td{
-        /*padding-top:  10px;*/
         padding-left:   10px;
         padding-right:   10px;
     }
@@ -30,6 +29,13 @@
             <td>
                 <select name="salutation" style="width: 60px;" id="salutation">
                     <option value=""></option>
+                    <?php
+                    foreach ($arrsalutations as $key => $value) {
+                        ?>
+                        <option value="<?php echo $value ?>"><?php echo $value ?></option>
+                        <?php
+                    }
+                    ?>
                 </select>
                 <input type="text" name="salutation1" style="width: 45%" placeholder="Add here">
             </td>
@@ -48,24 +54,24 @@
 
         </tr>
         <tr>
-            <td><label class="control-label">Website</label></td>
+            <td><label class="control-label">Web Site</label></td>
             <td><input type="text" name="website" id="website" plceholder="Enter Company Website" value="<?php echo $customer["website"] ?>" ></td>
             <td><label class="control-label">Fax</label></td>
             <td><input type="text" name="cust_fax" id="cust_fax"  value="<?php echo $customer["cust_fax"] ?>" ></td>
-            <td></td>
-            <td></td>
+            <td><label class="control-label">Customer Status</label></td>
+            <td><input type="checkbox" /></td>
         </tr>
-        <tr>
+        <tr style="vertical-align: top">
             <td>Bill To</td>
-            <td><textarea style="height: 80px;;line-height: 20px;" name="billto" onfocus="fillAddress()"  id="billto" ><?php echo $customer["billto"] ?></textarea></td>
+            <td><textarea style="height: 120px;;line-height: 20px;" name="billto" onfocus="fillAddress()"  id="billto" ><?php echo $customer["billto"] ?></textarea></td>
             <td>Ship To </td>
-            <td><textarea   style="height: 80px;line-height: 20px;"  name="shipto" id="shipto"><?php echo $customer["shipto"] ?></textarea></td>
+            <td><textarea   style="height: 120px;line-height: 20px;"  name="shipto" id="shipto"><?php echo $customer["shipto"] ?></textarea></td>
             <td></td>
             <td></td>
         </tr>
         <tr>
             <td></td>
-            <td ><a onclick="copyOrRemove('1')">copy >></a></td>
+            <td><a onclick="copyOrRemove('1')">copy >></a></td>
             <td></td>
             <td><a onclick="copyOrRemove('0')"><< Remove</a></td>
             <td></td>
@@ -73,14 +79,10 @@
         </tr>
     </table>
 </fieldset>
-<input type="hidden" value="<?php echo $customerid ?>" name="customerid">
 <hr/>
+<input type="hidden" value="<?php echo $customerid ?>" name="customerid">
 <input type="button" id="btnCmpNext1" value="NEXT" class="btn btn-info" ><a href="customermaster/additionalcontact.php"></a>
 <script>
-
-//     document.getElementById("btnCmpNext1").onclick = function () {
-//        location.href = "customermaster/additionalcontact.php";
-//    };
     function  fillAddress()
     {
         document.getElementById("billto").value = "";
@@ -91,10 +93,8 @@
         var phno = document.getElementById("phno").value;
         if (firstname !== "" && lastname !== "") {
             document.getElementById("billto").value = cust_companyname + "\n" + firstname + "\n" + lastname + "\n" + cust_email + "\n" + phno;
-
         }
     }
-
     function copyOrRemove(flag) {
         if (flag === "1") {
             document.getElementById("shipto").value = document.getElementById("billto").value;
@@ -102,6 +102,5 @@
             document.getElementById("shipto").value = "";
         }
     }
-
 </script>
 
