@@ -6,7 +6,7 @@ ob_start();
 <br/>
 <br/>
 <h3 style="text-align: center">
-    DASHBOARD PAGE DESIGNING IS IN PROGRESS
+    MAIN SCREEN PAGE DESIGNING IS IN PROGRESS
 </h3>
 <hr/>
 <center>
