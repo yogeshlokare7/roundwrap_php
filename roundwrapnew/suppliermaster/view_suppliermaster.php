@@ -1,9 +1,18 @@
 <?php
+$supplierid = filter_input(INPUT_GET, "supplierId");
+$flag = filter_input(INPUT_GET, "flag");
 $suppid = filter_input(INPUT_GET, "supplierid");
 
 $arrsupplier = MysqlConnection::fetchCustom("SELECT * FROM  `supplier_master` WHERE supp_id = $suppid ");
 $supplier = $arrsupplier[0];
 $suppliercontactarray = MysqlConnection::fetchCustom("SELECT * FROM  `supplier_contact` WHERE sc_id = $suppid ");
+
+if (isset($_POST["deleteItem"])) {
+    MysqlConnection::delete("DELETE FROM `supplier_master` WHERE supp_id = $suppid");
+    MysqlConnection::delete("DELETE FROM `supplier_contact` WHERE sc_id = $suppid");
+
+    header("location:index.php?pagename=manage_suppliermaster");
+}
 ?>
 <style>
     .widget-box input{
@@ -62,13 +71,48 @@ $suppliercontactarray = MysqlConnection::fetchCustom("SELECT * FROM  `supplier_c
                             <td><input type="text"  value="<?php echo $supplier["currency"] ?>" readonly=""/></td>
                             <td>Exchange Rate</td>
                             <td><input type="text"  value="<?php echo $supplier["exchange_rate"] ?>" readonly=""/></td>
-                            <td>Address</td>
-                            <td><textarea style="height: 80px;;line-height: 20px;"  value="<?php echo $supplier["address"] ?>" readonly=""></textarea></td>
+                            <td><label class="control-label">Street Name</label></td>
+                            <td><input type="text" value="<?php echo $supplier["supp_streetName"] ?>"  readonly=""/></td>
+                        </tr>
+                        <tr>
+                            <td><label class="control-label">Street No</label></td>
+                            <td><input type="text"  value="<?php echo $supplier["supp_streetNo"] ?>"  readonly="" /></td>
+                            <td><label class="control-label">City</label></td>
+                            <td><input type="text"  value="<?php echo $supplier["supp_city"] ?>"  readonly=""/></td>
+                            <td><label class="control-label">Province</label></td>
+                            <td><input type="text"  value="<?php echo $supplier["supp_province"] ?>"  readonly=""/></td>
+                        </tr>
+                        <tr>
+
+                            <td><label class="control-label">Country</label></td>
+                            <td><input type="text"  value="<?php echo $supplier["supp_country"] ?>"  readonly=""/></td>
+
+                            <td><label class="control-label">Postal Code</label></td>
+                            <td><input type="text"   value="<?php echo $supplier["postal_code"] ?>"  readonly=""/></td>
+                            <td><label class="control-label" style="float: left">Address</label></td>
+                            <td><textarea style="height: 80px;;line-height: 20px;"  readonly="" ><?php echo $supplier["address"] ?></textarea></td>
                         </tr>
                     </table>
-                    <hr/>
-                    <input type="button" id="btnVenNext1" value="NEXT" class="btn btn-info" ><a href="suppliermaster/additionalcontact.php"></a></div>
-            </fieldset>
+                    <?php
+                    if (isset($flag) && $flag != "") {
+                        ?>
+                        <form name="frmDeleteCustomer" id="frmDeleteCustomer" method="post">
+                            <input type="hidden" value="<?php echo $customerid ?>" name="customerid"/>
+                            <a href="index.php?pagename=manage_suppliermaster" class="btn btn-danger">CANCEL</a>
+                            <input type="hidden" value="supplierId" value="<?php echo supplierId ?>"/>
+                            <input type="submit" value="DELETE" name="deleteItem" class="btn btn-danger" style="background-color: #2f96b4"/>
+                            <input type="button" id="btnVenNext1" value="NEXT" class="btn btn-info" style="background-color: #2f96b4" />
+                        </form>
+                        <?php
+                    } else {
+                        ?>
+                        <a href="index.php?pagename=manage_suppliermaster" class="btn btn-danger">CANCEL</a>
+                        <input type="button" id="btnVenNext1" value="NEXT" class="btn btn-info" style="background-color: #2f96b4" href="#tab1"/>
+                        <?php
+                    }
+                    ?>
+
+                </fieldset></div>
 
             <div id="tab2" class="tab-pane ">
 
@@ -76,18 +120,18 @@ $suppliercontactarray = MysqlConnection::fetchCustom("SELECT * FROM  `supplier_c
                     <table style="width: 100%;"  id="supplierInfo" vertical-align="top">
                         <tr>
                             <td><label class="control-label">Name</label></td>
-                            <td><input type="text"  value="<?php echo $suppliercontactarray["contact_person[]"] ?>" readonly=""/></td>
+                            <td><input type="text"  value="<?php echo $supplier["contact_person[]"] ?>" readonly=""/></td>
                             <td><label class="control-label">Email</label></td>
-                            <td><input type="email"  value="<?php echo $suppliercontactarray["email[]"] ?>" readonly=""/></td>
+                            <td><input type="email"  value="<?php echo $supplier["email[]"] ?>" readonly=""/></td>
                             <td><label class="control-label">Phone</label></td>
-                            <td><input type="text"  value="<?php echo $suppliercontactarray["alterno[]"] ?>" readonly=""/></td>
+                            <td><input type="text"  value="<?php echo $supplier["alterno[]"] ?>" readonly=""/></td>
                             <td><label class="control-label">Designation</label></td>
-                            <td><input type="text"  value="<?php echo $suppliercontactarray["designation[]"] ?>" readonly=""/></td>
+                            <td><input type="text"  value="<?php echo $supplier["designation[]"] ?>" readonly=""/></td>
                         </tr>
                     </table>
                     <hr/>
-                    <input type="button" id="btnVenPrev1" value="PREVIOUS" class="btn btn-info" href="#tab1">
-                     <a href="index.php?pagename=manage_suppliermaster" class="btn btn-danger">CANCEL</a></fieldset>
+                    <input type="button" id="btnVenPrev1" value="PREVIOUS" class="btn btn-info" href="#tab1" style="background-color: #2f96b4">
+                    <a href="index.php?pagename=manage_suppliermaster" class="btn btn-danger">CANCEL</a></fieldset>
             </div></div></div>
     <script>
         $('#btnVenNext1').on('click', function () {

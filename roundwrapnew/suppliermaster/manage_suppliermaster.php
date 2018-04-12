@@ -171,7 +171,7 @@
                         window.location = "index.php?pagename=create_suppliermaster&supplierid=" + id;
                         break;
                     case "delete_vendor":
-                        document.getElementById("deleteThis").click();
+                        window.location = "index.php?pagename=view_suppliermaster&supplierid=" + id + "&flag=yes";
                         break;
                     case "create_perchase_order":
                         window.location = "index.php?pagename=create_perchaseorder&supplierid=" + id;
