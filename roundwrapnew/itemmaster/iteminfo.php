@@ -43,7 +43,7 @@ $sqltaxinfodata = MysqlConnection::fetchCustom("SELECT * FROM taxinfo_table ORDE
                             </tr>
                             <tr>
                                 <td >Item Code<br/><input  type="text" name="item_code" id="item_code" value="<?php echo $item["item_code"] ?>"  autofocus="" required="true" minlenght="2" maxlength="30" /></td>
-                                <td >Item Name<br/><input type="text" name="item_name" id="item_name" value="<?php echo $item["item_name"] ?>"  autofocus="" required="true" minlenght="2" maxlength="60" /></td>
+                                <td >Item Name<br/><input type="text" name="item_name" id="item_name" value="<?php echo $item["item_name"] ?>"  autofocus=""  minlenght="2" maxlength="60" /></td>
                                 <td >Unit of Measures<br/><input type="text" name="unit" id="unit" value="<?php echo $item["unit"] ?>"/></td>
                                 <td >Sub Item of<br/>
                                     <select name="subitemof" id="subitemof" value="<?php echo $item["subitemof"] ?>">
@@ -73,20 +73,20 @@ $sqltaxinfodata = MysqlConnection::fetchCustom("SELECT * FROM taxinfo_table ORDE
                                 <table style="width: 80%;" id="iteminfo" border="0">
                                     <tr style="vertical-align: top">
                                         <td  style="width: 220px;" >Description
-                                            <textarea name="item_desc" id="item_desc" minlenght="2" maxlength="60" style="line-height: 15px"><?php echo $item["item_desc"] ?></textarea>
+                                            <textarea name="item_desc_sales" id="item_desc_sales" minlenght="2" maxlength="60" style="line-height: 15px"><?php echo $item["item_desc_sales"] ?></textarea>
                                         </td>
                                         <td style="width: 220px;">Sales Tax Code
-                                            <select name="salestaxcode" id="taxInformation1" value="<?php echo $item["salestaxcode"] ?>">
+                                            <select name="sales_code" id="taxInformation1" value="<?php echo $item["sales_code"] ?>">
                                                 <option value="">&nbsp;&nbsp;</option>
                                                 <option value="1" ><< ADD NEW >></option>
                                                 <?php foreach ($sqltaxinfodata as $key => $value) { ?>
-                                                    <option  <?php echo $value["id"] == $item["salestaxcode"] ? "selected" : "" ?> 
+                                                    <option  <?php echo $value["id"] == $item["sales_code"] ? "selected" : "" ?> 
                                                         value='<?php echo $value["id"] ?>'><?php echo $value["taxcode"] ?> - <?php echo $value["taxname"] ?> - <?php echo $value["taxvalues"] ?>%</option>
                                                     <?php } ?>
                                             </select>
                                         </td>
                                         <td>Rate
-                                            <input type="text" name="rate" id="rate" onkeypress="return chkNumericKey(event)" value="<?php echo $item["rate"] ?>" minlenght="2" maxlength="30"  >
+                                            <input type="text" name="sell_rate" id="sell_rate" onkeypress="return chkNumericKey(event)" value="<?php echo $item["sell_rate"] ?>" minlenght="2" maxlength="30"  >
                                         </td>
                                     </tr>
                                     <tr>
@@ -110,8 +110,8 @@ $sqltaxinfodata = MysqlConnection::fetchCustom("SELECT * FROM taxinfo_table ORDE
                         <td>
                             <fieldset class="well the-fieldset">
                                 <table  border="0">
-                                    <tr style="vertical-align: top">
-                                        <td style="width: 40%; "><label class="control-label">Cost</label></td>
+                                    <tr >
+                                        <td style="width: 40%; "><label class="control-label">Purch Price</label></td>
                                         <td><input type="text" name="purchase_rate" onkeypress="return chkNumericKey(event)" id="purchase_rate" value="<?php echo $item["purchase_rate"] ?>" autofocus="" required="true" minlenght="2" maxlength="30" ></td>   
                                     </tr>
                                     <tr >

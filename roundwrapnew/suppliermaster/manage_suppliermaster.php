@@ -63,12 +63,12 @@
     <div class="widget-box">
         <table class="customtable" border="1">
             <tr style="height: 30px;background-color: rgb(240,240,240);">
-                <th style="width: 2.3%;">#</th>
+                <th style="width: 25px;">#</th>
                 <th style="width: 250px">Company Name</th>
                 <th style="width: 390px">Address</th>
                 <th style="width:230px">Contact person</th>
                 <th style="width:110px">Contact No</th>
-                <th style="width:200px">Email</th>
+                <th style="width:280px">Email</th>
                 <th style="width:80px">Currency</th>
                 <th style="width:80px">Balance</th>
                 <th >Notes</th>
@@ -81,12 +81,12 @@
                 foreach ($listofsupplier as $key => $value) {
                     ?>
                     <tr id="<?php echo $value["supp_id"] ?>" style="border-bottom: solid 1px rgb(220,220,220);text-align: left;height: 30px;"  class="context-menu-one">
-                        <td style="width: 2.3%;;text-align: center">&nbsp;<?php echo $index++ ?></td>
+                        <td style="width: 25px;;text-align: center">&nbsp;<?php echo $index++ ?></td>
                         <td style="width: 250px">&nbsp;&nbsp;<?php echo $value["companyname"] ?></td>
                         <td style="width: 390px">&nbsp;&nbsp;<?php echo $value["address"] ?></td>
                         <td style="width: 230px">&nbsp;&nbsp;<?php echo $value["salutation"] ?>&nbsp;<?php echo $value["firstname"] ?>&nbsp;<?php echo $value["lastname"] ?></td>
                         <td style="width: 110px">&nbsp;&nbsp;<?php echo $value["supp_phoneNo"] ?></td>
-                        <td style="width: 200px">&nbsp;&nbsp;
+                        <td style="width: 280px">&nbsp;&nbsp;
                                <a href="mailto:<?php echo $value["supp_email"] ?>?Subject=Welcome, <?php echo ucwords($value["companyname"]) ?> " target="_top">
                                 &nbsp;<?php echo $value["supp_email"] ?>
                             </a></td>
@@ -99,12 +99,12 @@
                 for ($index1 = 0; $index1 < 15; $index1++) {
                     ?>
                     <tr style="border-bottom: solid 1px rgb(220,220,220);text-align: left;;height: 30px;" >
-                        <td style="width: 2.3%;text-align: center"><?php echo $index + $index1 ?></td>
+                        <td style="width: 25px;text-align: center"><?php echo $index + $index1 ?></td>
                         <td style="width: 250px"></td>
                         <td style="width: 390px"></td>
                         <td style="width: 230px"></td>
                         <td style="width: 110px"></td>
-                        <td style="width: 200px"></td>
+                        <td style="width: 280px"></td>
                         <td style="width: 80px"></td>
                         <td style="width: 80px"></td>
                         <td></td>

@@ -4,7 +4,23 @@ $itemid = filter_input(INPUT_GET, "itemId");
 $arritem = MysqlConnection::fetchCustom("SELECT * FROM  `item_master` WHERE item_id = $itemid ");
 $item = $arritem[0];
 ?>
-
+<style>
+    tbody {
+        height: auto;
+    }
+    td{
+        padding-top:  10px;
+        padding-left:   5px;
+        padding-right:   5px;
+    }
+    select {
+        width: 212px;
+        height: 24px;
+    }
+    tr{
+        /*background-color: rgb(240,240,240);*/
+    }
+</style>
 <div class="container-fluid"  >
     <div class="cutomheader">
         <h5 style="font-family: verdana;font-size: 12px;">VIEW ITEM</h5>
@@ -12,6 +28,7 @@ $item = $arritem[0];
     <br/>
     <fieldset class="well the-fieldset">
         <table style="vertical-align: top">
+            
             <tr style="vertical-align: top">
                 <td style="vertical-align: top">
                     <fieldset class="well the-fieldset">
@@ -20,10 +37,10 @@ $item = $arritem[0];
                                 <td colspan="4">Type<br/><input type="text" readonly="" value="<?php echo $item["type"] ?>"></td>
                             </tr>
                             <tr>
-                                <td >Item Code<br/><input  type="text" name="item_code" id="item_code" value="<?php echo $item["item_code"] ?>"  autofocus="" required="true" minlenght="2" maxlength="30" /></td>
-                                <td >Item Name<br/><input type="text" name="item_name	" id="item_name	" value="<?php echo $item["item_name"] ?>"  autofocus="" required="true" minlenght="2" maxlength="60" /></td>
-                                <td >Unit of Measures<br/><input type="text" name="unit" id="unit" value="<?php echo $item["unit"] ?>"/></td>
-                                <td >Sub Item of<br/></td>
+                                <td >Item Code<br/><input  type="text"  value="<?php echo $item["item_code"] ?>" readonly="" /></td>
+                                <td >Item Name<br/><input type="text"  value="<?php echo $item["item_name"] ?>" readonly="" /></td>
+                                <td >Unit of Measures<br/><input type="text"  value="<?php echo $item["unit"] ?>" readonly=""/></td>
+                                <td >Sub Item of<br/><input type="text"  value="<?php echo $item["subitemof"] ?>" readonly=""/></td>
                             </tr>
                         </table> 
                     </fieldset>
@@ -39,10 +56,10 @@ $item = $arritem[0];
                                 <table style="width: 80%;" id="iteminfo" border="0">
                                     <tr style="vertical-align: top">
                                         <td  style="width: 220px;" >Description
-                                            <textarea name="item_desc" id="item_desc" minlenght="2" maxlength="60" style="line-height: 15px"><?php echo $item["item_desc"] ?></textarea>
+                                            <textarea  style="line-height: 15px" readonly=""><?php echo $item["item_desc_sales"] ?></textarea>
                                         </td>
                                         <td style="width: 220px;">Sales Tax Code
-                                            <select name="salestaxcode" id="taxInformation1" value="<?php echo $item["salestaxcode"] ?>">
+                                            <select name="sales_code" id="taxInformation1" value="<?php echo $item["sales_code"] ?>">
                                                 <option value="">&nbsp;&nbsp;</option>
                                                 <option value="1" ><< ADD NEW >></option>
                                                 <?php foreach ($sqltaxinfodata as $key => $value) { ?>
@@ -51,7 +68,7 @@ $item = $arritem[0];
                                             </select>
                                         </td>
                                         <td>Rate
-                                            <input type="text" name="rate" id="rate" onkeypress="return chkNumericKey(event)" value="<?php echo $item["rate"] ?>" minlenght="2" maxlength="30"  >
+                                            <input type="text" name="sell_rate" id="sell_rate" onkeypress="return chkNumericKey(event)" value="<?php echo $item["sell_rate"] ?>" minlenght="2" maxlength="30"  >
                                         </td>
                                     </tr>
                                     <tr>
@@ -73,8 +90,8 @@ $item = $arritem[0];
                         <td>
                             <fieldset class="well the-fieldset">
                                 <table  border="0">
-                                    <tr style="vertical-align: top">
-                                        <td style="width: 40%; "><label class="control-label">Cost</label></td>
+                                    <tr >
+                                        <td style="width: 40%; "><label class="control-label">Purch Price</label></td>
                                         <td><input type="text" name="purchase_rate" onkeypress="return chkNumericKey(event)" id="purchase_rate" value="<?php echo $item["purchase_rate"] ?>" autofocus="" required="true" minlenght="2" maxlength="30" ></td>   
                                     </tr>
                                     <tr >
@@ -155,6 +172,7 @@ $item = $arritem[0];
         <?php } ?>
         <hr/>
         <a href="index.php?pagename=manage_itemmaster" id="btnSubmitFullForm" class="btn btn-info">CANCEL</a>
-    </fieldset>
-    
+               </fieldset>
+
+
 </div>

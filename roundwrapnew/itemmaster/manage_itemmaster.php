@@ -33,7 +33,7 @@ $listofitems = MysqlConnection::fetchAll("item_master");
 <script src="js/jquery.contextMenu.js" type="text/javascript"></script>
 <div class="container-fluid">
     <div class="cutomheader">
-        <h5 style="font-family: verdana;font-size: 12px;">List ITEM'S</h5>
+        <h5 style="font-family: verdana;font-size: 12px;">LIST ITEM'S</h5>
     </div>
     <div class="cutomheader">
         <table >
@@ -49,7 +49,7 @@ $listofitems = MysqlConnection::fetchAll("item_master");
     <div class="widget-box">
         <table class="customtable" border="1">
             <tr style="height: 30px;background-color: rgb(240,240,240);">
-                <th style="width: 2.3%;">#</th>
+                <th style="width: 2.3%;text-align: center">#</th>
                 <th style="width: 360px;">Name</th>
                 <th style="width: 725px;">Item's Description</th>
                 <th style="width: 110px;">Type</th>
@@ -65,15 +65,15 @@ $listofitems = MysqlConnection::fetchAll("item_master");
                 foreach ($listofitems as $key => $value) {
                     ?>
                     <tr id="<?php echo $value["item_id"] ?>" class="context-menu-one" style="border-bottom: solid 1px rgb(220,220,220);text-align: left" >
-                        <td style="width: 2.3%;">&nbsp;<?php echo $index ?></td>
+                        <td style="width: 2.3%;text-align: center">&nbsp;<?php echo $index ?></td>
                         <td style="width: 360px;text-align: left" >
-<!--                            &nbsp;&nbsp;-->
+                            &nbsp;
                             <?php echo $value["item_code"] ?>
                             <?php echo $value["item_name"] ?>
                         </td>
                         <td style="width: 725px;text-align: left" >
                             &nbsp;&nbsp;
-                            <?php echo $value["item_desc_sales"] == "" ? $value["item_desc"] : $value["item_desc_sales"] ?>
+                            <?php echo $value["item_desc_purch"] == "" ? $value["item_desc_sales"] : $value["item_desc_purch"] ?>
                         </td>
                         <td style="width: 110px;">&nbsp;<?php echo $value["type"] ?></td>
                         <td style="width: 90px;text-align: right"><?php echo round($value["onhand"], 2); ?>&nbsp;&nbsp;</td>
@@ -88,7 +88,7 @@ $listofitems = MysqlConnection::fetchAll("item_master");
                 for ($index1 = 0; $index1 < 20; $index1++) {
                     ?>
                     <tr style="border-bottom: solid 1px rgb(220,220,220);text-align: left">
-                        <td style="width: 2.3%;">&nbsp;<?php echo $index + $index1 ?></td>
+                        <td style="width: 2.3%;text-align: center">&nbsp;<?php echo $index + $index1 ?></td>
                         <td style="width: 360px;text-align: left" ></td>
                         <td style="width: 725px;text-align: right"></td>
                         <td style="width: 110px;">&nbsp;</td>
