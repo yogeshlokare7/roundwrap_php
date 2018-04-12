@@ -167,7 +167,7 @@ $subitemof = MysqlConnection::fetchCustom("SELECT  item_code, item_name  FROM  `
             ?>
             <form name="frmDeleteItem" id="frmDeleteItem" method="post">
                 <a href="index.php?pagename=manage_itemmaster" id="btnSubmitFullForm" class="btn btn-info">CANCEL</a>
-                <input type="submit" value="DELETE" name="deleteItem" class="btn btn-danger"/>
+                <input style="background-color: #2f96b4" type="submit" value="DELETE" name="deleteItem" class="btn btn-danger"/>
                 <input type="hidden" name="itemid" value="<?php echo $itemid ?>"/>
             </form>
             <?php

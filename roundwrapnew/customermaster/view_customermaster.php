@@ -111,7 +111,7 @@ if (isset($_POST["deleteItem"])) {
                             <input type="hidden" value="<?php echo $customerid ?>" name="customerid"/>
                             <a href="index.php?pagename=manage_customermaster" class="btn btn-danger">CANCEL</a>
                             <input type="hidden" value="customerid" value="<?php echo $customerid ?>"/>
-                            <input type="submit" value="DELETE" name="deleteItem" class="btn btn-danger"/>
+                            <input type="submit" value="DELETE" name="deleteItem" class="btn btn-danger" style="background-color: #2f96b4"/>
                             <input type="button" id="btnCmpNext1" value="NEXT" class="btn btn-info" style="background-color: #2f96b4" />
                         </form>
                         <?php
@@ -137,15 +137,15 @@ if (isset($_POST["deleteItem"])) {
                         <?php foreach ($customercontactarray as $key => $value) { ?>
                             <tr style="vertical-align: bottom">
                                 <td><input type="text" value="<?php echo $value["person_name"] ?>" readonly=""/> </td>
-                                <td><input type="email"  value="<?php echo $value["person_email"] ?>" readonly=""/></td>
-                                <td><input type="tel"  value="<?php echo $value["person_phoneNo"] ?>" readonly="" /></td>
+                                <td><input type="text"  value="<?php echo $value["person_email"] ?>" readonly=""/></td>
+                                <td><input type="text"  value="<?php echo $value["person_phoneNo"] ?>" readonly="" /></td>
                                 <td><input type="text"  value="<?php echo $value["designation"] ?>" readonly="" /></td>
                             </tr>
                         <?php } ?>
                     </table>
                     <hr/>
-                    <input type="button" id="btnCmpPrev1" value="PREVIOUS" class="btn btn-info" href="#tab1" >
-                    <input type="button" id="btnCmpNext2" value="NEXT" class="btn btn-info" href="#tab2"  >
+                    <input style="background-color: #2f96b4" type="button" id="btnCmpPrev1" value="PREVIOUS" class="btn btn-info" href="#tab1" >
+                    <input style="background-color: #2f96b4" type="button" id="btnCmpNext2" value="NEXT" class="btn btn-info" href="#tab2"  >
 
                 </fieldset>
             </div>
@@ -179,8 +179,8 @@ if (isset($_POST["deleteItem"])) {
                             <td><input type="text" value="<?php echo $value["taxcode"] ?>" readonly=""/></td>
                         </tr>
                     </table>
-                    <input type="button" id="btnCmpPrev2" value="PREVIOUS" class="btn btn-info" href="#tab2">
-                    <input type="button" id="btnCmpNext3" value="NEXT" class="btn btn-info" href="#tab4">
+                    <input style="background-color: #2f96b4" type="button" id="btnCmpPrev2" value="PREVIOUS" class="btn btn-info" href="#tab2">
+                    <input style="background-color: #2f96b4" type="button" id="btnCmpNext3" value="NEXT" class="btn btn-info" href="#tab4">
 
                 </fieldset>
             </div>
@@ -213,8 +213,8 @@ if (isset($_POST["deleteItem"])) {
                     </table> 
                     <hr/>
                     <input type="hidden" value="customerid" value="<?php echo $customerid ?>"/>
-                    <input type="button" id="btnCmpPrev3" value="PREVIOUS" class="btn btn-info" href="#tab1"></td>
-                    <input type="button" id="btnCmpNext4" value="NEXT" class="btn btn-info" href="#tab5">
+                    <input style="background-color: #2f96b4" type="button" id="btnCmpPrev3" value="PREVIOUS" class="btn btn-info" href="#tab1"></td>
+                    <input style="background-color: #2f96b4" type="button" id="btnCmpNext4" value="NEXT" class="btn btn-info" href="#tab5">
 
 
                 </fieldset>
@@ -238,7 +238,7 @@ if (isset($_POST["deleteItem"])) {
                         </table>
                     </div>
                     <hr/>
-                    <input type="button" id="btnCmpPrev4" value="PREVIOUS" class="btn btn-info" href="#tab1">
+                    <input style="background-color: #2f96b4" type="button" id="btnCmpPrev4" value="PREVIOUS" class="btn btn-info" href="#tab1">
                 </fieldset>
             </div>
             <hr/>
