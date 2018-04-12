@@ -26,7 +26,6 @@
 <link href="css/jquery.contextMenu.css" rel="stylesheet" type="text/css" />
 <script src="js/jquery.min_1.11.3.js"></script>
 <script src="js/jquery.contextMenu.js" type="text/javascript"></script>
-<!--<form name="customermaster" id="customermaster" method="POST">-->
 <div class="container-fluid" >
     <div class="cutomheader">
         <h5 style="font-family: verdana;font-size: 12px;">LIST CUSTOMER'S</h5>
@@ -201,16 +200,11 @@
 <?php
 
 function buildAddress($value) {
-    if (trim($value["shipto"]) == "") {
-        return $value["streetNo"]
-                . " " . $value["streetName"]
-                . " " . $value["city"]
-                . " " . $value["s_postalcode"]
-                . " " . $value["cust_province"]
-                . " " . $value["country"]
-        ;
-    } else {
-        return $value["shipto"];
-    }
+    return $value["streetNo"]
+            . " " . $value["streetName"]
+            . " " . $value["city"]
+            . " " . $value["s_postalcode"]
+            . " " . $value["cust_province"]
+            . " " . $value["country"];
 }
 ?>

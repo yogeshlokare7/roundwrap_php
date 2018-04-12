@@ -46,6 +46,7 @@ if ($_SESSION["user"] == "") {
         <script src="js/jquery.min.js"></script> 
         <script src="js/maruti.js"></script> 
         <script src="js/jquery.mask.js"></script> 
+        <script src="js/jquery.filtertable.min.js"></script> 
 
         <script>
             $(function() {
@@ -82,7 +83,9 @@ if ($_SESSION["user"] == "") {
         </script>
 
         <style>
-
+            body{
+                font-size: 11px;
+            }
             .highlight { background-color: rgb(220,220,220); } 
             .sticky {
                 position: fixed;
@@ -90,7 +93,7 @@ if ($_SESSION["user"] == "") {
                 width: 100%
             }
             label, input, button, select, textarea {
-                font-size: 12px;
+                /*font-size: 12px;*/
                 font-weight: normal;
                 line-height: 10px;
             }
@@ -219,6 +222,8 @@ if ($_SESSION["user"] == "") {
         $(window).load(function() {
             $('#overlay1').fadeOut();
         });
+        
+        
     </script>
 </body>
 </html>

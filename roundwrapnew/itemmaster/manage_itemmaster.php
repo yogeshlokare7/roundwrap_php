@@ -178,4 +178,8 @@ $listofitems = MysqlConnection::fetchAll("item_master");
         // Animate loader off screen
 //        $("div#divLoading").addClass('show');
     });
+
+    $(document).ready(function() {
+        $('#data').filterTable(); // apply filterTable to all tables on this page
+    });
 </script>

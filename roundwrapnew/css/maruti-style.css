@@ -6,8 +6,9 @@
 /* Main */
 body {
     overflow-x: hidden;
+    overflow: hidden;
     margin-top: -10px;
-    font-size: 12px;
+    font-size: 11px;
 }
 a:hover {
     text-decoration: none;

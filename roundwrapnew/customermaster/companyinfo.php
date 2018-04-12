@@ -17,7 +17,7 @@ $arrsalutations = MysqlConnection::fetchCustom("SELECT distinct(`salutation`) as
     }
 </style>
 <script>
-    $(document).ready(function ($) {
+    $(document).ready(function($) {
         $("#phno").mask("(99) 9999-9999");
         $("#cust_fax").mask("(99) 9999-9999");
     });
@@ -75,14 +75,16 @@ $arrsalutations = MysqlConnection::fetchCustom("SELECT distinct(`salutation`) as
         </tr>
         <tr>
             <td><label class="control-label">Province</label></td>
-            <td><select name="cust_province" id="cust_province">
-                    <option>Select Province</option>
+            <td>
+                <select name="cust_province" id="cust_province">
+                    <option value=""></option>
                     <option></option>
                 </select>
             </td>
             <td><label class="control-label">Country</label></td>
-            <td> <select name="country" id="country">
-                    <option>Select Country</option>
+            <td>
+                <select name="country" id="country">
+                    <option value=""></option>
                     <option></option>
                 </select>
             </td>
@@ -115,13 +117,26 @@ $arrsalutations = MysqlConnection::fetchCustom("SELECT distinct(`salutation`) as
     function  fillAddress()
     {
         document.getElementById("billto").value = "";
+        var salutation = document.getElementById("salutation").value;
         var cust_companyname = document.getElementById("cust_companyname").value;
         var firstname = document.getElementById("firstname").value;
         var lastname = document.getElementById("lastname").value;
+
+
         var cust_email = document.getElementById("cust_email").value;
         var phno = document.getElementById("phno").value;
+        var cust_fax = document.getElementById("cust_fax").value;
+
+        var streetName = document.getElementById("streetName").value;
+        var streetNo = document.getElementById("streetNo").value;
+        var cust_province = document.getElementById("cust_province").value;
+        var country = document.getElementById("country").value;
+
         if (firstname !== "" && lastname !== "") {
-            document.getElementById("billto").value = cust_companyname + "\n" + firstname + "\n" + lastname + "\n" + cust_email + "\n" + phno;
+            document.getElementById("billto").value = cust_companyname + " \n"
+                    + salutation + ", " + firstname + " " + lastname + " \n"
+                    + streetNo + ", " + streetName + ", " + cust_province + ", " + country + "\n"
+                    + cust_email + ", " + phno + ", " + cust_fax;
         }
     }
     function copyOrRemove(flag) {

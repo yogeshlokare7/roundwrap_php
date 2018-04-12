@@ -4,6 +4,10 @@ $flag = filter_input(INPUT_GET, "flag");
 
 $arrcustomer = MysqlConnection::fetchCustom("SELECT * FROM  `customer_master` WHERE id = $customerid ");
 $customer = $arrcustomer[0];
+//
+//echo "<pre>";
+//print_r($customer);
+//echo "</pre>";
 
 $customercontactarray = MysqlConnection::fetchCustom("SELECT * FROM  `customer_contact` WHERE cust_id = $customerid ");
 $customerpaymentarray = MysqlConnection::fetchCustom("SELECT * FROM  `customer_payment` WHERE  cust_id = $customerid ");
@@ -150,35 +154,33 @@ if (isset($_POST["deleteItem"])) {
                 </fieldset>
             </div>
             <div id="tab3" class="tab-pane">
+                <?php
+                $customertype = MysqlConnection::fetchCustom("SELECT name FROM generic_entry WHERE ID = " . $customer["cust_type"]);
+                ?>
                 <fieldset class="well the-fieldset">
                     <table  style="width: 80%;vertical-align: top" border="0"> 
                         <tr>
                             <td><label class="control-label">Customer Type</label></td>
-                            <td><input type="text" value="<?php echo $value["cust_type"] ?>" readonly=""/></td>
+                            <td><input type="text" value="<?php echo $customertype[0]["name"] ?>" readonly=""/></td>
                             <td><label class="control-label">Discount</label></td>
-                            <td><input type="text" value="<?php echo $value["discount"] ?>" readonly=""/></td>
+                            <td><input type="text" value="<?php echo $customer["discount"] ?>" readonly=""/></td>
                             <td><label class="control-label">Term</label></td>
-                            <td><input type="text" value="<?php echo $value["paymentTerm"] ?>" readonly=""/></td>
+                            <td><input type="text" value="<?php echo $customer["paymentTerm"] ?>" readonly=""/></td>
                         </tr>
                         <tr>
                             <td><label class="control-label">Rep</label></td>
-                            <td><input type="text" value="<?php echo $value["sales_person_name"] ?>" readonly=""/></td>
+                            <td><input type="text" value="<?php echo $customer["sales_person_name"] ?>" readonly=""/></td>
                             <td>Business No</td>
-                            <td><input type="text" value="<?php echo $value["businessno"] ?>" readonly=""/></td>
+                            <td><input type="text" value="<?php echo $customer["businessno"] ?>" readonly=""/></td>
                             <td>Certificate</td>
-                            <td><input type="file" readonly=""></td>
+                            <td><a href="">view</a></td>
                         </tr>
                         <tr>
                             <td>&nbsp;</td>
-                            <td><input type="checkbox" id="taxcheckbox">&nbsp;Use customer tax code</td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td>&nbsp;</td>
-                            <td><input type="text" value="<?php echo $value["taxcode"] ?>" readonly=""/></td>
+                            <td><input type="text" value="<?php echo $customer["taxcode"] ?>" readonly=""/></td>
                         </tr>
                     </table>
+                    <hr/>
                     <input style="background-color: #2f96b4" type="button" id="btnCmpPrev2" value="PREVIOUS" class="btn btn-info" href="#tab2">
                     <input style="background-color: #2f96b4" type="button" id="btnCmpNext3" value="NEXT" class="btn btn-info" href="#tab4">
 
@@ -254,12 +256,12 @@ if (isset($_POST["deleteItem"])) {
             type: 'POST',
             url: 'customermaster/customermaster_ajax.php',
             data: dataString
-        }).done(function (data) {
-        }).fail(function () {
+        }).done(function(data) {
+        }).fail(function() {
         });
     }
 
-    $('#btnCmpNext1').on('click', function () {
+    $('#btnCmpNext1').on('click', function() {
         $('#ciTab1').removeClass('active');
         $('#acTab2').addClass('active');
 
@@ -267,14 +269,14 @@ if (isset($_POST["deleteItem"])) {
         $('#tab2').addClass('active');
     });
 
-    $('#btnCmpPrev1').on('click', function () {
+    $('#btnCmpPrev1').on('click', function() {
         $('#acTab2').removeClass('active');
         $('#ciTab1').addClass('active');
         $('#tab2').removeClass('active');
         $('#tab1').addClass('active');
 
     });
-    $('#btnCmpNext2').on('click', function () {
+    $('#btnCmpNext2').on('click', function() {
         $('#acTab2').removeClass('active');
         $('#tdTab3').addClass('active');
         $('#tab2').removeClass('active');
@@ -282,32 +284,32 @@ if (isset($_POST["deleteItem"])) {
     });
 
 
-    $('#btnCmpPrev2').on('click', function () {
+    $('#btnCmpPrev2').on('click', function() {
         $('#tdTab3').removeClass('active');
         $('#acTab2').addClass('active');
         $('#tab3').removeClass('active');
         $('#tab2').addClass('active');
     });
-    $('#btnCmpNext3').on('click', function () {
+    $('#btnCmpNext3').on('click', function() {
         $('#tdTab3').removeClass('active');
         $('#dpiTab4').addClass('active');
         $('#tab3').removeClass('active');
         $('#tab4').addClass('active');
     });
-    $('#btnCmpPrev3').on('click', function () {
+    $('#btnCmpPrev3').on('click', function() {
         $('#dpiTab4').removeClass('active');
         $('#tdTab3').addClass('active');
         $('#tab4').removeClass('active');
         $('#tab3').addClass('active');
     });
 
-    $('#btnCmpNext4').on('click', function () {
+    $('#btnCmpNext4').on('click', function() {
         $('#dpiTab4').removeClass('active');
         $('#noteTab5').addClass('active');
         $('#tab4').removeClass('active');
         $('#tab5').addClass('active');
     });
-    $('#btnCmpPrev4').on('click', function () {
+    $('#btnCmpPrev4').on('click', function() {
         $('#noteTab5').removeClass('active');
         $('#dpiTab4').addClass('active');
         $('#tab5').removeClass('active');
