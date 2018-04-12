@@ -71,11 +71,7 @@ $arrsalutations = MysqlConnection::fetchCustom("SELECT distinct(`salutation`) as
             <td><label class="control-label">Street No</label></td>
             <td><input type="text" name="streetNo" id="streetNo"  minlenght="2" maxlength="30" value="<?php echo $customer["streetNo"] ?>" ></td>
             <td><label class="control-label">City</label></td>
-             <td><select name="city" id="city">
-                    <option>Select Province</option>
-                    <option></option>
-                </select>
-            </td>
+            <td><input type="text" name="city" id="city"  minlenght="2" maxlength="30" value="<?php echo $customer["city"] ?>" ></td>
         </tr>
         <tr>
             <td><label class="control-label">Province</label></td>

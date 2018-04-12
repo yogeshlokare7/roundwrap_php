@@ -33,6 +33,13 @@ $customerarray["creditlimit"] = filter_input(INPUT_POST, "creditlimit");
 $customerarray["status"] = filter_input(INPUT_POST, "status");
 $customerarray["taxInformation"] = filter_input(INPUT_POST, "taxInformation");
 
+$customerarray["streetName"] = filter_input(INPUT_POST, "streetName");
+$customerarray["streetNo"] = filter_input(INPUT_POST, "streetNo");
+$customerarray["city"] = filter_input(INPUT_POST, "city");
+$customerarray["cust_province"] = filter_input(INPUT_POST, "cust_province");
+$customerarray["country"] = filter_input(INPUT_POST, "country");
+$customerarray["postal_code"] = filter_input(INPUT_POST, "postal_code");
+
 $contact_person = $_POST["contact_person"];
 $paymentinfo = $_POST["cardnumber"];
 

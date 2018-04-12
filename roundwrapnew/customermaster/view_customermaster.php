@@ -8,6 +8,14 @@ $customer = $arrcustomer[0];
 $customercontactarray = MysqlConnection::fetchCustom("SELECT * FROM  `customer_contact` WHERE cust_id = $customerid ");
 $customerpaymentarray = MysqlConnection::fetchCustom("SELECT * FROM  `customer_payment` WHERE  cust_id = $customerid ");
 $arrcustomernote = MysqlConnection::fetchCustom("SELECT * FROM  `customer_notes` WHERE cust_id = $customerid  ORDER BY ID DESC LIMIT 0,20");
+
+
+if (isset($_POST["deleteItem"])) {
+    MysqlConnection::delete("DELETE FROM `customer_master` WHERE id = $customerid");
+    MysqlConnection::delete("DELETE FROM `customer_payment` WHERE cust_id = $customerid");
+    MysqlConnection::delete("DELETE FROM `customer_notes` WHERE cust_id = $customerid");
+    header("location:index.php?pagename=manage_customermaster");
+}
 ?>
 <style>
     .widget-box input{
@@ -69,6 +77,22 @@ $arrcustomernote = MysqlConnection::fetchCustom("SELECT * FROM  `customer_notes`
                                 Is customer active ?
                             </td>
                         </tr>
+                        <tr>
+                            <td><label class="control-label">Street Name</label></td>
+                            <td><input type="text"  value="<?php echo $customer["streetName"] ?>" readonly=""/></td>
+                            <td><label class="control-label">Street No</label></td>
+                            <td><input type="text"  value="<?php echo $customer["streetNo"] ?>" readonly=""/></td>
+                            <td><label class="control-label">City</label></td>
+                            <td><input type="text"  value="<?php echo $customer["city"] ?>" readonly="" /></td>
+                        </tr>
+                        <tr>
+                            <td><label class="control-label">Province</label></td>
+                            <td><input type="text"  value="<?php echo $customer["cust_province"] ?>" readonly="" /></td>
+                            <td><label class="control-label">Country</label></td>
+                            <td><input type="text"  value="<?php echo $customer["country"] ?>" readonly="" /></td>
+                            <td><label class="control-label">Postal Code</label></td>
+                            <td><input type="text"   value="<?php echo $customer["postal_code"] ?>" readonly="" /></td>
+                        </tr>
                         <tr style="vertical-align: top">
                             <td>Bill To</td>
                             <td><textarea style="height: 100px;;line-height: 20px;" readonly="" ><?php echo $customer["billto"] ?> </textarea></td>
@@ -77,19 +101,28 @@ $arrcustomernote = MysqlConnection::fetchCustom("SELECT * FROM  `customer_notes`
                             <td></td>
                             <td></td>
                         </tr>
-        <!--                <tr>
-                            <td></td>
-                            <td><a onclick="copyOrRemove('1')">COPY >></a></td>
-                            <td></td>
-                            <td><a onclick="copyOrRemove('0')"><< REMOVE</a></td>
-                            <td></td>
-                            <td></td>
-                        </tr>-->
+
                     </table>
                     <hr/>
-                    <input type="hidden" value="<?php echo $customerid ?>" name="customerid"/>
-                    <a href="index.php?pagename=manage_customermaster" class="btn btn-danger">CANCEL</a>
-                    <input type="button" id="btnCmpNext1" value="NEXT" class="btn btn-info" />
+                    <?php
+                    if (isset($flag) && $flag != "") {
+                        ?>
+                        <form name="frmDeleteItem" id="frmDeleteItem" method="post">
+                            <input type="hidden" value="<?php echo $customerid ?>" name="customerid"/>
+                            <a href="index.php?pagename=manage_customermaster" class="btn btn-danger">CANCEL</a>
+                            <input type="hidden" value="customerid" value="<?php echo $customerid ?>"/>
+                            <input type="submit" value="DELETE" name="deleteItem" class="btn btn-danger"/>
+                            <input type="button" id="btnCmpNext1" value="NEXT" class="btn btn-info" style="background-color: #2f96b4" />
+                        </form>
+                        <?php
+                    } else {
+                        ?>
+                        <a href="index.php?pagename=manage_customermaster" class="btn btn-danger">CANCEL</a>
+                        <input type="button" id="btnCmpNext1" value="NEXT" class="btn btn-info" style="background-color: #2f96b4" />
+                        <?php
+                    }
+                    ?>
+
                 </fieldset>
             </div>
             <div id="tab2" class="tab-pane ">
@@ -204,16 +237,11 @@ $arrcustomernote = MysqlConnection::fetchCustom("SELECT * FROM  `customer_notes`
                             ?>
                         </table>
                     </div>
-                      <hr/>
-                    <input type="hidden" value="customerid" value="<?php echo $customerid ?>"/>
-                    <input type="button" id="btnCmpPrev4" value="PREVIOUS" class="btn btn-info" href="#tab1"></td>
-                    <a href="index.php?pagename=manage_customermaster" class="btn btn-danger">CANCEL</a>
+                    <hr/>
+                    <input type="button" id="btnCmpPrev4" value="PREVIOUS" class="btn btn-info" href="#tab1">
                 </fieldset>
             </div>
             <hr/>
-            <?php if (isset($flag) && $flag != "") { ?>
-                <input type="submit" name="Delete" class="btn btn-danger">
-            <?php } ?>
         </div>  
     </div>
 </div>
@@ -279,7 +307,7 @@ $arrcustomernote = MysqlConnection::fetchCustom("SELECT * FROM  `customer_notes`
         $('#tab4').removeClass('active');
         $('#tab5').addClass('active');
     });
-     $('#btnCmpPrev4').on('click', function () {
+    $('#btnCmpPrev4').on('click', function () {
         $('#noteTab5').removeClass('active');
         $('#dpiTab4').addClass('active');
         $('#tab5').removeClass('active');
