@@ -349,8 +349,6 @@ $sqltaxinfodata = MysqlConnection::fetchCustom("SELECT * FROM taxinfo_table ORDE
         }
     });
     $("#saveTaxInformation").click(function () {
-//        var dataString = convertFormToJSON("addTaxInformation"); 
-//        //taxcode  taxtaxname   taxtaxvalues   taxisExempt
         var taxcode = $("input[name='taxcode[]']").map(function () {
             return $(this).val();
         }).get();

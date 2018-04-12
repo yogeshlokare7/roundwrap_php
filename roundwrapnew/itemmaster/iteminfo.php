@@ -5,8 +5,8 @@ if (!empty($itemPrimary)) {
     $item = $resultset[0];
 }
 $itemlist = MysqlConnection::fetchCustom("SELECT item_id,item_code FROM item_master;");
-
 $sqltaxinfodata = MysqlConnection::fetchCustom("SELECT * FROM taxinfo_table ORDER BY id DESC ;");
+
 ?>
 
 <style>
@@ -230,13 +230,13 @@ $sqltaxinfodata = MysqlConnection::fetchCustom("SELECT * FROM taxinfo_table ORDE
         $("#frmItemsSubmit").submit();
     }
 <?php if ($item["type"] == "") { ?>
-        $(document).ready(function () {
+        $(document).ready(function() {
             $('#inventorypartfrom').addClass('hide');
             $('#inventorypartfrom').removeClass('show');
         });
 <?php } ?>
 
-    $("#type").click(function () {
+    $("#type").click(function() {
         var valueModel = $("#type").val();
         if (valueModel === "Service") {
             $('#serviceform').addClass('show');
@@ -249,92 +249,6 @@ $sqltaxinfodata = MysqlConnection::fetchCustom("SELECT * FROM taxinfo_table ORDE
         }
     });
 </script>
-
-
-
-<script>
-    jQuery(function () {
-        var counter = 1;
-        jQuery('a.icon-plus').click(function (event) {
-            event.preventDefault();
-            var newRow = jQuery('<tr>'
-                    + '<td><input type="text" name="taxcode[]" style="width: 25px;" id="taxtaxname[]" ></td>'
-                    + '<td><input type="text" name="taxtaxname[]" style="width: 75px;" id="taxtaxname[]" ></td>'
-                    + '<td><input type="text" name="taxtaxvalues[]" id="taxtaxvalues[]" ></td>'
-                    + '<td><input  type="checkbox" name="taxisExempt[]" id="taxisExempt[]"></td>'
-                    + '<td><a class="icon-trash" href="#"  ></a></td>'
-                    + '</tr>');
-            counter++;
-            jQuery('#addtax').append(newRow);
-        });
-    });
-
-    $(document).ready(function () {
-        $("#addtax").on('click', 'a.icon-trash', function () {
-            $(this).closest('tr').remove();
-        });
-    });
-
-    $("#taxInformation1").click(function () {
-        var valueModel = $("#taxInformation1").val();
-        if (valueModel === "1") {
-            $('#addTaxInformation').modal('show');
-        }
-    });
-
-    $("#taxInformation2").click(function () {
-        var valueModel = $("#taxInformation2").val();
-        if (valueModel === "1") {
-            $('#addTaxInformation').modal('show');
-        }
-    });
-
-    $("#taxInformation3").click(function () {
-        var valueModel = $("#taxInformation3").val();
-        if (valueModel === "1") {
-            $('#addTaxInformation').modal('show');
-        }
-    });
-
-
-
-    $("#saveTaxInformation").click(function () {
-//        var dataString = convertFormToJSON("addTaxInformation"); 
-//        //taxcode  taxtaxname   taxtaxvalues   taxisExempt
-        var taxcode = $("input[name='taxcode[]']").map(function () {
-            return $(this).val();
-        }).get();
-        var taxtaxname = $("input[name='taxtaxname[]']").map(function () {
-            return $(this).val();
-        }).get();
-        var taxtaxvalues = $("input[name='taxtaxvalues[]']").map(function () {
-            return $(this).val();
-        }).get();
-        var taxisExempt = $("input[name='taxisExempt[]']").map(function () {
-            return $(this).val();
-        }).get();
-        var dataString = "taxcode=" + taxcode + "&taxtaxname=" + taxtaxname + "&taxtaxvalues=" + taxtaxvalues + "&taxisExempt=" + taxisExempt;
-        $.ajax({
-            type: 'POST',
-            url: 'customermaster/savetaxinfo_ajax.php',
-            data: dataString
-        }).done(function (data) {
-            $("input[name='taxcode[]']").val("");
-            $("input[name='taxtaxname[]']").val("");
-            $("input[name='taxtaxvalues[]']").val("");
-            $("input[name='taxisExempt[]']").val("");
-        }).fail(function () {
-        });
-    });
-
-    $("#cancelti").click(function () {
-        $("#taxInformation1").val("");
-    });
-</script>
-
-<?php
-$taxinfoarray = MysqlConnection::fetchCustom("select * from taxinfo_table;");
-?>
 
 <!-- this is custom model dialog --->
 <div id="addTaxInformation" class="modal hide" style="top: 10%;left: 50%;">
@@ -354,7 +268,7 @@ $taxinfoarray = MysqlConnection::fetchCustom("select * from taxinfo_table;");
                         <td></td>
                     </tr>
                     <?php
-                    foreach ($taxinfoarray as $key => $value) {
+                    foreach ($sqltaxinfodata as $key => $value) {
                         ?>
                         <tr>
                             <td><input type="text" name="taxcode[]" autofocus=""  style="width: 25px;" id="taxtaxname[]" value="<?php echo $value["taxcode"] ?>"></td>
@@ -384,3 +298,94 @@ $taxinfoarray = MysqlConnection::fetchCustom("select * from taxinfo_table;");
     </div>
 </div>
 <!-- this is model dialog --->
+
+
+<script>
+    jQuery(function() {
+        var counter = 1;
+        jQuery('a.icon-plus').click(function(event) {
+            event.preventDefault();
+            var newRow = jQuery('<tr>'
+                    + '<td><input type="text" name="taxcode[]" style="width: 25px;" id="taxtaxname[]" ></td>'
+                    + '<td><input type="text" name="taxtaxname[]" style="width: 75px;" id="taxtaxname[]" ></td>'
+                    + '<td><input type="text" name="taxtaxvalues[]" id="taxtaxvalues[]" ></td>'
+                    + '<td><input  type="checkbox" name="taxisExempt[]" id="taxisExempt[]"></td>'
+                    + '<td><a class="icon-trash" href="#"  ></a></td>'
+                    + '</tr>');
+            counter++;
+            jQuery('#addtax').append(newRow);
+        });
+    });
+
+    $(document).ready(function() {
+        $("#addtax").on('click', 'a.icon-trash', function() {
+            $(this).closest('tr').remove();
+        });
+    });
+
+    $("#taxInformation1").click(function() {
+        var valueModel = $("#taxInformation1").val();
+        if (valueModel === "1") {
+            $('#addTaxInformation').modal('show');
+        }
+    });
+
+    $("#sales_code").click(function() {
+        var valueModel = $("#sales_code").val();
+        if (valueModel === "1") {
+            $('#addTaxInformation').modal('show');
+        }
+    });
+
+    $("#purch_code").click(function() {
+        var valueModel = $("#purch_code").val();
+        if (valueModel === "1") {
+            $('#addTaxInformation').modal('show');
+        }
+    });
+
+    $("#saveTaxInformation").click(function() {
+        var taxcode = $("input[name='taxcode[]']").map(function() {
+            return $(this).val();
+        }).get();
+        var taxtaxname = $("input[name='taxtaxname[]']").map(function() {
+            return $(this).val();
+        }).get();
+        var taxtaxvalues = $("input[name='taxtaxvalues[]']").map(function() {
+            return $(this).val();
+        }).get();
+        var taxisExempt = $("input[name='taxisExempt[]']").map(function() {
+            return $(this).val();
+        }).get();
+        var dataString = "taxcode=" + taxcode + "&taxtaxname=" + taxtaxname + "&taxtaxvalues=" + taxtaxvalues + "&taxisExempt=" + taxisExempt;
+        $.ajax({
+            type: 'POST',
+            url: 'customermaster/savetaxinfo_ajax.php',
+            data: dataString
+        }).done(function(data) {
+            $("input[name='taxcode[]']").val("");
+            $("input[name='taxtaxname[]']").val("");
+            $("input[name='taxtaxvalues[]']").val("");
+            $("input[name='taxisExempt[]']").val("");
+            $('#taxInformation1').append(data);
+
+            if ($("#purch_code").val() !== "") {
+                $('#purch_code').append(data);
+            }
+            if ($("#sales_code").val() !== "") {
+                $('#sales_code').append(data);
+            }
+        }).fail(function() {
+        });
+    });
+
+    $("#cancelti").click(function() {
+        $("#taxInformation1").val("");
+        $("#purch_code").val("");
+        $("#sales_code").val("");
+    });
+</script>
+
+<?php
+$taxinfoarray = MysqlConnection::fetchCustom("select * from taxinfo_table;");
+?>
