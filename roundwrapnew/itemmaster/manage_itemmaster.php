@@ -79,7 +79,7 @@ if (isset($itemid) && $itemid != "") {
                 $index = 1;
                 foreach ($listofitems as $key => $value) {
                     if ($value["status"] == "N") {
-                        $bg = "background-color: rgb(255,244,244)";
+                        $bg = "background-color: rgb(235,230,222)";
                     } else {
                         $bg = "";
                     }
