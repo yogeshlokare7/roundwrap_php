@@ -48,7 +48,7 @@
                 <th style="width:390px">Address</th>
                 <th style="width:230px">Contact Person</th>
                 <th style="width:110px">Contact No</th>
-                <th style="width:200px">Email</th>
+                <th style="width:280px">Email</th>
                 <th style="width:80px">Currency</th>
                 <th style="width:60px">Balance</th>
                 <th>Sales Person</th>
@@ -70,7 +70,7 @@
                         </td>
                         <td style="width:230px">&nbsp;&nbsp;<?php echo $value["firstname"] ?>&nbsp;<?php echo $value["lastname"] ?></td>
                         <td style="width:110px">&nbsp;<?php echo $value["phno"] ?></td>
-                        <td style="width:200px">
+                        <td style="width:280px">
                             <a href="mailto:<?php echo $value["cust_email"] ?>?Subject=Welcome, <?php echo ucwords($value["cust_companyname"]) ?> " target="_top">
                                 &nbsp;<?php echo $value["cust_email"] ?>
                             </a>
@@ -89,7 +89,7 @@
                         <td style="width:390px"></td>
                         <td style="width:230px"></td>
                         <td style="width:110px"></td>
-                        <td style="width:200px"></td>
+                        <td style="width:280px"></td>
                         <td style="width:80px"></td>
                         <td style="width:60px"></td>
                         <td></td>

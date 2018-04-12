@@ -46,15 +46,16 @@ $sqltaxinfodata = MysqlConnection::fetchCustom("SELECT * FROM taxinfo_table ORDE
                                 <td >Item Name<br/><input type="text" name="item_name" id="item_name" value="<?php echo $item["item_name"] ?>"  autofocus=""  minlenght="2" maxlength="60" /></td>
                                 <td >Unit of Measures<br/><input type="text" name="unit" id="unit" value="<?php echo $item["unit"] ?>"/></td>
                                 <td >Sub Item of<br/>
-                                    <select name="subitemof" id="subitemof" value="<?php echo $item["subitemof"] ?>">
+                                    <select name="subitemof" id="subitemof">
                                         <option value="">&nbsp;&nbsp;</option>
                                         <?php
                                         foreach ($itemlist as $key => $value) {
                                             ?>
-                                            <option value="<?php echo $value["item_id"] ?>"><?php echo $value["item_code"] ?></option>
-                                            <?php
-                                        }
-                                        ?>
+                                            <option <?php echo $item["subitemof"] == $value["item_id"] ? "selected" : "" ?> 
+                                                value="<?php echo $value["item_id"] ?>"><?php echo $value["item_code"] ?></option>
+                                                <?php
+                                            }
+                                            ?>
                                     </select>
                                 </td>
                             </tr>

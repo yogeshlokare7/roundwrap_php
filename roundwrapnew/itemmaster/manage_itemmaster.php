@@ -76,9 +76,9 @@ $listofitems = MysqlConnection::fetchAll("item_master");
                             <?php echo $value["item_desc_purch"] == "" ? $value["item_desc_sales"] : $value["item_desc_purch"] ?>
                         </td>
                         <td style="width: 110px;">&nbsp;<?php echo $value["type"] ?></td>
-                        <td style="width: 90px;text-align: right"><?php echo round($value["onhand"], 2); ?>&nbsp;&nbsp;</td>
-                        <td style="width: 90px;text-align: right"><?php echo round($value["totalvalue"], 2); ?>&nbsp;&nbsp;</td>
-                        <td style="text-align: right">$&nbsp;<?php echo round($value["sell_rate"], 2); ?>&nbsp;&nbsp;</td>
+                        <td style="width: 90px;text-align: right"><?php echo $value["onhand"]; ?>&nbsp;&nbsp;</td>
+                        <td style="width: 90px;text-align: right"><?php echo $value["totalvalue"]; ?>&nbsp;&nbsp;</td>
+                        <td style="text-align: right">$&nbsp;<?php echo $value["sell_rate"]; ?>&nbsp;&nbsp;</td>
                     </tr>
                     <?php
                     $index++;
@@ -146,7 +146,7 @@ $listofitems = MysqlConnection::fetchAll("item_master");
                         window.location = "index.php?pagename=create_itemmaster&itemId=" + id;
                         break;
                     case "delete_item":
-                        deleteItem(id);
+                        window.location = "index.php?pagename=view_itemmaster&itemId=" + id + "&flag=yes";
                         break;
                     case "quit":
                         window.location = "index.php?pagename=manage_dashboard";

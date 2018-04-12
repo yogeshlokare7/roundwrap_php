@@ -65,6 +65,17 @@ $arrsalutations = MysqlConnection::fetchCustom("SELECT distinct(`salutation`) as
                 Is customer active ?
             </td>
         </tr>
+         <tr>
+            <td><label class="control-label">Web Site</label></td>
+            <td><input type="text" name="website" id="website" plceholder="Enter Company Website" value="<?php echo $customer["website"] ?>" ></td>
+            <td><label class="control-label">Fax</label></td>
+            <td><input type="text" name="cust_fax" id="cust_fax"  value="<?php echo $customer["cust_fax"] ?>" ></td>
+            <td><label class="control-label">Customer Status</label></td>
+            <td style="vertical-align: middle">
+                <input type="checkbox" name="status" <?php echo $customer["status"] == "Y" ? "checked" : "" ?> id="status" value="Y" />
+                Is customer active ?
+            </td>
+        </tr>
         <tr style="vertical-align: top">
             <td>Bill To</td>
             <td><textarea style="height: 100px;;line-height: 20px;" name="billto" onfocus="fillAddress()"  id="billto" ><?php echo $customer["billto"] ?></textarea></td>

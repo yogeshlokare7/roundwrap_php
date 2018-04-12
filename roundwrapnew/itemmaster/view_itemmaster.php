@@ -1,8 +1,18 @@
 <?php
 $itemid = filter_input(INPUT_GET, "itemId");
+$flag = filter_input(INPUT_GET, "flag");
 
 $arritem = MysqlConnection::fetchCustom("SELECT * FROM  `item_master` WHERE item_id = $itemid ");
 $item = $arritem[0];
+
+if (isset($_POST["deleteItem"])) {
+    MysqlConnection::delete("DELETE FROM `item_master` WHERE item_id = $itemid");
+    header("location:index.php?pagename=manage_itemmaster");
+}
+
+$purchasetaxcode = MysqlConnection::fetchCustom("SELECT taxcode, taxname, taxvalues FROM  `taxinfo_table` WHERE id = " . $item["purch_code"]);
+$saletaxcode = MysqlConnection::fetchCustom("SELECT  taxcode, taxname, taxvalues  FROM  `taxinfo_table` WHERE id =  " . $item["sales_code"]);
+$subitemof = MysqlConnection::fetchCustom("SELECT  item_code, item_name  FROM  `item_master` WHERE item_id = $itemid ");
 ?>
 <style>
     tbody {
@@ -40,7 +50,7 @@ $item = $arritem[0];
                                 <td >Item Code<br/><input  type="text"  value="<?php echo $item["item_code"] ?>" readonly="" /></td>
                                 <td >Item Name<br/><input type="text"  value="<?php echo $item["item_name"] ?>" readonly="" /></td>
                                 <td >Unit of Measures<br/><input type="text"  value="<?php echo $item["unit"] ?>" readonly=""/></td>
-                                <td >Sub Item of<br/><input type="text"  value="<?php echo $item["subitemof"] ?>" readonly=""/></td>
+                                <td >Sub Item of<br/><input type="text"  value="<?php echo implode(",", $subitemof[0]) ?>" readonly=""/></td>
                             </tr>
                         </table> 
                     </fieldset>
@@ -59,7 +69,7 @@ $item = $arritem[0];
                                             <textarea  style="line-height: 15px" readonly=""><?php echo $item["item_desc_sales"] ?></textarea>
                                         </td>
                                         <td style="width: 220px;">Sales Tax Code
-                                            <input type="text"  value="<?php echo $item["sales_code"] ?>" readonly=""/>
+                                            <input type="text"  value="<?php echo implode("- ", $saletaxcode[0]) ?> %" readonly=""/>
 
                                         </td>
                                         <td>Rate
@@ -91,12 +101,12 @@ $item = $arritem[0];
                                     </tr>
                                     <tr >
                                         <td><label class="control-label">Purch Tax Code</label></td>
-                                        <td><input type="text" value="<?php echo $item["purch_code"] ?>" readonly=""/></td>
+                                        <td><input type="text" value="<?php echo implode("- ", $purchasetaxcode[0]) ?> %" readonly=""/></td>
 
                                     </tr>
                                     <tr style="vertical-align: top">
                                         <td colspan="2"><label class="control-label">Description on Purchase Transactions</label>
-                                            <textarea style="height: 30px;;line-height: 20px; width: 98%" readonly=""><?php echo $item["item_desc_purch"] ?></textarea>
+                                            <textarea style="height: 60px;;line-height: 20px; width: 98%" readonly=""><?php echo $item["item_desc_purch"] ?></textarea>
                                         </td>
                                     </tr>
                                 </table>
@@ -112,11 +122,11 @@ $item = $arritem[0];
                                     </tr>
                                     <tr >
                                         <td><label class="control-label">Sales Tax Code</label></td>
-                                        <td><input type="text"  value="<?php echo $item["sales_code"] ?>" readonly=""/></td
+                                        <td><input type="text"  value="<?php echo implode("- ", $saletaxcode[0]) ?> %" readonly=""/></td
                                     </tr>
                                     <tr >
                                         <td colspan="2"><label class="control-label">Description on Sales Transactions</label>
-                                            <textarea style="height: 30px;;line-height: 20px; width: 98%"  readonly=""><?php echo $item["item_desc_sales"] ?></textarea>
+                                            <textarea style="height: 60px;;line-height: 20px; width: 98%"  readonly=""><?php echo $item["item_desc_sales"] ?></textarea>
                                         </td>
                                     </tr>
                                 </table>
@@ -151,7 +161,20 @@ $item = $arritem[0];
             </div>
         <?php } ?>
         <hr/>
-        <a href="index.php?pagename=manage_itemmaster" id="btnSubmitFullForm" class="btn btn-info">CANCEL</a>
+
+        <?php
+        if (isset($flag) && $flag != "") {
+            ?>
+            <form name="frmDeleteItem" id="frmDeleteItem" method="post">
+                <a href="index.php?pagename=manage_itemmaster" id="btnSubmitFullForm" class="btn btn-info">CANCEL</a>
+                <input type="submit" value="DELETE" name="deleteItem" class="btn btn-danger"/>
+                <input type="hidden" name="itemid" value="<?php echo $itemid ?>"/>
+            </form>
+            <?php
+        } else {
+            echo '<a href="index.php?pagename=manage_itemmaster" id="btnSubmitFullForm" class="btn btn-info">CANCEL</a>';
+        }
+        ?>
     </fieldset>
 
 
