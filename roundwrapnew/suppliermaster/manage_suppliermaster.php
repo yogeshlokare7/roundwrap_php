@@ -56,7 +56,7 @@
                 <th style="width: 2.3%">&nbsp;Search&nbsp;:&nbsp;</th>
                 <th colspan="9" style="text-align: left">
                     <input type="text" id="searchinput" onkeyup="searchData()" 
-                           placeholder="Search for Itemname , Description" 
+                           placeholder="Search for companyname" 
                            name="searchinput" style="width: 50%"/>
                 </th>
             </tr>
