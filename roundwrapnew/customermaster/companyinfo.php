@@ -71,13 +71,25 @@ $arrsalutations = MysqlConnection::fetchCustom("SELECT distinct(`salutation`) as
             <td><label class="control-label">Street No</label></td>
             <td><input type="text" name="streetNo" id="streetNo"  minlenght="2" maxlength="30" value="<?php echo $customer["streetNo"] ?>" ></td>
             <td><label class="control-label">City</label></td>
-            <td><input type="text" name="city" id="streetNo"  value="<?php echo $customer["city"] ?>" ></td>
+             <td><select name="city" id="city">
+                    <option>Select Province</option>
+                    <option></option>
+                </select>
+            </td>
         </tr>
-          <tr>
+        <tr>
             <td><label class="control-label">Province</label></td>
-            <td><input type="text" name="cust_province" id="cust_province" plceholder="Enter Province" value="<?php echo $customer["cust_province"] ?>" ></td>
+            <td><select name="cust_province" id="cust_province">
+                    <option>Select Province</option>
+                    <option></option>
+                </select>
+            </td>
             <td><label class="control-label">Country</label></td>
-            <td><input type="text" name="country" id="country"  value="<?php echo $customer["country"] ?>" ></td>
+            <td> <select name="country" id="country">
+                    <option>Select Country</option>
+                    <option></option>
+                </select>
+            </td>
             <td><label class="control-label">Postal Code</label></td>
             <td><input type="text" name="postal_code" id="postal_code" minlenght="2" maxlength="30"  value="<?php echo $customer["postal_code"] ?>" ></td>
         </tr>
