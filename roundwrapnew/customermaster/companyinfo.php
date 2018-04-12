@@ -17,7 +17,7 @@ $arrsalutations = MysqlConnection::fetchCustom("SELECT distinct(`salutation`) as
     }
 </style>
 <script>
-    $(document).ready(function($) {
+    $(document).ready(function ($) {
         $("#phno").mask("(99) 9999-9999");
         $("#cust_fax").mask("(99) 9999-9999");
     });
@@ -65,16 +65,21 @@ $arrsalutations = MysqlConnection::fetchCustom("SELECT distinct(`salutation`) as
                 Is customer active ?
             </td>
         </tr>
-         <tr>
-            <td><label class="control-label">Web Site</label></td>
-            <td><input type="text" name="website" id="website" plceholder="Enter Company Website" value="<?php echo $customer["website"] ?>" ></td>
-            <td><label class="control-label">Fax</label></td>
-            <td><input type="text" name="cust_fax" id="cust_fax"  value="<?php echo $customer["cust_fax"] ?>" ></td>
-            <td><label class="control-label">Customer Status</label></td>
-            <td style="vertical-align: middle">
-                <input type="checkbox" name="status" <?php echo $customer["status"] == "Y" ? "checked" : "" ?> id="status" value="Y" />
-                Is customer active ?
-            </td>
+        <tr>
+            <td><label class="control-label">Street Name</label></td>
+            <td><input type="text" name="streetName" id="streetName" minlenght="2" maxlength="30" plceholder="Enter Street Name" value="<?php echo $customer["streetName"] ?>" ></td>
+            <td><label class="control-label">Street No</label></td>
+            <td><input type="text" name="streetNo" id="streetNo"  minlenght="2" maxlength="30" value="<?php echo $customer["streetNo"] ?>" ></td>
+            <td><label class="control-label">City</label></td>
+            <td><input type="text" name="city" id="streetNo"  value="<?php echo $customer["city"] ?>" ></td>
+        </tr>
+          <tr>
+            <td><label class="control-label">Province</label></td>
+            <td><input type="text" name="cust_province" id="cust_province" plceholder="Enter Province" value="<?php echo $customer["cust_province"] ?>" ></td>
+            <td><label class="control-label">Country</label></td>
+            <td><input type="text" name="country" id="country"  value="<?php echo $customer["country"] ?>" ></td>
+            <td><label class="control-label">Postal Code</label></td>
+            <td><input type="text" name="postal_code" id="postal_code" minlenght="2" maxlength="30"  value="<?php echo $customer["postal_code"] ?>" ></td>
         </tr>
         <tr style="vertical-align: top">
             <td>Bill To</td>
