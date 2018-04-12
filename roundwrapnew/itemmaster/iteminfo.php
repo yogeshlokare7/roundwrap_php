@@ -117,7 +117,7 @@ $sqltaxinfodata = MysqlConnection::fetchCustom("SELECT * FROM taxinfo_table ORDE
                                     <tr >
                                         <td><label class="control-label">Purch Tax Code</label></td>
                                         <td>
-                                            <select name="purch_code" id="taxInformation2">
+                                            <select name="purch_code" id="purch_code">
                                                 <option value="">&nbsp;&nbsp;</option>
                                                 <option value="1" ><< ADD NEW >></option>
                                                 <?php foreach ($sqltaxinfodata as $key => $value) { ?>
@@ -150,7 +150,7 @@ $sqltaxinfodata = MysqlConnection::fetchCustom("SELECT * FROM taxinfo_table ORDE
                                     <tr >
                                         <td><label class="control-label">Sales Tax Code</label></td>
                                         <td>
-                                            <select name="sales_code" id="taxInformation3">
+                                            <select name="sales_code" id="sales_code">
                                                 <option value="">&nbsp;&nbsp;</option>
                                                 <option value="1" ><< ADD NEW >></option>
                                                 <?php foreach ($sqltaxinfodata as $key => $value) { ?>

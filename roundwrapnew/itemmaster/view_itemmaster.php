@@ -28,7 +28,7 @@ $item = $arritem[0];
     <br/>
     <fieldset class="well the-fieldset">
         <table style="vertical-align: top">
-            
+
             <tr style="vertical-align: top">
                 <td style="vertical-align: top">
                     <fieldset class="well the-fieldset">
@@ -59,21 +59,16 @@ $item = $arritem[0];
                                             <textarea  style="line-height: 15px" readonly=""><?php echo $item["item_desc_sales"] ?></textarea>
                                         </td>
                                         <td style="width: 220px;">Sales Tax Code
-                                            <select name="sales_code" id="taxInformation1" value="<?php echo $item["sales_code"] ?>">
-                                                <option value="">&nbsp;&nbsp;</option>
-                                                <option value="1" ><< ADD NEW >></option>
-                                                <?php foreach ($sqltaxinfodata as $key => $value) { ?>
-                                                    <option  value='<?php echo $value["id"] ?>'><?php echo $value["taxcode"] ?> - <?php echo $value["taxname"] ?> - <?php echo $value["taxvalues"] ?>%</option>
-                                                <?php } ?>
-                                            </select>
+                                            <input type="text"  value="<?php echo $item["sales_code"] ?>" readonly=""/>
+
                                         </td>
                                         <td>Rate
-                                            <input type="text" name="sell_rate" id="sell_rate" onkeypress="return chkNumericKey(event)" value="<?php echo $item["sell_rate"] ?>" minlenght="2" maxlength="30"  >
+                                            <input type="text"  value="<?php echo $item["sell_rate"] ?>"  readonly=""/> >
                                         </td>
                                     </tr>
                                     <tr>
                                         <td  style="text-align: left" colspan="3">
-                                            <input type="checkbox" name="taxcheckbox" id="taxcheckbox">&nbsp;This service performed by subcontractor,owner or partner
+                                            <input type="checkbox" readonly="" >&nbsp;This service performed by subcontractor,owner or partner
                                         </td>
                                     </tr>
                                 </table>
@@ -92,23 +87,16 @@ $item = $arritem[0];
                                 <table  border="0">
                                     <tr >
                                         <td style="width: 40%; "><label class="control-label">Purch Price</label></td>
-                                        <td><input type="text" name="purchase_rate" onkeypress="return chkNumericKey(event)" id="purchase_rate" value="<?php echo $item["purchase_rate"] ?>" autofocus="" required="true" minlenght="2" maxlength="30" ></td>   
+                                        <td><input type="text" value="<?php echo $item["purchase_rate"] ?>" readonly=""/></td>   
                                     </tr>
                                     <tr >
                                         <td><label class="control-label">Purch Tax Code</label></td>
-                                        <td>
-                                            <select name="purch_code" id="taxInformation2">
-                                                <option value="">&nbsp;&nbsp;</option>
-                                                <option value="1" ><< ADD NEW >></option>
-                                                <?php foreach ($sqltaxinfodata as $key => $value) { ?>
-                                                    <option  value='<?php echo $value["id"] ?>'><?php echo $value["taxcode"] ?> - <?php echo $value["taxname"] ?> - <?php echo $value["taxvalues"] ?>%</option>
-                                                <?php } ?>
-                                            </select>
-                                        </td>   
+                                        <td><input type="text" value="<?php echo $item["purch_code"] ?>" readonly=""/></td>
+
                                     </tr>
                                     <tr style="vertical-align: top">
                                         <td colspan="2"><label class="control-label">Description on Purchase Transactions</label>
-                                            <textarea style="height: 30px;;line-height: 20px; width: 98%" name="item_desc_purch" id="item_desc_purch"   autofocus="" required="true" minlenght="2" maxlength="90" ><?php echo $item["item_desc_purch"] ?></textarea>
+                                            <textarea style="height: 30px;;line-height: 20px; width: 98%" readonly=""><?php echo $item["item_desc_purch"] ?></textarea>
                                         </td>
                                     </tr>
                                 </table>
@@ -120,23 +108,15 @@ $item = $arritem[0];
 
                                     <tr >
                                         <td style="width: 40%"><label class="control-label">Sales Price</label></td>
-                                        <td><input type="text" name="sell_rate" id="sell_rate" onkeypress="return chkNumericKey(event)" value="<?php echo $item["sell_rate"] ?>" autofocus="" required="true" minlenght="2" maxlength="30" ></td>   
+                                        <td><input type="text"  value="<?php echo $item["sell_rate"] ?>" readonly=""/></td>   
                                     </tr>
                                     <tr >
                                         <td><label class="control-label">Sales Tax Code</label></td>
-                                        <td>
-                                            <select name="sales_code" id="taxInformation3">
-                                                <option value="">&nbsp;&nbsp;</option>
-                                                <option value="1" ><< ADD NEW >></option>
-                                                <?php foreach ($sqltaxinfodata as $key => $value) { ?>
-                                                    <option  value='<?php echo $value["id"] ?>'><?php echo $value["taxcode"] ?> - <?php echo $value["taxname"] ?> - <?php echo $value["taxvalues"] ?>%</option>
-                                                <?php } ?>
-                                            </select>
-                                        </td>   
+                                        <td><input type="text"  value="<?php echo $item["sales_code"] ?>" readonly=""/></td
                                     </tr>
                                     <tr >
                                         <td colspan="2"><label class="control-label">Description on Sales Transactions</label>
-                                            <textarea style="height: 30px;;line-height: 20px; width: 98%" name="item_desc_sales" id="item_desc_sales"   autofocus="" required="true" minlenght="2" maxlength="90" ><?php echo $item["item_desc_sales"] ?></textarea>
+                                            <textarea style="height: 30px;;line-height: 20px; width: 98%"  readonly=""><?php echo $item["item_desc_sales"] ?></textarea>
                                         </td>
                                     </tr>
                                 </table>
@@ -147,19 +127,19 @@ $item = $arritem[0];
                                 <table  border="0">
                                     <tr >
                                         <td><label class="control-label">Reorder Point</label></td>
-                                        <td style="vertical-align: bottom"><input type="text" name="reorder" id="reorder"  value="<?php echo $item["reorder"] ?>" autofocus="" required="true" minlenght="2" maxlength="30" ></td>   
+                                        <td style="vertical-align: bottom"><input type="text"  value="<?php echo $item["reorder"] ?>" readonly=""/></td>   
                                     </tr>
                                     <tr >
                                         <td><label class="control-label">On Hand</label></td>
-                                        <td style="vertical-align: bottom"><input type="text" name="onhand" id="onhand" onkeypress="return chkNumericKey(event)" value="<?php echo $item["onhand"] ?>" autofocus="" required="true" minlenght="2" maxlength="30" ></td>   
+                                        <td style="vertical-align: bottom"><input type="text"  value="<?php echo $item["onhand"] ?>" readonly="" /></td>   
                                     </tr>
                                     <tr >
                                         <td><label class="control-label">Total Value</label></td>
-                                        <td style="vertical-align: bottom" ><input type="text" onkeypress="return chkNumericKey(event)" name="totalvalue" id="totalvalue"  value="<?php echo $item["totalvalue"] ?>" autofocus="" required="true" minlenght="2" maxlength="30" ></td>   
+                                        <td style="vertical-align: bottom" ><input type="text"  value="<?php echo $item["totalvalue"] ?>" readonly="" /></td>   
                                     </tr>
                                     <tr >
                                         <td><label class="control-label">As of</label></td>
-                                        <td style="vertical-align: bottom" ><input type="date" name="asof"   id="asof"  value="<?php echo $item["asof"] ?>" autofocus="" required="true" minlenght="2" maxlength="30" ></td>   
+                                        <td style="vertical-align: bottom" ><input type="date"   value="<?php echo $item["asof"] ?>" readonly="" /></td>   
                                     </tr>
                                 </table>
                             </fieldset>
@@ -172,7 +152,7 @@ $item = $arritem[0];
         <?php } ?>
         <hr/>
         <a href="index.php?pagename=manage_itemmaster" id="btnSubmitFullForm" class="btn btn-info">CANCEL</a>
-               </fieldset>
+    </fieldset>
 
 
 </div>
