@@ -198,7 +198,6 @@ $sqltaxinfodata = MysqlConnection::fetchCustom("SELECT * FROM taxinfo_table ORDE
     </div>
 </div>
 <!-- this is model dialog --->
-
 <!-- this is custom model dialog --->
 <div id="addTaxInformation" class="modal hide" style="top: 10%;left: 50%;">
     <div class="modal-header" style="text-align: center">
@@ -374,6 +373,7 @@ $sqltaxinfodata = MysqlConnection::fetchCustom("SELECT * FROM taxinfo_table ORDE
             $("input[name='taxtaxname[]']").val("");
             $("input[name='taxtaxvalues[]']").val("");
             $("input[name='taxisExempt[]']").val("");
+            $('#taxInformation').append(data);
         }).fail(function () {
         });
     });

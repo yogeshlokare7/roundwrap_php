@@ -23,10 +23,12 @@ for ($index = 0; $index < count($taxtaxname); $index++) {
     }
 }
 
-$sqlisavailable = MysqlConnection::fetchCustom("SELECT * FROM taxinfo_table ORDER BY id DESC LIMIT 0,1 ");
-$sqlcustom = MysqlConnection::fetchCustom($sqlisavailable);
-$option = "";
-foreach ($array as $key => $value) {
-    $option.= "<option value='" . $value["id"] . "'>" . $value["taxcode"] . " - " . $value["taxname"] . " - " . " - " . $value["taxvalues"] . "%</option>";
+$sqlisavailable = MysqlConnection::fetchCustom("SELECT * FROM  `taxinfo_table` ORDER BY id DESC LIMIT 0,1 ");
+foreach ($sqlisavailable as $key => $value) {
+    echo $option = "<option selected='selected' value='" . $value["id"] . "'>"
+    . $value["taxcode"] . " - "
+    . $value["taxname"] . " - "
+    . " - " . $value["taxvalues"]
+    . "%</option>";
 }
 
