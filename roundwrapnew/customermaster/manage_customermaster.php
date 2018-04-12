@@ -58,7 +58,7 @@
             </tr>
         </table>
         <div style="height: 310px;overflow: auto;overflow-x: auto">
-            <table class="customtable" id="data1" style="margin-top: -1px;"  border="1">
+            <table class="customtable" id="data" style="margin-top: -1px;"  border="1">
                 <?php
                 $index = 1;
                 foreach ($listofcustomers as $key => $value) {
@@ -152,14 +152,14 @@
                 "view_customer": {name: "VIEW CUSTOMER", icon: "+"},
                 "create_customer": {name: "CREATE CUSTOMER", icon: "img/icons/16/book.png"},
                 "edit_customer": {name: "EDIT CUSTOMER", icon: "context-menu-icon-add"},
-                "delete_customer": {name: "DELETE CUSTOMER", icon: "delete"},
+                "delete_customer": {name: "DELETE CUSTOMER", icon: ""},
                 "sep1": "---------",
-                "create_note": {name: "CREATE NOTE", icon: "add"},
-                "create_sales_order": {name: "CREATE SALES ORDER", icon: "add"},
-                "create_invoice": {name: "CREATE INVOICE", icon: "add"},
+                "create_note": {name: "CREATE NOTE", icon: ""},
+                "create_sales_order": {name: "CREATE SALES ORDER", icon: ""},
+                "create_invoice": {name: "CREATE INVOICE", icon: ""},
                 "sep2": "---------",
                 "quit": {name: "QUIT", icon: function() {
-                        return 'context-menu-icon context-menu-icon-quit';
+                        return '';
                     }}
             }
         });
@@ -170,26 +170,6 @@
         window.location = "index.php?pagename=view_customermaster&customerId=" + id;
     });
 
-    function searchData() {
-        var input, filter, table, tr, td, i;
-        input = document.getElementById("searchinput1");
-        filter = input.value.toUpperCase();
-        table = document.getElementById("data1");
-        tr = table.getElementsByTagName("tr");
-        // Loop through all table rows, and hide those who don't match the search query
-        for (i = 0; i < tr.length; i++) {
-            td = tr[i].getElementsByTagName("td")[0];
-            if (td) {
-                if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
-                    tr[i].style.display = "";
-                } else {
-                    tr[i].style.display = "none";
-                }
-            }
-        }
-    }
-</script>
-<script>
     function searchData() {
         var input, filter, table, tr, td, i;
         input = document.getElementById("searchinput");
@@ -208,7 +188,7 @@
             }
         }
     }
-</script>
+</script> 
 <!-- this is model dialog --->
 <?php
 
