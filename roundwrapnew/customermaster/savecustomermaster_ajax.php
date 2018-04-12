@@ -48,7 +48,9 @@ if ($_FILES["certificate"]["name"] != "") {
 }
 
 if (empty($customerid)) { //// this is save request 
-    $customerid = MysqlConnection::insert("customer_master", $customerarray);
+    MysqlConnection::insert("customer_master", $customerarray);
+    $custvalue = MysqlConnection::fetchCustom("SELECT id FROM customer_master ORDER BY DESC LIMIT 0,1");
+    $customerid = $custvalue[0]["id"];
 } else { /// this is update request
     MysqlConnection::edit("customer_master", $customerarray, " id = $customerid");
 }

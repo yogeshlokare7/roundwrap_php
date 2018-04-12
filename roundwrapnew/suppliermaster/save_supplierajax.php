@@ -23,6 +23,8 @@ if (isset($supplierid) && $supplierid != "") {
     MysqlConnection::delete("DELETE FROM supplier_contact WHERE supp_id = $supplierid  ");
 } else {
     MysqlConnection::insert("supplier_master", $_POST);
+    $supppkvalue = MysqlConnection::fetchCustom("SELECT supp_id FROM supplier_master ORDER BY`supp_id` DESC LIMIT 0,1");
+    $supplierid = $supppkvalue[0]["supp_id"];
 }
 
 $index = 0;

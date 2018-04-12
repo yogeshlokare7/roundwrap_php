@@ -19,7 +19,37 @@ $arrsalutations = MysqlConnection::fetchCustom("SELECT distinct(`salutation`) as
         $("#creditcardno").mask("9999-9999-9999-9999");
     });
 </script>
+<script>
+    function  fillDetailedAddress()
+    {
+        document.getElementById("address").value = "";
+        var companyname = document.getElementById("companyname").value;
+        var firstname = document.getElementById("firstname").value;
+        var lastname = document.getElementById("lastname").value;
+        var supp_email = document.getElementById("supp_email").value;
+        var supp_phoneNo = document.getElementById("supp_phoneNo").value;
 
+
+        var salutation = document.getElementById("salutation").value;
+        var supp_streetNo = document.getElementById("supp_streetNo").value;
+        var supp_streetName = document.getElementById("supp_streetName").value;
+        var postal_code = document.getElementById("postal_code").value;
+        var supp_city = document.getElementById("supp_city").value;
+        var supp_province = document.getElementById("supp_province").value;
+        var supp_city = document.getElementById("supp_city").value;
+        var supp_country = document.getElementById("supp_country").value;
+
+        if (companyname !== "" && lastname !== "") {
+            document.getElementById("address").value = companyname + "\n"
+                    + salutation + "," firstname + " " + lastname + "\n"
+                    + supp_email + "," + supp_phoneNo
+                    + supp_streetNo + ", " + supp_streetName + ", " + postal_code + ", " + supp_province
+                    + supp_city + ", " + supp_country;
+
+        }
+    }
+
+</script>
 <fieldset class="well the-fieldset">
     <table style="width: 100%; vertical-align: top" >
         <tr>
@@ -73,7 +103,7 @@ $arrsalutations = MysqlConnection::fetchCustom("SELECT distinct(`salutation`) as
                     <option value="USD" <?php echo "USD" == $supplier["currency"] ? "selected" : "" ?>>USD</option>
                     <option value="INR" <?php echo "INR" == $supplier["currency"] ? "selected" : "" ?>>INR</option>
                 </select></td>
-                <td><label class="control-label" style="float: left">Exchange Rate</label></td>
+            <td><label class="control-label" style="float: left">Exchange Rate</label></td>
             <td><input type="text" name="exchange_rate" id="exchange_rate" onkeypress="return chkNumericKey(event)" value="<?php echo $supplier["exchange_rate"] ?>" maxlength="2"></td>
             <td><label class="control-label">Street Name</label></td>
             <td><input type="text" name="supp_streetName" id="supp_streetName" minlenght="2" maxlength="30" plceholder="Enter Street Name" value="<?php echo $supplier["supp_streetName"] ?>" ></td>
@@ -87,38 +117,16 @@ $arrsalutations = MysqlConnection::fetchCustom("SELECT distinct(`salutation`) as
             <td><input type="text" name="supp_province" id="supp_province"  minlenght="2" maxlength="30" value="<?php echo $supplier["supp_province"] ?>" ></td>
         </tr>
         <tr>
-   
             <td><label class="control-label">Country</label></td>
             <td><input type="text" name="supp_country" id="supp_country"  minlenght="2" maxlength="30" value="<?php echo $supplier["supp_country"] ?>" ></td>
-<!--            <td>
-                <select name="country" id="country">
-                    <option value=""></option>
-                    <option></option>
-                </select>
-            </td>-->
             <td><label class="control-label">Postal Code</label></td>
             <td><input type="text" name="postal_code" id="postal_code" minlenght="2" maxlength="30"  value="<?php echo $supplier["postal_code"] ?>" ></td>
             <td><label class="control-label" style="float: left">Address</label></td>
-            <td><textarea style="height: 80px;;line-height: 20px;" name="address" onfocus="fillAddress()"  id="address" ><?php echo $supplier["address"] ?></textarea></td>
+            <td><textarea style="height: 80px;;line-height: 20px;" name="address"   id="address" ><?php echo $supplier["address"] ?></textarea></td>
         </tr>
 
     </table> 
 </fieldset>
 <hr/>
 <input type="button" id="btnVenNext1" value="NEXT" class="btn btn-info" ><a href="suppliermaster/additionalcontact.php"></a>
-<script>
-    function  fillAddress()
-    {
-        document.getElementById("address").value = "";
-        var companyname = document.getElementById("companyname").value;
-        var firstname = document.getElementById("firstname").value;
-        var lastname = document.getElementById("lastname").value;
-        var supp_email = document.getElementById("supp_email").value;
-        var supp_phoneNo = document.getElementById("supp_phoneNo").value;
-        if (firstname !== "" && lastname !== "") {
-            document.getElementById("address").value = companyname + "\n" + firstname + "\n" + lastname + "\n" + supp_email + "\n" + supp_phoneNo;
 
-        }
-    }
-
-</script>

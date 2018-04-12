@@ -1,8 +1,9 @@
 <?php
+echo $supplierid;
 $arraycontacts = MysqlConnection::fetchCustom("SELECT *  FROM  `supplier_contact` where supp_id = $supplierid");
 ?>
 <script>
-    $(document).ready(function($) {
+    $(document).ready(function ($) {
         $("#alterno").mask("(999) 999-9999");
     });
 </script>
@@ -12,7 +13,6 @@ $arraycontacts = MysqlConnection::fetchCustom("SELECT *  FROM  `supplier_contact
         if (count($arraycontacts) != 0) {
             $index = 1;
             foreach ($arraycontacts as $key => $value) {
-                
                 ?>
                 <tr>
                     <td><label class="control-label">Name</label></td>
@@ -62,9 +62,9 @@ $arraycontacts = MysqlConnection::fetchCustom("SELECT *  FROM  `supplier_contact
 
 
 <script type="text/javascript">
-    jQuery(function() {
+    jQuery(function () {
         var counter = 1;
-        jQuery('a.icon-plus').click(function(event) {
+        jQuery('a.icon-plus').click(function (event) {
             event.preventDefault();
             var newRow = jQuery('<tr><td><label class="control-label">Name</label></td><td><input type="text" name="contact_person[]" value="<?php echo filter_input(INPUT_POST, "contact_person") ?>"  id="contact_person' + counter + '" minlength="2" maxlength="30"></td>' +
                     counter + '<td><label class="control-label">Email</label></td><td><input type="email" name="email[]" autofocus="" value="<?php echo filter_input(INPUT_POST, "email") ?>" id="email' + counter + '" minlength="2" maxlength="30"></td>' +
@@ -76,13 +76,13 @@ $arraycontacts = MysqlConnection::fetchCustom("SELECT *  FROM  `supplier_contact
         });
     });
 
-    $(document).ready(function() {
-        $("#supplierInfo").on('click', 'a.icon-trash', function() {
+    $(document).ready(function () {
+        $("#supplierInfo").on('click', 'a.icon-trash', function () {
             $(this).closest('tr').remove();
         });
     });
-    
-    $("#btnSubmiVendor").click(function() {
+
+    $("#btnSubmiVendor").click(function () {
         $("#frmSupplierSubmit").submit();
     });
 

@@ -1,16 +1,14 @@
 <?php
-$supplierid = filter_input(INPUT_GET, "supplierId");
 $flag = filter_input(INPUT_GET, "flag");
 $suppid = filter_input(INPUT_GET, "supplierid");
 
 $arrsupplier = MysqlConnection::fetchCustom("SELECT * FROM  `supplier_master` WHERE supp_id = $suppid ");
 $supplier = $arrsupplier[0];
-$suppliercontactarray = MysqlConnection::fetchCustom("SELECT * FROM  `supplier_contact` WHERE sc_id = $suppid ");
+$suppliercontactarray = MysqlConnection::fetchCustom("SELECT * FROM  `supplier_contact` WHERE supp_id = $suppid ");
 
 if (isset($_POST["deleteItem"])) {
     MysqlConnection::delete("DELETE FROM `supplier_master` WHERE supp_id = $suppid");
     MysqlConnection::delete("DELETE FROM `supplier_contact` WHERE sc_id = $suppid");
-
     header("location:index.php?pagename=manage_suppliermaster");
 }
 ?>
@@ -82,11 +80,9 @@ if (isset($_POST["deleteItem"])) {
                             <td><label class="control-label">Province</label></td>
                             <td><input type="text"  value="<?php echo $supplier["supp_province"] ?>"  readonly=""/></td>
                         </tr>
-                        <tr>
-
+                        <tr style="vertical-align: middle">
                             <td><label class="control-label">Country</label></td>
                             <td><input type="text"  value="<?php echo $supplier["supp_country"] ?>"  readonly=""/></td>
-
                             <td><label class="control-label">Postal Code</label></td>
                             <td><input type="text"   value="<?php echo $supplier["postal_code"] ?>"  readonly=""/></td>
                             <td><label class="control-label" style="float: left">Address</label></td>
@@ -125,9 +121,9 @@ if (isset($_POST["deleteItem"])) {
                         </tr>
                         <?php foreach ($suppliercontactarray as $key => $value) { ?>
                             <tr style="vertical-align: bottom">
-                                <td><input type="text" value="<?php echo $value["contact_person"] ?>" readonly=""/> </td>
-                                <td><input type="text"  value="<?php echo $value["email"] ?>" readonly=""/></td>
-                                <td><input type="text"  value="<?php echo $value["alterno"] ?>" readonly="" /></td>
+                                <td><input type="text" value="<?php echo $value["person_name"] ?>" readonly=""/> </td>
+                                <td><input type="text"  value="<?php echo $value["person_email"] ?>" readonly=""/></td>
+                                <td><input type="text"  value="<?php echo $value["person_phoneNo"] ?>" readonly="" /></td>
                                 <td><input type="text"  value="<?php echo $value["designation"] ?>" readonly="" /></td>
                             </tr>
                         <?php } ?>
