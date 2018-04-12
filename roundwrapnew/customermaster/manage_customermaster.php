@@ -31,11 +31,15 @@
         <h5 style="font-family: verdana;font-size: 12px;">LIST CUSTOMER'S</h5>
     </div>
     <div class="cutomheader">
-        <table>
+        <table style="width: 50%">
             <tr>
-                <td ><a class="btn" href="index.php?pagename=create_customermaster" ><i class="icon icon-user"></i>&nbsp;&nbsp;ADD&nbsp;CUSTOMER</a></td>
+                <td style="width: 22%"><a class="btn" href="index.php?pagename=create_customermaster" ><i class="icon icon-user"></i>&nbsp;&nbsp;ADD&nbsp;CUSTOMER</a></td>
                 <th >&nbsp;Search&nbsp;:&nbsp;</th>
-                <th colspan="9" ><input type="text" ></th>
+                <th colspan="9" >
+                    <input type="text" id="searchinput1" onkeyup="searchData()" 
+                           placeholder="Search for Company name " 
+                           name="searchinput" style="width: 100%"/>
+                </th>
             </tr>
         </table>
     </div>
@@ -54,7 +58,7 @@
             </tr>
         </table>
         <div style="height: 310px;overflow: auto;overflow-x: auto">
-            <table class="customtable" id="data" style="margin-top: -1px;"  border="1">
+            <table class="customtable" id="data1" style="margin-top: -1px;"  border="1">
                 <?php
                 $index = 1;
                 foreach ($listofcustomers as $key => $value) {
@@ -108,36 +112,6 @@
 
 <!--</form>-->
 <script>
-    $("#deleteThis").click(function() {
-        $('#img').show();
-        var dataString = "deleteId=" + $('#deleteId').val();
-        $.ajax({
-            type: 'POST',
-            url: 'customermaster/customermaster_ajax.php',
-            data: dataString
-        }).done(function(data) {
-            $('#img').hide();
-        }).fail(function() {
-        });
-        location.reload();
-    });
-    function setDeleteField(deleteId) {
-        document.getElementById("deleteId").value = deleteId;
-    }
-    $("#save").click(function() {
-        var json = convertFormToJSON("#basic_validate");
-        $.ajax({
-            type: 'POST',
-            url: 'customermaster/savecustomermaster_ajax.php',
-            data: json
-        }).done(function(data) {
-        }).fail(function() {
-        });
-        location.reload();
-    });
-
-
-
     $(function() {
         $.contextMenu({
             selector: '.context-menu-one',
@@ -195,6 +169,25 @@
         var id = $(this).attr('id');
         window.location = "index.php?pagename=view_customermaster&customerId=" + id;
     });
+
+    function searchData() {
+        var input, filter, table, tr, td, i;
+        input = document.getElementById("searchinput1");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("data1");
+        tr = table.getElementsByTagName("tr");
+        // Loop through all table rows, and hide those who don't match the search query
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[0];
+            if (td) {
+                if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
 </script>
 <!-- this is model dialog --->
 <?php

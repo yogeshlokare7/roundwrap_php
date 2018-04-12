@@ -222,8 +222,8 @@ if ($_SESSION["user"] == "") {
         $(window).load(function() {
             $('#overlay1').fadeOut();
         });
-        
-        
+
+
     </script>
 </body>
 </html>

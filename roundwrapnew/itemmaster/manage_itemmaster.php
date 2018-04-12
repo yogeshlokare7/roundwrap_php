@@ -41,7 +41,9 @@ $listofitems = MysqlConnection::fetchAll("item_master");
                 <td style="width: 8%"><a class="btn" href="index.php?pagename=create_itemmaster" ><i class="icon-plus-sign"></i>&nbsp;ADD ITEM</a></td>
                 <th style="width: 2.3%">&nbsp;Search&nbsp;:&nbsp;</th>
                 <th colspan="9" style="text-align: left">
-                    <input type="text" id="searchinput" name="searchinput" style="width: 50%">
+                    <input type="text" id="searchinput" onkeyup="searchData()" 
+                           placeholder="Search for Itemname , Description" 
+                           name="searchinput" style="width: 50%"/>
                 </th>
             </tr>
         </table>
@@ -179,7 +181,44 @@ $listofitems = MysqlConnection::fetchAll("item_master");
 //        $("div#divLoading").addClass('show');
     });
 
-    $(document).ready(function() {
-        $('#data').filterTable(); // apply filterTable to all tables on this page
-    });
+</script>
+<script>
+//    $(document).ready(function() {
+//        $("#searchinput").keyup(function() {
+//            var data = this.value.split(" ");
+//            // Get the table rows
+//            var rows = $("#data").find("tr");
+//            if (this.value === "") {
+//                rows.show();
+//                return;
+//            }
+//            rows.hide();
+//            rows.filter(function(i, v) {
+//                for (var d = 0; d < data.length; ++d) {
+//                    if ($(this).is(":contains('" + data[d] + "')")) {
+//                        return true;
+//                    }
+//                }
+//                return false;
+//            }).show();
+//        });
+//    });
+    function searchData() {
+        var input, filter, table, tr, td, i;
+        input = document.getElementById("searchinput");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("data");
+        tr = table.getElementsByTagName("tr");
+        // Loop through all table rows, and hide those who don't match the search query
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[0];
+            if (td) {
+                if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
 </script>
