@@ -30,6 +30,9 @@ $subitemof = MysqlConnection::fetchCustom("SELECT  item_code, item_name  FROM  `
     tr{
         /*background-color: rgb(240,240,240);*/
     }
+    tr input{
+        background-color: white;
+    }
 </style>
 <div class="container-fluid"  >
     <div class="cutomheader">
@@ -38,19 +41,21 @@ $subitemof = MysqlConnection::fetchCustom("SELECT  item_code, item_name  FROM  `
     <br/>
     <fieldset class="well the-fieldset">
         <table style="vertical-align: top">
-
             <tr style="vertical-align: top">
                 <td style="vertical-align: top">
                     <fieldset class="well the-fieldset">
                         <table  style="vertical-align: top" border="0">
                             <tr style="vertical-align: top">
-                                <td colspan="4">Type<br/><input type="text" readonly="" value="<?php echo $item["type"] ?>"></td>
-                            </tr>
-                            <tr>
+                                <td >Type<br/><input type="text" readonly="" value="<?php echo $item["type"] ?>"></td>
                                 <td >Item Code<br/><input  type="text"  value="<?php echo $item["item_code"] ?>" readonly="" /></td>
                                 <td >Item Name<br/><input type="text"  value="<?php echo $item["item_name"] ?>" readonly="" /></td>
                                 <td >Unit of Measures<br/><input type="text"  value="<?php echo $item["unit"] ?>" readonly=""/></td>
+
+                            </tr>
+                            <tr style="vertical-align: top">
                                 <td >Sub Item of<br/><input type="text"  value="<?php echo implode(",", $subitemof[0]) ?>" readonly=""/></td>
+                                <td >Item Status<br/><input  type="text"  value="<?php echo $item["status"] == "Y" ? "Active" : "In Active" ?>" readonly="" /></td>
+                                <td colspan="2"></td>
                             </tr>
                         </table> 
                     </fieldset>
@@ -172,7 +177,7 @@ $subitemof = MysqlConnection::fetchCustom("SELECT  item_code, item_name  FROM  `
             </form>
             <?php
         } else {
-            echo '<a href="index.php?pagename=manage_itemmaster" id="btnSubmitFullForm" class="btn btn-info">CANCEL</a>';
+            echo '<a href="index.php?pagename=manage_itemmaster" id="btnSubmitFullForm" class="btn btn-danger">CANCEL</a>';
         }
         ?>
     </fieldset>
