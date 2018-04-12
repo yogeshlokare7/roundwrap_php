@@ -27,9 +27,9 @@
 <script src="js/jquery.min_1.11.3.js"></script>
 <script src="js/jquery.contextMenu.js" type="text/javascript"></script>
 <script>
-    $("#liveTableSearch").on("keyup", function() {
+    $("#liveTableSearch").on("keyup", function () {
         var value = $(this).val();
-        $("table tr").each(function(index) {
+        $("table tr").each(function (index) {
             if (index !== 0) {
                 $row = $(this);
                 var id = $row.find("td:first").text();
@@ -54,7 +54,10 @@
             <tr >
                 <td><a class="btn"  href="index.php?pagename=create_suppliermaster" ><i class="icon icon-user"></i>&nbsp;ADD VENDOR</a></td>
                 <th >&nbsp;Search&nbsp;:&nbsp;</th>
-                <th colspan="9" > <input type="text" >
+                <th colspan="9" style="text-align: left">
+                    <input type="text" id="searchinput" onkeyup="searchData()" 
+                           placeholder="Search for Itemname , Description" 
+                           name="searchinput" style="width: 50%"/>
                 </th>
             </tr>
         </table>
@@ -87,7 +90,7 @@
                         <td style="width: 230px">&nbsp;&nbsp;<?php echo $value["salutation"] ?>&nbsp;<?php echo $value["firstname"] ?>&nbsp;<?php echo $value["lastname"] ?></td>
                         <td style="width: 110px">&nbsp;&nbsp;<?php echo $value["supp_phoneNo"] ?></td>
                         <td style="width: 280px">&nbsp;&nbsp;
-                               <a href="mailto:<?php echo $value["supp_email"] ?>?Subject=Welcome, <?php echo ucwords($value["companyname"]) ?> " target="_top">
+                            <a href="mailto:<?php echo $value["supp_email"] ?>?Subject=Welcome, <?php echo ucwords($value["companyname"]) ?> " target="_top">
                                 &nbsp;<?php echo $value["supp_email"] ?>
                             </a></td>
                         <td style="width: 80px">&nbsp;&nbsp;<?php echo $value["currency"] ?></td>
@@ -123,14 +126,14 @@
 </div>
 
 <script>
-    $("#deleteThis").click(function() {
+    $("#deleteThis").click(function () {
         var dataString = "deleteId=" + $('#deleteId').val();
         $.ajax({
             type: 'POST',
             url: 'suppliermaster/suppliermaster_ajax.php',
             data: dataString
-        }).done(function(data) {
-        }).fail(function() {
+        }).done(function (data) {
+        }).fail(function () {
         });
         location.reload();
     });
@@ -138,23 +141,23 @@
     function setDeleteField(deleteId) {
         document.getElementById("deleteId").value = deleteId;
     }
-    $("#save").click(function() {
+    $("#save").click(function () {
         var json = convertFormToJSON("#basic_validate");
         $.ajax({
             type: 'POST',
             url: 'suppliermaster/save_supplierajax.php',
             data: json
-        }).done(function(data) {
-        }).fail(function() {
+        }).done(function (data) {
+        }).fail(function () {
         });
         location.reload();
     });
 </script>
 <script type="text/javascript">
-    $(function() {
+    $(function () {
         $.contextMenu({
             selector: '.context-menu-one',
-            callback: function(key, options) {
+            callback: function (key, options) {
                 var m = "clicked row: " + key;
                 var id = $(this).attr('id');
                 switch (key) {
@@ -192,7 +195,7 @@
                 "create_perchase_order": {name: "CREATE PURCHASE ORDER", icon: "add"},
                 "create_invoice": {name: "CREATE INVOICE", icon: "add"},
                 "sep1": "---------",
-                "quit": {name: "QUIT", icon: function() {
+                "quit": {name: "QUIT", icon: function () {
                         return 'context-menu-icon context-menu-icon-quit';
                     }}
             }
@@ -202,8 +205,28 @@
         //            console.log('clicked', this);
         //       })    
     });
-    $('tr').dblclick(function() {
+    $('tr').dblclick(function () {
         var id = $(this).attr('id');
         window.location = "index.php?pagename=view_suppliermaster&supplierid=" + id;
     });
+</script>
+<script>
+    function searchData() {
+        var input, filter, table, tr, td, i;
+        input = document.getElementById("searchinput");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("data");
+        tr = table.getElementsByTagName("tr");
+        // Loop through all table rows, and hide those who don't match the search query
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[1];
+            if (td) {
+                if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
 </script>

@@ -112,15 +112,15 @@ $listofitems = MysqlConnection::fetchAll("item_master");
 </div>
 
 <script>
-    $("#deleteThis").click(function() {
+    $("#deleteThis").click(function () {
         $("div#divLoading").addClass('show');
         var dataString = "deleteId=" + $('#deleteId').val();
         $.ajax({
             type: 'POST',
             url: 'itemmaster/itemmaster_ajax.php',
             data: dataString
-        }).done(function(data) {
-        }).fail(function() {
+        }).done(function (data) {
+        }).fail(function () {
         });
         location.reload();
     });
@@ -131,10 +131,10 @@ $listofitems = MysqlConnection::fetchAll("item_master");
 
 </script>
 <script type="text/javascript">
-    $(function() {
+    $(function () {
         $.contextMenu({
             selector: '.context-menu-one',
-            callback: function(key, options) {
+            callback: function (key, options) {
                 var m = "clicked row: " + key;
                 var id = $(this).attr('id');
                 switch (key) {
@@ -165,44 +165,19 @@ $listofitems = MysqlConnection::fetchAll("item_master");
 //                "create_sales_order": {name: "Create Sales Order", icon: "add"},
 //                "create_invoice": {name: "Create Invoice", icon: "add"},
                 "sep1": "---------",
-                "quit": {name: "QUIT", icon: function() {
+                "quit": {name: "QUIT", icon: function () {
                         return 'context-menu-icon context-menu-icon-quit';
                     }}
             }
         });
     });
 
-    $('tr').dblclick(function() {
+    $('tr').dblclick(function () {
         var id = $(this).attr('id');
         window.location = "index.php?pagename=view_itemmaster&itemId=" + id;
     });
-    $(window).load(function() {
-        // Animate loader off screen
-//        $("div#divLoading").addClass('show');
-    });
-
 </script>
 <script>
-//    $(document).ready(function() {
-//        $("#searchinput").keyup(function() {
-//            var data = this.value.split(" ");
-//            // Get the table rows
-//            var rows = $("#data").find("tr");
-//            if (this.value === "") {
-//                rows.show();
-//                return;
-//            }
-//            rows.hide();
-//            rows.filter(function(i, v) {
-//                for (var d = 0; d < data.length; ++d) {
-//                    if ($(this).is(":contains('" + data[d] + "')")) {
-//                        return true;
-//                    }
-//                }
-//                return false;
-//            }).show();
-//        });
-//    });
     function searchData() {
         var input, filter, table, tr, td, i;
         input = document.getElementById("searchinput");
@@ -211,7 +186,7 @@ $listofitems = MysqlConnection::fetchAll("item_master");
         tr = table.getElementsByTagName("tr");
         // Loop through all table rows, and hide those who don't match the search query
         for (i = 0; i < tr.length; i++) {
-            td = tr[i].getElementsByTagName("td")[0];
+            td = tr[i].getElementsByTagName("td")[1];
             if (td) {
                 if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
                     tr[i].style.display = "";

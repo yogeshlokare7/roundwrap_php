@@ -31,14 +31,14 @@
         <h5 style="font-family: verdana;font-size: 12px;">LIST CUSTOMER'S</h5>
     </div>
     <div class="cutomheader">
-        <table style="width: 50%">
+        <table >
             <tr>
-                <td style="width: 22%"><a class="btn" href="index.php?pagename=create_customermaster" ><i class="icon icon-user"></i>&nbsp;&nbsp;ADD&nbsp;CUSTOMER</a></td>
+                <td style="width: 20%"><a class="btn" href="index.php?pagename=create_customermaster" ><i class="icon icon-user"></i>&nbsp;&nbsp;ADD&nbsp;CUSTOMER</a></td>
                 <th >&nbsp;Search&nbsp;:&nbsp;</th>
-                <th colspan="9" >
-                    <input type="text" id="searchinput1" onkeyup="searchData()" 
-                           placeholder="Search for Company name " 
-                           name="searchinput" style="width: 100%"/>
+                <th colspan="9" style="text-align: left">
+                    <input type="text" id="searchinput" onkeyup="searchData()" 
+                           placeholder="Search for Itemname , Description" 
+                           name="searchinput" style="width: 50%"/>
                 </th>
             </tr>
         </table>
@@ -179,6 +179,26 @@
         // Loop through all table rows, and hide those who don't match the search query
         for (i = 0; i < tr.length; i++) {
             td = tr[i].getElementsByTagName("td")[0];
+            if (td) {
+                if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+</script>
+<script>
+    function searchData() {
+        var input, filter, table, tr, td, i;
+        input = document.getElementById("searchinput");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("data");
+        tr = table.getElementsByTagName("tr");
+        // Loop through all table rows, and hide those who don't match the search query
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[1];
             if (td) {
                 if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
                     tr[i].style.display = "";
