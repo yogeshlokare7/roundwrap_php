@@ -110,15 +110,15 @@ $listofitems = MysqlConnection::fetchAll("item_master");
 </div>
 
 <script>
-    $("#deleteThis").click(function () {
+    $("#deleteThis").click(function() {
         $("div#divLoading").addClass('show');
         var dataString = "deleteId=" + $('#deleteId').val();
         $.ajax({
             type: 'POST',
             url: 'itemmaster/itemmaster_ajax.php',
             data: dataString
-        }).done(function (data) {
-        }).fail(function () {
+        }).done(function(data) {
+        }).fail(function() {
         });
         location.reload();
     });
@@ -129,10 +129,10 @@ $listofitems = MysqlConnection::fetchAll("item_master");
 
 </script>
 <script type="text/javascript">
-    $(function () {
+    $(function() {
         $.contextMenu({
             selector: '.context-menu-one',
-            callback: function (key, options) {
+            callback: function(key, options) {
                 var m = "clicked row: " + key;
                 var id = $(this).attr('id');
                 switch (key) {
@@ -163,89 +163,19 @@ $listofitems = MysqlConnection::fetchAll("item_master");
 //                "create_sales_order": {name: "Create Sales Order", icon: "add"},
 //                "create_invoice": {name: "Create Invoice", icon: "add"},
                 "sep1": "---------",
-                "quit": {name: "QUIT", icon: function () {
+                "quit": {name: "QUIT", icon: function() {
                         return 'context-menu-icon context-menu-icon-quit';
                     }}
             }
         });
-
-        function deleteItem(id) {
-            var dataString = "deleteId=" + id;
-            $.ajax({
-                type: 'POST',
-                url: 'itemmaster/itemmaster_ajax.php',
-                data: dataString
-            }).done(function (data) {
-            }).fail(function () {
-            });
-            location.reload();
-        }
-
-//        $('.context-menu-one').on('click', function(e){
-//            console.log('clicked', this);
-//       })    
     });
 
-    $('tr').dblclick(function () {
+    $('tr').dblclick(function() {
         var id = $(this).attr('id');
         window.location = "index.php?pagename=view_itemmaster&itemId=" + id;
     });
+    $(window).load(function() {
+        // Animate loader off screen
+//        $("div#divLoading").addClass('show');
+    });
 </script>
-
-<!-- this is custom model dialog --->
-<div id="addData" class="modal hide" style="top: 10%;left: 50%;">
-    <div class="modal-header">
-        <button data-dismiss="modal" class="close" type="button">×</button>
-        <h3>Add New Item</h3>
-    </div>
-    <div class="modal-body">
-        <form class="form-horizontal" method="post" action="#" name="basic_validate" id="basic_validate" novalidate="novalidate">
-            <div class="control-group">
-                <label class="control-label">Item Code / Name </label>
-                <div class="controls">
-                    <input type="text" name="itemcode" id="itemcode">
-                </div>
-                <label class="control-label">Item Description (Purchase)*</label>
-                <div class="controls">
-                    <input type="text" name="" id="">
-
-                </div>
-                <label class="control-label">Item Description (Sales)*</label>
-                <div class="controls">
-                    <input type="text" name="" id="">
-
-                </div>
-                <label class="control-label">Unit*</label>
-                <div class="controls">
-                    <input type="text" name="" id="">
-                </div>
-                <label class="control-label">Opening Stock</label>
-                <div class="controls">
-                    <input type="text" name="" id="">
-                </div>
-                <label class="control-label">Min Stock Level *</label>
-                <div class="controls">
-                    <input type="text" name="" id="">
-                </div>
-                <label class="control-label">Order Quanity *</label>
-                <div class="controls">
-                    <input type="text" name="" id="">
-                </div>
-                <label class="control-label">Purchase Rate*</label>
-                <div class="controls">
-                    <input type="text" name="" id="">
-                </div>
-                <label class="control-label">Sell Rate*</label>
-                <div class="controls">
-                    <input type="text" name="" id="">
-                </div>
-            </div>
-
-        </form>
-    </div>
-    <div class="modal-footer"> 
-        <a id="save" data-dismiss="modal" class="btn btn-primary">Save</a> 
-        <a data-dismiss="modal" class="btn" href="#">Cancel</a> 
-    </div>
-</div>
-<!-- this is model dialog --->

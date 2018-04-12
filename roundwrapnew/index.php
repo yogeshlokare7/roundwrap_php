@@ -123,8 +123,16 @@ if ($_SESSION["user"] == "") {
 
         <div style="height: 20%;width: 100% ;border:  solid 0px black; flex-shrink: 0;">
             <div style="height: 40px;width: 100%;border:  solid 0px;margin-top: 10px;clear: both;">
-                <img src="assets/images/download.png" style="width: 200px;height: 40px;margin: 0 auto;margin: 5px;">
+                <div style="float: left;width: 45%">
+                    <img src="assets/images/download.png" style="width: 200px;height: 40px;margin: 0 auto;margin: 5px;">
+                </div>
+                <div style="float: left">
+                    <div id="overlay1" style="margin: 0 auto;">
+                        <img src="css/3.gif" alt="Loading" style="margin-top: 10px;" />
+                    </div>
+                </div>
             </div>
+
             <div id="sidebar" style="margin-top: 50px;"><?php include './leftmenu.php'; ?></div>
         </div>
 
@@ -208,6 +216,9 @@ if ($_SESSION["user"] == "") {
         function resetMenu() {
             document.gomenu.selector.selectedIndex = 2;
         }
+        $(window).load(function() {
+            $('#overlay1').fadeOut();
+        });
     </script>
 </body>
 </html>
