@@ -52,8 +52,8 @@
         <table>
 <!--            <table class="customtable" style="border: 0px;">-->
             <tr >
-                <td><a class="btn"  href="index.php?pagename=create_suppliermaster" ><i class="icon icon-user"></i>&nbsp;ADD VENDOR</a></td>
-                <th >&nbsp;Search&nbsp;:&nbsp;</th>
+                <td style="width: 10%"><a class="btn"  href="index.php?pagename=create_suppliermaster" ><i class="icon icon-user"></i>&nbsp;ADD VENDOR</a></td>
+                <th style="width: 2.3%">&nbsp;Search&nbsp;:&nbsp;</th>
                 <th colspan="9" style="text-align: left">
                     <input type="text" id="searchinput" onkeyup="searchData()" 
                            placeholder="Search for Itemname , Description" 

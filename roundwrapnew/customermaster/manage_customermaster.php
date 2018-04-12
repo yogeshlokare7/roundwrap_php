@@ -33,8 +33,8 @@
     <div class="cutomheader">
         <table >
             <tr>
-                <td style="width: 20%"><a class="btn" href="index.php?pagename=create_customermaster" ><i class="icon icon-user"></i>&nbsp;&nbsp;ADD&nbsp;CUSTOMER</a></td>
-                <th >&nbsp;Search&nbsp;:&nbsp;</th>
+                <td style="width: 10%"><a class="btn" href="index.php?pagename=create_customermaster" ><i class="icon icon-user"></i>&nbsp;&nbsp;ADD&nbsp;CUSTOMER</a></td>
+                <th  style="width: 2.3%">&nbsp;Search&nbsp;:&nbsp;</th>
                 <th colspan="9" style="text-align: left">
                     <input type="text" id="searchinput" onkeyup="searchData()" 
                            placeholder="Search for Itemname , Description" 
