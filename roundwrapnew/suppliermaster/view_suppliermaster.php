@@ -112,23 +112,27 @@ if (isset($_POST["deleteItem"])) {
                     }
                     ?>
 
-                </fieldset></div>
-
+                </fieldset>
+            </div>
             <div id="tab2" class="tab-pane ">
-
                 <fieldset class="well the-fieldset">
-                    <table style="width: 100%;"  id="supplierInfo" vertical-align="top">
-                        <tr>
-                            <td><label class="control-label">Name</label></td>
-                            <td><input type="text"  value="<?php echo $supplier["contact_person[]"] ?>" readonly=""/></td>
-                            <td><label class="control-label">Email</label></td>
-                            <td><input type="email"  value="<?php echo $supplier["email[]"] ?>" readonly=""/></td>
-                            <td><label class="control-label">Phone</label></td>
-                            <td><input type="text"  value="<?php echo $supplier["alterno[]"] ?>" readonly=""/></td>
-                            <td><label class="control-label">Designation</label></td>
-                            <td><input type="text"  value="<?php echo $supplier["designation[]"] ?>" readonly=""/></td>
+                     <table id="addcontacts"  border="0" class="ctable"> 
+                        <tr style="height: 25px;background-color: rgb(220,220,220);font-family: verdana;text-align: center">
+                            <td>Name</td>
+                            <td>Email</td>
+                            <td>Phone</td>
+                            <td>Designation</td>
                         </tr>
+                        <?php foreach ($suppliercontactarray as $key => $value) { ?>
+                            <tr style="vertical-align: bottom">
+                                <td><input type="text" value="<?php echo $value["contact_person"] ?>" readonly=""/> </td>
+                                <td><input type="text"  value="<?php echo $value["email"] ?>" readonly=""/></td>
+                                <td><input type="text"  value="<?php echo $value["alterno"] ?>" readonly="" /></td>
+                                <td><input type="text"  value="<?php echo $value["designation"] ?>" readonly="" /></td>
+                            </tr>
+                        <?php } ?>
                     </table>
+
                     <hr/>
                     <input type="button" id="btnVenPrev1" value="PREVIOUS" class="btn btn-info" href="#tab1" style="background-color: #2f96b4">
                     <a href="index.php?pagename=manage_suppliermaster" class="btn btn-danger">CANCEL</a></fieldset>
