@@ -7,6 +7,13 @@
     }
 </style>
 <?php
+$purchaseid = filter_input(INPUT_GET, "poId");
+//print_r($purchaseid);
+
+//$arrcustomer = MysqlConnection::fetchCustom("SELECT * FROM  `purchase_order` WHERE id = $purchaseid ");
+//$customer = $arrcustomer[0];
+//alert($customer);
+
 $sqlgetsupplier = "SELECT * FROM supplier_master WHERE supp_id = " . filter_input(INPUT_GET, "supplierid");
 $resultset = MysqlConnection::fetchCustom($sqlgetsupplier);
 $supplier = $resultset[0];
@@ -42,19 +49,19 @@ $itemarray = MysqlConnection::fetchCustom("SELECT * FROM item_master;");
                             <table>
                                 <tr>
                                     <td style="width: 10%"><label class="control-label"   class="control-label">SUPPLIER NAME&nbsp;:&nbsp</label></td>
-                                    <td><input  type="text" placeholder="Supplier Name" value="<?php echo $supplier["companyname"] ?>" /></td>
+                                    <td><input  type="text"  value="<?php echo $supplier["companyname"] ?>" readonly=""/></td>
                                     <td style="width: 10%"><label class="control-label">SHIP VIA&nbsp;:&nbsp</label></td>
-                                    <td><input  type="text" placeholder="" /></td>
+                                    <td><input  type="text" placeholder="" readonly="" /></td>
                                     <td style="width: 10%"><label class="control-label">EXPECTED&nbsp;DELIVERY&nbsp;:&nbsp</label></td>
-                                    <td><input type="text" value="12-02-2012"  data-date-format="mm-dd-yyyy"  ></td>
+                                    <td><input type="text" value="12-02-2012"  data-date-format="mm-dd-yyyy"  readonly="" ></td>
                                 </tr>
                                 <tr>
                                     <td ><label  class="control-label"  class="control-label">BILLING&nbsp;ADDRESS&nbsp;:&nbsp</label></td>
-                                    <td><textarea style="line-height: 18px;"><?php echo $ownaddress ?></textarea></td>
+                                    <td><textarea style="line-height: 18px;" readonly=""><?php echo $ownaddress ?></textarea></td>
                                     <td><label class="control-label">SHIPPING&nbsp;ADDRESS&nbsp;:&nbsp</label></td>
-                                    <td><textarea style="line-height: 18px;"><?php echo $ownaddress ?></textarea></td>
+                                    <td><textarea style="line-height: 18px;" readonly=""><?php echo $ownaddress ?></textarea></td>
                                     <td ><label class="control-label">REMARK&nbsp;/&nbsp;NOTE&nbsp;:&nbsp</label></td>
-                                    <td><textarea  style="line-height: 18px;" value="<?php echo $supplier["shipping_address"] ?>" ></textarea></td>
+                                    <td><textarea  style="line-height: 18px;" readonly="" value="<?php echo $supplier["shipping_address"] ?>" ></textarea></td>
                                 </tr>
                             </table>
                         </fieldset>
@@ -81,12 +88,12 @@ $itemarray = MysqlConnection::fetchCustom("SELECT * FROM item_master;");
                                         <tr id="<?php echo $index ?>" style="border-bottom: solid 1px  #CDCDCD;background-color: white">
                                             <td style="width: 30px"></td>
                                             <td style="width: 230px;">
-                                                <input type="text" autofocus="" style="padding: 0px;margin: 0px;width: 100%">
+                                                <input type="text" autofocus="" style="padding: 0px;margin: 0px;width: 100%" readonly="">
                                             </td>
                                             <td style="width: 350px"><div id="desc"></div></td>
                                             <td style="width: 80px;"><div id="unit"></div></td>
                                             <td style="width: 80px;"><div id="price"></div></td>
-                                            <td style="width: 80px;"><input type="text" style="padding: 0px;margin: 0px;width: 100%"></td>
+                                            <td style="width: 80px;"><input type="text" style="padding: 0px;margin: 0px;width: 100%" readonly=""></td>
                                             <td ></td>
                                         </tr>
                                     <?php } ?>

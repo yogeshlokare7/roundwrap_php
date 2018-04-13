@@ -128,15 +128,15 @@ if (isset($itemid) && $itemid != "") {
 </div>
 
 <script>
-    $("#deleteThis").click(function() {
+    $("#deleteThis").click(function () {
         $("div#divLoading").addClass('show');
         var dataString = "deleteId=" + $('#deleteId').val();
         $.ajax({
             type: 'POST',
             url: 'itemmaster/itemmaster_ajax.php',
             data: dataString
-        }).done(function(data) {
-        }).fail(function() {
+        }).done(function (data) {
+        }).fail(function () {
         });
         location.reload();
     });
@@ -147,10 +147,10 @@ if (isset($itemid) && $itemid != "") {
 
 </script>
 <script type="text/javascript">
-    $(function() {
+    $(function () {
         $.contextMenu({
             selector: '.context-menu-one',
-            callback: function(key, options) {
+            callback: function (key, options) {
                 var m = "clicked row: " + key;
                 var id = $(this).attr('id');
                 switch (key) {
@@ -180,7 +180,10 @@ if (isset($itemid) && $itemid != "") {
                         window.location = "index.php?pagename=create_itemmaster&itemId=" + id;
                         break;
                     case "purchase_order":
-                        window.location = "index.php?pagename=manage_dashboard";
+                        window.location = "index.php?pagename=create_perchaseorder";
+                        break;
+                    case "sales_order":
+                        window.location = "index.php?pagename=create_salesorder";
                         break;
                     case "received_items":
                         window.location = "index.php?pagename=manage_dashboard";
@@ -204,17 +207,18 @@ if (isset($itemid) && $itemid != "") {
                 "changeprice": {name: "CHANGE PRICE", icon: ""},
                 "adjustquantity": {name: "ADJUST QUANTITY", icon: ""},
                 "purchase_order": {name: "CREATE PURCHASE ORDER", icon: ""},
+                "sales_order": {name: "CREATE SALES ORDER", icon: ""},
                 "received_items": {name: "RECEIVED ITEMS", icon: ""},
                 "create_invoice": {name: "CREATE INVOICE", icon: ""},
                 "sep1": "---------",
-                "quit": {name: "QUIT", icon: function() {
+                "quit": {name: "QUIT", icon: function () {
                         return '';
                     }}
             }
         });
     });
 
-    $('tr').dblclick(function() {
+    $('tr').dblclick(function () {
         var id = $(this).attr('id');
         if (id !== undefined) {
             window.location = "index.php?pagename=view_itemmaster&itemId=" + id;

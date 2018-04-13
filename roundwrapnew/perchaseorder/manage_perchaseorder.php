@@ -58,7 +58,7 @@ $listPerchaseOrders = MysqlConnection::fetchAll("purchase_order");
                     $supparray = MysqlConnection::fetchCustom("SELECT  `companyname`  FROM  `supplier_master` WHERE supp_id = ".$value["supplier_id"]);
                     $userarray = MysqlConnection::fetchCustom("SELECT  `firstName`, `lastName`  FROM  `user_master` WHERE user_id = ".$value["added_by"]);
                     ?>
-                    <tr id="'<?php echo $value["id"] ?>'" class="context-menu-one" onclick="setId('<?php echo $value["id"] ?>')" style="border-bottom: solid 1px rgb(220,220,220);text-align: left;vertical-align: central">
+                    <tr id="<?php echo $value["id"] ?>" class="context-menu-one" onclick="setId('<?php echo $value["id"] ?>')" style="border-bottom: solid 1px rgb(220,220,220);text-align: left;vertical-align: central">
 
                         <td style="width: 25px;text-align: center"><?php echo $index++ ?></td>
                         <td style="width: 100px">&nbsp;&nbsp;<?php echo $value["purchaseOrderId"] ?></td>
@@ -122,19 +122,19 @@ $listPerchaseOrders = MysqlConnection::fetchAll("purchase_order");
                 var id = $(this).attr('id');
                 switch (key) {
                     case "view_purchaseorder":
-                        window.location = "index.php?pagename=view_purchaseorder&=" + id;
+                        window.location = "index.php?pagename=view_perchaseorder&poId=" + id;
                         break;
                     case "create_purchaseorder":
                         window.location = "index.php?pagename=create_perchaseorder";
                         break;
                     case "create_note":
-                        window.location = "index.php?pagename=note_perchaseorder&=" + id;
+                        window.location = "index.php?pagename=note_perchaseorder&=$supplier" + id;
                         break;
                     case "edit_purchaseorder":
-                        window.location = "index.php?pagename=create_perchaseorder&=" + id;
+                        window.location = "index.php?pagename=create_perchaseorder&=$supplier" + id;
                         break;
                     case "delete_purchaseorder":
-                        window.location = "index.php?pagename=view_purchaseorder&=" + id + "&flag=yes";
+                        window.location = "index.php?pagename=view_purchaseorder&=$supplier" + id + "&flag=yes";
                         break;
 
                     case "create_invoice":
