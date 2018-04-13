@@ -19,7 +19,7 @@ $arrsalutations = MysqlConnection::fetchCustom("SELECT distinct(`salutation`) as
         $("#creditcardno").mask("9999-9999-9999-9999");
     });
 </script>
-<script>
+<!--<script>
     function  fillDetailedAddress()
     {
         document.getElementById("address").value = "";
@@ -49,7 +49,7 @@ $arrsalutations = MysqlConnection::fetchCustom("SELECT distinct(`salutation`) as
         }
     }
 
-</script>
+</script>-->
 <fieldset class="well the-fieldset">
     <table style="width: 100%; vertical-align: top" >
         <tr>

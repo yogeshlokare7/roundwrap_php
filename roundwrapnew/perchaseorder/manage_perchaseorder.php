@@ -15,7 +15,7 @@ $listPerchaseOrders = MysqlConnection::fetchAll("purchase_order");
         border-color: gray;
     }
     .customtable tr td{
-        padding: 5px;
+        /*        padding: 5px;*/
         border-color: gray;
     }
     .thead{
@@ -28,58 +28,53 @@ $listPerchaseOrders = MysqlConnection::fetchAll("purchase_order");
 <link href="css/jquery.contextMenu.css" rel="stylesheet" type="text/css" />
 <script src="js/jquery.min_1.11.3.js"></script>
 <script src="js/jquery.contextMenu.js" type="text/javascript"></script>
-<div id="content-header">
-    <div id="breadcrumb"> 
-        <a class="tip-bottom"><i class="icon-home"></i> Home</a>
-        <a class="tip-bottom"><i class="icon-home"></i>Purchase Orders</a>
-    </div>
-</div>
 
 <div class="container-fluid">
-    <br/>
-    <table class="customtable" style="border: 0px;">
-        <tr style="height: 30px;background-color: rgb(240,240,240);;height: 40px;">
-            <td style="width: 25%"><a class="btn" href="index.php?pagename=create_perchaseorder" ><i class="icon-inbox"></i>&nbsp;Create&nbsp;Purchase&nbsp;Order</a></td>
-            <th style="width: 2.3%">&nbsp;Search&nbsp;:&nbsp;</th>
-            <th colspan="9" style="text-align: left">
-                <input type="text" id="searchinput" name="searchinput" style="width: 50%">
-            </th>
-        </tr>
-    </table>
+    <div class="cutomheader">
+        <h5 style="font-family: verdana;font-size: 12px;">LIST PURCHASE ORDER'S</h5>
+    </div>
+    <div class="cutomheader">
+        <table class="customtable" style="border: 0px;">
+            <tr>
+                <td style="width: 25%"><a class="btn" href="index.php?pagename=create_perchaseorder" ><i class="icon-inbox"></i>&nbsp;Create&nbsp;Purchase&nbsp;Order</a></td>
+            </tr>
+        </table>
+    </div>
     <div class="widget-box">
         <table class="customtable" border="1">
             <tr style="height: 30px;background-color: rgb(240,240,240);">
-                <th style="width: 2.3%">#</th>
-                <th>PO ID</th>
-                <th>Supplier ID</th>
-                <th>Expected Date</th>
-                <th>Total Items</th>
-                <th>PO Status</th>
-                <th>Ship Via</th>
-                <th>Entered By</th>
-                <th>Gross Amount</th>
-                <th>Tax Amt</th>
-                <th>Net Amount</th>
+                <th style="width: 25px;">#</th>
+                <th style="width: 100px">PO ID</th>
+                <th style="width: 450px">Supplier Name</th>
+                <th style="width: 100px">Total Items</th>
+                <th style="width: 100px">PO Status</th>
+                <th style="width: 150px">Ship Via</th>
+                <th style="width: 100px">Gross Amt</th>
+                <th style="width: 100px">Tax Amt</th>
+                <th style="width: 100px">Net Amt</th>
+                <th style="width: 100px">Delivery Date</th>
+                <th >Entered By</th>
             </tr>
         </table>
         <div style="height: 310px;overflow: auto;overflow-x: auto">
             <table class="customtable" id="data"  style="margin-top: -1px;"  border="1">
                 <?php
+                $index = 1;
                 foreach ($listPerchaseOrders as $key => $value) {
                     ?>
-                    <tr id="'<?php echo $value["id"] ?>'" class="context-menu-one" onclick="setId('<?php echo $value["id"] ?>')">
+                    <tr id="'<?php echo $value["id"] ?>'" class="context-menu-one" onclick="setId('<?php echo $value["id"] ?>')" style="border-bottom: solid 1px rgb(220,220,220);text-align: left;vertical-align: central">
 
-                        <td style="width: 2.3%"><a href="#myAlert"  onclick="setDeleteField('<?php echo $value["purchaseOrderId"] ?>')" data-toggle="modal"  class="tip-top" data-original-title="Delete Record"><i class="icon-remove"></i></a> </td>
-                        <td style="width: 76px"><?php echo $value["purchaseOrderId"] ?></td>
-                        <td style="width: 151px"><?php echo $value["supplier_id"] ?></td>
-                        <td style="width: 191px"><?php echo $value["expected_date"] ?></td>
-                        <td style="width: 153px"></td>
-                        <td style="width: 132px"><?php echo $value["label_value"] ?></td>
-                        <td style="width: 105px"><?php echo $value["ship_via"] ?></td>
-                        <td style="width: 145px"><?php echo $value["added_by"] ?></td>
-                        <td style="width: 190px"><?php echo $value["sub_total"] ?></td>
-                        <td style="width: 109px"><?php echo $value["totalTax"] ?></td>
-                        <td><?php echo $value["total"] ?></td>
+                        <td style="width: 25px;text-align: center"><?php echo $index++ ?></td>
+                        <td style="width: 100px">&nbsp;&nbsp;<?php echo $value["purchaseOrderId"] ?></td>
+                        <td style="width: 450px">&nbsp;&nbsp;<?php echo $value["supplier_id"] ?></td>
+                        <td style="width: 100px">&nbsp;&nbsp;<?php echo $value["0"] ?></td>
+                        <td style="width: 100px">&nbsp;&nbsp;<?php echo $value["label_value"] ?></td>
+                        <td style="width: 150px">&nbsp;&nbsp;<?php echo $value["ship_via"] ?></td>
+                        <td style="width: 100px; text-align: right">&nbsp;&nbsp;<?php echo $value["sub_total"] ?>&nbsp;&nbsp;</td>
+                        <td style="width: 100px; text-align: right">&nbsp;&nbsp;<?php echo $value["totalTax"] ?>&nbsp;&nbsp;</td>
+                        <td style="width: 100px; text-align: right">&nbsp;&nbsp;<?php echo $value["total"] ?>&nbsp;&nbsp;</td>
+                        <td style=" width: 100px;text-align: right">&nbsp;&nbsp;<?php echo $value["expected_date"] ?>&nbsp;&nbsp;</td>
+                        <td >&nbsp;&nbsp;<?php echo $value["added_by"] ?></td>
                     </tr>
                     <?php
                 }
@@ -124,42 +119,61 @@ $listPerchaseOrders = MysqlConnection::fetchAll("purchase_order");
     }
 
 </script>
-<script type="text/javascript">
-    $(function () {
+<script>
+    $(function() {
         $.contextMenu({
             selector: '.context-menu-one',
-            callback: function (key, options) {
+            callback: function(key, options) {
                 var m = "clicked row: " + key;
                 var id = $(this).attr('id');
-                alert("ID for edit/delete:" + id)
                 switch (key) {
-                    case "edit":
-                        alert("edit");
+                    case "view_purchaseorder":
+                        window.location = "index.php?pagename=view_purchaseorder&=" + id;
                         break;
-                    case "delete":
-                        document.getElementById("deleteThis").click();
+                    case "create_purchaseorder":
+                        window.location = "index.php?pagename=create_perchaseorder";
                         break;
-                    case "copy":
-                        alert("copy");
+                    case "create_note":
+                        window.location = "index.php?pagename=note_perchaseorder&=" + id;
+                        break;
+                    case "edit_purchaseorder":
+                        window.location = "index.php?pagename=create_perchaseorder&=" + id;
+                        break;
+                    case "delete_purchaseorder":
+                        window.location = "index.php?pagename=view_purchaseorder&=" + id + "&flag=yes";
+                        break;
+                   
+                    case "create_invoice":
+                        window.location = "index.php?pagename=manage_invoice";
+                        break;
+                    case "quit":
+                        window.location = "index.php?pagename=manage_dashboard";
                         break;
                     default:
-                        alert("default");
+                        window.location = "index.php?pagename=manage_perchaseorder";
                 }
                 //window.console && console.log(m) || alert(m+"    id:"+id); 
             },
             items: {
-                "edit": {name: "Edit", icon: "edit"},
-                "copy": {name: "Copy", icon: "copy"},
-                "delete": {name: "Delete", icon: "delete"},
+                "view_purchaseorder": {name: "VIEW PURCHASE ORDER", icon: "+"},
+                "create_purchaseorder": {name: "CREATE PURCHASE ORDER", icon: "img/icons/16/book.png"},
+                "edit_purchaseorder": {name: "EDIT PURCHASE ORDER", icon: "context-menu-icon-add"},
+                "delete_purchaseorder": {name: "DELETE PURCHASE ORDER", icon: ""},
                 "sep1": "---------",
-                "quit": {name: "Quit", icon: function () {
-                        return 'context-menu-icon context-menu-icon-quit';
+                "create_note": {name: "CREATE NOTE", icon: ""},
+                
+                "create_invoice": {name: "CREATE INVOICE", icon: ""},
+                "sep2": "---------",
+                "quit": {name: "QUIT", icon: function() {
+                        return '';
                     }}
             }
         });
-
-//        $('.context-menu-one').on('click', function(e){
-//            console.log('clicked', this);
-//       })    
     });
+
+    $('tr').dblclick(function() {
+        var id = $(this).attr('id');
+        window.location = "index.php?pagename=view_purchaseorder";
+    });
+
 </script>
