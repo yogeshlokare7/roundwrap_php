@@ -72,7 +72,7 @@ $listPerchaseOrders = MysqlConnection::fetchAll("purchase_order");
                         <td style="width: 150px">&nbsp;&nbsp;<?php echo $value["ship_via"] ?></td>
                         <td style="width: 100px; text-align: right">&nbsp;&nbsp;<?php echo $value["sub_total"] ?>&nbsp;&nbsp;</td>
                         <td style="width: 100px; text-align: right">&nbsp;&nbsp;<?php echo $value["totalTax"] ?>&nbsp;&nbsp;</td>
-                        <td style="width: 100px; text-align: right">&nbsp;&nbsp;<?php echo $value["total"] ?>&nbsp;&nbsp;</td>
+                        <td style="width: 100px; text-align: right">$&nbsp;&nbsp;<?php echo $value["total"] ?>&nbsp;&nbsp;</td>
                         <td style=" width: 100px;text-align: right">&nbsp;&nbsp;<?php echo $value["expected_date"] ?>&nbsp;&nbsp;</td>
                         <td >&nbsp;&nbsp;<?php echo $value["added_by"] ?></td>
                     </tr>
