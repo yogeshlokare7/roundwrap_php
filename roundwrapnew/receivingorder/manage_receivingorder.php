@@ -147,10 +147,10 @@ $listRecieveingOrders = MysqlConnection::fetchAll("supplier_packing_slip");
                 //window.console && console.log(m) || alert(m+"    id:"+id); 
             },
             items: {
-                "view_receivingorder": {name: "VIEW RECEIVEING ORDER", icon: "+"},
-                "create_receivingorder": {name: "CREATE RECEIVEING ORDER", icon: "img/icons/16/book.png"},
-                "edit_receivingorder": {name: "EDIT RECEIVEING ORDER", icon: "context-menu-icon-add"},
-                "delete_receivingorder": {name: "DELETE RECEIVEING ORDER", icon: ""},
+                "view_receivingorder": {name: "VIEW ORDER", icon: "+"},
+                "create_receivingorder": {name: "CREATE ORDER", icon: "img/icons/16/book.png"},
+                "edit_receivingorder": {name: "EDIT ORDER", icon: "context-menu-icon-add"},
+                "delete_receivingorder": {name: "DELETE ORDER", icon: ""},
                 "sep1": "---------",
                 "create_note": {name: "CREATE NOTE", icon: ""},
                 "create_invoice": {name: "CREATE INVOICE", icon: ""},
