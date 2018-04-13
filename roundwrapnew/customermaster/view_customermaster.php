@@ -217,8 +217,6 @@ if (isset($_POST["deleteItem"])) {
                     <input type="hidden" value="customerid" value="<?php echo $customerid ?>"/>
                     <input style="background-color: #2f96b4" type="button" id="btnCmpPrev3" value="PREVIOUS" class="btn btn-info" href="#tab1"></td>
                     <input style="background-color: #2f96b4" type="button" id="btnCmpNext4" value="NEXT" class="btn btn-info" href="#tab5">
-
-
                 </fieldset>
             </div>
             <div id="tab5" class="tab-pane">
@@ -226,12 +224,19 @@ if (isset($_POST["deleteItem"])) {
                     <div style="height:  230px;overflow: auto;background: white;width: 100%;float: right">
                         <table  style="width: 100%;vertical-align: top" border="0">
                             <tr style="height: 30px;background-color: rgb(240,240,240);">
+                                <th style="width: 100px;">&nbsp;DATE</th>
                                 <th>&nbsp;LAST NOTES</th>
                             </tr>
                             <?php
                             foreach ($arrcustomernote as $key => $value) {
                                 ?>
                                 <tr style="border-bottom: solid 1px rgb(220,220,220);">
+                                    <td>&nbsp;
+                                        <?php
+                                        $explod = explode(" ", $value["adddate"]);
+                                        echo $explod[0];
+                                        ?>
+                                    </td>
                                     <td><p style="padding: 3px;text-align: justify"><?php echo $value["note"] ?></p></td>
                                 </tr>
                                 <?php
@@ -239,12 +244,11 @@ if (isset($_POST["deleteItem"])) {
                             ?>
                         </table>
                     </div>
-                    <hr/>
-                    <input style="background-color: #2f96b4" type="button" id="btnCmpPrev4" value="PREVIOUS" class="btn btn-info" href="#tab1">
-                    <a href="index.php?pagename=manage_customermaster" class="btn btn-danger">CANCEL</a>
                 </fieldset>
+                <hr/>
+                <input style="background-color: #2f96b4" type="button" id="btnCmpPrev4" value="PREVIOUS" class="btn btn-info" href="#tab1">
+                <a href="index.php?pagename=manage_customermaster" class="btn btn-danger">CANCEL</a>
             </div>
-            <hr/>
         </div>  
     </div>
 </div>
@@ -257,12 +261,12 @@ if (isset($_POST["deleteItem"])) {
             type: 'POST',
             url: 'customermaster/customermaster_ajax.php',
             data: dataString
-        }).done(function (data) {
-        }).fail(function () {
+        }).done(function(data) {
+        }).fail(function() {
         });
     }
 
-    $('#btnCmpNext1').on('click', function () {
+    $('#btnCmpNext1').on('click', function() {
         $('#ciTab1').removeClass('active');
         $('#acTab2').addClass('active');
 
@@ -270,14 +274,14 @@ if (isset($_POST["deleteItem"])) {
         $('#tab2').addClass('active');
     });
 
-    $('#btnCmpPrev1').on('click', function () {
+    $('#btnCmpPrev1').on('click', function() {
         $('#acTab2').removeClass('active');
         $('#ciTab1').addClass('active');
         $('#tab2').removeClass('active');
         $('#tab1').addClass('active');
 
     });
-    $('#btnCmpNext2').on('click', function () {
+    $('#btnCmpNext2').on('click', function() {
         $('#acTab2').removeClass('active');
         $('#tdTab3').addClass('active');
         $('#tab2').removeClass('active');
@@ -285,32 +289,32 @@ if (isset($_POST["deleteItem"])) {
     });
 
 
-    $('#btnCmpPrev2').on('click', function () {
+    $('#btnCmpPrev2').on('click', function() {
         $('#tdTab3').removeClass('active');
         $('#acTab2').addClass('active');
         $('#tab3').removeClass('active');
         $('#tab2').addClass('active');
     });
-    $('#btnCmpNext3').on('click', function () {
+    $('#btnCmpNext3').on('click', function() {
         $('#tdTab3').removeClass('active');
         $('#dpiTab4').addClass('active');
         $('#tab3').removeClass('active');
         $('#tab4').addClass('active');
     });
-    $('#btnCmpPrev3').on('click', function () {
+    $('#btnCmpPrev3').on('click', function() {
         $('#dpiTab4').removeClass('active');
         $('#tdTab3').addClass('active');
         $('#tab4').removeClass('active');
         $('#tab3').addClass('active');
     });
 
-    $('#btnCmpNext4').on('click', function () {
+    $('#btnCmpNext4').on('click', function() {
         $('#dpiTab4').removeClass('active');
         $('#noteTab5').addClass('active');
         $('#tab4').removeClass('active');
         $('#tab5').addClass('active');
     });
-    $('#btnCmpPrev4').on('click', function () {
+    $('#btnCmpPrev4').on('click', function() {
         $('#noteTab5').removeClass('active');
         $('#dpiTab4').addClass('active');
         $('#tab5').removeClass('active');

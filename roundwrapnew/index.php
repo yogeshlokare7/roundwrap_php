@@ -3,6 +3,7 @@ error_reporting(0);
 session_start();
 ob_start();
 include './MysqlConnection.php';
+include './ApplicationUtil.php';
 $pagename = $_GET["pagename"];
 $explode = explode("_", $pagename);
 $include = "";
@@ -41,12 +42,16 @@ if ($_SESSION["user"] == "") {
         <link rel="stylesheet" href="css/bootstrap-responsive.min.css" />
         <link rel="stylesheet" href="css/uniform.css" />
         <link rel="stylesheet" href="css/loder.css" />
+        <!--<link rel="stylesheet" href="css/font-awesome.min.css" />-->
+        
+        
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
         <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
         <script src="js/jquery.min.js"></script> 
         <script src="js/maruti.js"></script> 
         <script src="js/jquery.mask.js"></script> 
-        <script src="js/jquery.filtertable.min.js"></script> 
+        <!--<script src="js/jquery.filtertable.min.js"></script>--> 
+        <!--<script src="js/sorttable.js"></script>--> 
 
         <script>
             $(function() {

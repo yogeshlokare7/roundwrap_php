@@ -1,4 +1,17 @@
-<?php $listofsupplier = MysqlConnection::fetchAll("supplier_master"); ?>
+<?php
+$listofsupplier = MysqlConnection::fetchAll("supplier_master");
+
+$supplierid = filter_input(INPUT_GET, "supplierid");
+if (isset($supplierid) && $supplierid != "") {
+    $supplierd = MysqlConnection::fetchCustom("SELECT status FROM supplier_master WHERE supp_id = $supplierid");
+    if ($supplierd[0]["status"] == "Y") {
+        MysqlConnection::delete("UPDATE supplier_master SET status = 'N' WHERE supp_id = $supplierid ");
+    } else {
+        MysqlConnection::delete("UPDATE supplier_master SET status = 'Y' WHERE supp_id = $supplierid ");
+    }
+    header("location:index.php?pagename=manage_suppliermaster");
+}
+?>
 <style>
     .customtable{
         width: 100%;
@@ -27,9 +40,9 @@
 <script src="js/jquery.min_1.11.3.js"></script>
 <script src="js/jquery.contextMenu.js" type="text/javascript"></script>
 <script>
-    $("#liveTableSearch").on("keyup", function () {
+    $("#liveTableSearch").on("keyup", function() {
         var value = $(this).val();
-        $("table tr").each(function (index) {
+        $("table tr").each(function(index) {
             if (index !== 0) {
                 $row = $(this);
                 var id = $row.find("td:first").text();
@@ -65,7 +78,7 @@
 
     <div class="widget-box">
         <table class="customtable" border="1">
-            <tr style="height: 30px;background-color: rgb(240,240,240);">
+            <tr style="height: 30px;background-color: rgb(240,240,240);cursor: pointer">
                 <th style="width: 25px;">#</th>
                 <th style="width: 250px">Company Name</th>
                 <th style="width: 390px">Address</th>
@@ -82,8 +95,13 @@
                 <?php
                 $index = 1;
                 foreach ($listofsupplier as $key => $value) {
+                    if ($value["status"] == "N") {
+                        $back = $inavtivecolor;
+                    } else {
+                        $back = "";
+                    }
                     ?>
-                    <tr id="<?php echo $value["supp_id"] ?>" style="border-bottom: solid 1px rgb(220,220,220);text-align: left;height: 30px;"  class="context-menu-one">
+                    <tr id="<?php echo $value["supp_id"] ?>" style="<?php echo $back ?>;border-bottom: solid 1px rgb(220,220,220);text-align: left;height: 30px;"  class="context-menu-one">
                         <td style="width: 25px;;text-align: center">&nbsp;<?php echo $index++ ?></td>
                         <td style="width: 250px">&nbsp;&nbsp;<?php echo $value["companyname"] ?></td>
                         <td style="width: 390px">&nbsp;&nbsp;<?php echo $value["address"] ?></td>
@@ -126,14 +144,14 @@
 </div>
 
 <script>
-    $("#deleteThis").click(function () {
+    $("#deleteThis").click(function() {
         var dataString = "deleteId=" + $('#deleteId').val();
         $.ajax({
             type: 'POST',
             url: 'suppliermaster/suppliermaster_ajax.php',
             data: dataString
-        }).done(function (data) {
-        }).fail(function () {
+        }).done(function(data) {
+        }).fail(function() {
         });
         location.reload();
     });
@@ -141,23 +159,23 @@
     function setDeleteField(deleteId) {
         document.getElementById("deleteId").value = deleteId;
     }
-    $("#save").click(function () {
+    $("#save").click(function() {
         var json = convertFormToJSON("#basic_validate");
         $.ajax({
             type: 'POST',
             url: 'suppliermaster/save_supplierajax.php',
             data: json
-        }).done(function (data) {
-        }).fail(function () {
+        }).done(function(data) {
+        }).fail(function() {
         });
         location.reload();
     });
 </script>
 <script type="text/javascript">
-    $(function () {
+    $(function() {
         $.contextMenu({
             selector: '.context-menu-one',
-            callback: function (key, options) {
+            callback: function(key, options) {
                 var m = "clicked row: " + key;
                 var id = $(this).attr('id');
                 switch (key) {
@@ -176,27 +194,37 @@
                     case "create_perchase_order":
                         window.location = "index.php?pagename=create_perchaseorder&supplierid=" + id;
                         break;
+                    case "active_vendor":
+                        window.location = "index.php?pagename=manage_suppliermaster&supplierid=" + id;
+                        break;
+                    case "create_note":
+                        window.location = "index.php?pagename=note_suppliermaster&supplierid=" + id;
+                        break;
                     case "create_invoice":
                         window.location = "index.php?pagename=manage_invoice";
                         break;
                     case "quit":
                         window.location = "index.php?pagename=manage_dashboard";
                         break;
+
                     default:
                         window.location = "index.php?pagename=manage_suppliermaster";
                 }
                 //window.console && console.log(m) || alert(m+"    id:"+id); 
             },
             items: {
-                "view_vendor": {name: "VIEW VENDOR", icon: "view"},
-                "create_vendor": {name: "CREATE VENDOR", icon: "add"},
-                "edit_vendor": {name: "EDIT VENDOR", icon: "edit"},
-                "delete_vendor": {name: "DELETE VENDOR", icon: "delete"},
-                "create_perchase_order": {name: "CREATE PURCHASE ORDER", icon: "add"},
-                "create_invoice": {name: "CREATE INVOICE", icon: "add"},
+                "view_vendor": {name: "VIEW VENDOR", icon: ""},
+                "create_vendor": {name: "CREATE VENDOR", icon: ""},
+                "edit_vendor": {name: "EDIT VENDOR", icon: ""},
+                "delete_vendor": {name: "DELETE VENDOR", icon: ""},
+                "active_vendor": {name: "ACTIVE/IN ACTIVE VENDOR", icon: ""},
+                "sep0": "---------",
+                "create_note": {name: "CREATE NOTE", icon: ""},
+                "create_perchase_order": {name: "CREATE PURCHASE ORDER", icon: ""},
+                "create_invoice": {name: "CREATE INVOICE", icon: ""},
                 "sep1": "---------",
-                "quit": {name: "QUIT", icon: function () {
-                        return 'context-menu-icon context-menu-icon-quit';
+                "quit": {name: "QUIT", icon: function() {
+                        return '';
                     }}
             }
         });
@@ -205,9 +233,11 @@
         //            console.log('clicked', this);
         //       })    
     });
-    $('tr').dblclick(function () {
+    $('tr').dblclick(function() {
         var id = $(this).attr('id');
-        window.location = "index.php?pagename=view_suppliermaster&supplierid=" + id;
+        if (id !== undefined) {
+            window.location = "index.php?pagename=view_suppliermaster&supplierid=" + id;
+        }
     });
 </script>
 <script>

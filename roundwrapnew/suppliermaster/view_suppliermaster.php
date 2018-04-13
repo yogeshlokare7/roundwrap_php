@@ -5,6 +5,7 @@ $suppid = filter_input(INPUT_GET, "supplierid");
 $arrsupplier = MysqlConnection::fetchCustom("SELECT * FROM  `supplier_master` WHERE supp_id = $suppid ");
 $supplier = $arrsupplier[0];
 $suppliercontactarray = MysqlConnection::fetchCustom("SELECT * FROM  `supplier_contact` WHERE supp_id = $suppid ");
+$supplierrnote = MysqlConnection::fetchCustom("SELECT * FROM  `supplier_notes` WHERE supp_id = $suppid  ORDER BY ID DESC LIMIT 0,20");
 
 if (isset($_POST["deleteItem"])) {
     MysqlConnection::delete("DELETE FROM `supplier_master` WHERE supp_id = $suppid");
@@ -34,6 +35,7 @@ if (isset($_POST["deleteItem"])) {
             <ul class="nav nav-tabs">
                 <li id="siTab1" class="active"><a data-toggle="tab" href="#tab1">Vendor Information </a></li>
                 <li id="adTab2"><a data-toggle="tab" href="#tab2">Additional Contacts</a></li>
+                <li id="noteTab3"><a data-toggle="tab" href="#tab3">Notes & Comments</a></li>
             </ul>
         </div>
         <div class="widget-content tab-content">
@@ -112,7 +114,7 @@ if (isset($_POST["deleteItem"])) {
             </div>
             <div id="tab2" class="tab-pane ">
                 <fieldset class="well the-fieldset">
-                     <table id="addcontacts"  border="0" class="ctable"> 
+                    <table id="addcontacts"  border="0" class="ctable"> 
                         <tr style="height: 25px;background-color: rgb(220,220,220);font-family: verdana;text-align: center">
                             <td>Name</td>
                             <td>Email</td>
@@ -128,19 +130,50 @@ if (isset($_POST["deleteItem"])) {
                             </tr>
                         <?php } ?>
                     </table>
-
                     <hr/>
                     <input type="button" id="btnVenPrev1" value="PREVIOUS" class="btn btn-info" href="#tab1" style="background-color: #2f96b4">
                     <a href="index.php?pagename=manage_suppliermaster" class="btn btn-danger">CANCEL</a></fieldset>
-            </div></div></div>
+            </div>
+            <div id="tab3" class="tab-pane">
+                <fieldset class="well the-fieldset">
+                    <div style="height:  230px;overflow: auto;background: white;width: 100%;float: right">
+                        <table  style="width: 100%;vertical-align: top" border="0">
+                            <tr style="height: 30px;background-color: rgb(240,240,240);">
+                                <th style="width: 100px;">&nbsp;DATE</th>
+                                <th>&nbsp;LAST NOTES</th>
+                            </tr>
+                            <?php
+                            foreach ($supplierrnote as $key => $value) {
+                                ?>
+                                <tr style="border-bottom: solid 1px rgb(220,220,220);">
+                                    <td>&nbsp;
+                                        <?php
+                                        $explod = explode(" ", $value["adddate"]);
+                                        echo $explod[0];
+                                        ?>
+                                    </td>
+                                    <td><p style="padding: 3px;text-align: justify"><?php echo $value["note"] ?></p></td>
+                                </tr>
+                                <?php
+                            }
+                            ?>
+                        </table>
+                    </div>
+                </fieldset>
+                <hr/>
+                <input style="background-color: #2f96b4" type="button" id="btnCmpPrev4" value="PREVIOUS" class="btn btn-info" href="#tab1">
+                <a href="index.php?pagename=manage_suppliermaster" class="btn btn-danger">CANCEL</a>
+            </div>
+        </div>
+    </div>
     <script>
-        $('#btnVenNext1').on('click', function () {
+        $('#btnVenNext1').on('click', function() {
             $('#siTab1').removeClass('active');
             $('#adTab2').addClass('active');
             $('#tab1').removeClass('active');
             $('#tab2').addClass('active');
         });
-        $('#btnVenPrev1').on('click', function () {
+        $('#btnVenPrev1').on('click', function() {
             $('#adTab2').removeClass('active');
             $('#siTab1').addClass('active');
             $('#tab2').removeClass('active');

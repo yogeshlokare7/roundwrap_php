@@ -1,4 +1,17 @@
-<?php $listofcustomers = MysqlConnection::fetchAll("customer_master"); ?>
+<?php
+$listofcustomers = MysqlConnection::fetchAll("customer_master");
+
+$customerid = filter_input(INPUT_GET, "customerId");
+if (isset($customerid) && $customerid != "") {
+    $customerd = MysqlConnection::fetchCustom("SELECT status FROM customer_master WHERE id = $customerid");
+    if ($customerd[0]["status"] == "Y") {
+        MysqlConnection::delete("UPDATE customer_master SET status = 'N' WHERE id = $customerid ");
+    } else {
+        MysqlConnection::delete("UPDATE customer_master SET status = 'Y' WHERE id = $customerid ");
+    }
+    header("location:index.php?pagename=manage_customermaster");
+}
+?>
 <style>
     .customtable{
         width: 100%;
@@ -62,8 +75,13 @@
                 <?php
                 $index = 1;
                 foreach ($listofcustomers as $key => $value) {
+                    if ($value["status"] == "N") {
+                        $back = $inavtivecolor;
+                    } else {
+                        $back = "";
+                    }
                     ?>
-                    <tr id="<?php echo $value["id"] ?>" class="context-menu-one" style="border-bottom: solid 1px rgb(220,220,220);text-align: left;vertical-align: central">
+                    <tr id="<?php echo $value["id"] ?>" class="context-menu-one" style="<?php echo $back ?>;border-bottom: solid 1px rgb(220,220,220);text-align: left;vertical-align: central">
                         <td style="width: 25px;text-align: center"><?php echo $index++ ?></td>
                         <td style="width:250px">&nbsp;&nbsp;<?php echo $value["cust_companyname"] ?></td>
                         <td style="width:390px">
@@ -137,6 +155,9 @@
                     case "create_sales_order":
                         window.location = "index.php?pagename=create_salesorder&customerId=" + id;
                         break;
+                    case "active_customer":
+                        window.location = "index.php?pagename=manage_customermaster&customerId=" + id;
+                        break;
                     case "create_invoice":
                         window.location = "index.php?pagename=manage_invoice";
                         break;
@@ -153,6 +174,7 @@
                 "create_customer": {name: "CREATE CUSTOMER", icon: "img/icons/16/book.png"},
                 "edit_customer": {name: "EDIT CUSTOMER", icon: "context-menu-icon-add"},
                 "delete_customer": {name: "DELETE CUSTOMER", icon: ""},
+                "active_customer": {name: "ACTIVE/IN ACTIVE CUSTOMER", icon: ""},
                 "sep1": "---------",
                 "create_note": {name: "CREATE NOTE", icon: ""},
                 "create_sales_order": {name: "CREATE SALES ORDER", icon: ""},
@@ -167,7 +189,9 @@
 
     $('tr').dblclick(function() {
         var id = $(this).attr('id');
-        window.location = "index.php?pagename=view_customermaster&customerId=" + id;
+        if (id !== undefined) {
+            window.location = "index.php?pagename=view_customermaster&customerId=" + id;
+        }
     });
 
     function searchData() {

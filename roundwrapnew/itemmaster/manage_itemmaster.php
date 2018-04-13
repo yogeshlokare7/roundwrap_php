@@ -1,7 +1,5 @@
 <?php
 $listofitems = MysqlConnection::fetchAll("item_master");
-
-
 $itemid = filter_input(INPUT_GET, "itemId");
 if (isset($itemid) && $itemid != "") {
     $arritem = MysqlConnection::fetchCustom("SELECT status FROM `item_master` WHERE `item_id` = $itemid");
@@ -65,9 +63,9 @@ if (isset($itemid) && $itemid != "") {
         <table class="customtable" border="1">
             <tr style="height: 30px;background-color: rgb(240,240,240);">
                 <th style="width: 2.3%;text-align: center">#</th>
-                <th style="width: 360px;">Name</th>
+                <th style="width: 360px;" onclick="sortTable('data', 1)"><i class="fa fa-fw fa-sort"></i>Name</th>
                 <th style="width: 725px;">Item's Description</th>
-                <th style="width: 110px;">Type</th>
+                <th style="width: 110px;"  onclick="sortTable('data', 3)">Type</th>
                 <th style="width: 90px;">OnHand&nbsp;&nbsp;</th>
                 <th style="width: 90px;">OnSales&nbsp;&nbsp;</th>
                 <th >Price&nbsp;&nbsp;</th>
@@ -79,7 +77,7 @@ if (isset($itemid) && $itemid != "") {
                 $index = 1;
                 foreach ($listofitems as $key => $value) {
                     if ($value["status"] == "N") {
-                        $bg = "background-color: rgb(235,230,222)";
+                        $bg = $inavtivecolor;
                     } else {
                         $bg = "";
                     }
@@ -218,7 +216,9 @@ if (isset($itemid) && $itemid != "") {
 
     $('tr').dblclick(function() {
         var id = $(this).attr('id');
-        window.location = "index.php?pagename=view_itemmaster&itemId=" + id;
+        if (id !== undefined) {
+            window.location = "index.php?pagename=view_itemmaster&itemId=" + id;
+        }
     });
 </script>
 

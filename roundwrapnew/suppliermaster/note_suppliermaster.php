@@ -1,16 +1,16 @@
 <?php
-$customerid = filter_input(INPUT_GET, "customerId");
+$supplierid = filter_input(INPUT_GET, "supplierid");
 $flag = filter_input(INPUT_GET, "flag");
 
-$arrcustomer = MysqlConnection::fetchCustom("SELECT * FROM  `customer_master` WHERE id = $customerid ");
-$customer = $arrcustomer[0];
+$arrsupplier = MysqlConnection::fetchCustom("SELECT * FROM  `supplier_master` WHERE supp_id = $supplierid ");
+$supplier = $arrsupplier[0];
 
-$arrcustomernote = MysqlConnection::fetchCustom("SELECT * FROM  `customer_notes` WHERE cust_id = $customerid  ORDER BY ID DESC LIMIT 0,20");
+$arrsuppliernote = MysqlConnection::fetchCustom("SELECT * FROM  `supplier_notes` WHERE supp_id = $supplierid  ORDER BY ID DESC LIMIT 0,20");
 
 if (isset($_POST["btnSubmitFullForm"])) {
     unset($_POST["btnSubmitFullForm"]);
-    MysqlConnection::insert("customer_notes", $_POST);
-    header("location:index.php?pagename=note_customermaster&customerId=$customerid");
+    MysqlConnection::insert("supplier_notes", $_POST);
+    header("location:index.php?pagename=note_suppliermaster&supplierid=$supplierid");
 }
 ?>
 <style>
@@ -44,26 +44,26 @@ if (isset($_POST["btnSubmitFullForm"])) {
                         <table  style="width: 80%;vertical-align: top" border="0">
                             <tr>
                                 <td><label class="control-label">Salutation</label></td>
-                                <td><input type="text" value="<?php echo $customer["salutation"] ?>" readonly="">
+                                <td><input type="text" value="<?php echo $supplier["salutation"] ?>" readonly="">
                                 </td>
                                 <td><label class="control-label">First Name</label></td>
-                                <td><input type="text" readonly="" value="<?php echo $customer["firstname"] ?>" readonly="" /></td>
+                                <td><input type="text" readonly="" value="<?php echo $supplier["firstname"] ?>" readonly="" /></td>
                                 <td><label class="control-label">Last Name</label></td>
-                                <td><input type="text" readonly="" value="<?php echo $customer["lastname"] ?>" readonly=""/></td>
+                                <td><input type="text" readonly="" value="<?php echo $supplier["lastname"] ?>" readonly=""/></td>
                             </tr>
                             <tr>
                                 <td><label class="control-label">Company Name</label></td>
-                                <td><input type="text"  value="<?php echo $customer["cust_companyname"] ?>" readonly=""/></td>
+                                <td><input type="text"  value="<?php echo $supplier["companyname"] ?>" readonly=""/></td>
                                 <td><label class="control-label">Email</label></td>
-                                <td><input type="email" value="<?php echo $customer["cust_email"] ?>" readonly=""/></td>
+                                <td><input type="email" value="<?php echo $supplier["supp_email"] ?>" readonly=""/></td>
                                 <td><label class="control-label">Phone</label></td>
-                                <td><input type="text" value="<?php echo trim($customer["phno"]) ?>" readonly=""/></td>
+                                <td><input type="text" value="<?php echo trim($supplier["supp_phoneNo"]) ?>" readonly=""/></td>
                             </tr>
                             <tr style="vertical-align: middle">
                                 <td><label class="control-label">Note / Comment</label></td>
                                 <td >
                                     <textarea autofocus="" required="" name="note" style="height: 130px;line-height: 18px;overflow: auto"></textarea>
-                                    <input type="hidden" name="cust_id" id="cust_id" value="<?php echo $customerid ?>">
+                                    <input type="hidden" name="supp_id" id="supp_id" value="<?php echo $supplierid ?>">
                                 </td>
                                 <td colspan="4" style="vertical-align: top;width: 60%">
                                     <div style="height:  130px;overflow: auto;background: white;width: 100%;float: right">
@@ -73,7 +73,7 @@ if (isset($_POST["btnSubmitFullForm"])) {
                                                 <th>&nbsp;LAST NOTES</th>
                                             </tr>
                                             <?php
-                                            foreach ($arrcustomernote as $key => $value) {
+                                            foreach ($arrsuppliernote as $key => $value) {
                                                 ?>
                                                 <tr style="border-bottom: solid 1px rgb(220,220,220);">
                                                     <td>&nbsp;
@@ -95,7 +95,7 @@ if (isset($_POST["btnSubmitFullForm"])) {
                     </fieldset>
                 </div>
                 <hr/>
-                <a href="index.php?pagename=manage_customermaster" class="btn btn-danger">CANCEL</a>
+                <a href="index.php?pagename=manage_suppliermaster" class="btn btn-danger">CANCEL</a>
                 <button type="submit" id="btnSubmitFullForm" name="btnSubmitFullForm" class="btn btn-success">SUBMIT</button>
             </div>  
         </div>

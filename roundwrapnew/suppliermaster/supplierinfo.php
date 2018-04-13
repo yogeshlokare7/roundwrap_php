@@ -2,7 +2,7 @@
 $arrsalutations = MysqlConnection::fetchCustom("SELECT distinct(`salutation`) as salutation FROM `supplier_master`");
 ?>
 <script>
-    $(document).ready(function ($) {
+    $(document).ready(function($) {
         $("#supp_phoneNo").mask("(999) 999-9999");
         $("#supp_fax").mask("(999) 999-9999");
 
@@ -15,11 +15,11 @@ $arrsalutations = MysqlConnection::fetchCustom("SELECT distinct(`salutation`) as
             return false;
         }
     }
-    $(document).ready(function ($) {
+    $(document).ready(function($) {
         $("#creditcardno").mask("9999-9999-9999-9999");
     });
 </script>
-<!--<script>
+<script>
     function  fillDetailedAddress()
     {
         document.getElementById("address").value = "";
@@ -36,20 +36,17 @@ $arrsalutations = MysqlConnection::fetchCustom("SELECT distinct(`salutation`) as
         var postal_code = document.getElementById("postal_code").value;
         var supp_city = document.getElementById("supp_city").value;
         var supp_province = document.getElementById("supp_province").value;
-        var supp_city = document.getElementById("supp_city").value;
         var supp_country = document.getElementById("supp_country").value;
 
-        if (companyname !== "" && lastname !== "") {
-            document.getElementById("address").value = companyname + "\n"
-                    + salutation + "," firstname + " " + lastname + "\n"
-                    + supp_email + "," + supp_phoneNo
-                    + supp_streetNo + ", " + supp_streetName + ", " + postal_code + ", " + supp_province
-                    + supp_city + ", " + supp_country;
+        document.getElementById("address").value = companyname + "\n"
+                + salutation + " " + firstname + " " + lastname + "\n"
+                + supp_email + " " + supp_phoneNo + "\n"
+                + supp_streetNo + " " + supp_streetName + " " + postal_code + " " + supp_province + " "
+                + supp_city + supp_country;
 
-        }
     }
 
-</script>-->
+</script>
 <fieldset class="well the-fieldset">
     <table style="width: 100%; vertical-align: top" >
         <tr>
@@ -122,7 +119,7 @@ $arrsalutations = MysqlConnection::fetchCustom("SELECT distinct(`salutation`) as
             <td><label class="control-label">Postal Code</label></td>
             <td><input type="text" name="postal_code" id="postal_code" minlenght="2" maxlength="30"  value="<?php echo $supplier["postal_code"] ?>" ></td>
             <td><label class="control-label" style="float: left">Address</label></td>
-            <td><textarea style="height: 80px;;line-height: 20px;" name="address"   id="address" ><?php echo $supplier["address"] ?></textarea></td>
+            <td><textarea style="height: 80px;;line-height: 20px;" name="address" onfocus="fillDetailedAddress()"  id="address" ><?php echo $supplier["address"] ?></textarea></td>
         </tr>
 
     </table> 
