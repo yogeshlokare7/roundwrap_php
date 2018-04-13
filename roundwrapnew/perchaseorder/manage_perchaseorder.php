@@ -42,9 +42,9 @@ $listPerchaseOrders = MysqlConnection::fetchAll("purchase_order");
     </div>
     <div class="widget-box">
         <table class="customtable" border="1">
-            <tr style="height: 30px;background-color: rgb(240,240,240);">
+            <tr style="height: 30px;background-color: rgb(240,240,240);cursor: pointer;text-transform: uppercase">
                 <th style="width: 25px;">#</th>
-                <th style="width: 100px">PO ID</th>
+                <th style="width: 100px">PO NUM</th>
                 <th style="width: 450px">Supplier Name</th>
                 <th style="width: 100px">Total Items</th>
                 <th style="width: 100px">PO Status</th>
@@ -61,26 +61,27 @@ $listPerchaseOrders = MysqlConnection::fetchAll("purchase_order");
                 <?php
                 $index = 1;
                 foreach ($listPerchaseOrders as $key => $value) {
+                    $suppid = $value["id"];
+                    $supparray = MysqlConnection::fetchCustom("SELECT  `companyname`  FROM  `supplier_master` WHERE supp_id = ".$value["supplier_id"]);
+                    $userarray = MysqlConnection::fetchCustom("SELECT  `firstName`, `lastName`  FROM  `user_master` WHERE user_id = ".$value["added_by"]);
                     ?>
                     <tr id="'<?php echo $value["id"] ?>'" class="context-menu-one" onclick="setId('<?php echo $value["id"] ?>')" style="border-bottom: solid 1px rgb(220,220,220);text-align: left;vertical-align: central">
 
                         <td style="width: 25px;text-align: center"><?php echo $index++ ?></td>
                         <td style="width: 100px">&nbsp;&nbsp;<?php echo $value["purchaseOrderId"] ?></td>
-                        <td style="width: 450px">&nbsp;&nbsp;<?php echo $value["supplier_id"] ?></td>
+                        <td style="width: 450px">&nbsp;&nbsp;<?php echo $supparray[0]["companyname"] ?></td>
                         <td style="width: 100px">&nbsp;&nbsp;<?php echo $value["0"] ?></td>
                         <td style="width: 100px">&nbsp;&nbsp;<?php echo $value["label_value"] ?></td>
                         <td style="width: 150px">&nbsp;&nbsp;<?php echo $value["ship_via"] ?></td>
                         <td style="width: 100px; text-align: right">&nbsp;&nbsp;<?php echo $value["sub_total"] ?>&nbsp;&nbsp;</td>
                         <td style="width: 100px; text-align: right">&nbsp;&nbsp;<?php echo $value["totalTax"] ?>&nbsp;&nbsp;</td>
                         <td style="width: 100px; text-align: right">$&nbsp;&nbsp;<?php echo $value["total"] ?>&nbsp;&nbsp;</td>
-                        <td style=" width: 100px;text-align: right">&nbsp;&nbsp;<?php echo $value["expected_date"] ?>&nbsp;&nbsp;</td>
-                        <td >&nbsp;&nbsp;<?php echo $value["added_by"] ?></td>
+                        <td style=" width: 100px;text-align: center">&nbsp;&nbsp;<?php echo $value["expected_date"] ?>&nbsp;&nbsp;</td>
+                        <td >&nbsp;&nbsp;<?php echo implode(" ", $userarray[0]) ?></td>
                     </tr>
                     <?php
                 }
                 ?>
-
-
             </table>
             <input type="hidden" id="deleteId" name="cid" value="">
             <input type="hidden" id="flag" name="flag" value="">
@@ -162,6 +163,7 @@ $listPerchaseOrders = MysqlConnection::fetchAll("purchase_order");
                 "sep1": "---------",
                 "create_note": {name: "CREATE NOTE", icon: ""},
                 "create_invoice": {name: "CREATE INVOICE", icon: ""},
+                "create_note": {name: "CREATE RECEIVING ORDER", icon: ""},
                 "sep2": "---------",
                 "quit": {name: "QUIT", icon: function () {
                         return '';
