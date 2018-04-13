@@ -1,22 +1,10 @@
-<style>
-    table tbody {
-
-    }
-    table tr td{
-        padding: 5px;
-    }
-</style>
 <?php
-$purchaseid = filter_input(INPUT_GET, "poId");
-//print_r($purchaseid);
-
-//$arrcustomer = MysqlConnection::fetchCustom("SELECT * FROM  `purchase_order` WHERE id = $purchaseid ");
-//$customer = $arrcustomer[0];
-//alert($customer);
-
-$sqlgetsupplier = "SELECT * FROM supplier_master WHERE supp_id = " . filter_input(INPUT_GET, "supplierid");
+$sqlgetsupplier = "SELECT * FROM customer_master WHERE id = " . filter_input(INPUT_GET, "customerId");
 $resultset = MysqlConnection::fetchCustom($sqlgetsupplier);
-$supplier = $resultset[0];
+$customer = $resultset[0];
+$salesorderbumberarray = MysqlConnection::fetchCustom("SELECT count(id) as counter FROM sales_order");
+$sonumber = "SO100" . $salesorderbumberarray[0]["counter"];
+
 
 $sqlitemarray = MysqlConnection::fetchCustom("SELECT count(id) as counter FROM sales_order");
 $itemarray = MysqlConnection::fetchCustom("SELECT * FROM item_master;");
@@ -24,13 +12,13 @@ $itemarray = MysqlConnection::fetchCustom("SELECT * FROM item_master;");
 <div id="content-header">
     <div id="breadcrumb"> 
         <a class="tip-bottom"><i class="icon-home"></i>HOME</a>
-        <a class="tip-bottom"><i class="icon-home"></i>PURCHASE ORDER ENTRY</a>
+        <a class="tip-bottom"><i class="icon-home"></i>SALES ORDER ENTRY</a>
     </div>
 </div>
 <style>
     input,textarea,select,date{ width: 90%; }
     .control-label{ margin-left: 10px; }
-    tr,td{ vertical-align: middle; font-size: 12px;padding: 0px;margin: 0px;}
+    tr,td{ vertical-align: middle; font-size: 12px;padding: 5px;margin: 5px;}
 </style>
 <form action="#" method="post">
 
@@ -38,7 +26,7 @@ $itemarray = MysqlConnection::fetchCustom("SELECT * FROM item_master;");
         <div class="widget-box" style="width: 100%;border-bottom: solid 1px #CDCDCD;">
             <div class="widget-title">
                 <ul class="nav nav-tabs">
-                    <li class="active"><a data-toggle="tab" href="#tab1">VIEW PURCHASE ORDER</a></li>
+                    <li class="active"><a data-toggle="tab" href="#tab1">VIEW SALES ORDER</a></li>
                 </ul>
             </div>
             <br/>
@@ -48,20 +36,20 @@ $itemarray = MysqlConnection::fetchCustom("SELECT * FROM item_master;");
                         <fieldset  class="well the-fieldset">
                             <table>
                                 <tr>
-                                    <td style="width: 10%"><label class="control-label"   class="control-label">SUPPLIER NAME&nbsp;:&nbsp</label></td>
-                                    <td><input  type="text"  value="<?php echo $supplier["companyname"] ?>" readonly=""/></td>
+                                    <td style="width: 10%"><label class="control-label"   class="control-label">CUSTOMER NAME&nbsp;:&nbsp</label></td>
+                                    <td><input  type="text" placeholder="" value="<?php echo $customer["cust_companyname"] ?>" readonly=""/></td>
                                     <td style="width: 10%"><label class="control-label">SHIP VIA&nbsp;:&nbsp</label></td>
-                                    <td><input  type="text" placeholder="" readonly="" /></td>
+                                    <td><input  type="text" placeholder="" readonly=""/></td>
                                     <td style="width: 10%"><label class="control-label">EXPECTED&nbsp;DELIVERY&nbsp;:&nbsp</label></td>
-                                    <td><input type="text" value="12-02-2012"  data-date-format="mm-dd-yyyy"  readonly="" ></td>
+                                    <td><input type="text" value="12-02-2012"  data-date-format="mm-dd-yyyy" readonly="" ></td>
                                 </tr>
                                 <tr>
                                     <td ><label  class="control-label"  class="control-label">BILLING&nbsp;ADDRESS&nbsp;:&nbsp</label></td>
-                                    <td><textarea style="line-height: 18px;" readonly=""><?php echo $ownaddress ?></textarea></td>
-                                    <td><label class="control-label">SHIPPING&nbsp;ADDRESS&nbsp;:&nbsp</label></td>
-                                    <td><textarea style="line-height: 18px;" readonly=""><?php echo $ownaddress ?></textarea></td>
+                                    <td><textarea style="line-height: 18px;"readonly=""><?php echo $customer["billto"] ?></textarea></td>
+                                    <td><label class="control-label" readonly="">SHIPPING&nbsp;ADDRESS&nbsp;:&nbsp</label></td>
+                                    <td><textarea style="line-height: 18px;" readonly=""><?php echo $customer["shipto"] ?></textarea></td>
                                     <td ><label class="control-label">REMARK&nbsp;/&nbsp;NOTE&nbsp;:&nbsp</label></td>
-                                    <td><textarea  style="line-height: 18px;" readonly="" value="<?php echo $supplier["shipping_address"] ?>" ></textarea></td>
+                                    <td><textarea  style="line-height: 18px;" value="" readonly="" ></textarea></td>
                                 </tr>
                             </table>
                         </fieldset>
@@ -148,7 +136,7 @@ $itemarray = MysqlConnection::fetchCustom("SELECT * FROM item_master;");
 <script src="js/maruti.js"></script> 
 <script src="js/maruti.form_common.js"></script>
 <script>
-    $(document).ready(function () {
+    $(document).ready(function() {
         $('.table-fixed-header').prepFixedHeader().fixedHeader();
     });
 </script>
