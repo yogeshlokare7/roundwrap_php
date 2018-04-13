@@ -48,7 +48,7 @@ $listRecieveingOrders = MysqlConnection::fetchAll("supplier_packing_slip");
                 <th style="width:25px">#</th>
                 <th style="width: 100px">PO ID</th>
                 <th style="width: 900px">Supplier Name</th>
-                <th style="width: 100px">Purchase Item </th>
+                <th style="width: 100px">Purchase Items</th>
                 <th style="width: 100px">Received Items</th>
                 <th style="width: 100px">Pending Items</th>
                 <th >Packing Count</th>
@@ -60,13 +60,13 @@ $listRecieveingOrders = MysqlConnection::fetchAll("supplier_packing_slip");
                 $index = 1;
                 foreach ($listRecieveingOrders as $key => $value) {
                     ?>
-                    <tr class="gradeX">
+                    <tr id="'<?php echo $value["id"] ?>'" class="context-menu-one" onclick="setId('<?php echo $value["id"] ?>')" style="border-bottom: solid 1px rgb(220,220,220);text-align: left;vertical-align: central">
                         <td style="width: 25px;text-align: center"><?php echo $index++ ?></td>
-                        <td style="width: 100px"><?php echo $value["sPOId"] ?></td>
-                        <td style="width: 900px"><?php echo $value["supplierId"] ?></td>
-                        <td style="width: 100px"></td>
-                        <td style="width: 100px"></td>
-                        <td style="width: 100px"></td>
+                        <td style="width: 100px">&nbsp;&nbsp;<?php echo $value["sPOId"] ?></td>
+                        <td style="width: 900px">&nbsp;&nbsp;<?php echo $value["supplierId"] ?></td>
+                        <td style="width: 100px">&nbsp;&nbsp;</td>
+                        <td style="width: 100px">&nbsp;&nbsp;</td>
+                        <td style="width: 100px">&nbsp;&nbsp;</td>
                         <td ></td>
 
                     </tr>
@@ -105,4 +105,66 @@ $listRecieveingOrders = MysqlConnection::fetchAll("supplier_packing_slip");
     function setDeleteField(deleteId) {
         document.getElementById("deleteId").value = deleteId;
     }
+    
+     function setId(val) {
+        document.getElementById("rightClikId").value = val;
+    }
+</script>
+
+<script>
+    $(function () {
+        $.contextMenu({
+            selector: '.context-menu-one',
+            callback: function (key, options) {
+                var m = "clicked row: " + key;
+                var id = $(this).attr('id');
+                switch (key) {
+                    case "view_purchaseorder":
+                        window.location = "index.php?pagename=view_receivingorder&=" + id;
+                        break;
+                    case "create_purchaseorder":
+                        window.location = "index.php?pagename=create_receivingorder";
+                        break;
+                    case "create_note":
+                        window.location = "index.php?pagename=note_receivingorder&=" + id;
+                        break;
+                    case "edit_purchaseorder":
+                        window.location = "index.php?pagename=create_receivingorder&=" + id;
+                        break;
+                    case "delete_purchaseorder":
+                        window.location = "index.php?pagename=view_receivingorder&=" + id + "&flag=yes";
+                        break;
+
+                    case "create_invoice":
+                        window.location = "index.php?pagename=manage_invoice";
+                        break;
+                    case "quit":
+                        window.location = "index.php?pagename=manage_dashboard";
+                        break;
+                    default:
+                        window.location = "index.php?pagename=manage_receivingorder";
+                }
+                //window.console && console.log(m) || alert(m+"    id:"+id); 
+            },
+            items: {
+                "view_receivingorder": {name: "VIEW RECEIVEING ORDER", icon: "+"},
+                "create_receivingorder": {name: "CREATE RECEIVEING ORDER", icon: "img/icons/16/book.png"},
+                "edit_receivingorder": {name: "EDIT RECEIVEING ORDER", icon: "context-menu-icon-add"},
+                "delete_receivingorder": {name: "DELETE RECEIVEING ORDER", icon: ""},
+                "sep1": "---------",
+                "create_note": {name: "CREATE NOTE", icon: ""},
+                "create_invoice": {name: "CREATE INVOICE", icon: ""},
+                "sep2": "---------",
+                "quit": {name: "QUIT", icon: function () {
+                        return '';
+                    }}
+            }
+        });
+    });
+
+    $('tr').dblclick(function () {
+        var id = $(this).attr('id');
+        window.location = "index.php?pagename=view_receivingorder";
+    });
+
 </script>

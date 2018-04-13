@@ -120,10 +120,10 @@ $listPerchaseOrders = MysqlConnection::fetchAll("purchase_order");
 
 </script>
 <script>
-    $(function() {
+    $(function () {
         $.contextMenu({
             selector: '.context-menu-one',
-            callback: function(key, options) {
+            callback: function (key, options) {
                 var m = "clicked row: " + key;
                 var id = $(this).attr('id');
                 switch (key) {
@@ -142,7 +142,7 @@ $listPerchaseOrders = MysqlConnection::fetchAll("purchase_order");
                     case "delete_purchaseorder":
                         window.location = "index.php?pagename=view_purchaseorder&=" + id + "&flag=yes";
                         break;
-                   
+
                     case "create_invoice":
                         window.location = "index.php?pagename=manage_invoice";
                         break;
@@ -161,17 +161,16 @@ $listPerchaseOrders = MysqlConnection::fetchAll("purchase_order");
                 "delete_purchaseorder": {name: "DELETE PURCHASE ORDER", icon: ""},
                 "sep1": "---------",
                 "create_note": {name: "CREATE NOTE", icon: ""},
-                
                 "create_invoice": {name: "CREATE INVOICE", icon: ""},
                 "sep2": "---------",
-                "quit": {name: "QUIT", icon: function() {
+                "quit": {name: "QUIT", icon: function () {
                         return '';
                     }}
             }
         });
     });
 
-    $('tr').dblclick(function() {
+    $('tr').dblclick(function () {
         var id = $(this).attr('id');
         window.location = "index.php?pagename=view_purchaseorder";
     });
