@@ -4,7 +4,7 @@ session_start();
 ob_start();
 include './MysqlConnection.php';
 include './ApplicationUtil.php';
-$pagename = $_GET["pagename"];
+$pagename = filter_input(INPUT_GET, "pagename");
 $explode = explode("_", $pagename);
 $include = "";
 $module = "";
@@ -22,6 +22,14 @@ if (count($explode) >= 2) {
 if ($_SESSION["user"] == "") {
     header("location:logout.php");
 }
+$ownaddress = 
+        $_SESSION["user"]["cmpName"] . ", " .
+        $_SESSION["user"]["streetNo"] . " " .
+        $_SESSION["user"]["streetName"] . " " .
+        $_SESSION["user"]["postalCode"] . ", " .
+        $_SESSION["user"]["province"] . " " .
+        $_SESSION["user"]["city"] . " " .
+        $_SESSION["user"]["country"] . " ";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -42,17 +50,11 @@ if ($_SESSION["user"] == "") {
         <link rel="stylesheet" href="css/bootstrap-responsive.min.css" />
         <link rel="stylesheet" href="css/uniform.css" />
         <link rel="stylesheet" href="css/loder.css" />
-        <!--<link rel="stylesheet" href="css/font-awesome.min.css" />-->
-        
-        
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
         <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
         <script src="js/jquery.min.js"></script> 
         <script src="js/maruti.js"></script> 
         <script src="js/jquery.mask.js"></script> 
-        <!--<script src="js/jquery.filtertable.min.js"></script>--> 
-        <!--<script src="js/sorttable.js"></script>--> 
-
         <script>
             $(function() {
                 setTimeout(function() {

@@ -6,7 +6,7 @@
 /* Main */
 body {
     overflow-x: hidden;
-    overflow: hidden;
+    /*overflow: hidden;*/
     margin-top: -10px;
     font-size: 11px;
 }

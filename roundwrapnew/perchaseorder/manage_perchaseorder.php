@@ -33,13 +33,6 @@ $listPerchaseOrders = MysqlConnection::fetchAll("purchase_order");
     <div class="cutomheader">
         <h5 style="font-family: verdana;font-size: 12px;">LIST PURCHASE ORDER'S</h5>
     </div>
-    <div class="cutomheader">
-        <table class="customtable" style="border: 0px;">
-            <tr>
-                <td style="width: 25%"><a class="btn" href="index.php?pagename=create_perchaseorder" ><i class="icon-inbox"></i>&nbsp;Create&nbsp;Purchase&nbsp;Order</a></td>
-            </tr>
-        </table>
-    </div>
     <div class="widget-box">
         <table class="customtable" border="1">
             <tr style="height: 30px;background-color: rgb(240,240,240);cursor: pointer;text-transform: uppercase">
