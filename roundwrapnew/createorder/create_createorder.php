@@ -100,9 +100,9 @@
             </form>
         </div>
     </div>
-    <div class="modal-footer"> 
+    <div class="modal-footer "> 
         <a id="save" class="btn btn-primary">Save</a> 
-        <a data-dismiss="modal" class="btn" href="#">Cancel</a> 
+        <a href="index.php?pagename=manage_createorder" id="btnSubmitFullForm" class="btn btn-info">CANCEL</a>
     </div>
 </div>
 <script src="js/jquery.min.js"></script> 

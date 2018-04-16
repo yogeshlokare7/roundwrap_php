@@ -62,7 +62,6 @@ $itemarray = MysqlConnection::fetchCustom("SELECT * FROM item_master;");
                 </tr>
                 <tr>
                     <td>
-
                         <div style="width: 70%;float: left">
                             <table class="table-bordered" style="width: 100%;border-collapse: collapse" border="1">
                                 <tr style="border-bottom: solid 1px  #CDCDCD;background-color: rgb(250,250,250)">
@@ -120,17 +119,16 @@ $itemarray = MysqlConnection::fetchCustom("SELECT * FROM item_master;");
                                     <td><b>Net Total</b></td>
                                     <td><input type="text" readonly=""></td>
                                 </tr>
-
                             </table>
                         </div>
-
-
                     </td>
                 </tr>
             </table>
-            <hr/>
-
         </div>
+    </div>
+    <div class="modal-footer "> 
+        <a id="save" class="btn btn-primary">Save</a> 
+        <a href="index.php?pagename=manage_perchaseorder" id="btnSubmitFullForm" class="btn btn-info">CANCEL</a>
     </div>
 </form>
 <script src="js/jquery.min.js"></script> 

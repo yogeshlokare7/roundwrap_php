@@ -21,7 +21,6 @@ $itemarray = MysqlConnection::fetchCustom("SELECT * FROM item_master;");
     tr,td{ vertical-align: middle; font-size: 12px;padding: 5px;margin: 5px;}
 </style>
 <form action="#" method="post">
-
     <div class="container-fluid" style="" >
         <div class="widget-box" style="width: 100%;border-bottom: solid 1px #CDCDCD;">
             <div class="widget-title">
@@ -37,7 +36,7 @@ $itemarray = MysqlConnection::fetchCustom("SELECT * FROM item_master;");
                             <table>
                                 <tr>
                                     <td style="width: 10%"><label class="control-label"   class="control-label">CUSTOMER NAME&nbsp;:&nbsp</label></td>
-                                    <td><input  type="text" placeholder="Supplier Name" value="<?php echo $customer["cust_companyname"] ?>" /></td>
+                                    <td><input  type="text" placeholder="Customer Name" value="<?php echo $customer["cust_companyname"] ?>" /></td>
                                     <td style="width: 10%"><label class="control-label">SHIP VIA&nbsp;:&nbsp</label></td>
                                     <td><input  type="text" placeholder="" /></td>
                                     <td style="width: 10%"><label class="control-label">EXPECTED&nbsp;DELIVERY&nbsp;:&nbsp</label></td>
@@ -57,7 +56,6 @@ $itemarray = MysqlConnection::fetchCustom("SELECT * FROM item_master;");
                 </tr>
                 <tr>
                     <td>
-
                         <div style="width: 70%;float: left">
                             <table class="table-bordered" style="width: 100%;border-collapse: collapse" border="1">
                                 <tr style="border-bottom: solid 1px  #CDCDCD;background-color: rgb(250,250,250)">
@@ -88,7 +86,6 @@ $itemarray = MysqlConnection::fetchCustom("SELECT * FROM item_master;");
                                 </table>
                             </div>
                         </div>
-
                         <div style="width: 28%;float: right">
                             <table class="table-bordered" style="width: 100%;border-collapse: collapse;background-color: white" border="1">
                                 <tr >
@@ -118,14 +115,16 @@ $itemarray = MysqlConnection::fetchCustom("SELECT * FROM item_master;");
 
                             </table>
                         </div>
-
-
                     </td>
                 </tr>
             </table>
             <hr/>
 
         </div>
+    </div>
+    <div class="modal-footer "> 
+        <a id="save" class="btn btn-primary">Save</a> 
+        <a href="index.php?pagename=manage_salesorder" id="btnSubmitFullForm" class="btn btn-info">CANCEL</a>
     </div>
 </form>
 <script src="js/jquery.min.js"></script> 
@@ -136,7 +135,7 @@ $itemarray = MysqlConnection::fetchCustom("SELECT * FROM item_master;");
 <script src="js/maruti.js"></script> 
 <script src="js/maruti.form_common.js"></script>
 <script>
-    $(document).ready(function() {
+    $(document).ready(function () {
         $('.table-fixed-header').prepFixedHeader().fixedHeader();
     });
 </script>
