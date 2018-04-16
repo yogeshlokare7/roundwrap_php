@@ -119,19 +119,19 @@ $listRecieveingOrders = MysqlConnection::fetchAll("supplier_packing_slip");
                 var m = "clicked row: " + key;
                 var id = $(this).attr('id');
                 switch (key) {
-                    case "view_purchaseorder":
+                    case "view_receivingorder":
                         window.location = "index.php?pagename=view_receivingorder&&supplier=" + id;
                         break;
-                    case "create_purchaseorder":
+                    case "create_receivingorder":
                         window.location = "index.php?pagename=create_receivingorder";
                         break;
                     case "create_note":
                         window.location = "index.php?pagename=note_receivingorder&=" + id;
                         break;
-                    case "edit_purchaseorder":
+                    case "edit_receivingorder":
                         window.location = "index.php?pagename=create_receivingorder&=" + id;
                         break;
-                    case "delete_purchaseorder":
+                    case "delete_receivingorder":
                         window.location = "index.php?pagename=view_receivingorder&=" + id + "&flag=yes";
                         break;
 
