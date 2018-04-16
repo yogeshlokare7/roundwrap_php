@@ -122,7 +122,7 @@ $listPerchaseOrders = MysqlConnection::fetchAll("purchase_order");
                 var id = $(this).attr('id');
                 switch (key) {
                     case "view_purchaseorder":
-                        window.location = "index.php?pagename=view_perchaseorder&poId=" + id;
+                        window.location = "index.php?pagename=view_perchaseorder&supplier=" + id;
                         break;
                     case "create_purchaseorder":
                         window.location = "index.php?pagename=create_perchaseorder";
@@ -167,7 +167,7 @@ $listPerchaseOrders = MysqlConnection::fetchAll("purchase_order");
 
     $('tr').dblclick(function () {
         var id = $(this).attr('id');
-        window.location = "index.php?pagename=view_purchaseorder";
+        window.location = "index.php?pagename=view_perchaseorder&supplier=" + id;
     });
 
 </script>
