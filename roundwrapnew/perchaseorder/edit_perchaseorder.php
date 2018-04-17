@@ -133,7 +133,7 @@ $buildauto = buildauto($itemarray);
                                 </tr>
                                 <tr >
                                     <td><b>Purchase Date</b></td>
-                                    <td><input type="text" value="<?php echo $podetails["purchaseOrderId"] ?>" readonly=""></td>
+                                    <td><input type="date" value="<?php echo $podetails["purchaseOrderId"] ?>" readonly=""></td>
                                 </tr>
                                 <tr >
                                     <td><b>Enter By</b></td>
@@ -141,15 +141,15 @@ $buildauto = buildauto($itemarray);
                                 </tr>
                                 <tr >
                                     <td><b>Total</b></td>
-                                    <td><input type="text" id="finaltotal" value="<?php echo $podetails["sub_total"] ?>" name="finaltotal" readonly=""></td>
+                                    <td><input type="text" id="finaltotal" onkeypress="return chkNumericKey(event)" value="<?php echo $podetails["sub_total"] ?>" name="finaltotal" readonly=""></td>
                                 </tr>
                                 <tr >
                                     <td><b>Discount</b></td>
-                                    <td><input type="text" id="discount" value="<?php echo $podetails["discount"] ?>" name="discount" onfocusout="discount()"  name="discount" ></td>
+                                    <td><input type="text" id="discount"  onkeypress="return chkNumericKey(event)" value="<?php echo $podetails["discount"] ?>" name="discount" onfocusout="discount()"  name="discount" ></td>
                                 </tr>
                                 <tr >
                                     <td><b>Net Total</b></td>
-                                    <td><input type="text" id="nettotal" value="<?php echo $podetails["total"] ?>" name="nettotal" name="nettotal" readonly=""></td>
+                                    <td><input type="text" id="nettotal" onkeypress="return chkNumericKey(event)" value="<?php echo $podetails["total"] ?>" name="nettotal" name="nettotal" readonly=""></td>
                                 </tr>
                             </table>
                         </div>

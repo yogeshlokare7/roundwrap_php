@@ -116,7 +116,7 @@ $ponumber = MysqlConnection::fetchCustom("SELECT id FROM purchase_order ORDER BY
                                 </tr>
                                 <tr >
                                     <td><b>Purchase Date</b></td>
-                                    <td><input type="text" name="purchasedate" value="<?php echo date("Y-m-d") ?>" readonly=""></td>
+                                    <td><input type="date" name="purchasedate" value="<?php echo date("Y-m-d") ?>" readonly=""></td>
                                 </tr>
                                 <tr >
                                     <td><b>Enter By</b></td>
@@ -214,14 +214,7 @@ $ponumber = MysqlConnection::fetchCustom("SELECT id FROM purchase_order ORDER BY
                 x[0].submit();
             }
 
-            function chkNumericKey(event) {
-                var charCode = (event.which) ? event.which : event.keyCode;
-                if ((charCode >= 48 && charCode <= 57) || charCode == 46 || charCode == 45) {
-                    return true;
-                } else {
-                    return false;
-                }
-            }
+         
 </script>
 
 <?php
