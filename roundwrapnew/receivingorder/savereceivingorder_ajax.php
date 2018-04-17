@@ -12,6 +12,11 @@ for ($index = 0; $index < count($poitemid); $index++) {
         $sqlold = MysqlConnection::fetchCustom("SELECT rqty FROM  `purchase_item` where  item_id = $itemid AND po_id = $purchaseorderid ");
         $rqty = $sqlold[0]["rqty"] + $received;
         MysqlConnection::delete("UPDATE purchase_item SET rqty = $rqty  where  item_id = $itemid AND po_id = $purchaseorderid  ");
+
+
+        $originalitem = MysqlConnection::fetchCustom("SELECT onhand FROM `item_master` where  item_id = $itemid ");
+        $onhand = $originalitem[0]["onhand"] + $received;
+        MysqlConnection::delete("UPDATE item_master SET onhand = $onhand  where  item_id = $itemid ");
     }
 }
 

@@ -11,7 +11,7 @@ $purchaseid = filter_input(INPUT_GET, "purchaseorderid");
 $result = MysqlConnection::fetchCustom(""
         . "SELECT * , pi.id as poitemid , (SELECT companyname FROM supplier_master WHERE supp_id = po.`supplier_id` ) "
         . "AS companyname FROM purchase_order po, purchase_item pi "
-        . "WHERE po.id = pi.po_id AND pi.po_id =$purchaseid ORDER BY ");
+        . "WHERE po.id = pi.po_id AND pi.po_id =$purchaseid ");
 $podetails = $result[0];
 ?>
 

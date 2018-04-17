@@ -1,5 +1,5 @@
 <?php
-$listRecieveingOrders = MysqlConnection::fetchAll("supplier_packing_slip");
+$listPerchaseOrders = MysqlConnection::fetchCustom("SELECT *  FROM  `purchase_order` WHERE `purchase_order`.`isOpen` = 'N' ORDER BY  `id` DESC ");
 ?>
 <style>
     .customtable{
@@ -30,46 +30,71 @@ $listRecieveingOrders = MysqlConnection::fetchAll("supplier_packing_slip");
 <script src="js/jquery.contextMenu.js" type="text/javascript"></script>
 
 <div class="container-fluid">
-
     <div class="cutomheader">
-        <h5 style="font-family: verdana;font-size: 12px;">LIST RECEIVING ORDER'S</h5>
+        <h5 style="font-family: verdana;font-size: 12px;">LIST PURCHASE ORDER'S</h5>
     </div>
-    <div class="cutomheader">
-        <table class="customtable" style="border: 0px;">
-            <tr>
-                <td style="width: 25%"><a class="btn" href="index.php?pagename=create_receivingorder" ><i class="icon-magnet"></i>&nbsp;Create&nbsp;Receiving&nbsp;Order</a></td>
-            </tr>
-        </table>
-    </div>
-
     <div class="widget-box">
         <table class="customtable" border="1">
-            <tr style="height: 30px;background-color: rgb(240,240,240);">
-                <th style="width:25px">#</th>
-                <th style="width: 100px">PO ID</th>
-                <th style="width: 900px">Supplier Name</th>
-                <th style="width: 100px">Purchase Items</th>
-                <th style="width: 100px">Received Items</th>
-                <th style="width: 100px">Pending Items</th>
-                <th >Packing Count</th>
+            <tr style="height: 30px;background-color: rgb(240,240,240);cursor: pointer;text-transform: uppercase">
+                <th style="width: 25px;">#</th>
+                <th style="width: 100px">PO NUM</th>
+                <th style="width: 450px">Supplier Name</th>
+                <th style="width: 100px">Total Items</th>
+                <th style="width: 100px">PO Status</th>
+                <th style="width: 150px">Ship Via</th>
+                <th style="width: 100px">Gross Amt</th>
+                <th style="width: 100px">Discount</th>
+                <th style="width: 100px">Net Amt</th>
+                <th style="width: 130px">Delivery Date</th>
+                <th >Entered By</th>
             </tr>
         </table>
         <div style="height: 310px;overflow: auto;overflow-x: auto">
             <table class="customtable" id="data"  style="margin-top: -1px;"  border="1">
                 <?php
                 $index = 1;
-                foreach ($listRecieveingOrders as $key => $value) {
+                foreach ($listPerchaseOrders as $key => $value) {
+                    $suppid = $value["id"];
+                    $supparray = MysqlConnection::fetchCustom("SELECT  `companyname`  FROM  `supplier_master` WHERE supp_id = " . $value["supplier_id"]);
+                    $userarray = MysqlConnection::fetchCustom("SELECT  `firstName`, `lastName`  FROM  `user_master` WHERE user_id = " . $value["added_by"]);
+                    $items = MysqlConnection::fetchCustom("SELECT count(id) as counter FROM `purchase_item` WHERE `po_id` = $suppid");
+                    $isOpen = $value["isOpen"] == "Y" ? "Open" : "Close";
+                    $isOpenclt = $value["isOpen"] == "Y" ? "btn-success" : "btn-warning";
                     ?>
-                    <tr id="'<?php echo $value["id"] ?>'" class="context-menu-one" onclick="setId('<?php echo $value["id"] ?>')" style="border-bottom: solid 1px rgb(220,220,220);text-align: left;vertical-align: central">
-                        <td style="width: 25px;text-align: center"><?php echo $index++ ?></td>
-                        <td style="width: 100px">&nbsp;&nbsp;<?php echo $value["sPOId"] ?></td>
-                        <td style="width: 900px">&nbsp;&nbsp;<?php echo $value["supplierId"] ?></td>
-                        <td style="width: 100px">&nbsp;&nbsp;</td>
-                        <td style="width: 100px">&nbsp;&nbsp;</td>
-                        <td style="width: 100px">&nbsp;&nbsp;</td>
-                        <td ></td>
+                    <tr id="<?php echo $value["id"] ?>" class="context-menu-one" onclick="setId('<?php echo $value["id"] ?>')" style="border-bottom: solid 1px rgb(220,220,220);text-align: left;vertical-align: central">
 
+                        <td style="width: 25px;text-align: center"><?php echo $index++ ?></td>
+                        <td style="width: 100px">&nbsp;&nbsp;<?php echo $value["purchaseOrderId"] ?></td>
+                        <td style="width: 450px">&nbsp;&nbsp;<?php echo $supparray[0]["companyname"] ?></td>
+                        <td style="width: 100px">&nbsp;&nbsp;<?php echo $items[0]["counter"] ?></td>
+                        <td style="width: 100px">&nbsp;&nbsp;<i class="<?php echo $isOpenclt ?>" style="padding: 2px 15px 2px 15px;"><?php echo $isOpen ?></i></td>
+                        <td style="width: 150px">&nbsp;&nbsp;<?php echo $value["ship_via"] ?></td>
+                        <td style="width: 100px; text-align: right">&nbsp;&nbsp;<?php echo $value["sub_total"] ?>&nbsp;&nbsp;</td>
+                        <td style="width: 100px; text-align: right">&nbsp;&nbsp;<?php echo $value["discount"] ?>&nbsp;&nbsp;</td>
+                        <td style="width: 100px; text-align: right">$&nbsp;&nbsp;<?php echo $value["total"] ?>&nbsp;&nbsp;</td>
+                        <td style=" width: 130px;text-align: center">&nbsp;&nbsp;<?php echo $value["expected_date"] ?>&nbsp;&nbsp;</td>
+                        <td >&nbsp;&nbsp;<?php echo implode(" ", $userarray[0]) ?></td>
                     </tr>
+                    <?php
+                }
+                ?>
+
+                <?php
+                for ($index1 = 0; $index1 < 15; $index1++) {
+                    ?>
+                    <tr style="border-bottom: solid 1px rgb(220,220,220);text-align: left;vertical-align: central;height: 35px;">
+                        <th style="width: 25px;"></th>
+                        <th style="width: 100px"></th>
+                        <th style="width: 450px"></th>
+                        <th style="width: 100px"></th>
+                        <th style="width: 100px"></th>
+                        <th style="width: 150px"></th>
+                        <th style="width: 100px"></th>
+                        <th style="width: 100px"></th>
+                        <th style="width: 100px"></th>
+                        <th style="width: 100px"></th>
+                        <th ></th>
+                    </tr>    
                     <?php
                 }
                 ?>
@@ -87,84 +112,8 @@ $listRecieveingOrders = MysqlConnection::fetchAll("supplier_packing_slip");
     </div>
 </div>
 <script>
-    $("#deleteThis").click(function () {
-        $("div#divLoading").addClass('show');
-        var dataString = "deleteId=" + $('#deleteId').val();
-        $.ajax({
-            type: 'POST',
-            url: 'receivingorder/receivingorder_ajax.php',
-            data: dataString
-        }).done(function (data) {
-            $("#flagmsg").append("<br/><div id='successMessage' class='alert alert-success'><button class='close' data-dismiss='alert'>×</button><strong>Success!</strong>Record Deleted Successfully !!!</div>");
-        }).fail(function () {
-            $("#flagmsg").append("fail");
-        });
-        location.reload();
-    });
-
-    function setDeleteField(deleteId) {
-        document.getElementById("deleteId").value = deleteId;
-    }
-    
-     function setId(val) {
-        document.getElementById("rightClikId").value = val;
-    }
-</script>
-
-<script>
-    $(function () {
-        $.contextMenu({
-            selector: '.context-menu-one',
-            callback: function (key, options) {
-                var m = "clicked row: " + key;
-                var id = $(this).attr('id');
-                switch (key) {
-                    case "view_receivingorder":
-                        window.location = "index.php?pagename=view_receivingorder&&supplier=" + id;
-                        break;
-                    case "create_receivingorder":
-                        window.location = "index.php?pagename=create_receivingorder";
-                        break;
-                    case "create_note":
-                        window.location = "index.php?pagename=note_receivingorder&=" + id;
-                        break;
-                    case "edit_receivingorder":
-                        window.location = "index.php?pagename=create_receivingorder&=" + id;
-                        break;
-                    case "delete_receivingorder":
-                        window.location = "index.php?pagename=view_receivingorder&=" + id + "&flag=yes";
-                        break;
-
-                    case "create_invoice":
-                        window.location = "index.php?pagename=manage_invoice";
-                        break;
-                    case "quit":
-                        window.location = "index.php?pagename=manage_dashboard";
-                        break;
-                    default:
-                        window.location = "index.php?pagename=manage_receivingorder";
-                }
-                //window.console && console.log(m) || alert(m+"    id:"+id); 
-            },
-            items: {
-                "view_receivingorder": {name: "VIEW ORDER", icon: "+"},
-                "create_receivingorder": {name: "CREATE ORDER", icon: "img/icons/16/book.png"},
-                "edit_receivingorder": {name: "EDIT ORDER", icon: "context-menu-icon-add"},
-                "delete_receivingorder": {name: "DELETE ORDER", icon: ""},
-                "sep1": "---------",
-                "create_note": {name: "CREATE NOTE", icon: ""},
-                "create_invoice": {name: "CREATE INVOICE", icon: ""},
-                "sep2": "---------",
-                "quit": {name: "QUIT", icon: function () {
-                        return '';
-                    }}
-            }
-        });
-    });
-
-    $('tr').dblclick(function () {
+    $('tr').dblclick(function() {
         var id = $(this).attr('id');
-        window.location = "index.php?pagename=view_receivingorder&supplier=" + id;
+        window.location = "index.php?pagename=view_perchaseorder&purchaseorderid=" + id;
     });
-
 </script>

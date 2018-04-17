@@ -1,5 +1,5 @@
 <?php
-$listPerchaseOrders = MysqlConnection::fetchAll("purchase_order");
+$listPerchaseOrders = MysqlConnection::fetchCustom("SELECT *  FROM  `purchase_order`  ORDER BY  `purchase_order`.`isOpen` DESC ");
 ?>
 <style>
     .customtable{
@@ -157,7 +157,7 @@ $listPerchaseOrders = MysqlConnection::fetchAll("purchase_order");
                         window.location = "index.php?pagename=edit_perchaseorder&purchaseorderid=" + id;
                         break;
                     case "delete_purchaseorder":
-                        window.location = "index.php?pagename=view_perchaseorder&purchaseorderid=" + id;
+                        window.location = "index.php?pagename=view_perchaseorder&purchaseorderid=" + id+"&flag=true";
                         break;
 
                     case "create_invoice":
