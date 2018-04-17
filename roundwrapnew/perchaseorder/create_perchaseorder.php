@@ -57,7 +57,7 @@ $ponumber = MysqlConnection::fetchCustom("SELECT id FROM purchase_order ORDER BY
                                     <td style="width: 10%"><label class="control-label"   class="control-label">SUPPLIER NAME&nbsp;:&nbsp</label></td>
                                     <td><input  type="text" name="companyname" placeholder="Supplier Name" value="<?php echo $supplier["companyname"] ?>" /></td>
                                     <td style="width: 10%"><label class="control-label">SHIP VIA&nbsp;:&nbsp</label></td>
-                                    <td><input  type="text" placeholder="" /></td>
+                                    <td><input  type="text" name="ship_via" placeholder="" /></td>
                                     <td style="width: 10%"><label class="control-label">EXPECTED&nbsp;DELIVERY&nbsp;:&nbsp</label></td>
                                     <td><input type="text" name="date" value="12-02-2012"  data-date-format="mm-dd-yyyy"  ></td>
                                 </tr>

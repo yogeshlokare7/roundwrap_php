@@ -8,7 +8,7 @@ $purchase_order["shipping_address"] = $shipping = filter_input(INPUT_POST, "ship
 $purchase_order["billing_address"] = $billing = filter_input(INPUT_POST, "billing");
 $purchase_order["remark"] = $remark = filter_input(INPUT_POST, "remark");
 
-//$purchase_order[""] = $companyname = filter_input(INPUT_POST, "companyname");
+$purchase_order["ship_via"] = $shipvia= filter_input(INPUT_POST, "ship_via");
 //$purchase_order[""] = $date = filter_input(INPUT_POST, "date");
 
 $purchase_order["expected_date"] = $purchasedate = filter_input(INPUT_POST, "purchasedate");
