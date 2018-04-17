@@ -122,19 +122,19 @@ $listPerchaseOrders = MysqlConnection::fetchAll("purchase_order");
                 var id = $(this).attr('id');
                 switch (key) {
                     case "view_purchaseorder":
-                        window.location = "index.php?pagename=view_perchaseorder&supplier=" + id;
+                        window.location = "index.php?pagename=view_perchaseorder&purchaseorderid=" + id;
                         break;
                     case "create_purchaseorder":
                         window.location = "index.php?pagename=create_perchaseorder";
                         break;
-                    case "create_note":
-                        window.location = "index.php?pagename=note_perchaseorder&=$supplier" + id;
+                    case "create_receiving":
+                        window.location = "index.php?pagename=note_perchaseorder&=purchaseorderid" + id;
                         break;
                     case "edit_purchaseorder":
-                        window.location = "index.php?pagename=create_perchaseorder&=$supplier" + id;
+                        window.location = "index.php?pagename=edit_perchaseorder&=purchaseorderid" + id;
                         break;
                     case "delete_purchaseorder":
-                        window.location = "index.php?pagename=view_purchaseorder&=$supplier" + id + "&flag=yes";
+                        window.location = "index.php?pagename=view_purchaseorder&=purchaseorderid" + id + "&flag=yes";
                         break;
 
                     case "create_invoice":
@@ -154,9 +154,8 @@ $listPerchaseOrders = MysqlConnection::fetchAll("purchase_order");
                 "edit_purchaseorder": {name: "EDIT PURCHASE ORDER", icon: "context-menu-icon-add"},
                 "delete_purchaseorder": {name: "DELETE PURCHASE ORDER", icon: ""},
                 "sep1": "---------",
-                "create_note": {name: "CREATE NOTE", icon: ""},
+                "create_receiving": {name: "CREATE RECEIVING ORDER", icon: ""},
                 "create_invoice": {name: "CREATE INVOICE", icon: ""},
-                "create_note": {name: "CREATE RECEIVING ORDER", icon: ""},
                 "sep2": "---------",
                 "quit": {name: "QUIT", icon: function () {
                         return '';

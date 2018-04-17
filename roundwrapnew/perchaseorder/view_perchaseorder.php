@@ -8,10 +8,6 @@
 </style>
 <?php
 $purchaseid = filter_input(INPUT_GET, "poId");
-//print_r($purchaseid);
-//$arrcustomer = MysqlConnection::fetchCustom("SELECT * FROM  `purchase_order` WHERE id = $purchaseid ");
-//$customer = $arrcustomer[0];
-//alert($customer);
 
 $sqlgetsupplier = "SELECT * FROM supplier_master WHERE supp_id = " . filter_input(INPUT_GET, "supplierid");
 $resultset = MysqlConnection::fetchCustom($sqlgetsupplier);
