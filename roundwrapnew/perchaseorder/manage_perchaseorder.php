@@ -128,17 +128,17 @@ $listPerchaseOrders = MysqlConnection::fetchAll("purchase_order");
                         window.location = "index.php?pagename=create_perchaseorder";
                         break;
                     case "create_receiving":
-                        window.location = "index.php?pagename=note_perchaseorder&=purchaseorderid" + id;
+                        window.location = "index.php?pagename=note_perchaseorder&purchaseorderid=" + id;
                         break;
                     case "edit_purchaseorder":
-                        window.location = "index.php?pagename=edit_perchaseorder&=purchaseorderid" + id;
+                        window.location = "index.php?pagename=edit_perchaseorder&purchaseorderid=" + id;
                         break;
                     case "delete_purchaseorder":
-                        window.location = "index.php?pagename=view_purchaseorder&=purchaseorderid" + id + "&flag=yes";
+                        window.location = "index.php?pagename=view_purchaseorder&purchaseorderid=" + id + "&flag=yes";
                         break;
 
                     case "create_invoice":
-                        window.location = "index.php?pagename=manage_invoice";
+                        window.location = "index.php?pagename=manage_invoice&purchaseorderid=" + id;
                         break;
                     case "quit":
                         window.location = "index.php?pagename=manage_dashboard";
