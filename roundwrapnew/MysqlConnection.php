@@ -1,4 +1,5 @@
 <?php
+
 session_start();
 ob_start();
 
@@ -6,6 +7,7 @@ class MysqlConnection {
 
     static function connect() {
         $DB_NAME = "rw";
+//        $DB_HOST = "localhost";
         $DB_HOST = "192.168.15.154";
         $DB_USER = "root";
         $DB_PASS = "root";
@@ -31,6 +33,13 @@ class MysqlConnection {
      * it automatically generate and insert the values
      * but name of the database colum must equal to name of the element field
      */
+    static function getPrimary($tbl = "") {
+        $mysqlprimary = MysqlConnection::fetchCustom("show index from $tbl where Key_name = 'PRIMARY'");
+        $column_name = $mysqlprimary[0]["Column_name"];
+        $primarylist = MysqlConnection::fetchCustom("SELECT $column_name FROM $tbl ORDER BY $column_name DESC LIMIT 0,1");
+        return $primarylist[0][$column_name];
+    }
+
     static function insert($tbl = "", $data = array()) {
         $connect = MysqlConnection::connect();
         try {
@@ -43,6 +52,7 @@ class MysqlConnection {
             }
             echo $query = " INSERT INTO $tbl (" . substr($keysset, 0, strlen($keysset) - 1) . ") VALUES (" . substr($valuesset, 0, strlen($valuesset) - 1) . ");";
             MysqlConnection::executeQuery($query);
+            return MysqlConnection::getPrimary($tbl);
         } catch (Exception $exc) {
             echo "<span style='color:red'>SQL QUERY ERROR !!! INSERT !!!<span>";
         }

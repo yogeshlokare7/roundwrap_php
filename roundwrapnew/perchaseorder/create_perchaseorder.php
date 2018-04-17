@@ -11,7 +11,7 @@ $sqlgetsupplier = "SELECT * FROM supplier_master WHERE supp_id = " . filter_inpu
 $resultset = MysqlConnection::fetchCustom($sqlgetsupplier);
 $supplier = $resultset[0];
 
-$sqlitemarray = MysqlConnection::fetchCustom("SELECT count(id) as counter FROM sales_order");
+//$sqlitemarray = MysqlConnection::fetchCustom("SELECT count(id) as counter FROM sales_order");
 $itemarray = MysqlConnection::fetchCustom("SELECT item_id ,item_code, item_name FROM item_master;");
 $buildauto = buildauto($itemarray);
 
@@ -104,6 +104,7 @@ $ponumber = MysqlConnection::fetchCustom("SELECT id FROM purchase_order ORDER BY
                                             <td ><div id="total<?php echo $index ?>"></div></td>
                                         </tr>
                                     <?php } ?>
+                                    
                                 </table>
                             </div>
                         </div>
