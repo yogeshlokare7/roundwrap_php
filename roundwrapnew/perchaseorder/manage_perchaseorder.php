@@ -125,7 +125,7 @@ $listPerchaseOrders = MysqlConnection::fetchAll("purchase_order");
                         window.location = "index.php?pagename=view_perchaseorder&purchaseorderid=" + id;
                         break;
                     case "create_purchaseorder":
-                        window.location = "index.php?pagename=create_perchaseorder";
+                        window.location = "index.php?pagename=manage_suppliermaster";
                         break;
                     case "create_receiving":
                         window.location = "index.php?pagename=note_perchaseorder&purchaseorderid=" + id;
@@ -134,7 +134,7 @@ $listPerchaseOrders = MysqlConnection::fetchAll("purchase_order");
                         window.location = "index.php?pagename=edit_perchaseorder&purchaseorderid=" + id;
                         break;
                     case "delete_purchaseorder":
-                        window.location = "index.php?pagename=view_purchaseorder&purchaseorderid=" + id + "&flag=yes";
+                        window.location = "index.php?pagename=view_perchaseorder&purchaseorderid=" + id;
                         break;
 
                     case "create_invoice":

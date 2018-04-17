@@ -20,7 +20,7 @@ $ponumber = MysqlConnection::fetchCustom("SELECT id FROM purchase_order ORDER BY
 
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script>
-    $(function() {
+    $(function () {
         var availableTags = [<?php echo $buildauto ?>];
         for (var index = 1; index <= 30; index++) {
             $("#tags" + index).autocomplete({source: availableTags});
@@ -100,11 +100,11 @@ $ponumber = MysqlConnection::fetchCustom("SELECT id FROM purchase_order ORDER BY
                                             <td style="width: 350px"><div id="desc<?php echo $index ?>"></div></td>
                                             <td style="width: 80px;"><div id="unit<?php echo $index ?>"></div></td>
                                             <td style="width: 80px;"><div id="price<?php echo $index ?>"></div></td>
-                                            <td style="width: 80px;"><input type="text" name="itemcount[]" onfocusout="calculateAmount('<?php echo $index ?>')" id="amount<?php echo $index ?>" style="padding: 0px;margin: 0px;width: 100%"></td>
+                                            <td style="width: 80px;"><input type="text" name="itemcount[]" onkeypress="return chkNumericKey(event)" onfocusout="calculateAmount('<?php echo $index ?>')" id="amount<?php echo $index ?>" style="padding: 0px;margin: 0px;width: 100%"></td>
                                             <td ><div id="total<?php echo $index ?>"></div></td>
                                         </tr>
                                     <?php } ?>
-                                    
+
                                 </table>
                             </div>
                         </div>
@@ -112,7 +112,7 @@ $ponumber = MysqlConnection::fetchCustom("SELECT id FROM purchase_order ORDER BY
                             <table class="table-bordered" style="width: 100%;border-collapse: collapse;background-color: white" border="1">
                                 <tr >
                                     <td><b>PO Number</b></td>
-                                    <td><input type="text" name="purchaseOrderId" value="PO<?php echo (1000 + $ponumber[0]["id"]) ?>" readonly=""></td>
+                                    <td><input type="text" name="purchaseOrderId" onkeypress="return chkNumericKey(event)" value="PO<?php echo (1000 + $ponumber[0]["id"]) ?>" readonly=""></td>
                                 </tr>
                                 <tr >
                                     <td><b>Purchase Date</b></td>
@@ -124,7 +124,7 @@ $ponumber = MysqlConnection::fetchCustom("SELECT id FROM purchase_order ORDER BY
                                 </tr>
                                 <tr >
                                     <td><b>Total</b></td>
-                                    <td><input type="text" id="finaltotal" name="finaltotal" readonly=""></td>
+                                    <td><input type="text" id="finaltotal" onkeypress="return chkNumericKey(event)" name="finaltotal" readonly=""></td>
                                 </tr>
                                 <tr >
                                     <td><b>Discount</b></td>
@@ -132,7 +132,7 @@ $ponumber = MysqlConnection::fetchCustom("SELECT id FROM purchase_order ORDER BY
                                 </tr>
                                 <tr >
                                     <td><b>Net Total</b></td>
-                                    <td><input type="text" id="nettotal" name="nettotal" name="nettotal" readonly=""></td>
+                                    <td><input type="text" id="nettotal" onkeypress="return chkNumericKey(event)" name="nettotal" name="nettotal" readonly=""></td>
                                 </tr>
                             </table>
                         </div>
@@ -162,13 +162,13 @@ $ponumber = MysqlConnection::fetchCustom("SELECT id FROM purchase_order ORDER BY
                     type: 'POST',
                     url: 'itemmaster/getitemajax.php',
                     data: dataString
-                }).done(function(data) {
+                }).done(function (data) {
                     var jsonobj = JSON.parse(data);
                     var desc = jsonobj.item_desc_purch === "" ? jsonobj.item_desc_purch : jsonobj.item_desc_sales;
                     $("#desc" + count).text(desc);
                     $("#unit" + count).text(jsonobj.unit);
                     $("#price" + count).text(jsonobj.purchase_rate);
-                }).fail(function() {
+                }).fail(function () {
                 });
             }
             function clearValue(count) {
@@ -212,6 +212,15 @@ $ponumber = MysqlConnection::fetchCustom("SELECT id FROM purchase_order ORDER BY
             function createPurchaseOrder() {
                 var x = document.getElementsByTagName("form");
                 x[0].submit();
+            }
+
+            function chkNumericKey(event) {
+                var charCode = (event.which) ? event.which : event.keyCode;
+                if ((charCode >= 48 && charCode <= 57) || charCode == 46 || charCode == 45) {
+                    return true;
+                } else {
+                    return false;
+                }
             }
 </script>
 
