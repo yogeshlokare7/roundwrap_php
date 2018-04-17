@@ -151,7 +151,7 @@ $listPerchaseOrders = MysqlConnection::fetchAll("purchase_order");
                         window.location = "index.php?pagename=manage_suppliermaster";
                         break;
                     case "create_receiving":
-                        window.location = "index.php?pagename=note_perchaseorder&purchaseorderid=" + id;
+                        window.location = "index.php?pagename=create_receivingorder&purchaseorderid=" + id;
                         break;
                     case "edit_purchaseorder":
                         window.location = "index.php?pagename=edit_perchaseorder&purchaseorderid=" + id;

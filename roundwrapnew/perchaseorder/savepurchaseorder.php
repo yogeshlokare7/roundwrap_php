@@ -9,7 +9,7 @@ $purchase_order["billing_address"] = $billing = filter_input(INPUT_POST, "billin
 $purchase_order["remark"] = $remark = filter_input(INPUT_POST, "remark");
 
 $purchase_order["ship_via"] = $shipvia= filter_input(INPUT_POST, "ship_via");
-//$purchase_order[""] = $date = filter_input(INPUT_POST, "date");
+$purchase_order["expected_date"] = $date = filter_input(INPUT_POST, "expected_date");
 
 $purchase_order["expected_date"] = $purchasedate = filter_input(INPUT_POST, "purchasedate");
 $purchase_order["added_by"] = $enterby = filter_input(INPUT_POST, "enterby");

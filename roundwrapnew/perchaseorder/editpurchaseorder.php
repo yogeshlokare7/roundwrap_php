@@ -11,7 +11,7 @@ $purchase_order["remark"] = $remark = filter_input(INPUT_POST, "remark");
 //$purchase_order[""] = $companyname = filter_input(INPUT_POST, "companyname");
 $purchase_order["ship_via"] = $shipvia = filter_input(INPUT_POST, "ship_via");
 
-$purchase_order["expected_date"] = $purchasedate = filter_input(INPUT_POST, "purchasedate");
+$purchase_order["expected_date"] = $purchasedate = filter_input(INPUT_POST, "expected_date");
 $purchase_order["added_by"] = $enterby = filter_input(INPUT_POST, "enterby");
 $purchase_order["sub_total"] = $finaltotal = filter_input(INPUT_POST, "finaltotal");
 $purchase_order["discount"] = $discount = filter_input(INPUT_POST, "discount");
