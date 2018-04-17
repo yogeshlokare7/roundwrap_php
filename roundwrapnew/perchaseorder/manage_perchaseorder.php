@@ -92,7 +92,7 @@ $listPerchaseOrders = MysqlConnection::fetchCustom("SELECT *  FROM  `purchase_or
                         <th style="width: 100px"></th>
                         <th style="width: 100px"></th>
                         <th style="width: 100px"></th>
-                        <th style="width: 100px"></th>
+                        <th style="width: 130px"></th>
                         <th ></th>
                     </tr>    
                     <?php
