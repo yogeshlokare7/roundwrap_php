@@ -62,8 +62,8 @@ $podetails = $result[0];
                         <div style="width: 70%;float: left">
                             <table class="table-bordered" style="width: 70%;border-collapse: collapse" border="1">
                                 <tr style="border-bottom: solid 1px  #CDCDCD;background-color: rgb(250,250,250)">
-                                    <td style="width: 230px;">ITEM NAME</td>
-                                    <td style="width: 350px">ITEM DESCRIPTION</td>
+                                    <td style="width: 200px;">ITEM NAME</td>
+                                    <td style="width: 320px">ITEM DESCRIPTION</td>
                                     <td style="width: 80px;">QTY</td>
                                     <td >RECEIVED</td>
                                 </tr>
@@ -77,8 +77,8 @@ $podetails = $result[0];
                                         if (($value["qty"] - $value["rqty"]) != 0) {
                                             ?>
                                             <tr id="<?php echo $index ?>" style="border-bottom: solid 1px  #CDCDCD;background-color: white">
-                                                <td style="width: 230px;"><?php echo $items[0]["item_code"] ?></td>
-                                                <td style="width: 350px"><?php echo $items[0]["item_desc_purch"] ?></div></td>
+                                                <td style="width: 200px;"><?php echo $items[0]["item_code"] ?></td>
+                                                <td style="width: 320px"><?php echo $items[0]["item_desc_purch"] ?></div></td>
                                                 <td style="width: 80px;">
                                                     <?php echo ($value["qty"] - $value["rqty"]) ?>
                                                 </td>
