@@ -55,7 +55,7 @@ $buildauto = buildauto($itemarray);
                                     <td style="width: 10%"><label class="control-label">SHIP VIA&nbsp;:&nbsp</label></td>
                                     <td><input  type="text" name="ship_via" value="<?php echo $podetails["ship_via"] ?>" placeholder="" /></td>
                                     <td style="width: 10%"><label class="control-label">EXPECTED&nbsp;DELIVERY&nbsp;:&nbsp</label></td>
-                                    <td><input type="text" name="date" value="12-02-2012"  data-date-format="mm-dd-yyyy"  ></td>
+                                    <td><input type="date" name="date" value="12-02-2012"  data-date-format="mm-dd-yyyy"  ></td>
                                 </tr>
                                 <tr>
                                     <td ><label  class="control-label"  class="control-label">BILLING&nbsp;ADDRESS&nbsp;:&nbsp</label></td>
