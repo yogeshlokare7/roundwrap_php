@@ -166,7 +166,7 @@ $listPerchaseOrders = MysqlConnection::fetchAll("purchase_order");
 
     $('tr').dblclick(function () {
         var id = $(this).attr('id');
-        window.location = "index.php?pagename=view_perchaseorder&supplier=" + id;
+        window.location = "index.php?pagename=view_perchaseorder&purchaseorderid=" + id;
     });
 
 </script>

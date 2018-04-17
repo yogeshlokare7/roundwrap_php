@@ -7,14 +7,12 @@
     }
 </style>
 <?php
-$purchaseid = filter_input(INPUT_GET, "poId");
-
-$sqlgetsupplier = "SELECT * FROM supplier_master WHERE supp_id = " . filter_input(INPUT_GET, "supplierid");
-$resultset = MysqlConnection::fetchCustom($sqlgetsupplier);
-$supplier = $resultset[0];
-
-$sqlitemarray = MysqlConnection::fetchCustom("SELECT count(id) as counter FROM sales_order");
-$itemarray = MysqlConnection::fetchCustom("SELECT * FROM item_master;");
+$purchaseid = filter_input(INPUT_GET, "purchaseorderid");
+$result = MysqlConnection::fetchCustom("SELECT * , "
+                . "( SELECT companyname FROM supplier_master WHERE supp_id = po.`supplier_id` ) AS companyname FROM purchase_order po, purchase_item pi WHERE po.id = pi.po_id AND pi.po_id =$purchaseid");
+echo "<pre>";
+print_r($result);
+echo "</pre>";
 ?>
 <div id="content-header">
     <div id="breadcrumb"> 
@@ -79,7 +77,7 @@ $itemarray = MysqlConnection::fetchCustom("SELECT * FROM item_master;");
                             </table>
                             <div style="overflow: auto;height: 232px;border-bottom: solid 1px  #CDCDCD;">
                                 <table class="table-bordered" style="width: 100%;border-collapse: collapse" border="1">
-                                    <?php for ($index = 1; $index <= 50; $index++) { ?>
+                                    <?php foreach ($result as $key => $value) { ?>
                                         <tr id="<?php echo $index ?>" style="border-bottom: solid 1px  #CDCDCD;background-color: white">
                                             <td style="width: 30px"></td>
                                             <td style="width: 230px;">
@@ -95,38 +93,6 @@ $itemarray = MysqlConnection::fetchCustom("SELECT * FROM item_master;");
                                 </table>
                             </div>
                         </div>
-
-                        <div style="width: 28%;float: right">
-                            <table class="table-bordered" style="width: 100%;border-collapse: collapse;background-color: white" border="1">
-                                <tr >
-                                    <td><b>Purchase Date</b></td>
-                                    <td><input type="text" value="<?php echo date("Y-m-d") ?>" readonly=""></td>
-                                </tr>
-                                <tr >
-                                    <td><b>Enter By</b></td>
-                                    <td><input type="text" value="<?php echo $_SESSION["user"]["firstName"] . " " . $_SESSION["user"]["lastName"] ?>" readonly=""></td>
-                                </tr>
-                                <tr >
-                                    <td ><b>Total Items</b></td>
-                                    <td ><input type="text" readonly=""></td>
-                                </tr>
-                                <tr >
-                                    <td><b>Total</b></td>
-                                    <td><input type="text" readonly=""></td>
-                                </tr>
-                                <tr >
-                                    <td><b>Discount</b></td>
-                                    <td><input type="text" readonly=""></td>
-                                </tr>
-                                <tr >
-                                    <td><b>Net Total</b></td>
-                                    <td><input type="text" readonly=""></td>
-                                </tr>
-
-                            </table>
-                        </div>
-
-
                     </td>
                 </tr>
             </table>
@@ -142,8 +108,3 @@ $itemarray = MysqlConnection::fetchCustom("SELECT * FROM item_master;");
 <script src="js/select2.min.js"></script> 
 <script src="js/maruti.js"></script> 
 <script src="js/maruti.form_common.js"></script>
-<script>
-    $(document).ready(function () {
-        $('.table-fixed-header').prepFixedHeader().fixedHeader();
-    });
-</script>
