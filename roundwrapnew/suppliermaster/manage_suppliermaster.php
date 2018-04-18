@@ -201,7 +201,7 @@ if (isset($supplierid) && $supplierid != "") {
                         window.location = "index.php?pagename=note_suppliermaster&supplierid=" + id;
                         break;
                     case "create_invoice":
-                        window.location = "index.php?pagename=manage_invoice";
+                        window.location = "index.php?pagename=so_invoice&supplierid=" + id;
                         break;
                     case "quit":
                         window.location = "index.php?pagename=manage_dashboard";

@@ -168,7 +168,7 @@ $listSalesOrders = MysqlConnection::fetchCustom("SELECT * FROM `sales_order` ORD
                         window.location = "index.php?pagename=create_salesorderreceiving&salesorderid=" + id;
                         break;
                     case "create_invoice":
-                        window.location = "index.php?pagename=manage_invoice";
+                        window.location = "index.php?pagename=so_invoice&salesorderid=" + id;";
                         break;
                     case "quit":
                         window.location = "index.php?pagename=manage_dashboard";

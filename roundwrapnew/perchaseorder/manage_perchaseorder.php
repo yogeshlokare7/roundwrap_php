@@ -173,7 +173,7 @@ $listPerchaseOrders = MysqlConnection::fetchCustom("SELECT *  FROM  `purchase_or
                         break;
 
                     case "create_invoice":
-                        window.location = "index.php?pagename=manage_invoice&purchaseorderid=" + id;
+                        window.location = "index.php?pagename=po_invoice&purchaseorderid=" + id;
                         break;
                     case "quit":
                         window.location = "index.php?pagename=manage_dashboard";
