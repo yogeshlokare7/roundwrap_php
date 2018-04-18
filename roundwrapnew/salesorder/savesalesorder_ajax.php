@@ -12,13 +12,9 @@ $salesorderdetails["isOpen"] = "Y";
 $salesorderdetails["deleteNote"] = "";
 $salesorderdetails["total"] = $salesorderdetails["sub_total"] - $salesorderdetails["discount"];
 $insertid = MysqlConnection::insert("sales_order", $salesorderdetails);
-
-$items = $_POST["items"];
-$itemcount = $_POST["itemcount"];
-
-for ($index = 0; $index < count($items); $index++) {
-    $itemcode = $items[$index];
-    $itemcount = $itemcount[$index];
+for ($index = 0; $index <= count($_POST["items"]); $index++) {
+    $itemcode = $_POST["items"][$index];
+    $itemcount = $_POST["itemcount"][$index];
     if ($itemcode != "" && $itemcount != "") {
         $itemsfromcode = MysqlConnection::fetchCustom("SELECT item_id FROM `item_master` WHERE item_code = '$itemcode' ");
         $arraysalesitems = array();
@@ -29,5 +25,4 @@ for ($index = 0; $index < count($items); $index++) {
         MysqlConnection::insert("sales_item", $arraysalesitems);
     }
 }
-
 header("location:../index.php?pagename=manage_salesorder");

@@ -126,16 +126,12 @@ $itemarray = MysqlConnection::fetchCustom("SELECT * FROM item_master;");
                                     <td><b>Net Total</b></td>
                                     <td><input type="text" readonly=""></td>
                                 </tr>
-
                             </table>
                         </div>
-
-
                     </td>
                 </tr>
             </table>
             <hr/>
-
         </div>
     </div>
 </form>
