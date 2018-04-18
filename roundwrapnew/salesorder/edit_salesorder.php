@@ -2,9 +2,9 @@
 $sqlgetsupplier = "SELECT * FROM `sales_order` WHERE id = " . filter_input(INPUT_GET, "salesorderid");
 $resultset = MysqlConnection::fetchCustom($sqlgetsupplier);
 $customer = $resultset[0];
-echo "<pre>";
-print_r($customer);
-echo "</pre>";
+//echo "<pre>";
+//print_r($customer);
+//echo "</pre>";
 //$sqlgetsupplier = "SELECT * FROM customer_master WHERE id = " . filter_input(INPUT_GET, "customerId");
 //$resultset = MysqlConnection::fetchCustom($sqlgetsupplier);
 //$customer = $resultset[0];
@@ -44,17 +44,17 @@ echo "</pre>";
                                     <td style="width: 10%"><label class="control-label"   class="control-label">CUSTOMER NAME&nbsp;:&nbsp</label></td>
                                     <td><input  type="text" placeholder="Customer Name" value="<?php echo $customer["cust_companyname"] ?>" /></td>
                                     <td style="width: 10%"><label class="control-label">SHIP VIA&nbsp;:&nbsp</label></td>
-                                    <td><input  type="text" placeholder="" /></td>
+                                    <td><input  type="text" placeholder="" value="<?php echo $customer["shipvia"] ?>"/></td>
                                     <td style="width: 10%"><label class="control-label">EXPECTED&nbsp;DELIVERY&nbsp;:&nbsp</label></td>
-                                    <td><input type="text" value="12-02-2012"  data-date-format="mm-dd-yyyy"  ></td>
+                                    <td><input type="text" value="<?php echo $customer["expected_date"] ?>"  data-date-format="mm-dd-yyyy"  ></td>
                                 </tr>
                                 <tr>
                                     <td ><label  class="control-label"  class="control-label">BILLING&nbsp;ADDRESS&nbsp;:&nbsp</label></td>
-                                    <td><textarea style="line-height: 18px;"><?php echo $customer["billto"] ?></textarea></td>
+                                    <td><textarea style="line-height: 18px;"><?php echo $customer["billTo_address"] ?></textarea></td>
                                     <td><label class="control-label">SHIPPING&nbsp;ADDRESS&nbsp;:&nbsp</label></td>
-                                    <td><textarea style="line-height: 18px;"><?php echo $customer["shipto"] ?></textarea></td>
+                                    <td><textarea style="line-height: 18px;"><?php echo $customer["shipping_address"] ?></textarea></td>
                                     <td ><label class="control-label">REMARK&nbsp;/&nbsp;NOTE&nbsp;:&nbsp</label></td>
-                                    <td><textarea  style="line-height: 18px;" value="" ></textarea></td>
+                                    <td><textarea  style="line-height: 18px;" value="" ><?php echo $customer["remark"] ?></textarea></td>
                                 </tr>
                             </table>
                         </fieldset>
@@ -96,27 +96,27 @@ echo "</pre>";
                             <table class="table-bordered" style="width: 100%;border-collapse: collapse;background-color: white" border="1">
                                 <tr >
                                     <td><b>Purchase Date</b></td>
-                                    <td><input type="text" value="<?php echo date("Y-m-d") ?>" readonly=""></td>
+                                    <td><input type="text" value="<?php echo date("Y-m-d") ?>" ></td>
                                 </tr>
                                 <tr >
                                     <td><b>Enter By</b></td>
-                                    <td><input type="text" value="<?php echo $_SESSION["user"]["firstName"] . " " . $_SESSION["user"]["lastName"] ?>" readonly=""></td>
+                                    <td><input type="text" value="<?php echo $_SESSION["user"]["firstName"] . " " . $_SESSION["user"]["lastName"] ?>" ></td>
                                 </tr>
                                 <tr >
                                     <td ><b>Total Items</b></td>
-                                    <td ><input type="text" readonly=""></td>
+                                    <td ><input type="text" value="<?php echo $customer["sub_total"]; ?>" ></td>
                                 </tr>
                                 <tr >
                                     <td><b>Total</b></td>
-                                    <td><input type="text" readonly=""></td>
+                                    <td><input type="text" value="<?php echo $customer["total"]; ?>" ></td>
                                 </tr>
                                 <tr >
                                     <td><b>Discount</b></td>
-                                    <td><input type="text" readonly=""></td>
+                                    <td><input type="text" value="<?php echo $customer["discount"]; ?>" ></td>
                                 </tr>
                                 <tr >
                                     <td><b>Net Total</b></td>
-                                    <td><input type="text" readonly=""></td>
+                                    <td><input type="text" value="<?php echo $customer["sub_total"]; ?>"></td>
                                 </tr>
 
                             </table>

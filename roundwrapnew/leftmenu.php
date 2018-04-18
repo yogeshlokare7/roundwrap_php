@@ -17,11 +17,11 @@ ob_start();
         <ul>
             <li><a href="index.php?pagename=manage_perchaseorder">Purchase Orders</a></li>
             <li><a href="index.php?pagename=manage_receivingorder">Receiving Purchase Orders</a></li>
-            <li><a href="index.php?pagename=manage_createorder">Create Order</a></li>
-            <li><a href="index.php?pagename=manage_salesorder">Sales Order</a></li>
+            <li><a href="index.php?pagename=manage_createorder">Create Customer Order</a></li>
+            <li><a href="index.php?pagename=manage_salesorder">Customer Sales Order</a></li>
         </ul>
     </li>
-    <li><a><i class="icon icon-list-alt"></i> <span>Production</span></a>
+<!--    <li><a><i class="icon icon-list-alt"></i> <span>Production</span></a>
         <ul>
             <li><a href="index.php?pagename=manage_packingslip">Packing Slip</a></li>
             <li><a href="index.php?pagename=manage_quotation">Quotation</a></li>
@@ -32,7 +32,7 @@ ob_start();
     </li>
     <li class="submenu"> <a><i class="icon icon-th-list"></i> <span>Reports</span> </a>
         <ul><li><a href="index.php?pagename=manage_salespersonreport">Sales Person Report</a></li></ul>
-    </li>
+    </li>-->
 
     <li style="float: right" ><a href="logout.php"><i class="icon  icon-off"></i><span>Log Out</span> </a></li>
     <li style="float: right" ><a ><i class="icon  icon-time"></i><span><?php echo $_SESSION["time"] ?></span> </a></li>
