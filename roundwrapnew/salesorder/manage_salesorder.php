@@ -1,5 +1,5 @@
 <?php
-$listSalesOrders = MysqlConnection::fetchAll(" sales_order");
+$listSalesOrders = MysqlConnection::fetchAll("sales_order");
 ?>
 <style>
     .customtable{
@@ -65,8 +65,6 @@ $listSalesOrders = MysqlConnection::fetchAll(" sales_order");
                         <td style="width: 100px;">&nbsp;&nbsp;<?php echo $value[""] ?></td>
                         <td style="width: 100px;">&nbsp;&nbsp;<?php echo $value[""] ?></td>
                         <td >&nbsp;&nbsp;<?php echo $value[""] ?></td>
-                       
-                        
                     </tr>
                     <?php
                 }

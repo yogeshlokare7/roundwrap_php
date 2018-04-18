@@ -49,9 +49,9 @@ $listCreateOrders = MysqlConnection::fetchAll("sales_order");
                 <th style="width: 100px;">Item Left</th>
                 <th style="width: 150px;">Ship Via</th>
                 <th style="width: 100px;">Gross Amount</th>
-                <th style="width: 100px;">Tax Amount</th>
+                <th style="width: 100px;">discount</th>
                 <th style="width: 100px;">Net Amount</th>
-                <th style="width: 100px;">Delivery Date</th>
+                <th style="width: 130px;">Delivery Date</th>
                 <th >Entered By</th>
             </tr>
         </table>
@@ -60,22 +60,40 @@ $listCreateOrders = MysqlConnection::fetchAll("sales_order");
                 <?php
                 $index = 1;
                 foreach ($listCreateOrders as $key => $value) {
+                    $cstdetails = MysqlConnection::fetchCustom("SELECT cust_companyname FROM customer_master where id = " . $value["customer_id"]);
                     ?>
                     <tr id="'<?php echo $value["id"] ?>'" class="context-menu-one" onclick="setId('<?php echo $value["id"] ?>')" style="border-bottom: solid 1px rgb(220,220,220);text-align: left;vertical-align: central">
-
                         <td style="width: 25px;text-align: center"><?php echo $index++ ?></td>
-                        <td style="width: 100px;">&nbsp;&nbsp;<?php echo $value["0"] ?></td>
-                        <td style="width: 450px;">&nbsp;&nbsp;<?php echo $value["customer_id"] ?></td>
+                        <td style="width: 100px;">&nbsp;&nbsp;<?php echo $value["sono"] ?></td>
+                        <td style="width: 450px;">&nbsp;&nbsp;<?php echo $cstdetails[0]["cust_companyname"] ?></td>
                         <td style="width: 100px;">&nbsp;&nbsp;<?php echo $value[""] ?></td>
                         <td style="width: 100px;">&nbsp;&nbsp;<?php echo $value[""] ?></td>
-                        <td style="width: 150px;">&nbsp;&nbsp;<?php echo $value["ship_via"] ?></td>
+                        <td style="width: 150px;">&nbsp;&nbsp;<?php echo $value["shipvia"] ?></td>
                         <td style="width: 100px;text-align: right">&nbsp;&nbsp;<?php echo $value["sub_total"] ?></td>
-                        <td style="width: 100px;text-align: right">&nbsp;&nbsp;<?php echo $value["taxAmount"] ?></td>
+                        <td style="width: 100px;text-align: right">&nbsp;&nbsp;<?php echo $value["discount"] ?></td>
                         <td style="width: 100px;text-align: right">$&nbsp;&nbsp;<?php echo $value["total"] ?></td>
-                        <td style="width: 100px;">&nbsp;&nbsp;<?php echo $value["expected_date"] ?></td>
-                        <td >&nbsp;&nbsp;<?php echo $value["added_by"] ?></td>
-
+                        <td style="width: 130px;">&nbsp;&nbsp;<?php echo $value["expected_date"] ?></td>
+                        <td >&nbsp;&nbsp;<?php echo "Gurnek  Sandhu" ?></td>
                     </tr>
+                    <?php
+                }
+                ?>
+                <?php
+                for ($index1 = 0; $index1 < 15; $index1++) {
+                    ?>
+                    <tr style="border-bottom: solid 1px rgb(220,220,220);text-align: left;vertical-align: central">
+                        <td style="width: 25px;text-align: center"><?php echo $index1 + $index++ ?></td>
+                        <td style="width: 100px;"></td>
+                        <td style="width: 450px;"></td>
+                        <td style="width: 100px;"></td>
+                        <td style="width: 100px;"></td>
+                        <td style="width: 150px;"></td>
+                        <td style="width: 100px;text-align: right"></td>
+                        <td style="width: 100px;text-align: right"></td>
+                        <td style="width: 100px;text-align: right"></td>
+                        <td style="width: 130px;"></td>
+                        <td></td>
+                    </tr>  
                     <?php
                 }
                 ?>
@@ -92,57 +110,53 @@ $listCreateOrders = MysqlConnection::fetchAll("sales_order");
         </table>
     </div>
 </div>
-<script>
-    $("#deleteThis").click(function () {
-        $("div#divLoading").addClass('show');
-        var dataString = "deleteId=" + $('#deleteId').val();
-        $.ajax({
-            type: 'POST',
-            url: 'createorder/createorder_ajax.php',
-            data: dataString
-        }).done(function (data) {
-        }).fail(function () {
+                    <script>     $("#deleteThis").click(function() {         $("div#divLoading").addClass('show');
+                        var dataString = "deleteId=" + $('#deleteId').val();
+        $.ajax({             type: 'POST',
+                        url: 'createorder/createorder_ajax.php',
+                    data: dataString
+                        }).done(function(data) {
+        }).fail(function() {
         });
         location.reload();
     });
 
-    function setDeleteField(deleteId) {
-        document.getElementById("deleteId").value = deleteId;
+                        function setDeleteField(deleteId) {
+                        document.getElementById("deleteId").value = deleteId;
     }
 
     function setId(val) {
-        document.getElementById("rightClikId").value = val;
-    }
+                        document.getElementById("rightClikId").value = val;
+                    }
 </script>
 
 <script>
-    $(function () {
+                        $(function() {
         $.contextMenu({
             selector: '.context-menu-one',
-            callback: function (key, options) {
-                var m = "clicked row: " + key;
+                    callback: function(key, options) {
+                        var m = "clicked row: " + key;
                 var id = $(this).attr('id');
                 switch (key) {
                     case "view_createorder":
-                        window.location = "index.php?pagename=view_createorder&supplier=" + id;
+                window.location = "index.php?pagename=view_createorder&supplier=" + id;
                         break;
-                    case "create_createorder":
-                        window.location = "index.php?pagename=create_createorder";
+                case "create_createorder":
+                window.location = "index.php?pagename=create_createorder";
                         break;
-                    case "create_note":
-                        window.location = "index.php?pagename=note_createorder&=" + id;
+                case "create_note":
+                window.location = "index.php?pagename=note_createorder&=" + id;
+                break;
+                case "edit_createorder":
+                window.location = "index.php?pagename=create_createorder&=" + id;
                         break;
-                    case "edit_createorder":
-                        window.location = "index.php?pagename=create_createorder&=" + id;
-                        break;
-                    case "delete_createorder":
-                        window.location = "index.php?pagename=view_createorder&=" + id + "&flag=yes";
-                        break;
+                case "delete_createorder":
+                    window.location = "index.php?pagename=view_createorder&=" + id + "&flag=yes";
+            break;
 
-                    case "create_invoice":
-                        window.location = "index.php?pagename=manage_invoice";
-                        break;
-                    case "quit":
+    case "create_invoice":
+        window.location = "index.php?pagename=manage_invoice";                         break;
+    case "quit":
                         window.location = "index.php?pagename=manage_dashboard";
                         break;
                     default:
@@ -160,14 +174,14 @@ $listCreateOrders = MysqlConnection::fetchAll("sales_order");
                 "create_invoice": {name: "CREATE INVOICE", icon: ""},
                 "create_note": {name: "CREATE RECEIVING ORDER", icon: ""},
                 "sep2": "---------",
-                "quit": {name: "QUIT", icon: function () {
+                "quit": {name: "QUIT", icon: function() {
                         return '';
                     }}
             }
         });
     });
 
-    $('tr').dblclick(function () {
+    $('tr').dblclick(function() {
         var id = $(this).attr('id');
         window.location = "index.php?pagename=view_createorder&supplier=" + id;
     });
