@@ -183,7 +183,9 @@ $listCreateOrders = MysqlConnection::fetchAll("sales_order");
 
     $('tr').dblclick(function() {
         var id = $(this).attr('id');
-        window.location = "index.php?pagename=view_createorder&supplier=" + id;
+        if (id !== undefined) {
+            window.location = "index.php?pagename=view_createorder&supplier=" + id;
+        }
     });
 
 </script>

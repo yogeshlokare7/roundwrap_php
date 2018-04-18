@@ -92,7 +92,7 @@ $listPerchaseOrders = MysqlConnection::fetchCustom("SELECT *  FROM  `purchase_or
                         <th style="width: 100px"></th>
                         <th style="width: 100px"></th>
                         <th style="width: 100px"></th>
-                        <th style="width: 100px"></th>
+                        <th style="width: 130px"></th>
                         <th ></th>
                     </tr>    
                     <?php
@@ -112,8 +112,10 @@ $listPerchaseOrders = MysqlConnection::fetchCustom("SELECT *  FROM  `purchase_or
     </div>
 </div>
 <script>
-    $('tr').dblclick(function() {
+    $('tr').dblclick(function () {
         var id = $(this).attr('id');
-        window.location = "index.php?pagename=view_perchaseorder&purchaseorderid=" + id;
+        if (id !== undefined) {
+            window.location = "index.php?pagename=view_perchaseorder&purchaseorderid=" + id;
+        }
     });
 </script>

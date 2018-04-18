@@ -16,7 +16,7 @@ ob_start();
     <li> <a ><i class="icon icon-inbox"></i> <span>Retail</span></a> 
         <ul>
             <li><a href="index.php?pagename=manage_perchaseorder">Purchase Orders</a></li>
-            <li><a href="index.php?pagename=manage_receivingorder">Receiving Orders</a></li>
+            <li><a href="index.php?pagename=manage_receivingorder">Receiving Purchase Orders</a></li>
             <li><a href="index.php?pagename=manage_createorder">Create Order</a></li>
             <li><a href="index.php?pagename=manage_salesorder">Sales Order</a></li>
         </ul>

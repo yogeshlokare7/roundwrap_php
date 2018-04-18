@@ -189,7 +189,9 @@ $listPerchaseOrders = MysqlConnection::fetchCustom("SELECT *  FROM  `purchase_or
 
     $('tr').dblclick(function() {
         var id = $(this).attr('id');
+         if (id !== undefined) {
         window.location = "index.php?pagename=view_perchaseorder&purchaseorderid=" + id;
+    }
     });
 
 </script>

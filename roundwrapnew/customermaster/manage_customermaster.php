@@ -1,5 +1,5 @@
 <?php
-$listofcustomers = MysqlConnection::fetchAll("customer_master");
+$listofcustomers = MysqlConnection::fetchCustom("SELECT * FROM customer_master ORDER BY `cust_companyname` ASC ");
 
 $customerid = filter_input(INPUT_GET, "customerId");
 if (isset($customerid) && $customerid != "") {
