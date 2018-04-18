@@ -72,8 +72,13 @@ $itemsarrays = MysqlConnection::fetchCustom($sqlitems);
                                     $index = 1;
                                     foreach ($itemsarrays as $key => $value) {
                                         if ($value["rqty"] - $value["qty"] != 0) {
+                                            if ($value["qty"] > $value["onhand"]) {
+                                                $back = "rgb(251,210,210)";
+                                            } else {
+                                                $back = "";
+                                            }
                                             ?>
-                                            <tr id="<?php echo $index ?>" style="border-bottom: solid 1px  #CDCDCD;background-color: white">
+                                            <tr id="<?php echo $index ?>" style="border-bottom: solid 1px  #CDCDCD;background-color: <?php echo $back ?>">
                                                 <td style="width: 25px"><?php echo $index++ ?></td>
                                                 <td style="width: 230px;"><?php echo $value["item_code"] ?></td>
                                                 <td style="width: 350px"><?php echo $value["item_desc_sales"] ?></td>
@@ -81,8 +86,16 @@ $itemsarrays = MysqlConnection::fetchCustom($sqlitems);
                                                 <td style="width: 100px;"><?php echo $value["qty"] ?></td>
                                                 <td style="width: 100px;"><?php echo $value["rqty"] ?></td>
                                                 <td >
-                                                    <input type="text" name="salesitems[]" id="salesitems[]">
-                                                    <input type="hidden" name="itemsid[]" id="itemsid[]" value="<?php echo $value["item_id"] ?>"> 
+                                                    <?php
+                                                    if ($value["qty"] < $value["onhand"]) {
+                                                        ?>
+                                                        <input type="text" name="salesitems[]" id="salesitems[]">
+                                                        <input type="hidden" name="itemsid[]" id="itemsid[]" value="<?php echo $value["item_id"] ?>"> 
+                                                        <?php
+                                                    }else{
+                                                        echo "<a href='#'>CREATE PO</a>";
+                                                    }
+                                                    ?>
                                                 </td>
                                             </tr>
                                             <?php

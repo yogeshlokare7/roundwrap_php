@@ -32,6 +32,18 @@ $listSalesOrders = MysqlConnection::fetchCustom("SELECT * FROM `sales_order` whe
     <div class="cutomheader">
         <h5 style="font-family: verdana;font-size: 12px;">CUSTOMER SALES ORDER LIST</h5>
     </div>
+    <div class="cutomheader">
+        <table >
+            <tr >
+                <th style="width: 2.3%;text-align: left">Search&nbsp;:&nbsp;</th>
+                <th colspan="9" style="text-align: left">
+                    <input type="text" id="searchinput" onkeyup="searchData()" 
+                           placeholder="By SO Number" 
+                           name="searchinput" style="width: 250px"/>
+                </th>
+            </tr>
+        </table>
+    </div>
 
     <div class="widget-box">
         <table class="customtable" border="1">
@@ -131,58 +143,58 @@ $listSalesOrders = MysqlConnection::fetchCustom("SELECT * FROM `sales_order` whe
     }
 </script>
 <script>
-    $(function () {
-        $.contextMenu({
-            selector: '.context-menu-one',
-            callback: function (key, options) {
-                var m = "clicked row: " + key;
-                var id = $(this).attr('id');
-                switch (key) {
-                    case "view_salesorder":
-                        window.location = "index.php?pagename=view_salesorder&salesorderid=" + id;
-                        break;
-                    case "create_order":
-                        window.location = "index.php?pagename=manage_customermaster";
-                        break;
-
-                    case "edit_salesorder":
-                        window.location = "index.php?pagename=edit_salesorder&salesorderid=" + id;
-                        break;
-                    case "delete_salesorder":
-                        window.location = "index.php?pagename=view_salesorder&salesorderid=" + id + "&flag=yes";
-                        break;
-
-                    case "create_salesorder":
-                        window.location = "index.php?pagename=create_salesorderreceiving&salesorderid=" + id;
-                        break;
-                    case "create_invoice":
-                        window.location = "index.php?pagename=manage_invoice";
-                        break;
-                    case "quit":
-                        window.location = "index.php?pagename=manage_dashboard";
-                        break;
-                    default:
-                        window.location = "index.php?pagename=manage_salesorder";
-                }
-                //window.console && console.log(m) || alert(m+"    id:"+id); 
-            },
-            items: {
-                "view_salesorder": {name: "VIEW ORDER", icon: "+"},
-                "create_order": {name: "CREATE ORDER", icon: "img/icons/16/book.png"},
-                "edit_salesorder": {name: "EDIT ORDER", icon: "context-menu-icon-add"},
-                "delete_salesorder": {name: "DELETE ORDER", icon: ""},
-                "sep1": "---------",
-                "create_salesorder": {name: "CREATE SALES ORDER", icon: ""},
-                "create_invoice": {name: "CREATE INVOICE", icon: ""},
-//                "create_note": {name: "CREATE SALES ORDER", icon: ""},
-                "sep2": "---------",
-                "quit": {name: "QUIT", icon: function () {
-                        return '';
-                    }}
-            }
-        });
-    });
-
+//    $(function () {
+//        $.contextMenu({
+//            selector: '.context-menu-one',
+//            callback: function (key, options) {
+//                var m = "clicked row: " + key;
+//                var id = $(this).attr('id');
+//                switch (key) {
+//                    case "view_salesorder":
+//                        window.location = "index.php?pagename=view_salesorder&salesorderid=" + id;
+//                        break;
+//                    case "create_order":
+//                        window.location = "index.php?pagename=manage_customermaster";
+//                        break;
+//
+//                    case "edit_salesorder":
+//                        window.location = "index.php?pagename=edit_salesorder&salesorderid=" + id;
+//                        break;
+//                    case "delete_salesorder":
+//                        window.location = "index.php?pagename=view_salesorder&salesorderid=" + id + "&flag=yes";
+//                        break;
+//
+//                    case "create_salesorder":
+//                        window.location = "index.php?pagename=create_salesorderreceiving&salesorderid=" + id;
+//                        break;
+//                    case "create_invoice":
+//                        window.location = "index.php?pagename=manage_invoice";
+//                        break;
+//                    case "quit":
+//                        window.location = "index.php?pagename=manage_dashboard";
+//                        break;
+//                    default:
+//                        window.location = "index.php?pagename=manage_salesorder";
+//                }
+//                //window.console && console.log(m) || alert(m+"    id:"+id); 
+//            },
+//            items: {
+//                "view_salesorder": {name: "VIEW ORDER", icon: "+"},
+//                "create_order": {name: "CREATE ORDER", icon: "img/icons/16/book.png"},
+//                "edit_salesorder": {name: "EDIT ORDER", icon: "context-menu-icon-add"},
+//                "delete_salesorder": {name: "DELETE ORDER", icon: ""},
+//                "sep1": "---------",
+//                "create_salesorder": {name: "CREATE SALES ORDER", icon: ""},
+//                "create_invoice": {name: "CREATE INVOICE", icon: ""},
+////                "create_note": {name: "CREATE SALES ORDER", icon: ""},
+//                "sep2": "---------",
+//                "quit": {name: "QUIT", icon: function () {
+//                        return '';
+//                    }}
+//            }
+//        });
+//    });
+//
     $('tr').dblclick(function () {
         var id = $(this).attr('id');
         if (id !== undefined) {
@@ -190,4 +202,25 @@ $listSalesOrders = MysqlConnection::fetchCustom("SELECT * FROM `sales_order` whe
         }
     });
 
+</script>
+
+<script>
+    function searchData() {
+        var input, filter, table, tr, td, i;
+        input = document.getElementById("searchinput");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("data");
+        tr = table.getElementsByTagName("tr");
+        // Loop through all table rows, and hide those who don't match the search query
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[1];
+            if (td) {
+                if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
 </script>

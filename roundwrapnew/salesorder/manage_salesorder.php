@@ -32,6 +32,18 @@ $listSalesOrders = MysqlConnection::fetchCustom("SELECT * FROM `sales_order` ORD
     <div class="cutomheader">
         <h5 style="font-family: verdana;font-size: 12px;">CUSTOMER SALES ORDER LIST</h5>
     </div>
+    <div class="cutomheader">
+        <table >
+            <tr >
+                <th style="width: 2.3%;text-align: left">Search&nbsp;:&nbsp;</th>
+                <th colspan="9" style="text-align: left">
+                    <input type="text" id="searchinput" onkeyup="searchData()" 
+                           placeholder="By SO Number" 
+                           name="searchinput" style="width: 250px"/>
+                </th>
+            </tr>
+        </table>
+    </div>
 
     <div class="widget-box">
         <table class="customtable" border="1">
@@ -190,4 +202,25 @@ $listSalesOrders = MysqlConnection::fetchCustom("SELECT * FROM `sales_order` ORD
         }
     });
 
+</script>
+
+<script>
+    function searchData() {
+        var input, filter, table, tr, td, i;
+        input = document.getElementById("searchinput");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("data");
+        tr = table.getElementsByTagName("tr");
+        // Loop through all table rows, and hide those who don't match the search query
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[1];
+            if (td) {
+                if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
 </script>

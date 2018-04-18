@@ -109,7 +109,7 @@ $buildauto = buildauto($itemarray);
                                     <td><input type="text" name="sono" onkeypress="return chkNumericKey(event)" value="<?php echo $sonumber ?>" readonly=""></td>
                                 </tr>
                                 <tr >
-                                    <td><b>Purchase Date</b></td>
+                                    <td><b>Sales Date</b></td>
                                     <td><input type="date" name="salesdate" value="<?php echo date("Y-m-d") ?>" readonly=""></td>
                                 </tr>
                                 <tr >

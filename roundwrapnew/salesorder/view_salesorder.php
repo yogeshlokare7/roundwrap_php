@@ -103,7 +103,7 @@ if (isset($_POST["salesorderid"]) && isset($_GET["flag"])) {
                         <div style="width: 28%;float: right">
                             <table class="table-bordered" style="width: 100%;border-collapse: collapse;background-color: white" border="1">
                                 <tr >
-                                    <td><b>Purchase Date</b></td>
+                                    <td><b>Sales Date</b></td>
                                     <td><input type="text" value="<?php echo date("Y-m-d") ?>" readonly=""></td>
                                 </tr>
                                 <tr >
