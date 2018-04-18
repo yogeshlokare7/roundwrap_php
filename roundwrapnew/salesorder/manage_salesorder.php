@@ -30,25 +30,23 @@ $listSalesOrders = MysqlConnection::fetchAll("sales_order");
 <script src="js/jquery.contextMenu.js" type="text/javascript"></script>
 <div class="container-fluid">
     <div class="cutomheader">
-        <h5 style="font-family: verdana;font-size: 12px;">LIST CUSTOMER SALES ORDER'S</h5>
+        <h5 style="font-family: verdana;font-size: 12px;">CUSTOMER SALES ORDER LIST</h5>
     </div>
-    <div class="cutomheader">
-        <table class="customtable" style="border: 0px;">
-            <tr>
-                <td style="width: 25%"><a class="btn" href="index.php?pagename=create_salesorder" ><i class="icon-inbox"></i>&nbsp;Create&nbsp;Sales&nbsp;Order</a></td>
-            </tr>
-        </table>
-    </div>
+
     <div class="widget-box">
         <table class="customtable" border="1">
             <tr style="height: 30px;background-color: rgb(240,240,240);cursor: pointer;text-transform: uppercase">
-                <th style="width:25px">#</th>
-                <th style="width: 900px;">Customer Name</th>
-                <th style="width: 100px;">Ordered Items</th>
-                <th style="width: 100px;">Delivered Items</th>
-                <th style="width: 100px;">Pending Item</th>
-                <th >Packing Count</th>
-                
+                <th style="width: 25px;">#</th>
+                <th style="width: 100px;">SO NUM</th>
+                <th style="width: 450px;">Customer Name</th>
+                <th style="width: 100px;">Total Items</th>
+                <th style="width: 100px;">Item Left</th>
+                <th style="width: 150px;">Ship Via</th>
+                <th style="width: 100px;">Gross Amount</th>
+                <th style="width: 100px;">Tax Amount</th>
+                <th style="width: 100px;">Net Amount</th>
+                <th style="width: 100px;">Delivery Date</th>
+                <th >Entered By</th>
             </tr>
         </table>
         <div style="height: 310px;overflow: auto;overflow-x: auto">
@@ -56,20 +54,45 @@ $listSalesOrders = MysqlConnection::fetchAll("sales_order");
                 <?php
                 $index = 1;
                 foreach ($listSalesOrders as $key => $value) {
+                    $customer = MysqlConnection::fetchCustom("SELECT cust_companyname FROM customer_master WHERE id = " . $value["customer_id"]);
                     ?>
-                    <tr id="'<?php echo $value["id"] ?>'" class="context-menu-one" onclick="setId('<?php echo $value["id"] ?>')" style="border-bottom: solid 1px rgb(220,220,220);text-align: left;vertical-align: central">
-
+                    <tr id="<?php echo $value["id"] ?>" class="context-menu-one" onclick="setId('<?php echo $value["id"] ?>')" style="border-bottom: solid 1px rgb(220,220,220);text-align: left;vertical-align: central">
                         <td style="width: 25px;text-align: center"><?php echo $index++ ?></td>
-                        <td style="width: 900px;">&nbsp;&nbsp;<?php echo $value["customer_id"] ?></td>
+                        <td style="width: 100px;">&nbsp;&nbsp;<?php echo $value["sono"] ?></td>
+                        <td style="width: 450px;">&nbsp;&nbsp;<?php echo $customer[0]["cust_companyname"]; ?></td>
                         <td style="width: 100px;">&nbsp;&nbsp;<?php echo $value[""] ?></td>
                         <td style="width: 100px;">&nbsp;&nbsp;<?php echo $value[""] ?></td>
-                        <td style="width: 100px;">&nbsp;&nbsp;<?php echo $value[""] ?></td>
-                        <td >&nbsp;&nbsp;<?php echo $value[""] ?></td>
+                        <td style="width: 150px;">&nbsp;&nbsp;<?php echo $value["shipvia"] ?></td>
+                        <td style="width: 100px;text-align: right">&nbsp;&nbsp;<?php echo $value["sub_total"] ?></td>
+                        <td style="width: 100px;text-align: right">&nbsp;&nbsp;<?php echo $value["taxAmount"] ?></td>
+                        <td style="width: 100px;text-align: right">&nbsp;&nbsp;<?php echo $value["total"] ?></td>
+                        <td style="width: 100px;">&nbsp;&nbsp;<?php echo $value["expected_date"] ?></td>
+                        <td >&nbsp;&nbsp;<?php echo $value["added_by"] ?></td>
                     </tr>
                     <?php
                 }
                 ?>
+                <?php
+                for ($index1 = 1; $index1 < 15; $index1++) {
+                    ?>
+                    <tr  style="border-bottom: solid 1px rgb(220,220,220);text-align: left;vertical-align: central">
+                        <td style="width: 25px;text-align: center"></td>
+                        <td style="width: 100px;">&nbsp;&nbsp;<?php echo $value[""] ?></td>
+                        <td style="width: 450px;">&nbsp;&nbsp;<?php echo $customer[0][""]; ?></td>
+                        <td style="width: 100px;">&nbsp;&nbsp;<?php echo $value[""] ?></td>
+                        <td style="width: 100px;">&nbsp;&nbsp;<?php echo $value[""] ?></td>
+                        <td style="width: 150px;">&nbsp;&nbsp;<?php echo $value[""] ?></td>
+                        <td style="width: 100px;text-align: right">&nbsp;&nbsp;<?php echo $value[""] ?></td>
+                        <td style="width: 100px;text-align: right">&nbsp;&nbsp;<?php echo $value[""] ?></td>
+                        <td style="width: 100px;text-align: right">&nbsp;&nbsp;<?php echo $value[""] ?></td>
+                        <td style="width: 100px;">&nbsp;&nbsp;<?php echo $value[""] ?></td>
+                        <td >&nbsp;&nbsp;<?php echo $value[""] ?></td>
+                    </tr>  
+                    <?php
+                }
+                ?>
             </table>
+
             <input type="hidden" id="deleteId" name="cid" value="">
             <input type="hidden" id="flag" name="flag" value="">
             <input type="hidden" id="rightClikId" name="rightClikId" value="">
@@ -99,12 +122,12 @@ $listSalesOrders = MysqlConnection::fetchAll("sales_order");
     function setDeleteField(deleteId) {
         document.getElementById("deleteId").value = deleteId;
     }
-    
-  function setId(val) {
+
+    function setId(val) {
         document.getElementById("rightClikId").value = val;
     }
 </script>
- <script>
+<script>
     $(function () {
         $.contextMenu({
             selector: '.context-menu-one',
@@ -113,19 +136,19 @@ $listSalesOrders = MysqlConnection::fetchAll("sales_order");
                 var id = $(this).attr('id');
                 switch (key) {
                     case "view_salesorder":
-                        window.location = "index.php?pagename=view_salesorder&=" + id;
+                        window.location = "index.php?pagename=view_salesorder&salesorderid=" + id;
                         break;
                     case "create_salesorder":
                         window.location = "index.php?pagename=create_salesorder";
                         break;
                     case "create_note":
-                        window.location = "index.php?pagename=note_salesorder&=" + id;
+                        window.location = "index.php?pagename=note_salesorder&salesorderid=" + id;
                         break;
                     case "edit_salesorder":
-                        window.location = "index.php?pagename=create_salesorder&=" + id;
+                        window.location = "index.php?pagename=edit_salesorder&salesorderid=" + id;
                         break;
                     case "delete_salesorder":
-                        window.location = "index.php?pagename=view_salesorder&=" + id + "&flag=yes";
+                        window.location = "index.php?pagename=view_salesorder&salesorderid=" + id + "&flag=yes";
                         break;
 
                     case "create_invoice":
@@ -158,7 +181,9 @@ $listSalesOrders = MysqlConnection::fetchAll("sales_order");
 
     $('tr').dblclick(function () {
         var id = $(this).attr('id');
-        window.location = "index.php?pagename=view_salesorder";
+        if (id !== undefined) {
+            window.location = "index.php?pagename=view_salesorder&salesorderid=" + id;
+        }
     });
 
 </script>

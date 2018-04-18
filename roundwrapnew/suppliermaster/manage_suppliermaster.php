@@ -58,7 +58,7 @@ if (isset($supplierid) && $supplierid != "") {
 </script>
 <div class="container-fluid">
     <div class="cutomheader">
-        <h5 style="font-family: verdana;font-size: 12px;">LIST VENDOR'S</h5>
+        <h5 style="font-family: verdana;font-size: 12px;">VENDOR'S LIST</h5>
     </div>
 
     <div class="cutomheader">

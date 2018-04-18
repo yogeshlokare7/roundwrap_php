@@ -31,7 +31,7 @@ $listPerchaseOrders = MysqlConnection::fetchCustom("SELECT *  FROM  `purchase_or
 
 <div class="container-fluid">
     <div class="cutomheader">
-        <h5 style="font-family: verdana;font-size: 12px;">LIST PURCHASE ORDER'S</h5>
+        <h5 style="font-family: verdana;font-size: 12px;">RECEIVING PURCHASE ORDER LIST</h5>
     </div>
     <div class="widget-box">
         <table class="customtable" border="1">

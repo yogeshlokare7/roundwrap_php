@@ -31,7 +31,7 @@ $listPerchaseOrders = MysqlConnection::fetchCustom("SELECT *  FROM  `purchase_or
 
 <div class="container-fluid">
     <div class="cutomheader">
-        <h5 style="font-family: verdana;font-size: 12px;">LIST PURCHASE ORDER'S</h5>
+        <h5 style="font-family: verdana;font-size: 12px;">PURCHASE ORDER LIST</h5>
     </div>
     <div class="widget-box">
         <table class="customtable" border="1">
@@ -71,7 +71,7 @@ $listPerchaseOrders = MysqlConnection::fetchCustom("SELECT *  FROM  `purchase_or
                         <td style="width: 150px">&nbsp;&nbsp;<?php echo $value["ship_via"] ?></td>
                         <td style="width: 100px; text-align: right">&nbsp;&nbsp;<?php echo $value["sub_total"] ?>&nbsp;&nbsp;</td>
                         <td style="width: 100px; text-align: right">&nbsp;&nbsp;<?php echo $value["discount"] ?>&nbsp;&nbsp;</td>
-                        <td style="width: 100px; text-align: right">$&nbsp;&nbsp;<?php echo $value["total"] ?>&nbsp;&nbsp;</td>
+                        <td style="width: 100px; text-align: right">&nbsp;&nbsp;<?php echo $value["total"] ?>&nbsp;&nbsp;</td>
                         <td style=" width: 130px;text-align: center">&nbsp;&nbsp;<?php echo $value["expected_date"] ?>&nbsp;&nbsp;</td>
                         <td >&nbsp;&nbsp;<?php echo implode(" ", $userarray[0]) ?></td>
                     </tr>

@@ -41,7 +41,7 @@ if (isset($customerid) && $customerid != "") {
 <script src="js/jquery.contextMenu.js" type="text/javascript"></script>
 <div class="container-fluid" >
     <div class="cutomheader">
-        <h5 style="font-family: verdana;font-size: 12px;">LIST CUSTOMER'S</h5>
+        <h5 style="font-family: verdana;font-size: 12px;">CUSTOMER'S LIST</h5>
     </div>
     <div class="cutomheader">
         <table >

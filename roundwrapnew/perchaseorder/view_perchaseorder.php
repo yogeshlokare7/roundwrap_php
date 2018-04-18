@@ -36,7 +36,7 @@ if (isset($_POST["purchaseorderid"]) && isset($_GET["flag"])) {
         <div class="widget-box" style="width: 100%;border-bottom: solid 1px #CDCDCD;">
             <div class="widget-title">
                 <ul class="nav nav-tabs">
-                    <li class="active"><a data-toggle="tab" href="#tab1">VIEW PURCHASE ORDER</a></li>
+                    <li class="active"><a data-toggle="tab" href="#tab1">PURCHASE ORDER VIEW</a></li>
                 </ul>
             </div>
             <br/>
@@ -68,7 +68,7 @@ if (isset($_POST["purchaseorderid"]) && isset($_GET["flag"])) {
                 <tr>
                     <td>
 
-                        <div style="width: 70%;float: left">
+                        <div style="width: 70%;float: left;text-align: center">
                             <table class="table-bordered" style="width: 100%;border-collapse: collapse" border="1">
                                 <tr style="border-bottom: solid 1px  #CDCDCD;background-color: rgb(250,250,250)">
                                     <td style="width: 25px;">#</td>
@@ -92,10 +92,10 @@ if (isset($_POST["purchaseorderid"]) && isset($_GET["flag"])) {
                                             <td style="width: 200px;"><?php echo $items[0]["item_code"] ?></td>
                                             <td style="width: 350px"><div id="desc"></div><?php echo $items[0]["item_desc_purch"] ?></td>
                                             <td style="width: 80px;"><div id="unit"></div><?php echo $items[0]["unit"] ?></td>
-                                            <td style="width: 80px;"><div id="price"></div><?php echo $items[0]["purchase_rate"] ?></td>
+                                            <td style="width: 80px;text-align: right"><div id="price"></div><?php echo $items[0]["purchase_rate"] ?></td>
                                             <td style="width:80px;"><?php echo $value["qty"] ?></td>
                                             <td style="width:80px;"><?php echo $value["rqty"] ?></td>
-                                            <td ><?php echo ($items[0]["purchase_rate"] * $value["qty"]) ?></td>
+                                            <td style="text-align: right" ><?php echo ($items[0]["purchase_rate"] * $value["qty"]) ?></td>
                                         </tr>
                                     <?php } ?>
                                 </table>

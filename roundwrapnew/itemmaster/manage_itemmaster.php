@@ -44,7 +44,7 @@ if (isset($itemid) && $itemid != "") {
 <script src="js/jquery.contextMenu.js" type="text/javascript"></script>
 <div class="container-fluid">
     <div class="cutomheader">
-        <h5 style="font-family: verdana;font-size: 12px;">LIST ITEM'S</h5>
+        <h5 style="font-family: verdana;font-size: 12px;">ITEM'S LIST</h5>
     </div>
     <div class="cutomheader">
         <table >
@@ -96,7 +96,7 @@ if (isset($itemid) && $itemid != "") {
                         <td style="width: 110px;">&nbsp;<?php echo $value["type"] ?></td>
                         <td style="width: 90px;text-align: right"><?php echo $value["onhand"]; ?>&nbsp;&nbsp;</td>
                         <td style="width: 90px;text-align: right"><?php echo $value["totalvalue"]; ?>&nbsp;&nbsp;</td>
-                        <td style="text-align: right">$&nbsp;<?php echo $value["sell_rate"]; ?>&nbsp;&nbsp;</td>
+                        <td style="text-align: right">&nbsp;<?php echo $value["sell_rate"]; ?>&nbsp;&nbsp;</td>
                     </tr>
                     <?php
                     $index++;

@@ -36,7 +36,7 @@ $subitemof = MysqlConnection::fetchCustom("SELECT  item_code, item_name  FROM  `
 </style>
 <div class="container-fluid"  >
     <div class="cutomheader">
-        <h5 style="font-family: verdana;font-size: 12px;">VIEW ITEM</h5>
+        <h5 style="font-family: verdana;font-size: 12px;">ITEM VIEW</h5>
     </div>
     <br/>
     <fieldset class="well the-fieldset">

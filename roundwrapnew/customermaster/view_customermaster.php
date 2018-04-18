@@ -34,7 +34,7 @@ if (isset($_POST["deleteItem"])) {
 </style>
 <div class="container-fluid" id="tabs">
     <div class="cutomheader">
-        <h5 style="font-family: verdana;font-size: 12px;">VIEW CUSTOMER</h5>
+        <h5 style="font-family: verdana;font-size: 12px;">CUSTOMER VIEW</h5>
     </div>
     <div class="widget-box" >
 
