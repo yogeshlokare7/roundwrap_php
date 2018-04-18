@@ -17,8 +17,8 @@ ob_start();
         <ul>
             <li><a href="index.php?pagename=manage_perchaseorder">Purchase Orders</a></li>
             <li><a href="index.php?pagename=manage_receivingorder">Receiving Purchase Orders</a></li>
-            <li><a href="index.php?pagename=manage_createorder">Create Customer Order</a></li>
-            <li><a href="index.php?pagename=manage_salesorder">Customer Sales Order</a></li>
+            <li><a href="index.php?pagename=manage_salesorder">Create Customer Order</a></li>
+            <li><a href="index.php?pagename=manage_salesorderreceiving">Customer Sales Order</a></li>
         </ul>
     </li>
 <!--    <li><a><i class="icon icon-list-alt"></i> <span>Production</span></a>

@@ -3,7 +3,7 @@ $sqlgetsupplier = "SELECT * FROM customer_master WHERE id = " . filter_input(INP
 $resultset = MysqlConnection::fetchCustom($sqlgetsupplier);
 $customer = $resultset[0];
 $salesorderbumberarray = MysqlConnection::fetchCustom("SELECT count(id) as counter FROM sales_order");
-$sonumber = "SO100" . $salesorderbumberarray[0]["counter"];
+$sonumber = "SO" . (1000 + $salesorderbumberarray[0]["counter"]);
 
 $sqlitemarray = MysqlConnection::fetchCustom("SELECT count(id) as counter FROM sales_order");
 $itemarray = MysqlConnection::fetchCustom("SELECT * FROM item_master;");
@@ -12,7 +12,7 @@ $buildauto = buildauto($itemarray);
 
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script>
-    $(function() {
+    $(function () {
         var availableTags = [<?php echo $buildauto ?>];
         for (var index = 1; index <= 30; index++) {
             $("#tags" + index).autocomplete({source: availableTags});
@@ -159,7 +159,7 @@ $buildauto = buildauto($itemarray);
                     type: 'POST',
                     url: 'itemmaster/getitemajax.php',
                     data: dataString
-                }).done(function(data) {
+                }).done(function (data) {
                     var jsonobj = JSON.parse(data);
                     var desc = jsonobj.item_desc_sales;
                     $("#desc" + count).text(desc);
@@ -167,7 +167,7 @@ $buildauto = buildauto($itemarray);
                     $("#price" + count).text(jsonobj.sell_rate);
                     $("#onhand" + count).text(jsonobj.onhand);
                     $("#onhand" + count).val(jsonobj.onhand);
-                }).fail(function() {
+                }).fail(function () {
                 });
             }
             function clearValue(count) {

@@ -1,5 +1,5 @@
 <?php
-$listSalesOrders = MysqlConnection::fetchAll("sales_order");
+$listSalesOrders = MysqlConnection::fetchCustom("SELECT * FROM `sales_order` ORDER BY isOpen DESC");
 ?>
 <style>
     .customtable{
@@ -37,15 +37,15 @@ $listSalesOrders = MysqlConnection::fetchAll("sales_order");
         <table class="customtable" border="1">
             <tr style="height: 30px;background-color: rgb(240,240,240);cursor: pointer;text-transform: uppercase">
                 <th style="width: 25px;">#</th>
-                <th style="width: 100px;">SO NUM</th>
+                <th style="width: 100px;">SO No</th>
                 <th style="width: 450px;">Customer Name</th>
-                <th style="width: 100px;">Total Items</th>
-                <th style="width: 100px;">Item Left</th>
+                <th style="width: 100px;">Total </th>
+                <th style="width: 100px;">SO Status</th>
                 <th style="width: 150px;">Ship Via</th>
-                <th style="width: 100px;">Gross Amount</th>
-                <th style="width: 100px;">Tax Amount</th>
-                <th style="width: 100px;">Net Amount</th>
-                <th style="width: 100px;">Delivery Date</th>
+                <th style="width: 100px;">Gross Amt</th>
+                <th style="width: 100px;">Discount</th>
+                <th style="width: 100px;">Net Amt</th>
+                <th style="width: 130px;">Delivery Date</th>
                 <th >Entered By</th>
             </tr>
         </table>
@@ -55,18 +55,21 @@ $listSalesOrders = MysqlConnection::fetchAll("sales_order");
                 $index = 1;
                 foreach ($listSalesOrders as $key => $value) {
                     $customer = MysqlConnection::fetchCustom("SELECT cust_companyname FROM customer_master WHERE id = " . $value["customer_id"]);
+                    $isOpen = $value["isOpen"] == "Y" ? "Open" : "Close";
+                    $isOpenclt = $value["isOpen"] == "Y" ? "btn-success" : "btn-warning";
+                    $items = MysqlConnection::fetchCustom("SELECT count(id) as counter FROM `sales_item` WHERE `so_id` = " . $value["id"]);
                     ?>
                     <tr id="<?php echo $value["id"] ?>" class="context-menu-one" onclick="setId('<?php echo $value["id"] ?>')" style="border-bottom: solid 1px rgb(220,220,220);text-align: left;vertical-align: central">
                         <td style="width: 25px;text-align: center"><?php echo $index++ ?></td>
                         <td style="width: 100px;">&nbsp;&nbsp;<?php echo $value["sono"] ?></td>
                         <td style="width: 450px;">&nbsp;&nbsp;<?php echo $customer[0]["cust_companyname"]; ?></td>
-                        <td style="width: 100px;">&nbsp;&nbsp;<?php echo $value[""] ?></td>
-                        <td style="width: 100px;">&nbsp;&nbsp;<?php echo $value[""] ?></td>
+                        <td style="width: 100px;">&nbsp;&nbsp;<?php echo $items[0]["counter"] ?></td>
+                        <td style="width: 100px;">&nbsp;&nbsp;<i class="<?php echo $isOpenclt ?>" style="padding: 2px 15px 2px 15px;"><?php echo $isOpen ?></i></td>
                         <td style="width: 150px;">&nbsp;&nbsp;<?php echo $value["shipvia"] ?></td>
-                        <td style="width: 100px;text-align: right">&nbsp;&nbsp;<?php echo $value["sub_total"] ?></td>
-                        <td style="width: 100px;text-align: right">&nbsp;&nbsp;<?php echo $value["taxAmount"] ?></td>
-                        <td style="width: 100px;text-align: right">&nbsp;&nbsp;<?php echo $value["total"] ?></td>
-                        <td style="width: 100px;">&nbsp;&nbsp;<?php echo $value["expected_date"] ?></td>
+                        <td style="width: 100px;text-align: right"><?php echo $value["sub_total"] ?>&nbsp;&nbsp;</td>
+                        <td style="width: 100px;text-align: right"><?php echo $value["discount"] ?>&nbsp;&nbsp;</td>
+                        <td style="width: 100px;text-align: right"><?php echo $value["total"] ?>&nbsp;&nbsp;</td>
+                        <td style="width: 130px;">&nbsp;&nbsp;<?php echo $value["expected_date"] ?></td>
                         <td >&nbsp;&nbsp;<?php echo $value["added_by"] ?></td>
                     </tr>
                     <?php
@@ -85,7 +88,7 @@ $listSalesOrders = MysqlConnection::fetchAll("sales_order");
                         <td style="width: 100px;text-align: right">&nbsp;&nbsp;<?php echo $value[""] ?></td>
                         <td style="width: 100px;text-align: right">&nbsp;&nbsp;<?php echo $value[""] ?></td>
                         <td style="width: 100px;text-align: right">&nbsp;&nbsp;<?php echo $value[""] ?></td>
-                        <td style="width: 100px;">&nbsp;&nbsp;<?php echo $value[""] ?></td>
+                        <td style="width: 130px;">&nbsp;&nbsp;<?php echo $value[""] ?></td>
                         <td >&nbsp;&nbsp;<?php echo $value[""] ?></td>
                     </tr>  
                     <?php
@@ -138,12 +141,10 @@ $listSalesOrders = MysqlConnection::fetchAll("sales_order");
                     case "view_salesorder":
                         window.location = "index.php?pagename=view_salesorder&salesorderid=" + id;
                         break;
-                    case "create_salesorder":
-                        window.location = "index.php?pagename=create_salesorder";
+                    case "create_order":
+                        window.location = "index.php?pagename=manage_customermaster";
                         break;
-                    case "create_note":
-                        window.location = "index.php?pagename=note_salesorder&salesorderid=" + id;
-                        break;
+
                     case "edit_salesorder":
                         window.location = "index.php?pagename=edit_salesorder&salesorderid=" + id;
                         break;
@@ -151,6 +152,9 @@ $listSalesOrders = MysqlConnection::fetchAll("sales_order");
                         window.location = "index.php?pagename=view_salesorder&salesorderid=" + id + "&flag=yes";
                         break;
 
+                    case "create_salesorder":
+                        window.location = "index.php?pagename=create_salesorderreceiving&salesorderid=" + id;
+                        break;
                     case "create_invoice":
                         window.location = "index.php?pagename=manage_invoice";
                         break;
@@ -164,13 +168,13 @@ $listSalesOrders = MysqlConnection::fetchAll("sales_order");
             },
             items: {
                 "view_salesorder": {name: "VIEW ORDER", icon: "+"},
-                "create_salesorder": {name: "CREATE ORDER", icon: "img/icons/16/book.png"},
+                "create_order": {name: "CREATE ORDER", icon: "img/icons/16/book.png"},
                 "edit_salesorder": {name: "EDIT ORDER", icon: "context-menu-icon-add"},
                 "delete_salesorder": {name: "DELETE ORDER", icon: ""},
                 "sep1": "---------",
-                "create_note": {name: "CREATE NOTE", icon: ""},
+                "create_salesorder": {name: "CREATE SALES ORDER", icon: ""},
                 "create_invoice": {name: "CREATE INVOICE", icon: ""},
-                "create_note": {name: "CREATE RECEIVING ORDER", icon: ""},
+//                "create_note": {name: "CREATE SALES ORDER", icon: ""},
                 "sep2": "---------",
                 "quit": {name: "QUIT", icon: function () {
                         return '';
