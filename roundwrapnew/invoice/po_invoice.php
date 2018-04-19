@@ -44,7 +44,7 @@ if (isset($_POST["purchaseorderid"]) && isset($_GET["flag"])) {
                 <tr>
                     <td>
                         <fieldset  class="well the-fieldset">
-                            <table border="1">
+                            <table border="0">
                                 <tr>
                                     <td style="width: 20%"><label class="control-label"   class="control-label">COMPANY NAME&nbsp;:&nbsp</label>
                                         <input   type="text"  value="<?php echo $purchaseorder["companyname"] ?>" readonly=""/></td>
