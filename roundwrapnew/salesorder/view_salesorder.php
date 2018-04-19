@@ -72,7 +72,7 @@ if (isset($_POST["salesorderid"]) && isset($_GET["flag"])) {
                                     <td style="width: 300px">ITEM DESCRIPTION</td>
                                     <td style="width: 80px;">UNIT</td>
                                     <td style="width: 80px;">PRICE</td>
-                                    <td style="width: 120px;">ORDEREd QTY</td>
+                                    <td style="width: 120px;">ORDERED QTY</td>
                                     <td style="width: 120px;">RECEIVED QTY</td>
                                     <td>AMOUNT</td>
                                 </tr>
@@ -103,6 +103,10 @@ if (isset($_POST["salesorderid"]) && isset($_GET["flag"])) {
                         <div style="width: 28%;float: right">
                             <table class="table-bordered" style="width: 100%;border-collapse: collapse;background-color: white" border="1">
                                 <tr >
+                                    <td><b>SO Number</b></td>
+                                    <td><input type="text" value="<?php echo $customer["sono"] ?>"  readonly=""></td>
+                                </tr>
+                                <tr >
                                     <td><b>Sales Date</b></td>
                                     <td><input type="text" value="<?php echo date("Y-m-d") ?>" readonly=""></td>
                                 </tr>
@@ -110,10 +114,7 @@ if (isset($_POST["salesorderid"]) && isset($_GET["flag"])) {
                                     <td><b>Sales Person</b></td>
                                     <td><input type="text" value="<?php echo $customer["representative"] ?>" readonly=""></td>
                                 </tr>
-                                <tr >
-                                    <td ><b>Total Items</b></td>
-                                    <td ><input type="text" value="<?php echo $customer["sub_total"]; ?>" readonly=""></td>
-                                </tr>
+
                                 <tr >
                                     <td><b>Total</b></td>
                                     <td><input type="text" value="<?php echo $customer["total"]; ?>" readonly=""></td>

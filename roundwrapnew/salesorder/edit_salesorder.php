@@ -119,6 +119,10 @@ $buildauto = buildauto($itemarray);
                         </div>
                         <div style="width: 28%;float: right">
                             <table class="table-bordered" style="width: 100%;border-collapse: collapse;background-color: white" border="1">
+                                <tr>
+                                    <td><b>SO Number</b></td>
+                                    <td><input type="text" value="<?php echo $customer["sono"] ?>"  readonly=""></td>
+                                </tr>
                                 <tr >
                                     <td><b>Purchase Date</b></td>
                                     <td><input type="text" value="<?php echo date("Y-m-d") ?>" ></td>
@@ -127,10 +131,7 @@ $buildauto = buildauto($itemarray);
                                     <td><b>Enter By</b></td>
                                     <td><input type="text" value="<?php echo $_SESSION["user"]["firstName"] . " " . $_SESSION["user"]["lastName"] ?>" ></td>
                                 </tr>
-                                <tr >
-                                    <td ><b>Total Items</b></td>
-                                    <td ><input type="text" value="<?php echo $customer["sub_total"]; ?>" ></td>
-                                </tr>
+
                                 <tr >
                                     <td><b>Total</b></td>
                                     <td><input type="text" value="<?php echo $customer["total"]; ?>" ></td>
@@ -166,61 +167,61 @@ $buildauto = buildauto($itemarray);
 <script src="js/maruti.js"></script> 
 <script src="js/maruti.form_common.js"></script>
 <script>
-                                                $(document).ready(function () {
-                                                    $('.table-fixed-header').prepFixedHeader().fixedHeader();
-                                                });
+                                            $(document).ready(function () {
+                                                $('.table-fixed-header').prepFixedHeader().fixedHeader();
+                                            });
 </script>
 <script>
 
-            function setDetails(count) {
-                var item_code = $("#tags" + count).val();
-                var dataString = "item_code=" + item_code;
-                $.ajax({
-                    type: 'POST',
-                    url: 'itemmaster/getitemajax.php',
-                    data: dataString
-                }).done(function (data) {
-                    var jsonobj = JSON.parse(data);
-                    var desc = jsonobj.item_desc_sales;
-                    $("#desc" + count).text(desc);
-                    $("#unit" + count).text(jsonobj.unit);
-                    $("#price" + count).text(jsonobj.sell_rate);
-                    $("#onhand" + count).text(jsonobj.onhand);
-                    $("#onhand" + count).val(jsonobj.onhand);
-                }).fail(function () {
-                });
-            }
-            function clearValue(count) {
-                $("#desc" + count).text("");
-                $("#unit" + count).text("");
-                $("#price" + count).text("");
-                $("#tags" + count).val("");
-                $("#total" + count).text("");
-                $("#onhand" + count).text("");
-                $("#amount" + count).val("");
-                finalTotal();
-            }
+    function setDetails(count) {
+        var item_code = $("#tags" + count).val();
+        var dataString = "item_code=" + item_code;
+        $.ajax({
+            type: 'POST',
+            url: 'itemmaster/getitemajax.php',
+            data: dataString
+        }).done(function (data) {
+            var jsonobj = JSON.parse(data);
+            var desc = jsonobj.item_desc_sales;
+            $("#desc" + count).text(desc);
+            $("#unit" + count).text(jsonobj.unit);
+            $("#price" + count).text(jsonobj.sell_rate);
+            $("#onhand" + count).text(jsonobj.onhand);
+            $("#onhand" + count).val(jsonobj.onhand);
+        }).fail(function () {
+        });
+    }
+    function clearValue(count) {
+        $("#desc" + count).text("");
+        $("#unit" + count).text("");
+        $("#price" + count).text("");
+        $("#tags" + count).val("");
+        $("#total" + count).text("");
+        $("#onhand" + count).text("");
+        $("#amount" + count).val("");
+        finalTotal();
+    }
 
-            function calculateAmount(count) {
-                var price = $("#price" + count).text();
-                var amount = $("#amount" + count).val();
-                var total = parseFloat(price) * parseFloat(amount);
-                $("#total" + count).text(total);
-                finalTotal();
-            }
+    function calculateAmount(count) {
+        var price = $("#price" + count).text();
+        var amount = $("#amount" + count).val();
+        var total = parseFloat(price) * parseFloat(amount);
+        $("#total" + count).text(total);
+        finalTotal();
+    }
 
-            function finalTotal() {
-                var finaltotal = 0;
-                for (var index = 1; index <= 30; index++) {
-                    var price = $("#price" + index).text();
-                    var amount = $("#amount" + index).val();
-                    if (price !== "" && amount !== "") {
-                        var t = parseFloat(price) * parseFloat(amount);
-                        finaltotal = parseFloat(finaltotal) + parseFloat(t);
-                    }
-                }
-                $("#finaltotal").val(finaltotal);
+    function finalTotal() {
+        var finaltotal = 0;
+        for (var index = 1; index <= 30; index++) {
+            var price = $("#price" + index).text();
+            var amount = $("#amount" + index).val();
+            if (price !== "" && amount !== "") {
+                var t = parseFloat(price) * parseFloat(amount);
+                finaltotal = parseFloat(finaltotal) + parseFloat(t);
             }
+        }
+        $("#finaltotal").val(finaltotal);
+    }
 //                                        function discount() {
 //                                            var amount = $("#discount").val();
 //                                            var finaltotal = $("#finaltotal").val();
@@ -230,10 +231,10 @@ $buildauto = buildauto($itemarray);
 //                                            }
 //                                        }
 
-            function createPurchaseOrder() {
-                var x = document.getElementsByTagName("form");
-                x[0].submit();
-            }
+    function createPurchaseOrder() {
+        var x = document.getElementsByTagName("form");
+        x[0].submit();
+    }
 
 
 </script>
