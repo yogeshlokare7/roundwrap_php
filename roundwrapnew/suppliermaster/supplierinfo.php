@@ -95,11 +95,18 @@ $arrsalutations = MysqlConnection::fetchCustom("SELECT distinct(`salutation`) as
 
         <tr >
             <td><label class="control-label" style="float: left">Currency</label></td>
-            <td><select name="currency" id="currency">
-                    <option value="CAN" <?php echo "CAN" == $supplier["currency"] ? "selected" : "" ?>>Canada Dollar</option>
-                    <option value="USD" <?php echo "USD" == $supplier["currency"] ? "selected" : "" ?>>USD</option>
-                    <option value="INR" <?php echo "INR" == $supplier["currency"] ? "selected" : "" ?>>INR</option>
-                </select></td>
+            <td>
+                <select name="currency"  id="currency" value="">
+                    <?php
+                    $currencyarr = getcurrency();
+                    foreach ($currencyarr as $key => $value) {
+                        ?>
+                        <option value="<?php echo $key ?>" <?php echo $supplier["currency"] == $key ? "selected" : "" ?> ><?php echo $value ?></option>
+                        <?php
+                    }
+                    ?>
+                </select>
+            </td>
             <td><label class="control-label" style="float: left">Exchange Rate</label></td>
             <td><input type="text" name="exchange_rate" id="exchange_rate" onkeypress="return chkNumericKey(event)" value="<?php echo $supplier["exchange_rate"] ?>" maxlength="2"></td>
             <td><label class="control-label">Street Name</label></td>
