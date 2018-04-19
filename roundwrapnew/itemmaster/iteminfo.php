@@ -1,9 +1,4 @@
 <?php
-$itemPrimary = $_GET["itemPrimary"];
-if (!empty($itemPrimary)) {
-    $resultset = MysqlConnection::fetchCustom("SELECT * FROM  `item_master` where item_id = $itemPrimary");
-    $item = $resultset[0];
-}
 $itemlist = MysqlConnection::fetchCustom("SELECT item_id,item_code FROM item_master;");
 $sqltaxinfodata = MysqlConnection::fetchCustom("SELECT * FROM taxinfo_table ORDER BY id DESC ;");
 ?>
@@ -36,13 +31,19 @@ $sqltaxinfodata = MysqlConnection::fetchCustom("SELECT * FROM taxinfo_table ORDE
                                 <td >Type<br/>
                                     <select name="type"  id="type" value="">
                                         <option value="Service" <?php echo $item["type"] == "Service" ? "selected" : "" ?> >Service</option>
-                                        <option value="InventoryPart" <?php echo $item["type"] == "InventoryPart" ? "selected" : "" ?>  ></option>
+                                        <option value="InventoryPart" <?php echo $item["type"] == "InventoryPart" ? "selected" : "" ?>  >InventoryPart</option>
                                     </select>
                                 </td>
-                                 <td colspan="3">Currency<br/>
+                                <td colspan="3">Currency<br/>
                                     <select name="currency"  id="currency" value="">
-                                        <option value="currency" <?php echo $item["currency"] == "Currency" ? "selected" : "" ?> ></option>
-                                        <option   ></option>
+                                        <?php
+                                        $currencyarr = getcurrency();
+                                        foreach ($currencyarr as $key => $value) {
+                                            ?>
+                                            <option value="<?php echo $key ?>" <?php echo $item["currency"] == $key ? "selected" : "" ?> ><?php echo $value ?></option>
+                                            <?php
+                                        }
+                                        ?>
                                     </select>
                                 </td>
                             </tr>
@@ -224,13 +225,13 @@ $sqltaxinfodata = MysqlConnection::fetchCustom("SELECT * FROM taxinfo_table ORDE
         $("#frmItemsSubmit").submit();
     }
 <?php if ($item["type"] == "") { ?>
-        $(document).ready(function () {
+        $(document).ready(function() {
             $('#inventorypartfrom').addClass('hide');
             $('#inventorypartfrom').removeClass('show');
         });
 <?php } ?>
 
-    $("#type").click(function () {
+    $("#type").click(function() {
         var valueModel = $("#type").val();
         if (valueModel === "Service") {
             $('#serviceform').addClass('show');
@@ -295,9 +296,9 @@ $sqltaxinfodata = MysqlConnection::fetchCustom("SELECT * FROM taxinfo_table ORDE
 
 
 <script>
-    jQuery(function () {
+    jQuery(function() {
         var counter = 1;
-        jQuery('a.icon-plus').click(function (event) {
+        jQuery('a.icon-plus').click(function(event) {
             event.preventDefault();
             var newRow = jQuery('<tr>'
                     + '<td><input type="text" name="taxcode[]" style="width: 25px;" id="taxtaxname[]" ></td>'
@@ -311,44 +312,44 @@ $sqltaxinfodata = MysqlConnection::fetchCustom("SELECT * FROM taxinfo_table ORDE
         });
     });
 
-    $(document).ready(function () {
-        $("#addtax").on('click', 'a.icon-trash', function () {
+    $(document).ready(function() {
+        $("#addtax").on('click', 'a.icon-trash', function() {
             $(this).closest('tr').remove();
         });
     });
 
-    $("#taxInformation1").click(function () {
+    $("#taxInformation1").click(function() {
         var valueModel = $("#taxInformation1").val();
         if (valueModel === "1") {
             $('#addTaxInformation').modal('show');
         }
     });
 
-    $("#sales_code").click(function () {
+    $("#sales_code").click(function() {
         var valueModel = $("#sales_code").val();
         if (valueModel === "1") {
             $('#addTaxInformation').modal('show');
         }
     });
 
-    $("#purch_code").click(function () {
+    $("#purch_code").click(function() {
         var valueModel = $("#purch_code").val();
         if (valueModel === "1") {
             $('#addTaxInformation').modal('show');
         }
     });
 
-    $("#saveTaxInformation").click(function () {
-        var taxcode = $("input[name='taxcode[]']").map(function () {
+    $("#saveTaxInformation").click(function() {
+        var taxcode = $("input[name='taxcode[]']").map(function() {
             return $(this).val();
         }).get();
-        var taxtaxname = $("input[name='taxtaxname[]']").map(function () {
+        var taxtaxname = $("input[name='taxtaxname[]']").map(function() {
             return $(this).val();
         }).get();
-        var taxtaxvalues = $("input[name='taxtaxvalues[]']").map(function () {
+        var taxtaxvalues = $("input[name='taxtaxvalues[]']").map(function() {
             return $(this).val();
         }).get();
-        var taxisExempt = $("input[name='taxisExempt[]']").map(function () {
+        var taxisExempt = $("input[name='taxisExempt[]']").map(function() {
             return $(this).val();
         }).get();
         var dataString = "taxcode=" + taxcode + "&taxtaxname=" + taxtaxname + "&taxtaxvalues=" + taxtaxvalues + "&taxisExempt=" + taxisExempt;
@@ -356,7 +357,7 @@ $sqltaxinfodata = MysqlConnection::fetchCustom("SELECT * FROM taxinfo_table ORDE
             type: 'POST',
             url: 'customermaster/savetaxinfo_ajax.php',
             data: dataString
-        }).done(function (data) {
+        }).done(function(data) {
             $("input[name='taxcode[]']").val("");
             $("input[name='taxtaxname[]']").val("");
             $("input[name='taxtaxvalues[]']").val("");
@@ -369,17 +370,13 @@ $sqltaxinfodata = MysqlConnection::fetchCustom("SELECT * FROM taxinfo_table ORDE
             if ($("#sales_code").val() !== "") {
                 $('#sales_code').append(data);
             }
-        }).fail(function () {
+        }).fail(function() {
         });
     });
 
-    $("#cancelti").click(function () {
+    $("#cancelti").click(function() {
         $("#taxInformation1").val("");
         $("#purch_code").val("");
         $("#sales_code").val("");
     });
 </script>
-
-<?php
-$taxinfoarray = MysqlConnection::fetchCustom("select * from taxinfo_table;");
-?>

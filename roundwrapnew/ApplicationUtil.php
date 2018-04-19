@@ -2,7 +2,7 @@
 
 $inavtivecolor = "background-color: rgb(251,210,210)";
 
-function getcurrency() {
+function getcurrency($key = "") {
     $arraycurrency = array();
     $arraycurrency["CAD"] = "Canada Dollars";
     $arraycurrency["USD"] = "United States Dollars";
@@ -83,10 +83,9 @@ function getcurrency() {
     $arraycurrency["XAU"] = "Gold Ounces";
     $arraycurrency["XPD"] = "Palladium Ounces";
     $arraycurrency["XPT"] = "Platinum Ounces";
-    return $arraycurrency;
-}
-
-
-function getSalutations(){
-    
+    if ($key == "") {
+        return $arraycurrency;
+    } else {
+        return $arraycurrency[$key];
+    }
 }
