@@ -31,19 +31,7 @@ $listPerchaseOrders = MysqlConnection::fetchCustom("SELECT *  FROM  `purchase_or
 
 <div class="container-fluid">
     <div class="cutomheader">
-        <h5 style="font-family: verdana;font-size: 12px;">PURCHASE ORDER LIST</h5>
-    </div>
-    <div class="cutomheader">
-        <table >
-            <tr >
-                <th style="width: 2.3%;text-align: left">Search&nbsp;:&nbsp;</th>
-                <th colspan="9" style="text-align: left">
-                    <input type="text" id="searchinput" onkeyup="searchData()" 
-                           placeholder="By PO Number" 
-                           name="searchinput" style="width: 250px"/>
-                </th>
-            </tr>
-        </table>
+        <h5 style="font-family: verdana;font-size: 12px;">LIST PURCHASE ORDER'S</h5>
     </div>
     <div class="widget-box">
         <table class="customtable" border="1">
@@ -83,7 +71,7 @@ $listPerchaseOrders = MysqlConnection::fetchCustom("SELECT *  FROM  `purchase_or
                         <td style="width: 150px">&nbsp;&nbsp;<?php echo $value["ship_via"] ?></td>
                         <td style="width: 100px; text-align: right">&nbsp;&nbsp;<?php echo $value["sub_total"] ?>&nbsp;&nbsp;</td>
                         <td style="width: 100px; text-align: right">&nbsp;&nbsp;<?php echo $value["discount"] ?>&nbsp;&nbsp;</td>
-                        <td style="width: 100px; text-align: right">&nbsp;&nbsp;<?php echo $value["total"] ?>&nbsp;&nbsp;</td>
+                        <td style="width: 100px; text-align: right">$&nbsp;&nbsp;<?php echo $value["total"] ?>&nbsp;&nbsp;</td>
                         <td style=" width: 130px;text-align: center">&nbsp;&nbsp;<?php echo $value["expected_date"] ?>&nbsp;&nbsp;</td>
                         <td >&nbsp;&nbsp;<?php echo implode(" ", $userarray[0]) ?></td>
                     </tr>
@@ -104,7 +92,7 @@ $listPerchaseOrders = MysqlConnection::fetchCustom("SELECT *  FROM  `purchase_or
                         <th style="width: 100px"></th>
                         <th style="width: 100px"></th>
                         <th style="width: 100px"></th>
-                        <th style="width: 130px"></th>
+                        <th style="width: 100px"></th>
                         <th ></th>
                     </tr>    
                     <?php
@@ -125,7 +113,7 @@ $listPerchaseOrders = MysqlConnection::fetchCustom("SELECT *  FROM  `purchase_or
 </div>
 <script>
 
-    $("#deleteThis").click(function () {
+    $("#deleteThis").click(function() {
         alert("Hello");
         $("div#divLoading").addClass('show');
         var dataString = "deleteId=" + $('#deleteId').val();
@@ -133,8 +121,8 @@ $listPerchaseOrders = MysqlConnection::fetchCustom("SELECT *  FROM  `purchase_or
             type: 'POST',
             url: 'perchaseorder/perchaseorder_ajax.php',
             data: dataString
-        }).done(function (data) {
-        }).fail(function () {
+        }).done(function(data) {
+        }).fail(function() {
         });
         location.reload();
     });
@@ -149,10 +137,10 @@ $listPerchaseOrders = MysqlConnection::fetchCustom("SELECT *  FROM  `purchase_or
 
 </script>
 <script>
-    $(function () {
+    $(function() {
         $.contextMenu({
             selector: '.context-menu-one',
-            callback: function (key, options) {
+            callback: function(key, options) {
                 var m = "clicked row: " + key;
                 var id = $(this).attr('id');
                 switch (key) {
@@ -169,11 +157,11 @@ $listPerchaseOrders = MysqlConnection::fetchCustom("SELECT *  FROM  `purchase_or
                         window.location = "index.php?pagename=edit_perchaseorder&purchaseorderid=" + id;
                         break;
                     case "delete_purchaseorder":
-                        window.location = "index.php?pagename=view_perchaseorder&purchaseorderid=" + id + "&flag=true";
+                        window.location = "index.php?pagename=view_perchaseorder&purchaseorderid=" + id+"&flag=true";
                         break;
 
                     case "create_invoice":
-                        window.location = "index.php?pagename=po_invoice&purchaseorderid=" + id;
+                        window.location = "index.php?pagename=manage_invoice&purchaseorderid=" + id;
                         break;
                     case "quit":
                         window.location = "index.php?pagename=manage_dashboard";
@@ -192,38 +180,16 @@ $listPerchaseOrders = MysqlConnection::fetchCustom("SELECT *  FROM  `purchase_or
                 "create_receiving": {name: "CREATE RECEIVING ORDER", icon: ""},
                 "create_invoice": {name: "CREATE INVOICE", icon: ""},
                 "sep2": "---------",
-                "quit": {name: "QUIT", icon: function () {
+                "quit": {name: "QUIT", icon: function() {
                         return '';
                     }}
             }
         });
     });
 
-    $('tr').dblclick(function () {
+    $('tr').dblclick(function() {
         var id = $(this).attr('id');
-        if (id !== undefined) {
-            window.location = "index.php?pagename=view_perchaseorder&purchaseorderid=" + id;
-        }
+        window.location = "index.php?pagename=view_perchaseorder&purchaseorderid=" + id;
     });
-</script>
 
-<script>
-    function searchData() {
-        var input, filter, table, tr, td, i;
-        input = document.getElementById("searchinput");
-        filter = input.value.toUpperCase();
-        table = document.getElementById("data");
-        tr = table.getElementsByTagName("tr");
-        // Loop through all table rows, and hide those who don't match the search query
-        for (i = 0; i < tr.length; i++) {
-            td = tr[i].getElementsByTagName("td")[1];
-            if (td) {
-                if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
-                    tr[i].style.display = "";
-                } else {
-                    tr[i].style.display = "none";
-                }
-            }
-        }
-    }
 </script>

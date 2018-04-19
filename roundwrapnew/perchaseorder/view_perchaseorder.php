@@ -36,7 +36,7 @@ if (isset($_POST["purchaseorderid"]) && isset($_GET["flag"])) {
         <div class="widget-box" style="width: 100%;border-bottom: solid 1px #CDCDCD;">
             <div class="widget-title">
                 <ul class="nav nav-tabs">
-                    <li class="active"><a data-toggle="tab" href="#tab1">PURCHASE ORDER VIEW</a></li>
+                    <li class="active"><a data-toggle="tab" href="#tab1">VIEW PURCHASE ORDER</a></li>
                 </ul>
             </div>
             <br/>
@@ -68,16 +68,15 @@ if (isset($_POST["purchaseorderid"]) && isset($_GET["flag"])) {
                 <tr>
                     <td>
 
-                        <div style="width: 70%;float: left;text-align: center">
+                        <div style="width: 70%;float: left">
                             <table class="table-bordered" style="width: 100%;border-collapse: collapse" border="1">
                                 <tr style="border-bottom: solid 1px  #CDCDCD;background-color: rgb(250,250,250)">
-                                    <td style="width: 25px;">#</td>
-                                    <td style="width: 200px;">ITEM NAME</td>
-                                    <td style="width: 350px">ITEM DESCRIPTION</td>
+                                    <td style="width: 30px;">#</td>
+                                    <td style="width: 230px;">ITEM NAME</td>
+                                    <td style="width: 450px">ITEM DESCRIPTION</td>
                                     <td style="width: 80px;">UNIT</td>
                                     <td style="width: 80px;">PRICE</td>
                                     <td style="width: 80px;">QTY</td>
-                                    <td style="width: 80px;">REC</td>
                                     <td>AMOUNT</td>
                                 </tr>
                             </table>
@@ -88,14 +87,13 @@ if (isset($_POST["purchaseorderid"]) && isset($_GET["flag"])) {
                                         $items = MysqlConnection::fetchCustom("SELECT * FROM  item_master WHERE item_id =  " . $value["item_id"]);
                                         ?>
                                         <tr id="<?php echo $index ?>" style="border-bottom: solid 1px  #CDCDCD;background-color: white">
-                                            <td style="width: 25px"></td>
-                                            <td style="width: 200px;"><?php echo $items[0]["item_code"] ?></td>
-                                            <td style="width: 350px"><div id="desc"></div><?php echo $items[0]["item_desc_purch"] ?></td>
+                                            <td style="width: 30px"></td>
+                                            <td style="width: 230px;"><?php echo $items[0]["item_code"] ?></td>
+                                            <td style="width: 450px"><div id="desc"></div><?php echo $items[0]["item_desc_purch"] ?></td>
                                             <td style="width: 80px;"><div id="unit"></div><?php echo $items[0]["unit"] ?></td>
-                                            <td style="width: 80px;text-align: right"><div id="price"></div><?php echo $items[0]["purchase_rate"] ?></td>
-                                            <td style="width:80px;"><?php echo $value["qty"] ?></td>
-                                            <td style="width:80px;"><?php echo $value["rqty"] ?></td>
-                                            <td style="text-align: right" ><?php echo ($items[0]["purchase_rate"] * $value["qty"]) ?></td>
+                                            <td style="width: 80px;"><div id="price"></div><?php echo $items[0]["purchase_rate"] ?></td>
+                                            <td style="width:80px;"><?php echo $purchaseorder["qty"] ?></td>
+                                            <td ><?php echo ($items[0]["purchase_rate"] * $purchaseorder["qty"]) ?></td>
                                         </tr>
                                     <?php } ?>
                                 </table>
@@ -104,10 +102,7 @@ if (isset($_POST["purchaseorderid"]) && isset($_GET["flag"])) {
                         </div>
                         <div style="width: 28%;float: right">
                             <table class="table-bordered" style="width: 100%;border-collapse: collapse;background-color: white" border="1">
-                                <tr >
-                                    <td><b>PO Number</b></td>
-                                    <td><input type="text" name="purchaseOrderId" onkeypress="return chkNumericKey(event)" value="PO<?php echo (1000 + $ponumber[0]["id"]) ?>" readonly=""></td>
-                                </tr>
+
                                 <tr >
                                     <td><b>Purchase Date</b></td>
                                     <td><input type="text" value="<?php echo date("Y-m-d") ?>" readonly=""></td>

@@ -11,18 +11,16 @@ $sqlgetsupplier = "SELECT * FROM supplier_master WHERE supp_id = " . filter_inpu
 $resultset = MysqlConnection::fetchCustom($sqlgetsupplier);
 $supplier = $resultset[0];
 
-if ($supplier["status"] == "N") {
-    $error = "Supplier is not active";
-}
 //$sqlitemarray = MysqlConnection::fetchCustom("SELECT count(id) as counter FROM sales_order");
-$itemarray = MysqlConnection::fetchCustom("SELECT item_id ,item_code, item_name FROM item_master WHERE status = 'Y' ;");
+$itemarray = MysqlConnection::fetchCustom("SELECT item_id ,item_code, item_name FROM item_master;");
 $buildauto = buildauto($itemarray);
+
 $ponumber = MysqlConnection::fetchCustom("SELECT id FROM purchase_order ORDER BY id DESC LIMIT 0,1");
 ?>
 
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script>
-    $(function() {
+    $(function () {
         var availableTags = [<?php echo $buildauto ?>];
         for (var index = 1; index <= 30; index++) {
             $("#tags" + index).autocomplete({source: availableTags});
@@ -50,7 +48,6 @@ $ponumber = MysqlConnection::fetchCustom("SELECT id FROM purchase_order ORDER BY
                 </ul>
             </div>
             <br/>
-            <p style="color: red;margin: 0 auto;text-align: center;font-size: 15px;"><?php echo $error ?></p>
             <table style="width: 100%">
                 <tr>
                     <td>
@@ -82,12 +79,12 @@ $ponumber = MysqlConnection::fetchCustom("SELECT id FROM purchase_order ORDER BY
                             <table class="table-bordered" style="width: 100%;border-collapse: collapse" border="1">
                                 <tr style="border-bottom: solid 1px  #CDCDCD;background-color: rgb(250,250,250)">
                                     <td style="width: 25px;">#</td>
-                                    <td style="width: 530px;">ITEM NAME</td>
-                                    <td style="width: 100px;">UNIT</td>
-                                    <td style="width: 100px;">PRICE</td>
-                                    <td style="width: 100px;">QTY</td>
-                                    <td style="width: 100px;">AMOUNT</td>
-                                    <td></td>
+                                    <td style="width: 230px;">ITEM NAME</td>
+                                    <td style="width: 350px">ITEM DESCRIPTION</td>
+                                    <td style="width: 80px;">UNIT</td>
+                                    <td style="width: 80px;">PRICE</td>
+                                    <td style="width: 80px;">QTY</td>
+                                    <td>AMOUNT</td>
                                 </tr>
                             </table>
                             <div style="overflow: auto;height: 232px;border-bottom: solid 1px  #CDCDCD;">
@@ -97,14 +94,14 @@ $ponumber = MysqlConnection::fetchCustom("SELECT id FROM purchase_order ORDER BY
                                             <td style="width: 25px">
                                                 <a class="icon  icon-remove" onclick="clearValue('<?php echo $index ?>')"></a>
                                             </td>
-                                            <td style="width: 530px;">
+                                            <td style="width: 230px;">
                                                 <input type="text" name="items[]" id="tags<?php echo $index ?>" onfocusout="setDetails('<?php echo $index ?>')"  style="padding: 0px;margin: 0px;width: 100%">
                                             </td>
-                                            <td style="width: 100px;"><div id="unit<?php echo $index ?>"></div></td>
-                                            <td style="width: 100px;"><div id="price<?php echo $index ?>"></div></td>
-                                            <td style="width: 100px;"><input type="text" name="itemcount[]" onkeypress="return chkNumericKey(event)" onfocusout="calculateAmount('<?php echo $index ?>')" id="amount<?php echo $index ?>" style="padding: 0px;margin: 0px;width: 100%"></td>
-                                            <td style="width: 100px;"><div id="total<?php echo $index ?>"></div></td>
-                                            <td ></td>
+                                            <td style="width: 350px"><div id="desc<?php echo $index ?>"></div></td>
+                                            <td style="width: 80px;"><div id="unit<?php echo $index ?>"></div></td>
+                                            <td style="width: 80px;"><div id="price<?php echo $index ?>"></div></td>
+                                            <td style="width: 80px;"><input type="text" name="itemcount[]" onkeypress="return chkNumericKey(event)" onfocusout="calculateAmount('<?php echo $index ?>')" id="amount<?php echo $index ?>" style="padding: 0px;margin: 0px;width: 100%"></td>
+                                            <td ><div id="total<?php echo $index ?>"></div></td>
                                         </tr>
                                     <?php } ?>
 
@@ -165,17 +162,17 @@ $ponumber = MysqlConnection::fetchCustom("SELECT id FROM purchase_order ORDER BY
                     type: 'POST',
                     url: 'itemmaster/getitemajax.php',
                     data: dataString
-                }).done(function(data) {
+                }).done(function (data) {
                     var jsonobj = JSON.parse(data);
                     var desc = jsonobj.item_desc_purch === "" ? jsonobj.item_desc_purch : jsonobj.item_desc_sales;
-//                    $("#desc" + count).text(desc);
+                    $("#desc" + count).text(desc);
                     $("#unit" + count).text(jsonobj.unit);
                     $("#price" + count).text(jsonobj.purchase_rate);
-                }).fail(function() {
+                }).fail(function () {
                 });
             }
             function clearValue(count) {
-//                $("#desc" + count).text("");
+                $("#desc" + count).text("");
                 $("#unit" + count).text("");
                 $("#price" + count).text("");
                 $("#tags" + count).val("");
@@ -217,7 +214,7 @@ $ponumber = MysqlConnection::fetchCustom("SELECT id FROM purchase_order ORDER BY
                 x[0].submit();
             }
 
-
+         
 </script>
 
 <?php
@@ -225,8 +222,7 @@ $ponumber = MysqlConnection::fetchCustom("SELECT id FROM purchase_order ORDER BY
 function buildauto($itemarray) {
     $option = "";
     foreach ($itemarray as $value) {
-        $desc = $value["item_desc_purch"] == "" ? $value["item_desc_sales"] : $value["item_desc_purch"];
-        $option.="\"" . $value["item_code"] . " __ " . $desc . "\",";
+        $option.="\"" . $value["item_code"] . "\",";
     }
     return $option;
 }
