@@ -225,13 +225,13 @@ $sqltaxinfodata = MysqlConnection::fetchCustom("SELECT * FROM taxinfo_table ORDE
         $("#frmItemsSubmit").submit();
     }
 <?php if ($item["type"] == "") { ?>
-        $(document).ready(function() {
+        $(document).ready(function () {
             $('#inventorypartfrom').addClass('hide');
             $('#inventorypartfrom').removeClass('show');
         });
 <?php } ?>
 
-    $("#type").click(function() {
+    $("#type").click(function () {
         var valueModel = $("#type").val();
         if (valueModel === "Service") {
             $('#serviceform').addClass('show');
@@ -296,9 +296,9 @@ $sqltaxinfodata = MysqlConnection::fetchCustom("SELECT * FROM taxinfo_table ORDE
 
 
 <script>
-    jQuery(function() {
+    jQuery(function () {
         var counter = 1;
-        jQuery('a.icon-plus').click(function(event) {
+        jQuery('a.icon-plus').click(function (event) {
             event.preventDefault();
             var newRow = jQuery('<tr>'
                     + '<td><input type="text" name="taxcode[]" style="width: 25px;" id="taxtaxname[]" ></td>'
@@ -312,44 +312,44 @@ $sqltaxinfodata = MysqlConnection::fetchCustom("SELECT * FROM taxinfo_table ORDE
         });
     });
 
-    $(document).ready(function() {
-        $("#addtax").on('click', 'a.icon-trash', function() {
+    $(document).ready(function () {
+        $("#addtax").on('click', 'a.icon-trash', function () {
             $(this).closest('tr').remove();
         });
     });
 
-    $("#taxInformation1").click(function() {
+    $("#taxInformation1").click(function () {
         var valueModel = $("#taxInformation1").val();
         if (valueModel === "1") {
             $('#addTaxInformation').modal('show');
         }
     });
 
-    $("#sales_code").click(function() {
+    $("#sales_code").click(function () {
         var valueModel = $("#sales_code").val();
         if (valueModel === "1") {
             $('#addTaxInformation').modal('show');
         }
     });
 
-    $("#purch_code").click(function() {
+    $("#purch_code").click(function () {
         var valueModel = $("#purch_code").val();
         if (valueModel === "1") {
             $('#addTaxInformation').modal('show');
         }
     });
 
-    $("#saveTaxInformation").click(function() {
-        var taxcode = $("input[name='taxcode[]']").map(function() {
+    $("#saveTaxInformation").click(function () {
+        var taxcode = $("input[name='taxcode[]']").map(function () {
             return $(this).val();
         }).get();
-        var taxtaxname = $("input[name='taxtaxname[]']").map(function() {
+        var taxtaxname = $("input[name='taxtaxname[]']").map(function () {
             return $(this).val();
         }).get();
-        var taxtaxvalues = $("input[name='taxtaxvalues[]']").map(function() {
+        var taxtaxvalues = $("input[name='taxtaxvalues[]']").map(function () {
             return $(this).val();
         }).get();
-        var taxisExempt = $("input[name='taxisExempt[]']").map(function() {
+        var taxisExempt = $("input[name='taxisExempt[]']").map(function () {
             return $(this).val();
         }).get();
         var dataString = "taxcode=" + taxcode + "&taxtaxname=" + taxtaxname + "&taxtaxvalues=" + taxtaxvalues + "&taxisExempt=" + taxisExempt;
@@ -357,7 +357,7 @@ $sqltaxinfodata = MysqlConnection::fetchCustom("SELECT * FROM taxinfo_table ORDE
             type: 'POST',
             url: 'customermaster/savetaxinfo_ajax.php',
             data: dataString
-        }).done(function(data) {
+        }).done(function (data) {
             $("input[name='taxcode[]']").val("");
             $("input[name='taxtaxname[]']").val("");
             $("input[name='taxtaxvalues[]']").val("");
@@ -370,11 +370,11 @@ $sqltaxinfodata = MysqlConnection::fetchCustom("SELECT * FROM taxinfo_table ORDE
             if ($("#sales_code").val() !== "") {
                 $('#sales_code').append(data);
             }
-        }).fail(function() {
+        }).fail(function () {
         });
     });
 
-    $("#cancelti").click(function() {
+    $("#cancelti").click(function () {
         $("#taxInformation1").val("");
         $("#purch_code").val("");
         $("#sales_code").val("");

@@ -53,8 +53,8 @@ $arrsalutations = MysqlConnection::fetchCustom("SELECT distinct(`salutation`) as
             <td><label class="control-label">Phone</label></td>
             <td><input type="text" name="phno" id="phno"  value="<?php echo trim($customer["phno"]) ?>" ></td>
 
-        </tr>
-        <tr>
+        </tr> 
+        <tr >
             <td><label class="control-label">Web Site</label></td>
             <td><input type="text" name="website" id="website" plceholder="Enter Company Website" value="<?php echo $customer["website"] ?>" ></td>
             <td><label class="control-label">Fax</label></td>
@@ -65,7 +65,7 @@ $arrsalutations = MysqlConnection::fetchCustom("SELECT distinct(`salutation`) as
                 Is customer active ?
             </td>
         </tr>
-
+       
         <tr>
             <td><label class="control-label">Street Name</label></td>
             <td><input type="text" name="streetName" id="streetName" minlenght="2" maxlength="30" plceholder="Enter Street Name" value="<?php echo $customer["streetName"] ?>" ></td>
