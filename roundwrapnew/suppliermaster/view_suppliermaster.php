@@ -148,7 +148,8 @@ if (isset($_POST["deleteItem"])) {
                     </table>
                     <hr/>
                     <input type="button" id="btnVenPrev1" value="PREVIOUS" class="btn btn-info" href="#tab1" style="background-color: #2f96b4">
-                    <a href="index.php?pagename=manage_suppliermaster&status=active" class="btn btn-danger">CANCEL</a></fieldset>
+                     <input type="button" id="btnVenNext2" value="NEXT" class="btn btn-info" style="background-color: #2f96b4" href="#tab3"/>
+                 
             </div>
             <div id="tab3" class="tab-pane">
                 <fieldset class="well the-fieldset">
@@ -177,7 +178,7 @@ if (isset($_POST["deleteItem"])) {
                     </div>
                 </fieldset>
                 <hr/>
-                <input style="background-color: #2f96b4" type="button" id="btnCmpPrev4" value="PREVIOUS" class="btn btn-info" href="#tab1">
+                <input style="background-color: #2f96b4" type="button" id="btnVenPrev2" value="PREVIOUS" class="btn btn-info" href="#tab2">
                 <a href="index.php?pagename=manage_suppliermaster&status=active" class="btn btn-danger">CANCEL</a>
             </div>
         </div>
@@ -194,5 +195,17 @@ if (isset($_POST["deleteItem"])) {
             $('#siTab1').addClass('active');
             $('#tab2').removeClass('active');
             $('#tab1').addClass('active');
+        });
+        $('#btnVenNext2').on('click', function () {
+            $('#adTab2').removeClass('active');
+            $('#noteTab3').addClass('active');
+            $('#tab2').removeClass('active');
+            $('#tab3').addClass('active');
+        });
+         $('#btnVenPrev2').on('click', function () {
+            $('#noteTab3').removeClass('active');
+            $('#adTab2').addClass('active');
+            $('#tab3').removeClass('active');
+            $('#tab2').addClass('active');
         });
     </script>

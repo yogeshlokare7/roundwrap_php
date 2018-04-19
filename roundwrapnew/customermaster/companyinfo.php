@@ -122,25 +122,25 @@ $arrsalutations = MysqlConnection::fetchCustom("SELECT distinct(`salutation`) as
         document.getElementById("billto").value = "";
         var salutation = document.getElementById("salutation").value;
         var cust_companyname = document.getElementById("cust_companyname").value;
-        var firstname = document.getElementById("firstname").value;
-        var lastname = document.getElementById("lastname").value;
+        var firstname = document.getElementById("firstname").value === "" ? "" : document.getElementById("firstname").value;
+        var lastname = document.getElementById("lastname").value === "" ? "" : document.getElementById("lastname").value;
 
 
-        var cust_email = document.getElementById("cust_email").value;
-        var phno = document.getElementById("phno").value;
-        var cust_fax = document.getElementById("cust_fax").value;
+        var cust_email = document.getElementById("cust_email").value === "" ? "" : document.getElementById("cust_email").value;
+        var phno = document.getElementById("phno").value === "" ? "" : document.getElementById("phno").value;
+        var cust_fax = document.getElementById("cust_fax").value === "" ? "" : document.getElementById("cust_fax").value;
 
-        var streetName = document.getElementById("streetName").value;
-        var streetNo = document.getElementById("streetNo").value;
-        var cust_province = document.getElementById("cust_province").value;
-        var country = document.getElementById("country").value;
+        var streetName = document.getElementById("streetName").value === "" ? "" : document.getElementById("streetName").value;
+        var streetNo = document.getElementById("streetNo").value === "" ? "" : document.getElementById("streetNo").value;
+        var cust_province = document.getElementById("cust_province").value === "" ? "" : document.getElementById("cust_province").value;
+        var country = document.getElementById("country").value === "" ? "" : document.getElementById("country").value;
 
-        if (firstname !== "" && lastname !== "") {
-            document.getElementById("billto").value = cust_companyname + " \n"
-                    + salutation + ", " + firstname + " " + lastname + " \n"
-                    + streetNo + ", " + streetName + ", " + cust_province + ", " + country + "\n"
-                    + cust_email + ", " + phno + ", " + cust_fax;
-        }
+//        if (firstname !== "" && lastname !== "") {
+        document.getElementById("billto").value = cust_companyname + " \n"
+                + salutation + ", " + firstname + " " + lastname + " \n"
+                + streetNo + ", " + streetName + ", " + cust_province + ", " + country + "\n"
+                + cust_email + ", " + phno + ", " + cust_fax;
+//        }
     }
     function copyOrRemove(flag) {
         if (flag === "1") {
