@@ -83,10 +83,10 @@ $arrsalutations = MysqlConnection::fetchCustom("SELECT distinct(`salutation`) as
         <tr>
             <td><label class="control-label">City</label></td>
             <td><input type="text" name="city" id="city"  minlenght="2" maxlength="30" value="<?php echo $customer["city"] ?>" ></td>
-            <td><label class="control-label">Country</label></td>
-            <td><input type="text" name="country" id="country"  minlenght="2" maxlength="30" value="<?php echo $customer["country"] ?>" ></td>
             <td><label class="control-label">Province</label></td>
             <td><input type="text" name="cust_province" id="cust_province"  minlenght="2" maxlength="30" value="<?php echo $customer["cust_province"] ?>" ></td>
+            <td><label class="control-label">Country</label></td>
+            <td><input type="text" name="country" id="country"  minlenght="2" maxlength="30" value="<?php echo $customer["country"] ?>" ></td>
 
         </tr>
         <tr>
