@@ -6,7 +6,6 @@ if (!empty($itemPrimary)) {
 }
 $itemlist = MysqlConnection::fetchCustom("SELECT item_id,item_code FROM item_master;");
 $sqltaxinfodata = MysqlConnection::fetchCustom("SELECT * FROM taxinfo_table ORDER BY id DESC ;");
-
 ?>
 
 <style>
@@ -86,7 +85,7 @@ $sqltaxinfodata = MysqlConnection::fetchCustom("SELECT * FROM taxinfo_table ORDE
                                                     <?php } ?>
                                             </select>
                                         </td>
-                                        <td>Rate
+                                        <td style="width: 220px;">Rate
                                             <input type="text" name="sell_rate" id="sell_rate" onkeypress="return chkNumericKey(event)" value="<?php echo $item["sell_rate"] ?>" minlenght="2" maxlength="30"  >
                                         </td>
                                     </tr>
@@ -128,10 +127,7 @@ $sqltaxinfodata = MysqlConnection::fetchCustom("SELECT * FROM taxinfo_table ORDE
                                             </select>
                                         </td>   
                                     </tr>
-    <!--                                    <tr >
-                                        <td><label class="control-label">COGS Account</label></td>
-                                        <td><input type="text" name="cogsaccount" id="cogsaccount"  value="<?php echo $item["cogsaccount"] ?>" autofocus="" required="true" minlenght="2" maxlength="30" ></td>   
-                                    </tr>-->
+
                                     <tr style="vertical-align: top">
                                         <td colspan="2"><label class="control-label">Description on Purchase Transactions</label>
                                             <textarea style="height: 30px;;line-height: 20px; width: 98%" name="item_desc_purch" id="item_desc_purch"   autofocus="" required="true" minlenght="2" maxlength="90" ><?php echo $item["item_desc_purch"] ?></textarea>
@@ -161,10 +157,7 @@ $sqltaxinfodata = MysqlConnection::fetchCustom("SELECT * FROM taxinfo_table ORDE
                                             </select>
                                         </td>   
                                     </tr>
-    <!--                                    <tr >
-                                        <td><label class="control-label">Income Account</label></td>
-                                        <td><input type="text" name="incomeaccount" id="incomeaccount"  value="<?php echo $item["incomeaccount"] ?>" autofocus="" required="true" minlenght="2" maxlength="30" ></td>   
-                                    </tr>-->
+
                                     <tr >
                                         <td colspan="2"><label class="control-label">Description on Sales Transactions</label>
                                             <textarea style="height: 30px;;line-height: 20px; width: 98%" name="item_desc_sales" id="item_desc_sales"   autofocus="" required="true" minlenght="2" maxlength="90" ><?php echo $item["item_desc_sales"] ?></textarea>
@@ -177,10 +170,7 @@ $sqltaxinfodata = MysqlConnection::fetchCustom("SELECT * FROM taxinfo_table ORDE
                             <fieldset class="well the-fieldset">
 
                                 <table  border="0">
-    <!--                                    <tr  >
-                                        <td style="width: 40%"><label class="control-label">Asset Account</label></td>
-                                        <td style="vertical-align: bottom"><input type="text" name="assetaccount" id="assetaccount"  value="<?php echo $item["assetaccount"] ?>" autofocus="" required="true" minlenght="2" maxlength="30" ></td>   
-                                    </tr>-->
+
                                     <tr >
                                         <td><label class="control-label">Reorder Point</label></td>
                                         <td style="vertical-align: bottom"><input type="text" name="reorder" id="reorder"  value="<?php echo $item["reorder"] ?>" autofocus="" required="true" minlenght="2" maxlength="30" ></td>   
@@ -230,13 +220,13 @@ $sqltaxinfodata = MysqlConnection::fetchCustom("SELECT * FROM taxinfo_table ORDE
         $("#frmItemsSubmit").submit();
     }
 <?php if ($item["type"] == "") { ?>
-        $(document).ready(function() {
+        $(document).ready(function () {
             $('#inventorypartfrom').addClass('hide');
             $('#inventorypartfrom').removeClass('show');
         });
 <?php } ?>
 
-    $("#type").click(function() {
+    $("#type").click(function () {
         var valueModel = $("#type").val();
         if (valueModel === "Service") {
             $('#serviceform').addClass('show');
@@ -301,9 +291,9 @@ $sqltaxinfodata = MysqlConnection::fetchCustom("SELECT * FROM taxinfo_table ORDE
 
 
 <script>
-    jQuery(function() {
+    jQuery(function () {
         var counter = 1;
-        jQuery('a.icon-plus').click(function(event) {
+        jQuery('a.icon-plus').click(function (event) {
             event.preventDefault();
             var newRow = jQuery('<tr>'
                     + '<td><input type="text" name="taxcode[]" style="width: 25px;" id="taxtaxname[]" ></td>'
@@ -317,44 +307,44 @@ $sqltaxinfodata = MysqlConnection::fetchCustom("SELECT * FROM taxinfo_table ORDE
         });
     });
 
-    $(document).ready(function() {
-        $("#addtax").on('click', 'a.icon-trash', function() {
+    $(document).ready(function () {
+        $("#addtax").on('click', 'a.icon-trash', function () {
             $(this).closest('tr').remove();
         });
     });
 
-    $("#taxInformation1").click(function() {
+    $("#taxInformation1").click(function () {
         var valueModel = $("#taxInformation1").val();
         if (valueModel === "1") {
             $('#addTaxInformation').modal('show');
         }
     });
 
-    $("#sales_code").click(function() {
+    $("#sales_code").click(function () {
         var valueModel = $("#sales_code").val();
         if (valueModel === "1") {
             $('#addTaxInformation').modal('show');
         }
     });
 
-    $("#purch_code").click(function() {
+    $("#purch_code").click(function () {
         var valueModel = $("#purch_code").val();
         if (valueModel === "1") {
             $('#addTaxInformation').modal('show');
         }
     });
 
-    $("#saveTaxInformation").click(function() {
-        var taxcode = $("input[name='taxcode[]']").map(function() {
+    $("#saveTaxInformation").click(function () {
+        var taxcode = $("input[name='taxcode[]']").map(function () {
             return $(this).val();
         }).get();
-        var taxtaxname = $("input[name='taxtaxname[]']").map(function() {
+        var taxtaxname = $("input[name='taxtaxname[]']").map(function () {
             return $(this).val();
         }).get();
-        var taxtaxvalues = $("input[name='taxtaxvalues[]']").map(function() {
+        var taxtaxvalues = $("input[name='taxtaxvalues[]']").map(function () {
             return $(this).val();
         }).get();
-        var taxisExempt = $("input[name='taxisExempt[]']").map(function() {
+        var taxisExempt = $("input[name='taxisExempt[]']").map(function () {
             return $(this).val();
         }).get();
         var dataString = "taxcode=" + taxcode + "&taxtaxname=" + taxtaxname + "&taxtaxvalues=" + taxtaxvalues + "&taxisExempt=" + taxisExempt;
@@ -362,7 +352,7 @@ $sqltaxinfodata = MysqlConnection::fetchCustom("SELECT * FROM taxinfo_table ORDE
             type: 'POST',
             url: 'customermaster/savetaxinfo_ajax.php',
             data: dataString
-        }).done(function(data) {
+        }).done(function (data) {
             $("input[name='taxcode[]']").val("");
             $("input[name='taxtaxname[]']").val("");
             $("input[name='taxtaxvalues[]']").val("");
@@ -375,11 +365,11 @@ $sqltaxinfodata = MysqlConnection::fetchCustom("SELECT * FROM taxinfo_table ORDE
             if ($("#sales_code").val() !== "") {
                 $('#sales_code').append(data);
             }
-        }).fail(function() {
+        }).fail(function () {
         });
     });
 
-    $("#cancelti").click(function() {
+    $("#cancelti").click(function () {
         $("#taxInformation1").val("");
         $("#purch_code").val("");
         $("#sales_code").val("");
