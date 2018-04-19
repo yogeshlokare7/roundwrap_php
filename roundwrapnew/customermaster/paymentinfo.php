@@ -91,7 +91,7 @@ if (!empty($customerid)) {
 <hr/>
 <input type="hidden" value="customerid" value="<?php echo $customerid ?>"/>
 <input type="button" id="btnCmpPrev3" value="PREVIOUS" class="btn btn-info" href="#tab1"></td>
-<a href="index.php?pagename=manage_customermaster" class="btn btn-danger">CANCEL</a>
+<a href="index.php?pagename=manage_customermaster&status=active" class="btn btn-danger">CANCEL</a>
 <button type="submit" id="btnSubmitFullForm" class="btn btn-success">SUBMIT</button>
 <script type="text/javascript">
     jQuery(function() {

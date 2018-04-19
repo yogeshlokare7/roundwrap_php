@@ -65,34 +65,34 @@ $arrsalutations = MysqlConnection::fetchCustom("SELECT distinct(`salutation`) as
                 Is customer active ?
             </td>
         </tr>
-       
+
         <tr>
-            <td><label class="control-label">Street Name</label></td>
-            <td><input type="text" name="streetName" id="streetName" minlenght="2" maxlength="30" plceholder="Enter Street Name" value="<?php echo $customer["streetName"] ?>" ></td>
-            <td><label class="control-label">Street No</label></td>
-            <td><input type="text" name="streetNo" id="streetNo"  minlenght="2" maxlength="30" value="<?php echo $customer["streetNo"] ?>" ></td>
-            <td><label class="control-label">City</label></td>
-            <td><input type="text" name="city" id="city"  minlenght="2" maxlength="30" value="<?php echo $customer["city"] ?>" ></td>
+            <td colspan="6" style="height: 0.5px;">
+                <hr style="border-color: gainsboro"/>
+            </td>
         </tr>
         <tr>
-            <td><label class="control-label">Province</label></td>
-            <td><input type="text" name="cust_province" id="cust_province"  minlenght="2" maxlength="30" value="<?php echo $customer["cust_province"] ?>" ></td>
-<!--            <td>
-                <select name="cust_province" id="cust_province">
-                    <option value=""></option>
-                    <option></option>
-                </select>
-            </td>-->
-            <td><label class="control-label">Country</label></td>
-            <td><input type="text" name="country" id="country"  minlenght="2" maxlength="30" value="<?php echo $customer["country"] ?>" ></td>
-<!--            <td>
-                <select name="country" id="country">
-                    <option value=""></option>
-                    <option></option>
-                </select>
-            </td>-->
+            <td><label class="control-label">Street No</label></td>
+            <td><input type="text" name="streetNo" id="streetNo"  minlenght="2" maxlength="30" value="<?php echo $customer["streetNo"] ?>" ></td>
+            <td><label class="control-label">Street Name</label></td>
+            <td><input type="text" name="streetName" id="streetName" minlenght="2" maxlength="30" plceholder="Enter Street Name" value="<?php echo $customer["streetName"] ?>" ></td>
             <td><label class="control-label">Postal Code</label></td>
             <td><input type="text" name="postal_code" id="postal_code" minlenght="2" maxlength="30"  value="<?php echo $customer["postal_code"] ?>" ></td>
+
+        </tr>
+        <tr>
+            <td><label class="control-label">Country</label></td>
+            <td><input type="text" name="country" id="country"  minlenght="2" maxlength="30" value="<?php echo $customer["country"] ?>" ></td>
+            <td><label class="control-label">Province</label></td>
+            <td><input type="text" name="cust_province" id="cust_province"  minlenght="2" maxlength="30" value="<?php echo $customer["cust_province"] ?>" ></td>
+            <td><label class="control-label">City</label></td>
+            <td><input type="text" name="city" id="city"  minlenght="2" maxlength="30" value="<?php echo $customer["city"] ?>" ></td>
+
+        </tr>
+        <tr>
+            <td colspan="6" style="height: 0.5px;">
+                <hr style="border-color: gainsboro"/>
+            </td>
         </tr>
         <tr style="vertical-align: top">
             <td>Bill To</td>
@@ -114,7 +114,7 @@ $arrsalutations = MysqlConnection::fetchCustom("SELECT distinct(`salutation`) as
 </fieldset>
 <hr/>
 <input type="hidden" value="<?php echo $customerid ?>" name="customerid"/>
-<a href="index.php?pagename=manage_customermaster" class="btn btn-danger">CANCEL</a>
+<a href="index.php?pagename=manage_customermaster&status=active" class="btn btn-danger">CANCEL</a>
 <input type="button" id="btnCmpNext1" value="NEXT" class="btn btn-info" />
 <script>
     function  fillAddress()
