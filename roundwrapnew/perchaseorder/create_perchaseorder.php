@@ -17,15 +17,17 @@ $buildauto = buildauto($itemarray);
 
 $ponumber = MysqlConnection::fetchCustom("SELECT id FROM purchase_order ORDER BY id DESC LIMIT 0,1");
 ?>
-
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script>
-    $(function () {
+    $(function() {
         var availableTags = [<?php echo $buildauto ?>];
         for (var index = 1; index <= 30; index++) {
             $("#tags" + index).autocomplete({source: availableTags});
         }
     });
+//    $(function() {
+//        $("#expected_date").datepicker();
+//    });
 </script>
 <div id="content-header">
     <div id="breadcrumb"> 
@@ -59,7 +61,7 @@ $ponumber = MysqlConnection::fetchCustom("SELECT id FROM purchase_order ORDER BY
                                     <td style="width: 10%"><label class="control-label">SHIP VIA&nbsp;:&nbsp</label></td>
                                     <td><input  type="text" name="ship_via" placeholder="" value="<?php echo $supplier["ship_via"] ?>"/></td>
                                     <td style="width: 10%"><label class="control-label">EXPECTED&nbsp;DELIVERY&nbsp;:&nbsp</label></td>
-                                    <td><input type="date" name="expected_date" value="<?php echo $supplier["expected_date"] ?>"  data-date-format="mm-dd-yyyy"  ></td>
+                                    <td><input type="text" name="expected_date" id="expected_date" value="<?php echo $supplier["expected_date"] ?>" ></td>
                                 </tr>
                                 <tr>
                                     <td ><label  class="control-label"  class="control-label">BILLING&nbsp;ADDRESS&nbsp;:&nbsp</label></td>
@@ -132,7 +134,7 @@ $ponumber = MysqlConnection::fetchCustom("SELECT id FROM purchase_order ORDER BY
                                 </tr>
                                 <tr >
                                     <td><b>Net Total</b></td>
-                                    <td><input type="text" id="nettotal" onkeypress="return chkNumericKey(event)" name="nettotal" name="nettotal" readonly=""></td>
+                                    <td><input type="text" id="nettotal"  onfocus="discount()" name="nettotal" name="nettotal" ></td>
                                 </tr>
                             </table>
                         </div>
@@ -162,13 +164,13 @@ $ponumber = MysqlConnection::fetchCustom("SELECT id FROM purchase_order ORDER BY
                     type: 'POST',
                     url: 'itemmaster/getitemajax.php',
                     data: dataString
-                }).done(function (data) {
+                }).done(function(data) {
                     var jsonobj = JSON.parse(data);
                     var desc = jsonobj.item_desc_purch === "" ? jsonobj.item_desc_purch : jsonobj.item_desc_sales;
                     $("#desc" + count).text(desc);
                     $("#unit" + count).text(jsonobj.unit);
                     $("#price" + count).text(jsonobj.purchase_rate);
-                }).fail(function () {
+                }).fail(function() {
                 });
             }
             function clearValue(count) {
@@ -199,22 +201,30 @@ $ponumber = MysqlConnection::fetchCustom("SELECT id FROM purchase_order ORDER BY
                     }
                 }
                 $("#finaltotal").val(finaltotal);
+                discount();
             }
-//                                        function discount() {
-//                                            var amount = $("#discount").val();
-//                                            var finaltotal = $("#finaltotal").val();
-//                                            if (amount !== "") {
-//                                                var discount = parseFloat(finaltotal) - parseFloat(amount);
-//                                                $("#nettotal").val(discount);
-//                                            }
-//                                        }
+
+            function discount() {
+                var amount = $("#discount").val();
+                var finaltotal = $("#finaltotal").val();
+                if (amount !== "") {
+                    var discount = parseFloat(finaltotal) - parseFloat(amount);
+                    $("#nettotal").val(discount);
+                } else {
+                    $("#nettotal").val($("#finaltotal").val());
+                }
+            }
+
+            function shiftfocus() {
+
+            }
 
             function createPurchaseOrder() {
                 var x = document.getElementsByTagName("form");
                 x[0].submit();
             }
 
-         
+
 </script>
 
 <?php

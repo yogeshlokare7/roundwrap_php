@@ -83,11 +83,12 @@ if (isset($_POST["purchaseorderid"]) && isset($_GET["flag"])) {
                             <div style="overflow: auto;height: 232px;border-bottom: solid 1px  #CDCDCD;">
                                 <table class="table-bordered" style="width: 100%;border-collapse: collapse" border="1">
                                     <?php
+                                    $index=1;
                                     foreach ($result as $key => $value) {
                                         $items = MysqlConnection::fetchCustom("SELECT * FROM  item_master WHERE item_id =  " . $value["item_id"]);
                                         ?>
                                         <tr id="<?php echo $index ?>" style="border-bottom: solid 1px  #CDCDCD;background-color: white">
-                                            <td style="width: 30px"></td>
+                                            <td style="width: 30px"><?php echo $index++?></td>
                                             <td style="width: 230px;"><?php echo $items[0]["item_code"] ?></td>
                                             <td style="width: 450px"><div id="desc"></div><?php echo $items[0]["item_desc_purch"] ?></td>
                                             <td style="width: 80px;"><div id="unit"></div><?php echo $items[0]["unit"] ?></td>

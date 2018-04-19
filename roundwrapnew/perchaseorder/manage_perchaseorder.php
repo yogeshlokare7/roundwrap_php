@@ -31,7 +31,7 @@ $listPerchaseOrders = MysqlConnection::fetchCustom("SELECT *  FROM  `purchase_or
 
 <div class="container-fluid">
     <div class="cutomheader">
-        <h5 style="font-family: verdana;font-size: 12px;">LIST PURCHASE ORDER'S</h5>
+        <h5 style="font-family: verdana;font-size: 12px;">PURCHASE ORDER'S LIST</h5>
     </div>
     <div class="cutomheader"> 
         <table border="0">
@@ -51,7 +51,7 @@ $listPerchaseOrders = MysqlConnection::fetchCustom("SELECT *  FROM  `purchase_or
                 <th style="width: 25px;">#</th>
                 <th style="width: 100px">PO NUM</th>
                 <th style="width: 450px">Supplier Name</th>
-                <th style="width: 100px">Total Items</th>
+                <th style="width: 100px">PO Items</th>
                 <th style="width: 100px">PO Status</th>
                 <th style="width: 150px">Ship Via</th>
                 <th style="width: 100px">Gross Amt</th>
@@ -125,7 +125,7 @@ $listPerchaseOrders = MysqlConnection::fetchCustom("SELECT *  FROM  `purchase_or
 </div>
 <script>
 
-    $("#deleteThis").click(function () {
+    $("#deleteThis").click(function() {
         alert("Hello");
         $("div#divLoading").addClass('show');
         var dataString = "deleteId=" + $('#deleteId').val();
@@ -133,8 +133,8 @@ $listPerchaseOrders = MysqlConnection::fetchCustom("SELECT *  FROM  `purchase_or
             type: 'POST',
             url: 'perchaseorder/perchaseorder_ajax.php',
             data: dataString
-        }).done(function (data) {
-        }).fail(function () {
+        }).done(function(data) {
+        }).fail(function() {
         });
         location.reload();
     });
@@ -149,10 +149,10 @@ $listPerchaseOrders = MysqlConnection::fetchCustom("SELECT *  FROM  `purchase_or
 
 </script>
 <script>
-    $(function () {
+    $(function() {
         $.contextMenu({
             selector: '.context-menu-one',
-            callback: function (key, options) {
+            callback: function(key, options) {
                 var m = "clicked row: " + key;
                 var id = $(this).attr('id');
                 switch (key) {
@@ -192,16 +192,35 @@ $listPerchaseOrders = MysqlConnection::fetchCustom("SELECT *  FROM  `purchase_or
                 "create_receiving": {name: "CREATE RECEIVING ORDER", icon: ""},
                 "create_invoice": {name: "CREATE INVOICE", icon: ""},
                 "sep2": "---------",
-                "quit": {name: "QUIT", icon: function () {
+                "quit": {name: "QUIT", icon: function() {
                         return '';
                     }}
             }
         });
     });
 
-    $('tr').dblclick(function () {
+    $('tr').dblclick(function() {
         var id = $(this).attr('id');
         window.location = "index.php?pagename=view_perchaseorder&purchaseorderid=" + id;
     });
+
+    function searchData() {
+        var input, filter, table, tr, td, i;
+        input = document.getElementById("searchinput");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("data");
+        tr = table.getElementsByTagName("tr");
+        // Loop through all table rows, and hide those who don't match the search query
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[1];
+            if (td) {
+                if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
 
 </script>
