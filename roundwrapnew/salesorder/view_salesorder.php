@@ -10,9 +10,15 @@ $itemsarrays = MysqlConnection::fetchCustom($sqlitems);
 
 if (isset($_POST["salesorderid"]) && isset($_GET["flag"])) {
     $salesorderid = $_POST["salesorderid"];
-    MysqlConnection::delete("DELETE FROM sales_order WHERE id = $salesorderid ");
-    MysqlConnection::delete("DELETE FROM sales_item WHERE so_id = $salesorderid ");
-    header("location:index.php?pagename=manage_salesorder");
+    echo "SELECT customer_id FROM sales_order WHERE id = $salesorderid";
+    $customerid = MysqlConnection::fetchCustom("SELECT customer_id FROM sales_order WHERE id = $salesorderid");
+//    print_r($salesorderid);
+
+
+
+//    MysqlConnection::delete("DELETE FROM sales_order WHERE id = $salesorderid ");
+//    MysqlConnection::delete("DELETE FROM sales_item WHERE so_id = $salesorderid ");
+//    header("location:index.php?pagename=manage_salesorder");
 }
 ?>
 <div id="content-header">
@@ -158,7 +164,7 @@ if (isset($_POST["salesorderid"]) && isset($_GET["flag"])) {
 <script src="js/maruti.js"></script> 
 <script src="js/maruti.form_common.js"></script>
 <script>
-    $(document).ready(function () {
+    $(document).ready(function() {
         $('.table-fixed-header').prepFixedHeader().fixedHeader();
     });
 </script>

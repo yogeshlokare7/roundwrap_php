@@ -14,6 +14,14 @@ $purchaseorder = $result[0];
 
 if (isset($_POST["purchaseorderid"]) && isset($_GET["flag"])) {
     $poid = $_POST["purchaseorderid"];
+    $vendorid = MysqlConnection::fetchCustom("SELECT supplier_id FROM purchase_order WHERE id = $poid");
+    $selectbal = "SELECT `supp_balance` as supp_balance  FROM `supplier_master` where `supp_id` = " . $vendorid[0]["supplier_id"];
+    $balancedetails = MysqlConnection::fetchCustom($selectbal);
+    $balance = $balancedetails[0]["supp_balance"];
+    $pototal = "SELECT `total` as total  FROM `purchase_order` where `id` = " . $poid;
+    $pobalance = MysqlConnection::fetchCustom($pototal);
+    $newbalance = $balance - $pobalance[0]["total"];
+    MysqlConnection::delete("UPDATE `supplier_master` SET `supp_balance` = '$newbalance' WHERE `supp_id` = " . $vendorid[0]["supplier_id"]);
     MysqlConnection::delete("DELETE FROM purchase_order WHERE id = $poid ");
     MysqlConnection::delete("DELETE FROM purchase_item WHERE po_id = $poid ");
     header("location:index.php?pagename=manage_perchaseorder");

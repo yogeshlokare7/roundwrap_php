@@ -10,6 +10,7 @@ unset($salesorderdetails["salesdate"]);
 unset($salesorderdetails["onhand"]);
 $salesorderdetails["isOpen"] = "Y";
 $salesorderdetails["deleteNote"] = "";
+$salesorderdetails["discount"] = $salesorderdetails["discount"] == "" ? "0.00" : $salesorderdetails["discount"];
 $salesorderdetails["total"] = $salesorderdetails["sub_total"] - $salesorderdetails["discount"];
 $insertid = MysqlConnection::insert("sales_order", $salesorderdetails);
 for ($index = 0; $index <= count($_POST["items"]); $index++) {
