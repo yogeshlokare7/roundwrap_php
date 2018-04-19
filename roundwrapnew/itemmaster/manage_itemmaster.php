@@ -1,5 +1,16 @@
 <?php
-$listofitems = MysqlConnection::fetchAll("item_master");
+$status = filter_input(INPUT_GET, "status");
+if ($status == "active") {
+    $query = "SELECT * FROM `item_master` WHERE status = 'Y' ";
+} else if ($status == "inactive") {
+    $query = "SELECT * FROM `item_master` WHERE  status = 'N'  ";
+} else if ($status == "all") {
+    $query = "SELECT * FROM `item_master`  ";
+} else {
+    $query = "SELECT * FROM `item_master`  ";
+}
+
+$listofitems = MysqlConnection::fetchCustom($query);
 $itemid = filter_input(INPUT_GET, "itemId");
 if (isset($itemid) && $itemid != "") {
     $arritem = MysqlConnection::fetchCustom("SELECT status FROM `item_master` WHERE `item_id` = $itemid");
@@ -46,7 +57,7 @@ if (isset($itemid) && $itemid != "") {
     <div class="cutomheader">
         <h5 style="font-family: verdana;font-size: 12px;">ITEM'S LIST</h5>
     </div>
-    <div class="cutomheader">
+    <div class="cutomheader"> 
         <table border="0">
             <tr >
                 <td style="width: 8%"><a class="btn" href="index.php?pagename=create_itemmaster" ><i class="icon-plus-sign"></i>&nbsp;ADD ITEM</a></td>
@@ -56,9 +67,6 @@ if (isset($itemid) && $itemid != "") {
                            placeholder="Search for Itemname , Description" 
                            name="searchinput" style="width: 50%"/>
                 </th>
-                <td style="width: 8%"><a href="index.php?pagename=manage_itemmaster&status=active" id="btnSubmitFullForm" class="btn btn-info">VIEW ACTIVATED</a></td>
-                <td style="width: 8%"><a href="index.php?pagename=manage_itemmaster&status=inactive" id="btnSubmitFullForm" class="btn btn-info">VIEW INACTIVE</a></td>
-                <td style="width: 8%"><a href="index.php?pagename=manage_itemmaster&status=all" id="btnSubmitFullForm" class="btn btn-info">VIEW ALL</a></td>
             </tr>
         </table>
     </div>
@@ -128,18 +136,28 @@ if (isset($itemid) && $itemid != "") {
             </tr>
         </table>
     </div>
+
+    <div >  
+        <table>
+            <td ><a href="index.php?pagename=manage_itemmaster&status=active" id="btnSubmitFullForm" class="btn btn-info">VIEW ACTIVATED</a></td>
+            <td ><a href="index.php?pagename=manage_itemmaster&status=inactive" id="btnSubmitFullForm" class="btn btn-info">VIEW INACTIVE</a></td>
+            <td ><a href="index.php?pagename=manage_itemmaster&status=all" id="btnSubmitFullForm" class="btn btn-info">VIEW ALL</a></td>
+        </table>
+    </div>
+    <hr/>
+
 </div>
 
 <script>
-    $("#deleteThis").click(function () {
+    $("#deleteThis").click(function() {
         $("div#divLoading").addClass('show');
         var dataString = "deleteId=" + $('#deleteId').val();
         $.ajax({
             type: 'POST',
             url: 'itemmaster/itemmaster_ajax.php',
             data: dataString
-        }).done(function (data) {
-        }).fail(function () {
+        }).done(function(data) {
+        }).fail(function() {
         });
         location.reload();
     });
@@ -150,10 +168,10 @@ if (isset($itemid) && $itemid != "") {
 
 </script>
 <script type="text/javascript">
-    $(function () {
+    $(function() {
         $.contextMenu({
             selector: '.context-menu-one',
-            callback: function (key, options) {
+            callback: function(key, options) {
                 var m = "clicked row: " + key;
                 var id = $(this).attr('id');
                 switch (key) {
@@ -214,14 +232,14 @@ if (isset($itemid) && $itemid != "") {
                 "received_items": {name: "RECEIVED ITEMS", icon: ""},
                 "create_invoice": {name: "CREATE INVOICE", icon: ""},
                 "sep1": "---------",
-                "quit": {name: "QUIT", icon: function () {
+                "quit": {name: "QUIT", icon: function() {
                         return '';
                     }}
             }
         });
     });
 
-    $('tr').dblclick(function () {
+    $('tr').dblclick(function() {
         var id = $(this).attr('id');
         if (id !== undefined) {
             window.location = "index.php?pagename=view_itemmaster&itemId=" + id;
