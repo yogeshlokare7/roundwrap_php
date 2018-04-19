@@ -40,9 +40,9 @@ if (isset($supplierid) && $supplierid != "") {
 <script src="js/jquery.min_1.11.3.js"></script>
 <script src="js/jquery.contextMenu.js" type="text/javascript"></script>
 <script>
-    $("#liveTableSearch").on("keyup", function() {
+    $("#liveTableSearch").on("keyup", function () {
         var value = $(this).val();
-        $("table tr").each(function(index) {
+        $("table tr").each(function (index) {
             if (index !== 0) {
                 $row = $(this);
                 var id = $row.find("td:first").text();
@@ -72,6 +72,9 @@ if (isset($supplierid) && $supplierid != "") {
                            placeholder="Search for companyname" 
                            name="searchinput" style="width: 50%"/>
                 </th>
+                <td style="width: 8%"><a href="index.php?pagename=manage_suppliermaster&status=active" id="btnSubmitFullForm" class="btn btn-info">VIEW ACTIVATED</a></td>
+                <td style="width: 8%"><a href="index.php?pagename=manage_suppliermaster&status=inactive" id="btnSubmitFullForm" class="btn btn-info">VIEW INACTIVE</a></td>
+                <td style="width: 8%"><a href="index.php?pagename=manage_suppliermaster&status=all" id="btnSubmitFullForm" class="btn btn-info">VIEW ALL</a></td>
             </tr>
         </table>
     </div>
@@ -144,14 +147,14 @@ if (isset($supplierid) && $supplierid != "") {
 </div>
 
 <script>
-    $("#deleteThis").click(function() {
+    $("#deleteThis").click(function () {
         var dataString = "deleteId=" + $('#deleteId').val();
         $.ajax({
             type: 'POST',
             url: 'suppliermaster/suppliermaster_ajax.php',
             data: dataString
-        }).done(function(data) {
-        }).fail(function() {
+        }).done(function (data) {
+        }).fail(function () {
         });
         location.reload();
     });
@@ -159,23 +162,23 @@ if (isset($supplierid) && $supplierid != "") {
     function setDeleteField(deleteId) {
         document.getElementById("deleteId").value = deleteId;
     }
-    $("#save").click(function() {
+    $("#save").click(function () {
         var json = convertFormToJSON("#basic_validate");
         $.ajax({
             type: 'POST',
             url: 'suppliermaster/save_supplierajax.php',
             data: json
-        }).done(function(data) {
-        }).fail(function() {
+        }).done(function (data) {
+        }).fail(function () {
         });
         location.reload();
     });
 </script>
 <script type="text/javascript">
-    $(function() {
+    $(function () {
         $.contextMenu({
             selector: '.context-menu-one',
-            callback: function(key, options) {
+            callback: function (key, options) {
                 var m = "clicked row: " + key;
                 var id = $(this).attr('id');
                 switch (key) {
@@ -223,7 +226,7 @@ if (isset($supplierid) && $supplierid != "") {
                 "create_perchase_order": {name: "CREATE PURCHASE ORDER", icon: ""},
                 "create_invoice": {name: "CREATE INVOICE", icon: ""},
                 "sep1": "---------",
-                "quit": {name: "QUIT", icon: function() {
+                "quit": {name: "QUIT", icon: function () {
                         return '';
                     }}
             }
@@ -233,7 +236,7 @@ if (isset($supplierid) && $supplierid != "") {
         //            console.log('clicked', this);
         //       })    
     });
-    $('tr').dblclick(function() {
+    $('tr').dblclick(function () {
         var id = $(this).attr('id');
         if (id !== undefined) {
             window.location = "index.php?pagename=view_suppliermaster&supplierid=" + id;
