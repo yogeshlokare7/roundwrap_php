@@ -72,11 +72,11 @@ if (isset($itemid) && $itemid != "") {
     <div class="widget-box">
         <table class="customtable" border="1">
             <tr style="height: 30px;background-color: rgb(240,240,240);">
-                <th style="width: 2.3%;text-align: center">#</th>
+                <th style="width: 25px;text-align: center">#</th>
                 <th style="width: 360px;" onclick="sortTable('data', 1)"><i class="fa fa-fw fa-sort"></i>Name</th>
-                <th style="width: 650px;">Item's Description</th>
+                <th style="width: 600px;">Item's Description</th>
                 <th style="width: 110px;"  onclick="sortTable('data', 3)">Type</th>
-                <th style="width: 90px;">OnHand&nbsp;&nbsp;</th>
+                <th style="width: 90px;background-color: rgb(247,252,231)">OnHand&nbsp;&nbsp;</th>
                 <th style="width: 90px;">OnSales&nbsp;&nbsp;</th>
                 <th style="width: 90px;">Currency&nbsp;&nbsp;</th>
                 <th >Price&nbsp;&nbsp;</th>
@@ -94,18 +94,18 @@ if (isset($itemid) && $itemid != "") {
                     }
                     ?>
                     <tr id="<?php echo $value["item_id"] ?>" class="context-menu-one" style="<?php echo $bg ?>;border-bottom: solid 1px rgb(220,220,220);text-align: left" >
-                        <td style="width: 2.3%;text-align: center">&nbsp;<?php echo $index ?></td>
+                        <td style="width: 25px;;text-align: center">&nbsp;<?php echo $index ?></td>
                         <td style="width: 360px;text-align: left" >
                             &nbsp;
                             <?php echo $value["item_code"] ?>
                             <?php echo $value["item_name"] ?>
                         </td>
-                        <td style="width: 650px;text-align: left" >
+                        <td style="width: 600px;text-align: left" >
                             &nbsp;&nbsp;
                             <?php echo $value["item_desc_purch"] == "" ? $value["item_desc_sales"] : $value["item_desc_purch"] ?>
                         </td>
                         <td style="width: 110px;">&nbsp;<?php echo $value["type"] ?></td>
-                        <td style="width: 90px;text-align: right"><?php echo $value["onhand"]; ?>&nbsp;&nbsp;</td>
+                        <td style="width: 90px;text-align: right;background-color: rgb(247,252,231)"><?php echo $value["onhand"]; ?>&nbsp;&nbsp;</td>
                         <td style="width: 90px;text-align: right"><?php echo $value["totalvalue"]; ?>&nbsp;&nbsp;</td>
                         <td style="width: 90px;text-align: right"><?php echo $value["currency"]; ?>&nbsp;&nbsp;</td>
                         <td style="text-align: right">&nbsp;<?php echo $value["sell_rate"]; ?>&nbsp;</td>
@@ -118,9 +118,9 @@ if (isset($itemid) && $itemid != "") {
                 for ($index1 = 0; $index1 < 20; $index1++) {
                     ?>
                     <tr style="border-bottom: solid 1px rgb(220,220,220);text-align: left">
-                        <td style="width: 2.3%;text-align: center">&nbsp;<?php echo $index + $index1 ?></td>
+                        <td style="width: 25px;;text-align: center">&nbsp;<?php echo $index + $index1 ?></td>
                         <td style="width: 360px;text-align: left" ></td>
-                        <td style="width: 650px;text-align: right"></td>
+                        <td style="width: 600px;text-align: right"></td>
                         <td style="width: 110px;">&nbsp;</td>
                         <td style="width: 90px;text-align: right"></td>
                         <td style="width: 90px;text-align: right"></td>

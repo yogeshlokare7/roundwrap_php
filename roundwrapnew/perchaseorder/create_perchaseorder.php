@@ -141,11 +141,11 @@ $ponumber = MysqlConnection::fetchCustom("SELECT id FROM purchase_order ORDER BY
                     </td>
                 </tr>
             </table>
+            <div class="modal-footer " style="text-align: center"> 
+                <a id="save" class="btn btn-primary" onclick=" createPurchaseOrder()">Save</a> 
+                <a href="index.php?pagename=manage_perchaseorder" id="btnSubmitFullForm" class="btn btn-info">CANCEL</a>
+            </div>
         </div>
-    </div>
-    <div class="modal-footer "> 
-        <a id="save" class="btn btn-primary" onclick=" createPurchaseOrder()">Save</a> 
-        <a href="index.php?pagename=manage_perchaseorder" id="btnSubmitFullForm" class="btn btn-info">CANCEL</a>
     </div>
 </form>
 <script src="js/jquery.min.js"></script> 
@@ -157,14 +157,14 @@ $ponumber = MysqlConnection::fetchCustom("SELECT id FROM purchase_order ORDER BY
 <script src="js/maruti.form_common.js"></script>
 <script src="perchaseorder/purchasejs.js"></script>
 <script>
-            function shiftfocus() {
+                    function shiftfocus() {
 
-            }
+                    }
 
-            function createPurchaseOrder() {
-                var x = document.getElementsByTagName("form");
-                x[0].submit();
-            }
+                    function createPurchaseOrder() {
+                        var x = document.getElementsByTagName("form");
+                        x[0].submit();
+                    }
 
 
 </script>

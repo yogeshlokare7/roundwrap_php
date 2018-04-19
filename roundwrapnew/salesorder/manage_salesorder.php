@@ -71,7 +71,7 @@ $listSalesOrders = MysqlConnection::fetchCustom("SELECT * FROM `sales_order` ORD
                     $isOpenclt = $value["isOpen"] == "Y" ? "btn-success" : "btn-warning";
                     $items = MysqlConnection::fetchCustom("SELECT count(id) as counter FROM `sales_item` WHERE `so_id` = " . $value["id"]);
                     ?>
-                    <tr id="<?php echo $value["id"] ?>" class="context-menu-one" onclick="setId('<?php echo $value["id"] ?>')" style="border-bottom: solid 1px rgb(220,220,220);text-align: left;vertical-align: central">
+                    <tr id="<?php echo $value["id"] ?>" class="context-menu-one" onclick="setId('<?php echo $value["id"] ?>')" style="border-bottom: solid 1px rgb(220,220,220);text-align: left;vertical-align: central;;height: 35px;">
                         <td style="width: 25px;text-align: center"><?php echo $index++ ?></td>
                         <td style="width: 100px;">&nbsp;&nbsp;<?php echo $value["sono"] ?></td>
                         <td style="width: 450px;">&nbsp;&nbsp;<?php echo $customer[0]["cust_companyname"]; ?></td>
@@ -90,7 +90,7 @@ $listSalesOrders = MysqlConnection::fetchCustom("SELECT * FROM `sales_order` ORD
                 <?php
                 for ($index1 = 1; $index1 < 15; $index1++) {
                     ?>
-                    <tr  style="border-bottom: solid 1px rgb(220,220,220);text-align: left;vertical-align: central">
+                    <tr  style="border-bottom: solid 1px rgb(220,220,220);text-align: left;vertical-align: central;height: 35px;">
                         <td style="width: 25px;text-align: center"></td>
                         <td style="width: 100px;">&nbsp;&nbsp;<?php echo $value[""] ?></td>
                         <td style="width: 450px;">&nbsp;&nbsp;<?php echo $customer[0][""]; ?></td>

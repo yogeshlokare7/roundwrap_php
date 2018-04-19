@@ -22,14 +22,13 @@ $buildauto = buildauto($itemarray);
     <div id="breadcrumb"> 
         <a class="tip-bottom"><i class="icon-home"></i>HOME</a>
         <a class="tip-bottom"><i class="icon-home"></i>SALES ORDER ENTRY</a>
-    </div>
-</div>
+    </div></div>
 <style>
     input,textarea,select,date{ width: 90%; }
     .control-label{ margin-left: 10px; }
     tr,td{ vertical-align: middle; font-size: 12px;padding: 5px;margin: 5px;}
 </style>
-<form action="#" method="post">
+<form action="salesorder/editsalesorder.php" method="post">
     <div class="container-fluid" style="" >
         <div class="widget-box" style="width: 100%;border-bottom: solid 1px #CDCDCD;">
             <div class="widget-title">
@@ -90,9 +89,9 @@ $buildauto = buildauto($itemarray);
                                             <td style="width: 230px;">
                                                 <input type="text" name="items[]" value="<?php echo $value["item_code"] ?>" id="tags<?php echo $index ?>" onfocusout="setDetails('<?php echo $index ?>')"  style="padding: 0px;margin: 0px;width: 100%">
                                             </td>
-                                            <td style="width: 350px"><?php echo $value["item_desc_sales"] ?></td>
-                                            <td style="width: 80px;"><?php echo $value["unit"] ?></td>
-                                            <td style="width: 80px;"><?php echo $value["sell_rate"] ?></td>
+                                            <td style="width: 350px"><div id="desc<?php echo $index ?>"><?php echo $value["item_desc_sales"] ?></div></td>
+                                            <td style="width: 80px;"><div id="unit<?php echo $index ?>"><?php echo $value["unit"] ?></div> </td>
+                                            <td style="width: 80px;"><div id="price<?php echo $index ?>"><?php echo $value["sell_rate"] ?></div></td>
                                             <td style="width: 80px;"><input type="text" name="itemcount[]" value="<?php echo $value["qty"] ?>" onkeypress="return chkNumericKey(event)" onfocusout="calculateAmount('<?php echo $index ?>')" id="amount<?php echo $index ?>" style="padding: 0px;margin: 0px;width: 100%"></td>
                                             <td ><?php echo $value["qty"] * $value["sell_rate"] ?></td>
                                         </tr>
@@ -134,15 +133,15 @@ $buildauto = buildauto($itemarray);
 
                                 <tr >
                                     <td><b>Total</b></td>
-                                    <td><input type="text" value="<?php echo $customer["total"]; ?>" ></td>
+                                    <td><input type="text" id="finaltotal" onkeypress="return chkNumericKey(event)" value="<?php echo $customer["sub_total"] ?>" name="finaltotal" readonly=""></td>
                                 </tr>
                                 <tr >
                                     <td><b>Discount</b></td>
-                                    <td><input type="text" value="<?php echo $customer["discount"]; ?>" ></td>
+                                    <td><input type="text" id="discount"  onkeypress="return chkNumericKey(event)" value="<?php echo $customer["discount"] ?>" name="discount" onfocusout="discount()"  name="discount" ></td>
                                 </tr>
                                 <tr >
                                     <td><b>Net Total</b></td>
-                                    <td><input type="text" value="<?php echo $customer["sub_total"]; ?>"></td>
+                                    <td><input type="text" id="nettotal" onkeypress="return chkNumericKey(event)" value="<?php echo $customer["total"] ?>" name="nettotal" name="nettotal" readonly=""></td>
                                 </tr>
 
                             </table>
@@ -152,12 +151,13 @@ $buildauto = buildauto($itemarray);
             </table>
             <hr/>
 
+            <div class="modal-footer " style="text-align: center"> 
+                <a id="save" class="btn btn-primary" onclick="createPurchaseOrder()">Save</a> 
+                <a href="index.php?pagename=manage_salesorder" id="btnSubmitFullForm" class="btn btn-info">CANCEL</a>
+            </div>
         </div>
     </div>
-    <div class="modal-footer "> 
-        <a id="save" class="btn btn-primary">Save</a> 
-        <a href="index.php?pagename=manage_salesorder" id="btnSubmitFullForm" class="btn btn-info">CANCEL</a>
-    </div>
+    <hr/>
 </form>
 <script src="js/jquery.min.js"></script> 
 <script src="js/bootstrap.min.js"></script> 
@@ -168,14 +168,10 @@ $buildauto = buildauto($itemarray);
 <script src="js/maruti.form_common.js"></script>
 <script src="salesorder/salesorderjs.js"></script>
 <script>
-                                            $(document).ready(function() {
-                                                $('.table-fixed-header').prepFixedHeader().fixedHeader();
-                                            });
-
-                                            function createPurchaseOrder() {
-                                                var x = document.getElementsByTagName("form");
-                                                x[0].submit();
-                                            }
+                    function createPurchaseOrder() {
+                        var x = document.getElementsByTagName("form");
+                        x[0].submit();
+                    }
 </script>
 
 <?php
