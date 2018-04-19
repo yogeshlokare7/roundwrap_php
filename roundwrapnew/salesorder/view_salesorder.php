@@ -3,22 +3,23 @@ $sqlgetsupplier = "SELECT *, (SELECT cust_companyname FROM customer_master WHERE
 $resultset = MysqlConnection::fetchCustom($sqlgetsupplier);
 $customer = $resultset[0];
 
-
+echo "<pre>";
+print_r($customer);
+echo "</pre>";
 
 $sqlitems = "SELECT im.item_id,im.item_code,im.unit,im.onhand,im.sell_rate,im.item_desc_sales, si.qty, si.rqty from item_master im , sales_item si WHERE im.item_id = si.item_id AND si.so_id = " . filter_input(INPUT_GET, "salesorderid");
 $itemsarrays = MysqlConnection::fetchCustom($sqlitems);
 
 if (isset($_POST["salesorderid"]) && isset($_GET["flag"])) {
     $salesorderid = $_POST["salesorderid"];
-    echo "SELECT customer_id FROM sales_order WHERE id = $salesorderid";
-    $customerid = MysqlConnection::fetchCustom("SELECT customer_id FROM sales_order WHERE id = $salesorderid");
-//    print_r($salesorderid);
-
-
-
-//    MysqlConnection::delete("DELETE FROM sales_order WHERE id = $salesorderid ");
-//    MysqlConnection::delete("DELETE FROM sales_item WHERE so_id = $salesorderid ");
-//    header("location:index.php?pagename=manage_salesorder");
+    $arrcustomerid = MysqlConnection::fetchCustom("SELECT  balance FROM customer_master WHERE id = ( SELECT customer_id FROM sales_order WHERE id = $salesorderid)");
+    $supp_balance = $arrcustomerid[0]["balance"];
+    $total = $customer["total"];
+    $newbalance = $supp_balance - $total;
+    MysqlConnection::delete("UPDATE customer_master SET balance = $newbalance WHERE id = ( SELECT customer_id FROM sales_order WHERE id = $salesorderid) ");
+    MysqlConnection::delete("DELETE FROM sales_order WHERE id = $salesorderid ");
+    MysqlConnection::delete("DELETE FROM sales_item WHERE so_id = $salesorderid ");
+    header("location:index.php?pagename=manage_salesorder");
 }
 ?>
 <div id="content-header">

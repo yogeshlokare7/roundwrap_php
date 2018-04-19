@@ -30,7 +30,6 @@ for ($index = 0; $index <= count($_POST["items"]); $index++) {
 
 $selectbal = "SELECT `balance` as balance  FROM `customer_master` where `id` = " . $salesorderdetails["customer_id"];
 $balancedetails = MysqlConnection::fetchCustom($selectbal);
-$balance = $selectbal[0]["balance"] + $salesorderdetails["total"];
+$balance = $balancedetails[0]["balance"] + $salesorderdetails["total"];
 MysqlConnection::delete("UPDATE `customer_master` SET `balance` = '$balance' WHERE `id` = " . $salesorderdetails["customer_id"]);
-
 header("location:../index.php?pagename=manage_salesorder");
