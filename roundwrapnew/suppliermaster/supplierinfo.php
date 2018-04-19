@@ -2,7 +2,7 @@
 $arrsalutations = MysqlConnection::fetchCustom("SELECT distinct(`salutation`) as salutation FROM `supplier_master`");
 ?>
 <script>
-    $(document).ready(function($) {
+    $(document).ready(function ($) {
         $("#supp_phoneNo").mask("(999) 999-9999");
         $("#supp_fax").mask("(999) 999-9999");
 
@@ -15,7 +15,7 @@ $arrsalutations = MysqlConnection::fetchCustom("SELECT distinct(`salutation`) as
             return false;
         }
     }
-    $(document).ready(function($) {
+    $(document).ready(function ($) {
         $("#creditcardno").mask("9999-9999-9999-9999");
     });
 </script>
@@ -109,24 +109,39 @@ $arrsalutations = MysqlConnection::fetchCustom("SELECT distinct(`salutation`) as
             </td>
             <td><label class="control-label" style="float: left">Exchange Rate</label></td>
             <td><input type="text" name="exchange_rate" id="exchange_rate" onkeypress="return chkNumericKey(event)" value="<?php echo $supplier["exchange_rate"] ?>" maxlength="2"></td>
-            <td><label class="control-label">Street Name</label></td>
-            <td><input type="text" name="supp_streetName" id="supp_streetName" minlenght="2" maxlength="30" plceholder="Enter Street Name" value="<?php echo $supplier["supp_streetName"] ?>" ></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td colspan="6" style="height: 0.5px;">
+                <hr style="border-color: gainsboro"/>
+            </td>
         </tr>
         <tr>
             <td><label class="control-label">Street No</label></td>
             <td><input type="text" name="supp_streetNo" id="supp_streetNo"  minlenght="2" maxlength="30" value="<?php echo $supplier["supp_streetNo"] ?>" ></td>
-            <td><label class="control-label">City</label></td>
-            <td><input type="text" name="supp_city" id="supp_city"  minlenght="2" maxlength="30" value="<?php echo $supplier["supp_city"] ?>" ></td>
-            <td><label class="control-label">Province</label></td>
-            <td><input type="text" name="supp_province" id="supp_province"  minlenght="2" maxlength="30" value="<?php echo $supplier["supp_province"] ?>" ></td>
+            <td><label class="control-label">Street Name</label></td>
+            <td><input type="text" name="supp_streetName" id="supp_streetName" minlenght="2" maxlength="30" plceholder="Enter Street Name" value="<?php echo $supplier["supp_streetName"] ?>" ></td>
+            <td><label class="control-label">Postal Code</label></td>
+            <td><input type="text" name="postal_code" id="postal_code" minlenght="2" maxlength="30"  value="<?php echo $supplier["postal_code"] ?>" ></td>
+
+
         </tr>
         <tr>
             <td><label class="control-label">Country</label></td>
             <td><input type="text" name="supp_country" id="supp_country"  minlenght="2" maxlength="30" value="<?php echo $supplier["supp_country"] ?>" ></td>
-            <td><label class="control-label">Postal Code</label></td>
-            <td><input type="text" name="postal_code" id="postal_code" minlenght="2" maxlength="30"  value="<?php echo $supplier["postal_code"] ?>" ></td>
+            <td><label class="control-label">Province</label></td>
+            <td><input type="text" name="supp_province" id="supp_province"  minlenght="2" maxlength="30" value="<?php echo $supplier["supp_province"] ?>" ></td>
+            <td><label class="control-label">City</label></td>
+            <td><input type="text" name="supp_city" id="supp_city"  minlenght="2" maxlength="30" value="<?php echo $supplier["supp_city"] ?>" ></td>
+        </tr>
+        <tr>
             <td><label class="control-label" style="float: left">Address</label></td>
             <td><textarea style="height: 80px;;line-height: 20px;" name="address" onfocus="fillDetailedAddress()"  id="address" ><?php echo $supplier["address"] ?></textarea></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
         </tr>
 
     </table> 

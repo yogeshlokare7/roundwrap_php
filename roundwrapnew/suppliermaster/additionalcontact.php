@@ -49,6 +49,7 @@ $arraycontacts = MysqlConnection::fetchCustom("SELECT *  FROM  `supplier_contact
                 <td>
                     <input type="text" id="designation" name="designation[]"  minlength="2" maxlength="20">
                     <a style="margin-left: 20px;margin-bottom: 10px;" class="icon-plus" href="#"  ></a>
+                    
                 </td>
             </tr>
             <?php
@@ -59,6 +60,7 @@ $arraycontacts = MysqlConnection::fetchCustom("SELECT *  FROM  `supplier_contact
 <hr/>
 <input type="button" id="btnVenPrev1" value="PREVIOUS" class="btn btn-info" href="#tab1">
 <input type="submit" id="btnSubmiVendor" class="btn btn-success" value="SUBMIT"/>
+<a href="index.php?pagename=manage_suppliermaster&status=active" class="btn btn-danger">CANCEL</a>
 
 
 <script type="text/javascript">
