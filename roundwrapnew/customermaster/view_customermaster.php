@@ -182,9 +182,9 @@ if (isset($_POST["deleteItem"])) {
                         <tr>
                             <td><label class="control-label">Rep</label></td>
                             <td><input type="text" value="<?php echo $customer["sales_person_name"] ?>" readonly=""/></td>
-                            <td>Business No</td>
+                            <td><label class="control-label">Business No</label></td>
                             <td><input type="text" value="<?php echo $customer["businessno"] ?>" readonly=""/></td>
-                            <td>Certificate</td>
+                            <td><label class="control-label">Certificate</label></td>
                             <td><a href="">view</a></td>
                         </tr>
                         <tr>

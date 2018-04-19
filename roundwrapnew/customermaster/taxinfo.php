@@ -67,9 +67,9 @@ $sqltaxinfodata = MysqlConnection::fetchCustom("SELECT * FROM taxinfo_table ORDE
                     ?>
                 </select>
             </td>
-            <td>Business No</td>
+            <td><label class="control-label">Business No</label></td>
             <td><input type="text" name="businessno" minlenght="2" maxlength="20" id="businessno"  value="<?php echo $customer["businessno"] ?>" ></td>
-            <td>Certificate</td>
+            <td><label class="control-label">Certificate</label></td>
             <td>
                 <input type="file" name="certificate" id="certificate">
                 <?php
