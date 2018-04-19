@@ -7,8 +7,8 @@ class MysqlConnection {
 
     static function connect() {
         $DB_NAME = "rw";
-//        $DB_HOST = "localhost";
-        $DB_HOST = "192.168.15.154";
+        $DB_HOST = "localhost";
+//        $DB_HOST = "192.168.15.154";
         $DB_USER = "root";
         $DB_PASS = "root";
         return mysqli_connect($DB_HOST, $DB_USER, $DB_PASS, $DB_NAME);
