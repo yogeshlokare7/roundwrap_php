@@ -15,7 +15,8 @@ $purchase_order["expected_date"] = $date = filter_input(INPUT_POST, "expected_da
 $purchase_order["expected_date"] = $purchasedate = filter_input(INPUT_POST, "purchasedate");
 $purchase_order["added_by"] = $enterby = $_SESSION["user"]["user_id"];
 $purchase_order["sub_total"] = $finaltotal = filter_input(INPUT_POST, "finaltotal");
-$purchase_order["discount"] = $discount = filter_input(INPUT_POST, "discount");
+$discount = filter_input(INPUT_POST, "discount");
+$purchase_order["discount"] = $discount == "" ? "0.00" : $discount;
 $purchase_order["total"] = $nettotal = $purchase_order["sub_total"] - $purchase_order["discount"];
 
 $purchase_order["totalTax"] = 0.0;
@@ -39,6 +40,6 @@ for ($index = 0; $index < count($items); $index++) {
 
 $selectbal = "SELECT `supp_balance` as supp_balance  FROM `supplier_master` where `supp_id` = " . $purchase_order["supplier_id"];
 $balancedetails = MysqlConnection::fetchCustom($selectbal);
-$balance = $selectbal[0]["supp_balance"] + $purchase_order["total"];
+$balance = $balancedetails[0]["supp_balance"] + $purchase_order["total"];
 MysqlConnection::delete("UPDATE `supplier_master` SET `supp_balance` = '$balance' WHERE `supp_id` = " . $purchase_order["supplier_id"]);
 header("location:../index.php?pagename=manage_perchaseorder");

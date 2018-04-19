@@ -73,7 +73,7 @@ $listPerchaseOrders = MysqlConnection::fetchCustom("SELECT *  FROM  `purchase_or
                     $isOpen = $value["isOpen"] == "Y" ? "Open" : "Close";
                     $isOpenclt = $value["isOpen"] == "Y" ? "btn-success" : "btn-warning";
                     ?>
-                    <tr id="<?php echo $value["id"] ?>" class="context-menu-one" onclick="setId('<?php echo $value["id"] ?>')" style="border-bottom: solid 1px rgb(220,220,220);text-align: left;vertical-align: central">
+                    <tr id="<?php echo $value["id"] ?>" class="context-menu-one" onclick="setId('<?php echo $value["id"] ?>')" style="border-bottom: solid 1px rgb(220,220,220);text-align: left;vertical-align: central;height: 35px;">
 
                         <td style="width: 25px;text-align: center"><?php echo $index++ ?></td>
                         <td style="width: 100px">&nbsp;&nbsp;<?php echo $value["purchaseOrderId"] ?></td>
@@ -83,7 +83,7 @@ $listPerchaseOrders = MysqlConnection::fetchCustom("SELECT *  FROM  `purchase_or
                         <td style="width: 150px">&nbsp;&nbsp;<?php echo $value["ship_via"] ?></td>
                         <td style="width: 100px; text-align: right">&nbsp;&nbsp;<?php echo $value["sub_total"] ?>&nbsp;&nbsp;</td>
                         <td style="width: 100px; text-align: right">&nbsp;&nbsp;<?php echo $value["discount"] ?>&nbsp;&nbsp;</td>
-                        <td style="width: 100px; text-align: right">$&nbsp;&nbsp;<?php echo $value["total"] ?>&nbsp;&nbsp;</td>
+                        <td style="width: 100px; text-align: right">&nbsp;&nbsp;<?php echo $value["total"] ?>&nbsp;&nbsp;</td>
                         <td style=" width: 130px;text-align: center">&nbsp;&nbsp;<?php echo $value["expected_date"] ?>&nbsp;&nbsp;</td>
                         <td >&nbsp;&nbsp;<?php echo implode(" ", $userarray[0]) ?></td>
                     </tr>

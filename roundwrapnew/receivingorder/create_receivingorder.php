@@ -9,9 +9,9 @@
 <?php
 $purchaseid = filter_input(INPUT_GET, "purchaseorderid");
 $result = MysqlConnection::fetchCustom(""
-        . "SELECT * , pi.id as poitemid , (SELECT companyname FROM supplier_master WHERE supp_id = po.`supplier_id` ) "
-        . "AS companyname FROM purchase_order po, purchase_item pi "
-        . "WHERE po.id = pi.po_id AND pi.po_id =$purchaseid ");
+                . "SELECT * , pi.id as poitemid , (SELECT companyname FROM supplier_master WHERE supp_id = po.`supplier_id` ) "
+                . "AS companyname FROM purchase_order po, purchase_item pi "
+                . "WHERE po.id = pi.po_id AND pi.po_id =$purchaseid ");
 $podetails = $result[0];
 ?>
 
@@ -81,10 +81,11 @@ $podetails = $result[0];
                                                 <td style="width: 320px"><?php echo $items[0]["item_desc_purch"] ?></div></td>
                                                 <td style="width: 80px;">
                                                     <?php echo ($value["qty"] - $value["rqty"]) ?>
+                                                    <input type="hidden" value="<?php echo ($value["qty"] - $value["rqty"]) ?>" id="lastreceived<?php echo $index ?>">
                                                 </td>
                                                 <td >
-                                                    <input type="hidden" name="poitemid[]" value="<?php echo $value["item_id"] ?>" id="received">
-                                                    <input type="text" name="received[]" id="received">
+                                                    <input type="hidden" name="poitemid[]" value="<?php echo $value["item_id"] ?>"  >
+                                                    <input type="text" name="received[]" id="received<?php echo $index ?>" onfocusout="validateQty('<?php echo $index ?>')" >
                                                 </td>
                                             </tr>
                                             <?php
@@ -119,6 +120,14 @@ $podetails = $result[0];
                     function createPurchaseOrder() {
                         var x = document.getElementsByTagName("form");
                         x[0].submit();
+                    }
+                    function validateQty(id) {
+                        var lastreceived = parseInt($("#lastreceived" + id).val());
+                        var received = parseInt($("#received" + id).val());
+                        if (received > lastreceived) {
+                            $("#received" + id).val("");
+                            $("#received" + id).focus();
+                        }
                     }
 </script>
 
