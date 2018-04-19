@@ -24,12 +24,12 @@ if (!empty($customerid)) {
 
             <td>Currency</td>
             <td>
-                <select name="currency"  id="currency" value="">
+                <select name="currency"  id="currency" value="" style="text-transform: capitalize">
                     <?php
                     $currencyarr = getcurrency();
-                    foreach ($currencyarr as $key => $value) {
+                    foreach ($currencyarr as $key => $cvalue) {
                         ?>
-                        <option value="<?php echo $key ?>" <?php echo $customer["currency"] == $key ? "selected" : "" ?> ><?php echo $value ?></option>
+                        <option value="<?php echo $key ?>" <?php echo $customer["currency"] == $key ? "selected" : "" ?> ><?php echo $cvalue ?></option>
                         <?php
                     }
                     ?>

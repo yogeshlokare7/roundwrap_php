@@ -52,7 +52,7 @@ $arrsalutations = MysqlConnection::fetchCustom("SELECT distinct(`salutation`) as
         <tr>
             <td><label class="control-label" style="float: left">Salutation</label></td>
             <td>
-                <select name="salutation" style="width: 20%;height: 24px;" id="salutation">
+                <select name="salutation" style="width: 20%;height: 24px;text-transform: capitalize" id="salutation">
                     <option value=""></option>
                     <?php
                     foreach ($arrsalutations as $key => $value) {
