@@ -29,7 +29,7 @@ if (isset($_POST["btnSubmitFullForm"])) {
 <form name="frmCustomerNote" id="frmCustomerNote" method="post">
     <div class="container-fluid" id="tabs">
         <div class="cutomheader">
-            <h5 style="font-family: verdana;font-size: 12px;">ADD CUSTOMER NOTE</h5>
+            <h5 style="font-family: verdana;font-size: 12px;">ADD VENDOR NOTE</h5>
         </div>
         <div class="widget-box" >
             <div class="widget-title" >

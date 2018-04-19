@@ -17,7 +17,7 @@ $arrsalutations = MysqlConnection::fetchCustom("SELECT distinct(`salutation`) as
     }
 </style>
 <script>
-    $(document).ready(function($) {
+    $(document).ready(function ($) {
         $("#phno").mask("(99) 9999-9999");
         $("#cust_fax").mask("(99) 9999-9999");
     });
@@ -65,6 +65,7 @@ $arrsalutations = MysqlConnection::fetchCustom("SELECT distinct(`salutation`) as
                 Is customer active ?
             </td>
         </tr>
+
         <tr>
             <td><label class="control-label">Street Name</label></td>
             <td><input type="text" name="streetName" id="streetName" minlenght="2" maxlength="30" plceholder="Enter Street Name" value="<?php echo $customer["streetName"] ?>" ></td>
