@@ -82,20 +82,32 @@ if (isset($_POST["deleteItem"])) {
                             </td>
                         </tr>
                         <tr>
-                            <td><label class="control-label">Street Name</label></td>
-                            <td><input type="text"  value="<?php echo $customer["streetName"] ?>" readonly=""/></td>
+                            <td colspan="6" style="height: 0.5px;">
+                                <hr style="border-color: gainsboro"/>
+                            </td>
+                        </tr>
+                        <tr>
                             <td><label class="control-label">Street No</label></td>
                             <td><input type="text"  value="<?php echo $customer["streetNo"] ?>" readonly=""/></td>
+                            <td><label class="control-label">Street Name</label></td>
+                            <td><input type="text"  value="<?php echo $customer["streetName"] ?>" readonly=""/></td>
+                            <td><label class="control-label">Postal Code</label></td>
+                            <td><input type="text"   value="<?php echo $customer["postal_code"] ?>" readonly="" /></td>
+
+                        </tr>
+                        <tr>
+                            <td><label class="control-label">Country</label></td>
+                            <td><input type="text"  value="<?php echo $customer["country"] ?>" readonly="" /></td>
+                            <td><label class="control-label">Province</label></td>
+                            <td><input type="text"  value="<?php echo $customer["cust_province"] ?>" readonly="" /></td>
+
                             <td><label class="control-label">City</label></td>
                             <td><input type="text"  value="<?php echo $customer["city"] ?>" readonly="" /></td>
                         </tr>
                         <tr>
-                            <td><label class="control-label">Province</label></td>
-                            <td><input type="text"  value="<?php echo $customer["cust_province"] ?>" readonly="" /></td>
-                            <td><label class="control-label">Country</label></td>
-                            <td><input type="text"  value="<?php echo $customer["country"] ?>" readonly="" /></td>
-                            <td><label class="control-label">Postal Code</label></td>
-                            <td><input type="text"   value="<?php echo $customer["postal_code"] ?>" readonly="" /></td>
+                            <td colspan="6" style="height: 0.5px;">
+                                <hr style="border-color: gainsboro"/>
+                            </td>
                         </tr>
                         <tr style="vertical-align: top">
                             <td>Bill To</td>
@@ -193,7 +205,7 @@ if (isset($_POST["deleteItem"])) {
                             <td><label class="control-label">Account No</label></td>
                             <td><input type="text"  value="<?php echo $customer["cust_accnt_no"] ?>" readonly="" /></td>
                             <td>Currency</td>
-                            <td><input type="text"  value="<?php echo getcurrency($customer["currency"])." ".($customer["currency"]) ?>" readonly=""/></td>
+                            <td><input type="text"  value="<?php echo getcurrency($customer["currency"]) . " " . ($customer["currency"]) ?>" readonly=""/></td>
                             <td>Balance</td>
                             <td><input type="text" value="<?php echo $customer["balance"] ?>" readonly=""/></td>
                             <td><label class="control-label">Credit Limit</label></td>
@@ -261,12 +273,12 @@ if (isset($_POST["deleteItem"])) {
             type: 'POST',
             url: 'customermaster/customermaster_ajax.php',
             data: dataString
-        }).done(function(data) {
-        }).fail(function() {
+        }).done(function (data) {
+        }).fail(function () {
         });
     }
 
-    $('#btnCmpNext1').on('click', function() {
+    $('#btnCmpNext1').on('click', function () {
         $('#ciTab1').removeClass('active');
         $('#acTab2').addClass('active');
 
@@ -274,14 +286,14 @@ if (isset($_POST["deleteItem"])) {
         $('#tab2').addClass('active');
     });
 
-    $('#btnCmpPrev1').on('click', function() {
+    $('#btnCmpPrev1').on('click', function () {
         $('#acTab2').removeClass('active');
         $('#ciTab1').addClass('active');
         $('#tab2').removeClass('active');
         $('#tab1').addClass('active');
 
     });
-    $('#btnCmpNext2').on('click', function() {
+    $('#btnCmpNext2').on('click', function () {
         $('#acTab2').removeClass('active');
         $('#tdTab3').addClass('active');
         $('#tab2').removeClass('active');
@@ -289,32 +301,32 @@ if (isset($_POST["deleteItem"])) {
     });
 
 
-    $('#btnCmpPrev2').on('click', function() {
+    $('#btnCmpPrev2').on('click', function () {
         $('#tdTab3').removeClass('active');
         $('#acTab2').addClass('active');
         $('#tab3').removeClass('active');
         $('#tab2').addClass('active');
     });
-    $('#btnCmpNext3').on('click', function() {
+    $('#btnCmpNext3').on('click', function () {
         $('#tdTab3').removeClass('active');
         $('#dpiTab4').addClass('active');
         $('#tab3').removeClass('active');
         $('#tab4').addClass('active');
     });
-    $('#btnCmpPrev3').on('click', function() {
+    $('#btnCmpPrev3').on('click', function () {
         $('#dpiTab4').removeClass('active');
         $('#tdTab3').addClass('active');
         $('#tab4').removeClass('active');
         $('#tab3').addClass('active');
     });
 
-    $('#btnCmpNext4').on('click', function() {
+    $('#btnCmpNext4').on('click', function () {
         $('#dpiTab4').removeClass('active');
         $('#noteTab5').addClass('active');
         $('#tab4').removeClass('active');
         $('#tab5').addClass('active');
     });
-    $('#btnCmpPrev4').on('click', function() {
+    $('#btnCmpPrev4').on('click', function () {
         $('#noteTab5').removeClass('active');
         $('#dpiTab4').addClass('active');
         $('#tab5').removeClass('active');

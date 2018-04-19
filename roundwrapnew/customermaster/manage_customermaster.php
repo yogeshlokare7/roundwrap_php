@@ -77,12 +77,12 @@ if (isset($customerid) && $customerid != "") {
                 <th style="width:110px">Contact No</th>
                 <th style="width:280px">Email</th>
                 <th style="width:80px">Currency</th>
-                <th style="width:60px">Balance</th>
+                <th style="width:70px">Balance</th>
                 <th>Sales Person</th>
             </tr>
         </table>
         <div style="height: 310px;overflow: auto;overflow-x: auto">
-            <table class="customtable" id="data" style="margin-top: -1px;"  border="0">
+            <table class="customtable" id="data" style="margin-top: -1px;"  border="1">
                 <?php
                 $index = 1;
                 foreach ($listofcustomers as $key => $value) {
@@ -108,7 +108,7 @@ if (isset($customerid) && $customerid != "") {
                             </a>
                         </td>
                         <td style="width:80px">&nbsp;&nbsp;<?php echo $value["currency"] ?></td>
-                        <td style="width:60px">&nbsp;&nbsp;<?php echo $value["balance"] ?></td>
+                        <td style="width:70px">&nbsp;&nbsp;<?php echo $value["balance"] ?></td>
                         <td>&nbsp;&nbsp;<?php echo $value["sales_person_name"] ?></td>
                     </tr>
                     <?php
@@ -123,7 +123,7 @@ if (isset($customerid) && $customerid != "") {
                         <td style="width:110px"></td>
                         <td style="width:280px"></td>
                         <td style="width:80px"></td>
-                        <td style="width:60px"></td>
+                        <td style="width:70px"></td>
                         <td></td>
                     </tr>
                     <?php
