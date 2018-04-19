@@ -197,10 +197,10 @@ if (isset($itemid) && $itemid != "") {
                         window.location = "index.php?pagename=manage_itemmaster&itemId=" + id;
                         break;
                     case "changeprice":
-                        window.location = "index.php?pagename=create_itemmaster&itemId=" + id;
+                        window.location = "index.php?pagename=create_itemmaster&itemId=" + id + "&flag=price";
                         break;
                     case "adjustquantity":
-                        window.location = "index.php?pagename=create_itemmaster&itemId=" + id;
+                        window.location = "index.php?pagename=create_itemmaster&itemId=" + id + "&flag=qty";
                         break;
                     case "purchase_order":
                         window.location = "index.php?pagename=create_perchaseorder";
