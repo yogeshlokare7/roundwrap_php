@@ -90,12 +90,13 @@ if (isset($_POST["deleteItem"])) {
 
                         </tr>
                         <tr>
-                            <td><label class="control-label">Country</label></td>
-                            <td><input type="text" value="<?php echo $supplier["supp_country"] ?>" readonly=""/></td>
-                            <td><label class="control-label">Province</label></td>
-                            <td><input type="text"  value="<?php echo $supplier["supp_province"] ?>" readonly=""/></td>
                             <td><label class="control-label">City</label></td>
                             <td><input type="text"  value="<?php echo $supplier["supp_city"] ?>" readonly=""/></td>
+                            <td><label class="control-label">Province</label></td>
+                            <td><input type="text"  value="<?php echo $supplier["supp_province"] ?>" readonly=""/></td>
+                            <td><label class="control-label">Country</label></td>
+                            <td><input type="text" value="<?php echo $supplier["supp_country"] ?>" readonly=""/></td>
+
                         </tr>
                         <tr>
                             <td><label class="control-label" style="float: left">Address</label></td>
@@ -148,8 +149,8 @@ if (isset($_POST["deleteItem"])) {
                     </table>
                     <hr/>
                     <input type="button" id="btnVenPrev1" value="PREVIOUS" class="btn btn-info" href="#tab1" style="background-color: #2f96b4">
-                     <input type="button" id="btnVenNext2" value="NEXT" class="btn btn-info" style="background-color: #2f96b4" href="#tab3"/>
-                 
+                    <input type="button" id="btnVenNext2" value="NEXT" class="btn btn-info" style="background-color: #2f96b4" href="#tab3"/>
+
             </div>
             <div id="tab3" class="tab-pane">
                 <fieldset class="well the-fieldset">
@@ -202,7 +203,7 @@ if (isset($_POST["deleteItem"])) {
             $('#tab2').removeClass('active');
             $('#tab3').addClass('active');
         });
-         $('#btnVenPrev2').on('click', function () {
+        $('#btnVenPrev2').on('click', function () {
             $('#noteTab3').removeClass('active');
             $('#adTab2').addClass('active');
             $('#tab3').removeClass('active');

@@ -119,12 +119,12 @@ $arrsalutations = MysqlConnection::fetchCustom("SELECT distinct(`salutation`) as
             <td><input type="text" name="postal_code" id="postal_code" minlenght="2" maxlength="30"  value="<?php echo $supplier["postal_code"] ?>" ></td>
         </tr>
         <tr>
-            <td><label class="control-label">Country</label></td>
-            <td><input type="text" name="supp_country" id="supp_country"  minlenght="2" maxlength="30" value="<?php echo $supplier["supp_country"] ?>" ></td>
-            <td><label class="control-label">Province</label></td>
-            <td><input type="text" name="supp_province" id="supp_province"  minlenght="2" maxlength="30" value="<?php echo $supplier["supp_province"] ?>" ></td>
             <td><label class="control-label">City</label></td>
             <td><input type="text" name="supp_city" id="supp_city"  minlenght="2" maxlength="30" value="<?php echo $supplier["supp_city"] ?>" ></td>
+            <td><label class="control-label">Province</label></td>
+            <td><input type="text" name="supp_province" id="supp_province"  minlenght="2" maxlength="30" value="<?php echo $supplier["supp_province"] ?>" ></td>
+            <td><label class="control-label">Country</label></td>
+            <td><input type="text" name="supp_country" id="supp_country"  minlenght="2" maxlength="30" value="<?php echo $supplier["supp_country"] ?>" ></td>
         </tr>
         <tr>
             <td><label class="control-label" style="float: left">Address</label></td>

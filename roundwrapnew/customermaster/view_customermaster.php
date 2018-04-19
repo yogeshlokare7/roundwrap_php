@@ -96,13 +96,15 @@ if (isset($_POST["deleteItem"])) {
 
                         </tr>
                         <tr>
-                            <td><label class="control-label">Country</label></td>
-                            <td><input type="text"  value="<?php echo $customer["country"] ?>" readonly="" /></td>
-                            <td><label class="control-label">Province</label></td>
-                            <td><input type="text"  value="<?php echo $customer["cust_province"] ?>" readonly="" /></td>
-
                             <td><label class="control-label">City</label></td>
                             <td><input type="text"  value="<?php echo $customer["city"] ?>" readonly="" /></td>
+                           
+                            <td><label class="control-label">Province</label></td>
+                            <td><input type="text"  value="<?php echo $customer["cust_province"] ?>" readonly="" /></td>
+                             <td><label class="control-label">Country</label></td>
+                            <td><input type="text"  value="<?php echo $customer["country"] ?>" readonly="" /></td>
+
+                            
                         </tr>
                         <tr>
                             <td colspan="6" style="height: 0.5px;">

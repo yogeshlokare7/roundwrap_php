@@ -81,12 +81,12 @@ $arrsalutations = MysqlConnection::fetchCustom("SELECT distinct(`salutation`) as
 
         </tr>
         <tr>
+            <td><label class="control-label">City</label></td>
+            <td><input type="text" name="city" id="city"  minlenght="2" maxlength="30" value="<?php echo $customer["city"] ?>" ></td>
             <td><label class="control-label">Country</label></td>
             <td><input type="text" name="country" id="country"  minlenght="2" maxlength="30" value="<?php echo $customer["country"] ?>" ></td>
             <td><label class="control-label">Province</label></td>
             <td><input type="text" name="cust_province" id="cust_province"  minlenght="2" maxlength="30" value="<?php echo $customer["cust_province"] ?>" ></td>
-            <td><label class="control-label">City</label></td>
-            <td><input type="text" name="city" id="city"  minlenght="2" maxlength="30" value="<?php echo $customer["city"] ?>" ></td>
 
         </tr>
         <tr>
@@ -121,7 +121,7 @@ $arrsalutations = MysqlConnection::fetchCustom("SELECT distinct(`salutation`) as
     {
         document.getElementById("billto").value = "";
         var salutation = document.getElementById("salutation").value;
-        var cust_companyname = document.getElementById("cust_companyname").value+ "\n";
+        var cust_companyname = document.getElementById("cust_companyname").value + "\n";
         var firstname = document.getElementById("firstname").value === "" ? "" : document.getElementById("firstname").value;
         var lastname = document.getElementById("lastname").value === "" ? "" : document.getElementById("lastname").value + "\n";
 
