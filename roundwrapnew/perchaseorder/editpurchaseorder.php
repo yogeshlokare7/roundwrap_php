@@ -18,8 +18,16 @@ $purchase_order["discount"] = $discount = filter_input(INPUT_POST, "discount");
 $purchase_order["total"] = $nettotal = $purchase_order["sub_total"] - $purchase_order["discount"];
 $purchase_order["totalTax"] = 0.0;
 
+
+$vendorid = MysqlConnection::fetchCustom("SELECT supplier_id FROM purchase_order WHERE id = $poid");
+$selectbal = "SELECT `supp_balance` as supp_balance  FROM `supplier_master` where `supp_id` = " . $vendorid[0]["supplier_id"];
+$balancedetails = MysqlConnection::fetchCustom($selectbal);
+echo $oldbalance = $balancedetails[0]["supp_balance"];
+echo "<br/>";
 MysqlConnection::edit("purchase_order", $purchase_order, " id = $poid ");
+echo "<br/>";
 MysqlConnection::delete("DELETE FROM purchase_item WHERE po_id = $poid ");
+echo "<br/>";
 
 $items = $_POST["items"];
 for ($index = 0; $index < count($items); $index++) {
@@ -32,6 +40,12 @@ for ($index = 0; $index < count($items); $index++) {
         $purchase_items["qty"] = $itemcount;
         $purchase_items["rqty"] = 0;
         MysqlConnection::insert("purchase_item", $purchase_items);
+        echo "<br/>";
     }
 }
-header("location:../index.php?pagename=manage_perchaseorder");
+echo $currentbalance = $purchase_order["total"] - $oldbalance;
+$newbalance = $oldbalance + $currentbalance;
+echo "<br/>";
+
+MysqlConnection::delete("UPDATE `supplier_master` SET `supp_balance` = '$newbalance' WHERE `supp_id` = " . $vendorid[0]["supplier_id"]);
+//header("location:../index.php?pagename=manage_perchaseorder");
