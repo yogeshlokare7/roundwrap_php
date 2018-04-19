@@ -214,7 +214,7 @@ $sqltaxinfodata = MysqlConnection::fetchCustom("SELECT * FROM taxinfo_table ORDE
         }
         ?>
         <input type="hidden" value="<?php echo $item["item_id"] ?>" id="item_id" name="item_id"/>
-        <a href="index.php?pagename=manage_itemmaster" id="btnSubmitFullForm" class="btn btn-info">CANCEL</a>
+        <a href="index.php?pagename=manage_itemmaster&status=active" id="btnSubmitFullForm" class="btn btn-info">CANCEL</a>
     </form>
 </fieldset>
 <!--<hr/>

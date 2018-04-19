@@ -171,13 +171,13 @@ $subitemof = MysqlConnection::fetchCustom("SELECT  item_code, item_name  FROM  `
         if (isset($flag) && $flag != "") {
             ?>
             <form name="frmDeleteItem" id="frmDeleteItem" method="post">
-                <a href="index.php?pagename=manage_itemmaster" id="btnSubmitFullForm" class="btn btn-info">CANCEL</a>
+                <a href="index.php?pagename=manage_itemmaster&status=active" id="btnSubmitFullForm" class="btn btn-info">CANCEL</a>
                 <input style="background-color: #2f96b4" type="submit" value="DELETE" name="deleteItem" class="btn btn-danger"/>
                 <input type="hidden" name="itemid" value="<?php echo $itemid ?>"/>
             </form>
             <?php
         } else {
-            echo '<a href="index.php?pagename=manage_itemmaster" id="btnSubmitFullForm" class="btn btn-danger">CANCEL</a>';
+            echo '<a href="index.php?pagename=manage_itemmaster&status=active" id="btnSubmitFullForm" class="btn btn-danger">CANCEL</a>';
         }
         ?>
     </fieldset>
