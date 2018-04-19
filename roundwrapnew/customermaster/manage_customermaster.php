@@ -53,6 +53,9 @@ if (isset($customerid) && $customerid != "") {
                            placeholder="Search for companyname" 
                            name="searchinput" style="width: 50%"/>
                 </th>
+                <td style="width: 8%"><a href="index.php?pagename=manage_customermaster&status=active" id="btnSubmitFullForm" class="btn btn-info">VIEW ACTIVATED</a></td>
+                <td style="width: 8%"><a href="index.php?pagename=manage_customermaster&status=inactive" id="btnSubmitFullForm" class="btn btn-info">VIEW INACTIVE</a></td>
+                <td style="width: 8%"><a href="index.php?pagename=manage_customermaster&status=all" id="btnSubmitFullForm" class="btn btn-info">VIEW ALL</a></td>
             </tr>
         </table>
     </div>
@@ -130,10 +133,10 @@ if (isset($customerid) && $customerid != "") {
 
 <!--</form>-->
 <script>
-    $(function() {
+    $(function () {
         $.contextMenu({
             selector: '.context-menu-one',
-            callback: function(key, options) {
+            callback: function (key, options) {
                 var m = "clicked row: " + key;
                 var id = $(this).attr('id');
                 switch (key) {
@@ -180,14 +183,14 @@ if (isset($customerid) && $customerid != "") {
                 "create_sales_order": {name: "CREATE SALES ORDER", icon: ""},
                 "create_invoice": {name: "CREATE INVOICE", icon: ""},
                 "sep2": "---------",
-                "quit": {name: "QUIT", icon: function() {
+                "quit": {name: "QUIT", icon: function () {
                         return '';
                     }}
             }
         });
     });
 
-    $('tr').dblclick(function() {
+    $('tr').dblclick(function () {
         var id = $(this).attr('id');
         if (id !== undefined) {
             window.location = "index.php?pagename=view_customermaster&customerId=" + id;
