@@ -33,10 +33,16 @@ $sqltaxinfodata = MysqlConnection::fetchCustom("SELECT * FROM taxinfo_table ORDE
                     <fieldset class="well the-fieldset">
                         <table  style="vertical-align: top" border="0">
                             <tr style="vertical-align: top">
-                                <td colspan="4">Type<br/>
+                                <td >Type<br/>
                                     <select name="type"  id="type" value="">
                                         <option value="Service" <?php echo $item["type"] == "Service" ? "selected" : "" ?> >Service</option>
-                                        <option value="InventoryPart" <?php echo $item["type"] == "InventoryPart" ? "selected" : "" ?>  >Inventory Part</option>
+                                        <option value="InventoryPart" <?php echo $item["type"] == "InventoryPart" ? "selected" : "" ?>  ></option>
+                                    </select>
+                                </td>
+                                 <td colspan="3">Currency<br/>
+                                    <select name="currency"  id="currency" value="">
+                                        <option value="currency" <?php echo $item["currency"] == "Currency" ? "selected" : "" ?> ></option>
+                                        <option   ></option>
                                     </select>
                                 </td>
                             </tr>
@@ -67,8 +73,6 @@ $sqltaxinfodata = MysqlConnection::fetchCustom("SELECT * FROM taxinfo_table ORDE
                 <td>
                     <?php if ($item["type"] == "Service" || $item["type"] == "") { ?>
                         <div id="serviceform" >
-
-
                             <fieldset class="well the-fieldset">
                                 <table style="width: 80%;" id="iteminfo" border="0">
                                     <tr style="vertical-align: top">
