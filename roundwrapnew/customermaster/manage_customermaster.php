@@ -139,7 +139,7 @@ if (isset($customerid) && $customerid != "") {
     </div>
     <div>
         <table>
-            <td ><a href="index.php?pagename=manage_customermaster&status=active" id="btnSubmitFullForm" class="btn btn-info">VIEW ACTIVATED</a></td>
+            <td ><a href="index.php?pagename=manage_customermaster&status=active" id="btnSubmitFullForm" class="btn btn-info">VIEW ACTIVE</a></td>
             <td ><a href="index.php?pagename=manage_customermaster&status=inactive" id="btnSubmitFullForm" class="btn btn-info">VIEW INACTIVE</a></td>
             <td ><a href="index.php?pagename=manage_customermaster&status=all" id="btnSubmitFullForm" class="btn btn-info">VIEW ALL</a></td>
         </table>

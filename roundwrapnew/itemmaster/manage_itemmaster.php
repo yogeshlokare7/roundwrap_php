@@ -141,7 +141,7 @@ if (isset($itemid) && $itemid != "") {
 
     <div >  
         <table>
-            <td ><a href="index.php?pagename=manage_itemmaster&status=active" id="btnSubmitFullForm" class="btn btn-info">VIEW ACTIVATED</a></td>
+            <td ><a href="index.php?pagename=manage_itemmaster&status=active" id="btnSubmitFullForm" class="btn btn-info">VIEW ACTIVE</a></td>
             <td ><a href="index.php?pagename=manage_itemmaster&status=inactive" id="btnSubmitFullForm" class="btn btn-info">VIEW INACTIVE</a></td>
             <td ><a href="index.php?pagename=manage_itemmaster&status=all" id="btnSubmitFullForm" class="btn btn-info">VIEW ALL</a></td>
         </table>
@@ -230,9 +230,9 @@ if (isset($itemid) && $itemid != "") {
                 "changeprice": {name: "CHANGE PRICE", icon: ""},
                 "adjustquantity": {name: "ADJUST QUANTITY", icon: ""},
                 "purchase_order": {name: "CREATE PURCHASE ORDER", icon: ""},
-                "sales_order": {name: "CREATE SALES ORDER", icon: ""},
-                "received_items": {name: "RECEIVED ITEMS", icon: ""},
-                "create_invoice": {name: "CREATE INVOICE", icon: ""},
+//                "sales_order": {name: "CREATE SALES ORDER", icon: ""},
+//                "received_items": {name: "RECEIVED ITEMS", icon: ""},
+//                "create_invoice": {name: "CREATE INVOICE", icon: ""},
                 "sep1": "---------",
                 "quit": {name: "QUIT", icon: function () {
                         return '';

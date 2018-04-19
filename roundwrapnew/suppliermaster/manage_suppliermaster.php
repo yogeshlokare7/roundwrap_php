@@ -152,7 +152,7 @@ if (isset($supplierid) && $supplierid != "") {
 
     <div >
         <table>
-            <td ><a href="index.php?pagename=manage_suppliermaster&status=active" id="btnSubmitFullForm" class="btn btn-info">VIEW ACTIVATED</a></td>
+            <td ><a href="index.php?pagename=manage_suppliermaster&status=active" id="btnSubmitFullForm" class="btn btn-info">VIEW ACTIVATE</a></td>
             <td ><a href="index.php?pagename=manage_suppliermaster&status=inactive" id="btnSubmitFullForm" class="btn btn-info">VIEW INACTIVE</a></td>
             <td ><a href="index.php?pagename=manage_suppliermaster&status=all" id="btnSubmitFullForm" class="btn btn-info">VIEW ALL</a></td>
         </table>

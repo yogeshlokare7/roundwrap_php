@@ -8,9 +8,9 @@ ob_start();
     <li class="active"><a href="index.php?pagename=manage_dashboard"><i class="icon icon-home"></i> <span> Main Screen</span></a> </li>
     <li> <a><i class="icon icon-th-large"></i> <span>Masters</span></a> 
         <ul>
-            <li><a href="index.php?pagename=manage_itemmaster">Item Master</a></li>
-            <li><a href="index.php?pagename=manage_customermaster">Customer Master</a></li>
-            <li><a href="index.php?pagename=manage_suppliermaster">Vendor Master</a></li>
+            <li><a href="index.php?pagename=manage_itemmaster&status=active">Item Master</a></li>
+            <li><a href="index.php?pagename=manage_customermaster&status=active">Customer Master</a></li>
+            <li><a href="index.php?pagename=manage_suppliermaster&status=active">Vendor Master</a></li>
         </ul>
     </li>
     <li> <a ><i class="icon icon-inbox"></i> <span>Retail</span></a> 
