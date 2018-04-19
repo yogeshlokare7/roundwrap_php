@@ -103,6 +103,7 @@ if (isset($supplierid) && $supplierid != "") {
                 <?php
                 $index = 1;
                 foreach ($listofsupplier as $key => $value) {
+                    $buildaddress = buildAddress($value);
                     if ($value["status"] == "N") {
                         $back = $inavtivecolor;
                     } else {
@@ -112,7 +113,7 @@ if (isset($supplierid) && $supplierid != "") {
                     <tr id="<?php echo $value["supp_id"] ?>" style="<?php echo $back ?>;border-bottom: solid 1px rgb(220,220,220);text-align: left;height: 30px;"  class="context-menu-one">
                         <td style="width: 25px;;text-align: center">&nbsp;<?php echo $index++ ?></td>
                         <td style="width: 250px">&nbsp;&nbsp;<?php echo $value["companyname"] ?></td>
-                        <td style="width: 390px">&nbsp;&nbsp;<?php echo $value["address"] ?></td>
+                        <td style="width: 390px">&nbsp;&nbsp;<?php echo $buildaddress ?></td>
                         <td style="width: 230px">&nbsp;&nbsp;
                             <?php echo $value["firstname"] == "" ? "" : $value["salutation"] ?>&nbsp;<?php echo $value["firstname"] ?>&nbsp;<?php echo $value["lastname"] ?>
                         </td>
@@ -280,3 +281,14 @@ if (isset($supplierid) && $supplierid != "") {
         }
     }
 </script>
+<?php
+
+function buildAddress($value) {
+    return $value["supp_streetNo"]
+            . " " . $value["supp_streetName"]
+            . " " . $value["postal_code"]
+            . " " . $value["supp_city"]
+            . " " . $value["supp_province"]
+            . " " . $value["supp_country"];
+}
+?>
