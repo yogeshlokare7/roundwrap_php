@@ -23,11 +23,18 @@ if (!empty($customerid)) {
             <td><input type="text" name="cust_accnt_no" onkeypress="return chkNumericKey(event)" autofocus="" value="<?php echo $customer["cust_accnt_no"] ?>" minlenght="2" maxlength="13" id="cust_accnt_no"></td>
 
             <td>Currency</td>
-            <td><select name="currency" id="currency">
-                    <option value="CAN" <?php echo "CAN" == $customer["currency"] ? "selected" : "" ?>>Canada Dollar</option>
-                    <option value="USD" <?php echo "USD" == $customer["currency"] ? "selected" : "" ?>>USD</option>
-                    <option value="INR" <?php echo "INR" == $customer["currency"] ? "selected" : "" ?>>INR</option>
-                </select></td>
+            <td>
+                <select name="currency"  id="currency" value="">
+                    <?php
+                    $currencyarr = getcurrency();
+                    foreach ($currencyarr as $key => $value) {
+                        ?>
+                        <option value="<?php echo $key ?>" <?php echo $customer["currency"] == $key ? "selected" : "" ?> ><?php echo $value ?></option>
+                        <?php
+                    }
+                    ?>
+                </select>
+            </td>
 
             <td>Balance</td>
             <td><input type="text" name="balance" onkeypress="return chkNumericKey(event)" minlenght="2" maxlength="50" id="balance"  value="<?php echo $customer["balance"] ?>" ></td>
