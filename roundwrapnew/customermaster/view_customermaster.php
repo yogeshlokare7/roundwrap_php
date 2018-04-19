@@ -193,7 +193,7 @@ if (isset($_POST["deleteItem"])) {
                             <td><label class="control-label">Account No</label></td>
                             <td><input type="text"  value="<?php echo $customer["cust_accnt_no"] ?>" readonly="" /></td>
                             <td>Currency</td>
-                            <td><input type="text"  value="<?php echo $customer["currency"] ?>" readonly=""/></td>
+                            <td><input type="text"  value="<?php echo getcurrency($customer["currency"])." ".($customer["currency"]) ?>" readonly=""/></td>
                             <td>Balance</td>
                             <td><input type="text" value="<?php echo $customer["balance"] ?>" readonly=""/></td>
                             <td><label class="control-label">Credit Limit</label></td>

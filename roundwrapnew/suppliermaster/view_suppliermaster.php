@@ -68,7 +68,7 @@ if (isset($_POST["deleteItem"])) {
                         </tr>
                         <tr style="vertical-align: top">
                             <td>Currency </td>
-                            <td><input type="text"  value="<?php echo $supplier["currency"] ?>" readonly=""/></td>
+                            <td><input type="text"  value="<?php echo getcurrency($supplier["currency"])." ".($supplier["currency"]) ?>" readonly=""/></td>
                             <td>Exchange Rate</td>
                             <td><input type="text"  value="<?php echo $supplier["exchange_rate"] ?>" readonly=""/></td>
                             <td><label class="control-label">Street Name</label></td>
