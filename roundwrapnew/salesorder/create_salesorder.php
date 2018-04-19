@@ -71,8 +71,8 @@ $buildauto = buildauto($itemarray);
                             <table class="table-bordered" style="width: 100%;border-collapse: collapse" border="1">
                                 <tr style="border-bottom: solid 1px  #CDCDCD;background-color: rgb(250,250,250)">
                                     <td style="width: 25px;">#</td>
-                                    <td style="width: 230px;">ITEM NAME</td>
-                                    <td style="width: 350px">ITEM DESCRIPTION</td>
+                                    <td style="width: 200px;">ITEM NAME</td>
+                                    <td style="width: 300px">ITEM DESCRIPTION</td>
                                     <td style="width: 80px;">UNIT</td>
                                     <td style="width: 80px;">PRICE</td>
                                     <td style="width: 80px;">ONHAND</td>
@@ -87,10 +87,10 @@ $buildauto = buildauto($itemarray);
                                             <td style="width: 25px">
                                                 <a class="icon  icon-remove" onclick="clearValue('<?php echo $index ?>')"></a>
                                             </td>
-                                            <td style="width: 230px;">
+                                            <td style="width: 200px;">
                                                 <input type="text" name="items[]" id="tags<?php echo $index ?>" onfocusout="setDetails('<?php echo $index ?>')"  style="padding: 0px;margin: 0px;width: 100%">
                                             </td>
-                                            <td style="width: 350px"><div id="desc<?php echo $index ?>"></div></td>
+                                            <td style="width: 300px"><div id="desc<?php echo $index ?>"></div></td>
                                             <td style="width: 80px;"><div id="unit<?php echo $index ?>"></div></td>
                                             <td style="width: 80px;"><div id="price<?php echo $index ?>"></div></td>
                                             <td style="width: 80px;"><div id="onhand<?php echo $index ?>"></div></td>

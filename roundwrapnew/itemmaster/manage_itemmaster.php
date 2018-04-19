@@ -93,7 +93,7 @@ if (isset($itemid) && $itemid != "") {
                         $bg = "";
                     }
                     ?>
-                    <tr id="<?php echo $value["item_id"] ?>" class="context-menu-one" style="<?php echo $bg ?>;border-bottom: solid 1px rgb(220,220,220);text-align: left" >
+                    <tr id="<?php echo $value["item_id"] ?>" class="context-menu-one" style="<?php echo $bg ?>;border-bottom: solid 1px rgb(220,220,220);text-align: left;height: 35px;" >
                         <td style="width: 25px;;text-align: center">&nbsp;<?php echo $index ?></td>
                         <td style="width: 360px;text-align: left" >
                             &nbsp;
@@ -117,12 +117,12 @@ if (isset($itemid) && $itemid != "") {
                 <?php
                 for ($index1 = 0; $index1 < 20; $index1++) {
                     ?>
-                    <tr style="border-bottom: solid 1px rgb(220,220,220);text-align: left">
-                        <td style="width: 25px;;text-align: center">&nbsp;<?php echo $index + $index1 ?></td>
+                    <tr style="border-bottom: solid 1px rgb(220,220,220);text-align: left;height: 35px;">
+                        <td style="width: 25px;text-align: center">&nbsp;<?php echo $index + $index1 ?></td>
                         <td style="width: 360px;text-align: left" ></td>
                         <td style="width: 600px;text-align: right"></td>
                         <td style="width: 110px;">&nbsp;</td>
-                        <td style="width: 90px;text-align: right"></td>
+                        <td style="width: 90px;text-align: right;;background-color: rgb(247,252,231)"></td>
                         <td style="width: 90px;text-align: right"></td>
                         <td style="width: 90px;text-align: right"></td>
                         <td style="text-align: right"></td>

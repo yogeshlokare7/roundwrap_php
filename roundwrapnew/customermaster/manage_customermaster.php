@@ -71,13 +71,13 @@ if (isset($customerid) && $customerid != "") {
         <table class="customtable" border="1">
             <tr style="height: 30px;background-color: rgb(240,240,240);">
                 <th style="width: 25px;">#</th>
-                <th style="width:250px">Company Name</th>
-                <th style="width:390px">Address</th>
-                <th style="width:230px">Contact Person</th>
+                <th style="width:230px">Company Name</th>
+                <th style="width:330px">Address</th>
+                <th style="width:200px">Contact Person</th>
                 <th style="width:110px">Contact No</th>
-                <th style="width:280px">Email</th>
+                <th style="width:250px">Email</th>
                 <th style="width:80px">Currency</th>
-                <th style="width:70px">Balance</th>
+                <th style="width:100px">Balance</th>
                 <th>Sales Person</th>
             </tr>
         </table>
@@ -92,23 +92,27 @@ if (isset($customerid) && $customerid != "") {
                         $back = "";
                     }
                     ?>
-                    <tr id="<?php echo $value["id"] ?>" class="context-menu-one" style="<?php echo $back ?>;border-bottom: solid 1px rgb(220,220,220);text-align: left;vertical-align: central">
+                    <tr id="<?php echo $value["id"] ?>" class="context-menu-one" style="<?php echo $back ?>;border-bottom: solid 1px rgb(220,220,220);text-align: left;vertical-align: central;height: 35px;">
                         <td style="width: 25px;text-align: center"><?php echo $index++ ?></td>
-                        <td style="width:250px">&nbsp;&nbsp;<?php echo $value["cust_companyname"] ?></td>
-                        <td style="width:390px">
+                        <td style="width:230px">
                             <p style="text-align: justify;;padding: 5px;">
+                                <?php echo $value["cust_companyname"] ?>
+                            </p>
+                        </td>
+                        <td style="width:330px">
+                            <p style="text-align: justify;padding: 5px;">
                                 <?php echo buildAddress($value) ?>
                             </p>
                         </td>
-                        <td style="width:230px">&nbsp;&nbsp;<?php echo $value["firstname"] ?>&nbsp;<?php echo $value["lastname"] ?></td>
+                        <td style="width:200px">&nbsp;&nbsp;<?php echo $value["firstname"] ?>&nbsp;<?php echo $value["lastname"] ?></td>
                         <td style="width:110px">&nbsp;<?php echo $value["phno"] ?></td>
-                        <td style="width:280px">
+                        <td style="width:250px">
                             <a href="mailto:<?php echo $value["cust_email"] ?>?Subject=Welcome, <?php echo ucwords($value["cust_companyname"]) ?> " target="_top">
                                 &nbsp;<?php echo $value["cust_email"] ?>
                             </a>
                         </td>
                         <td style="width:80px">&nbsp;&nbsp;<?php echo $value["currency"] ?></td>
-                        <td style="width:70px">&nbsp;&nbsp;<?php echo $value["balance"] ?></td>
+                        <td style="width:100px;text-align: right"><?php echo $value["balance"] ?>&nbsp;&nbsp;</td>
                         <td>&nbsp;&nbsp;<?php echo $value["sales_person_name"] ?></td>
                     </tr>
                     <?php
@@ -117,13 +121,13 @@ if (isset($customerid) && $customerid != "") {
                     ?>
                     <tr style="border-bottom: solid 1px rgb(220,220,220);text-align: left;vertical-align: central;height: 35px;">
                         <td style="width: 25px;text-align: center"></td>
-                        <td style="width:250px"></td>
-                        <td style="width:390px"></td>
                         <td style="width:230px"></td>
+                        <td style="width:330px"></td>
+                        <td style="width:200px"></td>
                         <td style="width:110px"></td>
-                        <td style="width:280px"></td>
+                        <td style="width:250px"></td>
                         <td style="width:80px"></td>
-                        <td style="width:70px"></td>
+                        <td style="width:100px"></td>
                         <td></td>
                     </tr>
                     <?php

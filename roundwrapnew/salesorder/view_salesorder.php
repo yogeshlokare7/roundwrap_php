@@ -67,13 +67,13 @@ if (isset($_POST["salesorderid"]) && isset($_GET["flag"])) {
                         <div style="width: 70%;float: left">
                             <table class="table-bordered" style="width: 100%;border-collapse: collapse" border="1">
                                 <tr style="border-bottom: solid 1px  #CDCDCD;background-color: rgb(250,250,250)">
-                                    <td style="width: 30px;">#</td>
-                                    <td style="width: 200px;">ITEM NAME</td>
+                                    <td style="width: 25px;">#</td>
+                                    <td style="width: 180px;">ITEM NAME</td>
                                     <td style="width: 300px">ITEM DESCRIPTION</td>
                                     <td style="width: 80px;">UNIT</td>
                                     <td style="width: 80px;">PRICE</td>
-                                    <td style="width: 120px;">ORDERED QTY</td>
-                                    <td style="width: 120px;">RECEIVED QTY</td>
+                                    <td style="width: 100px;">ORDERED.QTY</td>
+                                    <td style="width: 100px;">REC.QTY</td>
                                     <td>AMOUNT</td>
                                 </tr>
                             </table>
@@ -84,13 +84,13 @@ if (isset($_POST["salesorderid"]) && isset($_GET["flag"])) {
                                     foreach ($itemsarrays as $key => $value) {
                                         ?>
                                         <tr id="<?php echo $index ?>" style="border-bottom: solid 1px  #CDCDCD;background-color: white">
-                                            <td style="width: 30px"><?php echo $index++ ?></td>
-                                            <td style="width: 200px;"><?php echo $value["item_code"] ?></td>
+                                            <td style="width: 25px"><?php echo $index++ ?></td>
+                                            <td style="width: 180px;"><?php echo $value["item_code"] ?></td>
                                             <td style="width: 300px"><?php echo $value["item_desc_sales"] ?></td>
                                             <td style="width: 80px;"><?php echo $value["unit"] ?></td>
                                             <td style="width: 80px;"><?php echo $value["sell_rate"] ?></td>
-                                            <td style="width: 120px;"><?php echo $value["qty"] ?></td>
-                                            <td style="width: 120px;"><?php echo $value["rqty"] ?></td>
+                                            <td style="width: 100px;"><?php echo $value["qty"] ?></td>
+                                            <td style="width: 100px;"><?php echo $value["rqty"] ?></td>
                                             <td ><?php echo $value["qty"] * $value["sell_rate"] ?></td>
                                         </tr>
                                         <?php

@@ -94,8 +94,8 @@ if (isset($supplierid) && $supplierid != "") {
                 <th style="width:230px">Contact person</th>
                 <th style="width:110px">Contact No</th>
                 <th style="width:280px">Email</th>
-                <th style="width:80px">Currency</th>
-                <th >Balance</th>
+                <th style="width:100px">Balance</th>
+                <th >Currency</th>
             </tr>
         </table>
         <div style="height: 310px;overflow: auto;overflow-x: auto">
@@ -110,10 +110,11 @@ if (isset($supplierid) && $supplierid != "") {
                         $back = "";
                     }
                     ?>
-                    <tr id="<?php echo $value["supp_id"] ?>" style="<?php echo $back ?>;border-bottom: solid 1px rgb(220,220,220);text-align: left;height: 30px;"  class="context-menu-one">
+                    <tr id="<?php echo $value["supp_id"] ?>" style="<?php echo $back ?>;border-bottom: solid 1px rgb(220,220,220);text-align: left;height: 35px;"  class="context-menu-one">
                         <td style="width: 25px;;text-align: center">&nbsp;<?php echo $index++ ?></td>
                         <td style="width: 250px">&nbsp;&nbsp;<?php echo $value["companyname"] ?></td>
-                        <td style="width: 390px">&nbsp;&nbsp;<?php echo $buildaddress ?></td>
+                        <td style="width: 390px">
+                            <p style="text-align: justify;;padding: 5px;"><?php echo $buildaddress ?></p> </td>
                         <td style="width: 230px">&nbsp;&nbsp;
                             <?php echo $value["firstname"] == "" ? "" : $value["salutation"] ?>&nbsp;<?php echo $value["firstname"] ?>&nbsp;<?php echo $value["lastname"] ?>
                         </td>
@@ -122,8 +123,8 @@ if (isset($supplierid) && $supplierid != "") {
                             <a href="mailto:<?php echo $value["supp_email"] ?>?Subject=Welcome, <?php echo ucwords($value["companyname"]) ?> " target="_top">
                                 &nbsp;<?php echo $value["supp_email"] ?>
                             </a></td>
-                        <td style="width: 80px">&nbsp;&nbsp;<?php echo $value["currency"] ?></td>
-                        <td >&nbsp;&nbsp;<?php echo $value["supp_balance"] ?></td>
+                        <td style="width: 100px;text-align: right"><?php echo $value["supp_balance"] ?>&nbsp;&nbsp;</td>
+                        <td >&nbsp;&nbsp;<?php echo $value["currency"] ?></td>
                     </tr>
                     <?php
                 }
@@ -136,7 +137,7 @@ if (isset($supplierid) && $supplierid != "") {
                         <td style="width: 230px"></td>
                         <td style="width: 110px"></td>
                         <td style="width: 280px"></td>
-                        <td style="width: 80px"></td>
+                        <td style="width: 100px"></td>
                         <td ></td>
                     </tr>
                     <?php

@@ -60,9 +60,9 @@ $itemsarrays = MysqlConnection::fetchCustom($sqlitems);
                                     <td style="width: 25px;">#</td>
                                     <td style="width: 230px;">ITEM NAME</td>
                                     <td style="width: 350px">ITEM DESCRIPTION</td>
-                                    <td style="width: 100px;">ON HAND QTY</td>
-                                    <td style="width: 100px;">ORDERED QTY</td>
-                                    <td style="width: 100px;">OLD RECEIVED</td>
+                                    <td style="width: 100px;">ON.HAND.QTY</td>
+                                    <td style="width: 100px;">ORD.QTY</td>
+                                    <td style="width: 100px;">PRE.SALE.QTY</td>
                                     <td>SALES QTY</td>
                                 </tr>
                             </table> 

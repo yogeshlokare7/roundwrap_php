@@ -12,6 +12,12 @@ $result = MysqlConnection::fetchCustom("SELECT * , (SELECT companyname FROM supp
 $podetails = $result[0];
 $itemarray = MysqlConnection::fetchCustom("SELECT item_id ,item_code, item_name FROM item_master;");
 $buildauto = buildauto($itemarray);
+
+$isOpen = $podetails["isOpen"];
+if ($isOpen == "N") {
+    $_SESSION["msg"] = "Can not edit closed purchase order !!!";
+    header("location:index.php?pagename=view_perchaseorder&purchaseorderid=" . $purchaseid);
+}
 ?>
 
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">

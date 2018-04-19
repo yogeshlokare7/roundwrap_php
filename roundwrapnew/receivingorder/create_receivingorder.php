@@ -59,13 +59,14 @@ $podetails = $result[0];
                 </tr>
                 <tr>
                     <td>
-                        <div style="width: 70%;float: left">
+                        <div style="width: 90%;float: left">
                             <table class="table-bordered" style="width: 70%;border-collapse: collapse" border="1">
                                 <tr style="border-bottom: solid 1px  #CDCDCD;background-color: rgb(250,250,250)">
                                     <td style="width: 200px;">ITEM NAME</td>
                                     <td style="width: 320px">ITEM DESCRIPTION</td>
-                                    <td style="width: 80px;">QTY</td>
-                                    <td >RECEIVED</td>
+                                    <td style="width: 120px;">ORDERED.QTY</td>
+                                    <td style="width: 120px;background-color: rgb(247,252,231)">OLD.REC.QTY</td>
+                                    <td >QTY</td>
                                 </tr>
                             </table>
                             <div style="overflow: auto;height: 232px;border-bottom: solid 1px  #CDCDCD;">
@@ -79,13 +80,14 @@ $podetails = $result[0];
                                             <tr id="<?php echo $index ?>" style="border-bottom: solid 1px  #CDCDCD;background-color: white">
                                                 <td style="width: 200px;"><?php echo $items[0]["item_code"] ?></td>
                                                 <td style="width: 320px"><?php echo $items[0]["item_desc_purch"] ?></div></td>
-                                                <td style="width: 80px;">
+                                                <td style="width: 120px;">
                                                     <?php echo ($value["qty"] - $value["rqty"]) ?>
                                                     <input type="hidden" value="<?php echo ($value["qty"] - $value["rqty"]) ?>" id="lastreceived<?php echo $index ?>">
                                                 </td>
+                                                <td style="width: 120px;;background-color: rgb(247,252,231)"><?php echo $value["rqty"]?></td>
                                                 <td >
                                                     <input type="hidden" name="poitemid[]" value="<?php echo $value["item_id"] ?>"  >
-                                                    <input type="text" name="received[]" id="received<?php echo $index ?>" onfocusout="validateQty('<?php echo $index ?>')" >
+                                                    <input type="text" onkeypress="return chkNumericKey(event)"  name="received[]" id="received<?php echo $index ?>" onfocusout="validateQty('<?php echo $index ?>')" >
                                                 </td>
                                             </tr>
                                             <?php

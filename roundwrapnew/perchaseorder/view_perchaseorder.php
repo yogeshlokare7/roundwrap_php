@@ -40,6 +40,9 @@ if (isset($_POST["purchaseorderid"]) && isset($_GET["flag"])) {
                 </ul>
             </div>
             <br/>
+            <div style="text-align: center;font-size: 12px;font-weight: bold;color: red;font-family: verdana">
+                <?php echo $_SESSION["msg"] ?>
+            </div>
             <table style="width: 100%">
                 <tr>
                     <td>
@@ -152,6 +155,7 @@ if (isset($_POST["purchaseorderid"]) && isset($_GET["flag"])) {
         </div>
     </div>
 </form>
+<?php $_SESSION["msg"] = ""; ?>
 <script src="js/jquery.min.js"></script> 
 <script src="js/bootstrap.min.js"></script> 
 <script src="js/bootstrap-colorpicker.js"></script> 
