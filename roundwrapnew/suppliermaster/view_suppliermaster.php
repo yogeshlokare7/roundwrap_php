@@ -55,48 +55,64 @@ if (isset($_POST["deleteItem"])) {
                             <td><input type="text"  value="<?php echo $supplier["companyname"] ?>" readonly=""/></td>
                             <td><label class="control-label"  style="float: left">Email </label></td>
                             <td><input type="email"   value="<?php echo $supplier["supp_email"] ?>" readonly=""/></td>
-                            <td>Phone No</td>
+                            <td><label class="control-label">Phone No</label></td>
                             <td><input type="tel"  value="<?php echo $supplier["supp_phoneNo"] ?>"  readonly=""/></td>
                         </tr>
                         <tr>
                             <td><label class="control-label"  style="float: left">Fax </label></td>
                             <td><input type="text"  value="<?php echo $supplier["supp_fax"] ?>" readonly=""/></td>
-                            <td>Website</td>
+                            <td><label class="control-label">Website</label></td>
                             <td><input type="url" value="<?php echo $supplier["supp_website"] ?>" readonly=""/></td>
-                            <td>Print on cheque as</td>
+                            <td><label class="control-label">Print on cheque as</label></td>
                             <td><input type="text"  value="<?php echo $supplier["print_onCheck"] ?>" readonly=""/></td>
                         </tr>
                         <tr style="vertical-align: top">
-                            <td>Currency </td>
-                            <td><input type="text"  value="<?php echo getcurrency($supplier["currency"])." ".($supplier["currency"]) ?>" readonly=""/></td>
-                            <td>Exchange Rate</td>
+                            <td><label class="control-label">Currency</label> </td>
+                            <td><input type="text"  value="<?php echo getcurrency($supplier["currency"]) . " " . ($supplier["currency"]) ?>" readonly=""/></td>
+                            <td><label class="control-label">Exchange Rate</label></td>
                             <td><input type="text"  value="<?php echo $supplier["exchange_rate"] ?>" readonly=""/></td>
-                            <td><label class="control-label">Street Name</label></td>
-                            <td><input type="text" value="<?php echo $supplier["supp_streetName"] ?>"  readonly=""/></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td colspan="6" style="height: 0.5px;">
+                                <hr style="border-color: gainsboro"/>
+                            </td>
                         </tr>
                         <tr>
                             <td><label class="control-label">Street No</label></td>
-                            <td><input type="text"  value="<?php echo $supplier["supp_streetNo"] ?>"  readonly="" /></td>
-                            <td><label class="control-label">City</label></td>
-                            <td><input type="text"  value="<?php echo $supplier["supp_city"] ?>"  readonly=""/></td>
-                            <td><label class="control-label">Province</label></td>
-                            <td><input type="text"  value="<?php echo $supplier["supp_province"] ?>"  readonly=""/></td>
-                        </tr>
-                        <tr style="vertical-align: middle">
-                            <td><label class="control-label">Country</label></td>
-                            <td><input type="text"  value="<?php echo $supplier["supp_country"] ?>"  readonly=""/></td>
+                            <td><input type="text"  value="<?php echo $supplier["supp_streetNo"] ?>" readonly=""/></td>
+                            <td><label class="control-label">Street Name</label></td>
+                            <td><input type="text" value="<?php echo $supplier["supp_streetName"] ?>" readonly=""/></td>
                             <td><label class="control-label">Postal Code</label></td>
-                            <td><input type="text"   value="<?php echo $supplier["postal_code"] ?>"  readonly=""/></td>
-                            <td><label class="control-label" style="float: left">Address</label></td>
-                            <td><textarea style="height: 80px;;line-height: 20px;"  readonly="" ><?php echo $supplier["address"] ?></textarea></td>
+                            <td><input type="text"  value="<?php echo $supplier["postal_code"] ?>" readonly=""/></td>
+
+
                         </tr>
+                        <tr>
+                            <td><label class="control-label">Country</label></td>
+                            <td><input type="text" value="<?php echo $supplier["supp_country"] ?>" readonly=""/></td>
+                            <td><label class="control-label">Province</label></td>
+                            <td><input type="text"  value="<?php echo $supplier["supp_province"] ?>" readonly=""/></td>
+                            <td><label class="control-label">City</label></td>
+                            <td><input type="text"  value="<?php echo $supplier["supp_city"] ?>" readonly=""/></td>
+                        </tr>
+                        <tr>
+                            <td><label class="control-label" style="float: left">Address</label></td>
+                            <td><textarea style="height: 80px;;line-height: 20px;" name="address" onfocus="fillDetailedAddress()"  id="address" ><?php echo $supplier["address"] ?></textarea></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+
                     </table>
                     <?php
                     if (isset($flag) && $flag != "") {
                         ?>
                         <form name="frmDeleteCustomer" id="frmDeleteCustomer" method="post">
                             <input type="hidden" value="<?php echo $customerid ?>" name="customerid"/>
-                            <a href="index.php?pagename=manage_suppliermaster" class="btn btn-danger">CANCEL</a>
+                            <a href="index.php?pagename=manage_suppliermaster&status=active" class="btn btn-danger">CANCEL</a>
                             <input type="hidden" value="supplierId" value="<?php echo supplierId ?>"/>
                             <input type="submit" value="DELETE" name="deleteItem" class="btn btn-danger" style="background-color: #2f96b4"/>
                             <input type="button" id="btnVenNext1" value="NEXT" class="btn btn-info" style="background-color: #2f96b4" />
@@ -104,7 +120,7 @@ if (isset($_POST["deleteItem"])) {
                         <?php
                     } else {
                         ?>
-                        <a href="index.php?pagename=manage_suppliermaster" class="btn btn-danger">CANCEL</a>
+                        <a href="index.php?pagename=manage_suppliermaster&status=active" class="btn btn-danger">CANCEL</a>
                         <input type="button" id="btnVenNext1" value="NEXT" class="btn btn-info" style="background-color: #2f96b4" href="#tab1"/>
                         <?php
                     }
@@ -132,7 +148,7 @@ if (isset($_POST["deleteItem"])) {
                     </table>
                     <hr/>
                     <input type="button" id="btnVenPrev1" value="PREVIOUS" class="btn btn-info" href="#tab1" style="background-color: #2f96b4">
-                    <a href="index.php?pagename=manage_suppliermaster" class="btn btn-danger">CANCEL</a></fieldset>
+                    <a href="index.php?pagename=manage_suppliermaster&status=active" class="btn btn-danger">CANCEL</a></fieldset>
             </div>
             <div id="tab3" class="tab-pane">
                 <fieldset class="well the-fieldset">
@@ -162,18 +178,18 @@ if (isset($_POST["deleteItem"])) {
                 </fieldset>
                 <hr/>
                 <input style="background-color: #2f96b4" type="button" id="btnCmpPrev4" value="PREVIOUS" class="btn btn-info" href="#tab1">
-                <a href="index.php?pagename=manage_suppliermaster" class="btn btn-danger">CANCEL</a>
+                <a href="index.php?pagename=manage_suppliermaster&status=active" class="btn btn-danger">CANCEL</a>
             </div>
         </div>
     </div>
     <script>
-        $('#btnVenNext1').on('click', function() {
+        $('#btnVenNext1').on('click', function () {
             $('#siTab1').removeClass('active');
             $('#adTab2').addClass('active');
             $('#tab1').removeClass('active');
             $('#tab2').addClass('active');
         });
-        $('#btnVenPrev1').on('click', function() {
+        $('#btnVenPrev1').on('click', function () {
             $('#adTab2').removeClass('active');
             $('#siTab1').addClass('active');
             $('#tab2').removeClass('active');

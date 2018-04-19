@@ -69,7 +69,6 @@ $arrsalutations = MysqlConnection::fetchCustom("SELECT distinct(`salutation`) as
             <td><input type="text" name="firstname" autofocus="" value="<?php echo $supplier["firstname"] ?>" id="firstname" minlength="2" maxlength="30" required="required"></td>
             <td><label class="control-label" style="float: left">Last Name </label></td>
             <td><input type="text" name="lastname" autofocus="" value="<?php echo $supplier["lastname"] ?>" id="lastname" minlength="2" maxlength="30" required="required"></td>
-
         </tr>
         <tr>
             <td><label class="control-label"  style="float: left">Company Name</label></td>
@@ -78,9 +77,6 @@ $arrsalutations = MysqlConnection::fetchCustom("SELECT distinct(`salutation`) as
             <td><input type="email" name="supp_email" id="supp_email"  value="<?php echo $supplier["supp_email"] ?>"  minlength="2" maxlength="30" required="required"></td>
             <td><label class="control-label" style="float: left">Phone No</label></td>
             <td><input type="tel" name="supp_phoneNo" value="<?php echo $supplier["supp_phoneNo"] ?>"  id="supp_phoneNo" minlength="2" maxlength="20" required="required"></td>
-
-
-
         </tr>
         <tr>
             <td><label class="control-label"  style="float: left">Fax </label></td>
@@ -89,10 +85,7 @@ $arrsalutations = MysqlConnection::fetchCustom("SELECT distinct(`salutation`) as
             <td><input type="url" name="supp_website" id="supp_website"  value="<?php echo $supplier["supp_website"] ?>" minlength="2" maxlength="30"></td>
             <td><label class="control-label" style="float: left">Print on cheque as</label></td>
             <td><input type="text" name="print_onCheck" id="cust_fax"  value="<?php echo $supplier["print_onCheck"] ?>" minlength="2" maxlength="30"></td>
-
-
         </tr>
-
         <tr >
             <td><label class="control-label" style="float: left">Currency</label></td>
             <td>
@@ -124,8 +117,6 @@ $arrsalutations = MysqlConnection::fetchCustom("SELECT distinct(`salutation`) as
             <td><input type="text" name="supp_streetName" id="supp_streetName" minlenght="2" maxlength="30" plceholder="Enter Street Name" value="<?php echo $supplier["supp_streetName"] ?>" ></td>
             <td><label class="control-label">Postal Code</label></td>
             <td><input type="text" name="postal_code" id="postal_code" minlenght="2" maxlength="30"  value="<?php echo $supplier["postal_code"] ?>" ></td>
-
-
         </tr>
         <tr>
             <td><label class="control-label">Country</label></td>
