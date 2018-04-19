@@ -9,7 +9,6 @@ if ($status == "active") {
 } else {
     $query = "SELECT * FROM `item_master`  ";
 }
-
 $listofitems = MysqlConnection::fetchCustom($query);
 $itemid = filter_input(INPUT_GET, "itemId");
 if (isset($itemid) && $itemid != "") {

@@ -1,6 +1,16 @@
 <?php
-$listofsupplier = MysqlConnection::fetchAll("supplier_master");
+$status = filter_input(INPUT_GET, "status");
+if ($status == "active") {
+    $query = "SELECT * FROM supplier_master WHERE status = 'Y' ORDER BY `companyname` ASC  ";
+} else if ($status == "inactive") {
+    $query = " SELECT * FROM supplier_master WHERE status = 'N' ORDER BY `companyname` ASC  ";
+} else if ($status == "all") {
+    $query = "SELECT * FROM supplier_master  ORDER BY `companyname` ASC   ";
+} else {
+    $query = "SELECT * FROM supplier_master ORDER BY `companyname` ASC  ";
+}
 
+$listofsupplier = MysqlConnection::fetchCustom($query);
 $supplierid = filter_input(INPUT_GET, "supplierid");
 if (isset($supplierid) && $supplierid != "") {
     $supplierd = MysqlConnection::fetchCustom("SELECT status FROM supplier_master WHERE supp_id = $supplierid");
@@ -40,9 +50,9 @@ if (isset($supplierid) && $supplierid != "") {
 <script src="js/jquery.min_1.11.3.js"></script>
 <script src="js/jquery.contextMenu.js" type="text/javascript"></script>
 <script>
-    $("#liveTableSearch").on("keyup", function () {
+    $("#liveTableSearch").on("keyup", function() {
         var value = $(this).val();
-        $("table tr").each(function (index) {
+        $("table tr").each(function(index) {
             if (index !== 0) {
                 $row = $(this);
                 var id = $row.find("td:first").text();
@@ -63,7 +73,6 @@ if (isset($supplierid) && $supplierid != "") {
 
     <div class="cutomheader">
         <table>
-<!--            <table class="customtable" style="border: 0px;">-->
             <tr >
                 <td style="width: 10%"><a class="btn"  href="index.php?pagename=create_suppliermaster" ><i class="icon icon-user"></i>&nbsp;ADD VENDOR</a></td>
                 <th style="width: 2.3%">&nbsp;Search&nbsp;:&nbsp;</th>
@@ -72,9 +81,6 @@ if (isset($supplierid) && $supplierid != "") {
                            placeholder="Search for companyname" 
                            name="searchinput" style="width: 50%"/>
                 </th>
-                <td style="width: 8%"><a href="index.php?pagename=manage_suppliermaster&status=active" id="btnSubmitFullForm" class="btn btn-info">VIEW ACTIVATED</a></td>
-                <td style="width: 8%"><a href="index.php?pagename=manage_suppliermaster&status=inactive" id="btnSubmitFullForm" class="btn btn-info">VIEW INACTIVE</a></td>
-                <td style="width: 8%"><a href="index.php?pagename=manage_suppliermaster&status=all" id="btnSubmitFullForm" class="btn btn-info">VIEW ALL</a></td>
             </tr>
         </table>
     </div>
@@ -89,8 +95,7 @@ if (isset($supplierid) && $supplierid != "") {
                 <th style="width:110px">Contact No</th>
                 <th style="width:280px">Email</th>
                 <th style="width:80px">Currency</th>
-                <th style="width:80px">Balance</th>
-                <th >Notes</th>
+                <th >Balance</th>
             </tr>
         </table>
         <div style="height: 310px;overflow: auto;overflow-x: auto">
@@ -108,15 +113,16 @@ if (isset($supplierid) && $supplierid != "") {
                         <td style="width: 25px;;text-align: center">&nbsp;<?php echo $index++ ?></td>
                         <td style="width: 250px">&nbsp;&nbsp;<?php echo $value["companyname"] ?></td>
                         <td style="width: 390px">&nbsp;&nbsp;<?php echo $value["address"] ?></td>
-                        <td style="width: 230px">&nbsp;&nbsp;<?php echo $value["salutation"] ?>&nbsp;<?php echo $value["firstname"] ?>&nbsp;<?php echo $value["lastname"] ?></td>
+                        <td style="width: 230px">&nbsp;&nbsp;
+                            <?php echo $value["firstname"] == "" ? "" : $value["salutation"] ?>&nbsp;<?php echo $value["firstname"] ?>&nbsp;<?php echo $value["lastname"] ?>
+                        </td>
                         <td style="width: 110px">&nbsp;&nbsp;<?php echo $value["supp_phoneNo"] ?></td>
                         <td style="width: 280px">&nbsp;&nbsp;
                             <a href="mailto:<?php echo $value["supp_email"] ?>?Subject=Welcome, <?php echo ucwords($value["companyname"]) ?> " target="_top">
                                 &nbsp;<?php echo $value["supp_email"] ?>
                             </a></td>
                         <td style="width: 80px">&nbsp;&nbsp;<?php echo $value["currency"] ?></td>
-                        <td style="width: 80px">&nbsp;&nbsp;<?php echo $value["supp_balance"] ?></td>
-                        <td >&nbsp;&nbsp;<?php echo $value["notes"] ?></td>
+                        <td >&nbsp;&nbsp;<?php echo $value["supp_balance"] ?></td>
                     </tr>
                     <?php
                 }
@@ -130,8 +136,7 @@ if (isset($supplierid) && $supplierid != "") {
                         <td style="width: 110px"></td>
                         <td style="width: 280px"></td>
                         <td style="width: 80px"></td>
-                        <td style="width: 80px"></td>
-                        <td></td>
+                        <td ></td>
                     </tr>
                     <?php
                 }
@@ -144,17 +149,26 @@ if (isset($supplierid) && $supplierid != "") {
             </tr>
         </table>
     </div>
+
+    <div >
+        <table>
+            <td ><a href="index.php?pagename=manage_suppliermaster&status=active" id="btnSubmitFullForm" class="btn btn-info">VIEW ACTIVATED</a></td>
+            <td ><a href="index.php?pagename=manage_suppliermaster&status=inactive" id="btnSubmitFullForm" class="btn btn-info">VIEW INACTIVE</a></td>
+            <td ><a href="index.php?pagename=manage_suppliermaster&status=all" id="btnSubmitFullForm" class="btn btn-info">VIEW ALL</a></td>
+        </table>
+    </div>
+
 </div>
 
 <script>
-    $("#deleteThis").click(function () {
+    $("#deleteThis").click(function() {
         var dataString = "deleteId=" + $('#deleteId').val();
         $.ajax({
             type: 'POST',
             url: 'suppliermaster/suppliermaster_ajax.php',
             data: dataString
-        }).done(function (data) {
-        }).fail(function () {
+        }).done(function(data) {
+        }).fail(function() {
         });
         location.reload();
     });
@@ -162,23 +176,23 @@ if (isset($supplierid) && $supplierid != "") {
     function setDeleteField(deleteId) {
         document.getElementById("deleteId").value = deleteId;
     }
-    $("#save").click(function () {
+    $("#save").click(function() {
         var json = convertFormToJSON("#basic_validate");
         $.ajax({
             type: 'POST',
             url: 'suppliermaster/save_supplierajax.php',
             data: json
-        }).done(function (data) {
-        }).fail(function () {
+        }).done(function(data) {
+        }).fail(function() {
         });
         location.reload();
     });
 </script>
 <script type="text/javascript">
-    $(function () {
+    $(function() {
         $.contextMenu({
             selector: '.context-menu-one',
-            callback: function (key, options) {
+            callback: function(key, options) {
                 var m = "clicked row: " + key;
                 var id = $(this).attr('id');
                 switch (key) {
@@ -226,7 +240,7 @@ if (isset($supplierid) && $supplierid != "") {
                 "create_perchase_order": {name: "CREATE PURCHASE ORDER", icon: ""},
                 "create_invoice": {name: "CREATE INVOICE", icon: ""},
                 "sep1": "---------",
-                "quit": {name: "QUIT", icon: function () {
+                "quit": {name: "QUIT", icon: function() {
                         return '';
                     }}
             }
@@ -236,7 +250,7 @@ if (isset($supplierid) && $supplierid != "") {
         //            console.log('clicked', this);
         //       })    
     });
-    $('tr').dblclick(function () {
+    $('tr').dblclick(function() {
         var id = $(this).attr('id');
         if (id !== undefined) {
             window.location = "index.php?pagename=view_suppliermaster&supplierid=" + id;

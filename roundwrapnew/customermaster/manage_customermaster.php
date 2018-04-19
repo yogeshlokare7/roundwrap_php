@@ -1,5 +1,16 @@
 <?php
-$listofcustomers = MysqlConnection::fetchCustom("SELECT * FROM customer_master ORDER BY `cust_companyname` ASC ");
+$status = filter_input(INPUT_GET, "status");
+if ($status == "active") {
+    $query = "SELECT * FROM customer_master WHERE status = 'Y' ORDER BY `cust_companyname` ASC  ";
+} else if ($status == "inactive") {
+    $query = " SELECT * FROM customer_master WHERE status = 'N' ORDER BY `cust_companyname` ASC  ";
+} else if ($status == "all") {
+    $query = "SELECT * FROM customer_master  ORDER BY `cust_companyname` ASC   ";
+} else {
+    $query = "SELECT * FROM customer_master ORDER BY `cust_companyname` ASC  ";
+}
+
+$listofcustomers = MysqlConnection::fetchCustom($query);
 
 $customerid = filter_input(INPUT_GET, "customerId");
 if (isset($customerid) && $customerid != "") {
@@ -53,9 +64,6 @@ if (isset($customerid) && $customerid != "") {
                            placeholder="Search for companyname" 
                            name="searchinput" style="width: 50%"/>
                 </th>
-                <td style="width: 8%"><a href="index.php?pagename=manage_customermaster&status=active" id="btnSubmitFullForm" class="btn btn-info">VIEW ACTIVATED</a></td>
-                <td style="width: 8%"><a href="index.php?pagename=manage_customermaster&status=inactive" id="btnSubmitFullForm" class="btn btn-info">VIEW INACTIVE</a></td>
-                <td style="width: 8%"><a href="index.php?pagename=manage_customermaster&status=all" id="btnSubmitFullForm" class="btn btn-info">VIEW ALL</a></td>
             </tr>
         </table>
     </div>
@@ -129,14 +137,21 @@ if (isset($customerid) && $customerid != "") {
             </tr>
         </table>
     </div>
+    <div>
+        <table>
+            <td ><a href="index.php?pagename=manage_customermaster&status=active" id="btnSubmitFullForm" class="btn btn-info">VIEW ACTIVATED</a></td>
+            <td ><a href="index.php?pagename=manage_customermaster&status=inactive" id="btnSubmitFullForm" class="btn btn-info">VIEW INACTIVE</a></td>
+            <td ><a href="index.php?pagename=manage_customermaster&status=all" id="btnSubmitFullForm" class="btn btn-info">VIEW ALL</a></td>
+        </table>
+    </div>
 </div>
 
 <!--</form>-->
 <script>
-    $(function () {
+    $(function() {
         $.contextMenu({
             selector: '.context-menu-one',
-            callback: function (key, options) {
+            callback: function(key, options) {
                 var m = "clicked row: " + key;
                 var id = $(this).attr('id');
                 switch (key) {
@@ -183,14 +198,14 @@ if (isset($customerid) && $customerid != "") {
                 "create_sales_order": {name: "CREATE SALES ORDER", icon: ""},
                 "create_invoice": {name: "CREATE INVOICE", icon: ""},
                 "sep2": "---------",
-                "quit": {name: "QUIT", icon: function () {
+                "quit": {name: "QUIT", icon: function() {
                         return '';
                     }}
             }
         });
     });
 
-    $('tr').dblclick(function () {
+    $('tr').dblclick(function() {
         var id = $(this).attr('id');
         if (id !== undefined) {
             window.location = "index.php?pagename=view_customermaster&customerId=" + id;
