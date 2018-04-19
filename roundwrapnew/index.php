@@ -50,6 +50,7 @@ $ownaddress =
         <link rel="stylesheet" href="css/bootstrap-responsive.min.css" />
         <link rel="stylesheet" href="css/uniform.css" />
         <link rel="stylesheet" href="css/loder.css" />
+        <link rel="stylesheet" href="css/styleinvoice.css" />
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
         <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
         <script src="js/jquery.min.js"></script> 

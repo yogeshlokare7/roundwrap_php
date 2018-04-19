@@ -10,7 +10,7 @@ class MysqlConnection {
         $DB_HOST = "localhost";
 //        $DB_HOST = "192.168.15.154";
         $DB_USER = "root";
-        $DB_PASS = "root";
+        $DB_PASS = "";
         return mysqli_connect($DB_HOST, $DB_USER, $DB_PASS, $DB_NAME);
     }
 

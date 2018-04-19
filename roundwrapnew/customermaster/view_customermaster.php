@@ -113,7 +113,7 @@ if (isset($_POST["deleteItem"])) {
                         ?>
                         <form name="frmDeleteItem" id="frmDeleteItem" method="post">
                             <input type="hidden" value="<?php echo $customerid ?>" name="customerid"/>
-                            <a href="index.php?pagename=manage_customermaster" class="btn btn-danger">CANCEL</a>
+                            <a href="index.php?pagename=manage_customermaster&status=active" class="btn btn-danger">CANCEL</a>
                             <input type="hidden" value="customerid" value="<?php echo $customerid ?>"/>
                             <input type="submit" value="DELETE" name="deleteItem" class="btn btn-danger" style="background-color: #2f96b4"/>
                             <input type="button" id="btnCmpNext1" value="NEXT" class="btn btn-info" style="background-color: #2f96b4" />
@@ -121,7 +121,7 @@ if (isset($_POST["deleteItem"])) {
                         <?php
                     } else {
                         ?>
-                        <a href="index.php?pagename=manage_customermaster" class="btn btn-danger">CANCEL</a>
+                        <a href="index.php?pagename=manage_customermaster&status=active" class="btn btn-danger">CANCEL</a>
                         <input type="button" id="btnCmpNext1" value="NEXT" class="btn btn-info" style="background-color: #2f96b4" />
                         <?php
                     }
@@ -247,7 +247,7 @@ if (isset($_POST["deleteItem"])) {
                 </fieldset>
                 <hr/>
                 <input style="background-color: #2f96b4" type="button" id="btnCmpPrev4" value="PREVIOUS" class="btn btn-info" href="#tab1">
-                <a href="index.php?pagename=manage_customermaster" class="btn btn-danger">CANCEL</a>
+                <a href="index.php?pagename=manage_customermaster&status=active" class="btn btn-danger">CANCEL</a>
             </div>
         </div>  
     </div>

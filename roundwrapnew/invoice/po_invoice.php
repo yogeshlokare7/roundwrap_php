@@ -40,154 +40,129 @@ if (isset($_POST["purchaseorderid"]) && isset($_GET["flag"])) {
                 </ul>
             </div>
             <br/>
-            <table style="width: 100%" border="0">
-                <tr>
-                    <td>
-                        <fieldset  class="well the-fieldset">
-                            <table border="0">
-                                <tr>
-                                    <td style="width: 20%"><label class="control-label"   class="control-label">COMPANY NAME&nbsp;:&nbsp</label>
-                                        <input   type="text"  value="<?php echo $purchaseorder["companyname"] ?>" readonly=""/></td>
-                                    <td></td>
-                                    
-                                </tr>
-                                <tr>
-                                    <td  ><label  class="control-label"  class="control-label">BILLING&nbsp;ADDRESS&nbsp;:&nbsp</label>
-                                        <textarea style="line-height: 18px;" readonly=""><?php echo $purchaseorder["billing_address"] ?></textarea></td>
-                                    <td style="width: 22%" ><label class="control-label">SHIPPING&nbsp;ADDRESS&nbsp;:&nbsp</label>
-                                        <textarea style="line-height: 18px;" readonly=""><?php echo $purchaseorder["shipping_address"] ?></textarea></td>
-                                </tr>
-                            </table>
-                        </fieldset>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <table class="table-bordered" style="width: 70%;border-collapse: collapse;background-color: white" border="1">
-                            <tr >
-                                <td><b>Enter By</b></td>
-                                <td><b>PO Number</b></td>
-                                <td><b>Purchase Date</b></td>
-                                <td><b>Ship Via</b></td>
-                              
-                            </tr>
-                            <tr >
-                                <td><input type="text" value="<?php echo $_SESSION["user"]["firstName"] . " " . $_SESSION["user"]["lastName"] ?>" readonly=""></td>
-                                <td><input type="text" name="purchaseOrderId" onkeypress="return chkNumericKey(event)" value="PO<?php echo (1000 + $ponumber[0]["id"]) ?>" readonly=""></td>
-                                <td><input type="text" value="<?php echo date("Y-m-d") ?>" readonly=""></td>
-                                <td><input  type="text" placeholder=""  value="<?php echo $purchaseorder["ship_via"] ?>" readonly="" /></td>
-                              
-                            </tr>
+            <div style="height: 700px;overflow: auto;width: 80%;margin: 0 auto">
 
-                        </table>  
+                <div id="page-wrap">
 
+                    <textarea id="header">INVOICE</textarea>
 
-                    </td>
+                    <div id="identity">
 
+                        <textarea id="address">Chris Coyier
+123 Appleseed Street
+Appleville, WI 53719
 
-                </tr>
-                <tr>
-                    <td>
-                        <div style="width: 70%;float: left;text-align: center">
-                            <table class="table-bordered" style="width: 100%;border-collapse: collapse" border="1">
-                                <tr style="border-bottom: solid 1px  #CDCDCD;background-color: rgb(250,250,250)">
-                                    <td style="width: 25px;">#</td>
-                                    <td style="width: 200px;">ITEM NAME</td>
-                                    <td style="width: 350px">ITEM DESCRIPTION</td>
-                                    <td style="width: 80px;">UNIT</td>
-                                    <td style="width: 80px;">PRICE</td>
-                                    <td style="width: 80px;">QTY</td>
-                                    <td style="width: 80px;">REC</td>
-                                    <td>AMOUNT</td>
-                                </tr>
-                            </table>
-                            <div style="overflow: auto;height: 232px;border-bottom: solid 1px  #CDCDCD;">
-                                <table class="table-bordered" style="width: 100%;border-collapse: collapse" border="1">
-                                    <?php
-                                    foreach ($result as $key => $value) {
-                                        $items = MysqlConnection::fetchCustom("SELECT * FROM  item_master WHERE item_id =  " . $value["item_id"]);
-                                        ?>
-                                        <tr id="<?php echo $index ?>" style="border-bottom: solid 1px  #CDCDCD;background-color: white">
-                                            <td style="width: 25px"></td>
-                                            <td style="width: 200px;"><?php echo $items[0]["item_code"] ?></td>
-                                            <td style="width: 350px"><div id="desc"></div><?php echo $items[0]["item_desc_purch"] ?></td>
-                                            <td style="width: 80px;"><div id="unit"></div><?php echo $items[0]["unit"] ?></td>
-                                            <td style="width: 80px;text-align: right"><div id="price"></div><?php echo $items[0]["purchase_rate"] ?></td>
-                                            <td style="width:80px;"><?php echo $value["qty"] ?></td>
-                                            <td style="width:80px;"><?php echo $value["rqty"] ?></td>
-                                            <td style="text-align: right" ><?php echo ($items[0]["purchase_rate"] * $value["qty"]) ?></td>
-                                        </tr>
+Phone: (555) 555-5555</textarea>
 
+                        <div id="logo">
 
-
-                                    <?php } ?>
-                                    <tr>
-                                        <td colspan="6"  ></td>
-                                        <td><b>Total</b></td>
-                                        <td style="text-align: right" ><?php echo $purchaseorder["sub_total"]; ?></td>
-                                        
-                                    </tr>
-                                    <tr>
-                                        <td colspan="6"></td>
-                                        <td><b>Discount</b></td>
-                                        <td style="text-align: right" ><?php echo $purchaseorder["discount"]; ?></td>
-                                        
-                                    </tr>
-                                    <tr>
-                                        <td colspan="6"></td>
-                                        <td><b>Net Total</b></td>
-                                        <td style="text-align: right" ><?php echo $purchaseorder["total"]; ?></td>
-                                        
-                                    </tr>
-                                </table>
+                            <div id="logoctr">
+                                <a href="javascript:;" id="change-logo" title="Change logo">Change Logo</a>
+                                <a href="javascript:;" id="save-logo" title="Save changes">Save</a>
+                                |
+                                <a href="javascript:;" id="delete-logo" title="Delete logo">Delete Logo</a>
+                                <a href="javascript:;" id="cancel-logo" title="Cancel changes">Cancel</a>
                             </div>
 
+                            <div id="logohelp">
+                                <input id="imageloc" type="text" size="50" value="" readonly=""><br>
+                            </div>
+                            <img id="image" src="./Editable Invoice_files/logo.png" alt="logo">
                         </div>
 
-                    </td>
-                </tr>
-<!--                <tr>
-                    <td>
-                        <table class="table-bordered" style="width: 70%;border-collapse: collapse;background-color: white" border="1">
-                            <tr >
-                                <td><b>Enter By</b></td>
-                                <td><b>PO Number</b></td>
-                                <td><b>Purchase Date</b></td>
-                                <td><b>Ship Via</b></td>
-                                <td><b>Total</b></td>
-                                <td><b>Discount</b></td>
-                                <td><b>Net Total</b></td>
+                    </div>
 
+                    <div style="clear:both"></div>
+
+                    <div id="customer">
+
+                        <textarea id="customer-title">Widget Corp.
+c/o Steve Widget</textarea>
+
+                        <table id="meta">
+                            <tbody><tr>
+                                    <td class="meta-head">Invoice #</td>
+                                    <td><textarea>000123</textarea></td>
+                                </tr>
+                                <tr>
+
+                                    <td class="meta-head">Date</td>
+                                    <td><textarea id="date">December 15, 2009</textarea></td>
+                                </tr>
+                                <tr>
+                                    <td class="meta-head">Amount Due</td>
+                                    <td><div class="due">$875.00</div></td>
+                                </tr>
+
+                            </tbody></table>
+
+                    </div>
+
+                    <table id="items">
+
+                        <tbody><tr>
+                                <th>Item</th>
+                                <th>Description</th>
+                                <th>Unit Cost</th>
+                                <th>Quantity</th>
+                                <th>Price</th>
                             </tr>
-                            <tr >
-                                <td><input type="text" value="<?php echo $_SESSION["user"]["firstName"] . " " . $_SESSION["user"]["lastName"] ?>" readonly=""></td>
-                                <td><input type="text" name="purchaseOrderId" onkeypress="return chkNumericKey(event)" value="PO<?php echo (1000 + $ponumber[0]["id"]) ?>" readonly=""></td>
-                                <td><input type="text" value="<?php echo date("Y-m-d") ?>" readonly=""></td>
-                                <td><input  type="text" placeholder=""  value="<?php echo $purchaseorder["ship_via"] ?>" readonly="" /></td>
-                                <td><input type="text" readonly=""  value="<?php echo $purchaseorder["sub_total"]; ?>"></td>
-                                <td><input type="text" readonly="" value="<?php echo $purchaseorder["discount"]; ?>"></td>
-                                <td><input type="text" readonly="" value="<?php echo $purchaseorder["total"]; ?>"></td>
+
+                            <tr class="item-row">
+                                <td class="item-name"><div class="delete-wpr"><textarea>Web Updates</textarea><a class="delete" href="javascript:;" title="Remove row">X</a></div></td>
+                                <td class="description"><textarea>Monthly web updates for http://widgetcorp.com (Nov. 1 - Nov. 30, 2009)</textarea></td>
+                                <td><textarea class="cost">$650.00</textarea></td>
+                                <td><textarea class="qty">1</textarea></td>
+                                <td><span class="price">$650.00</span></td>
                             </tr>
 
-                            
+                            <tr class="item-row">
+                                <td class="item-name"><div class="delete-wpr"><textarea>SSL Renewals</textarea><a class="delete" href="javascript:;" title="Remove row">X</a></div></td>
 
-                        </table>  
-                    </td>
+                                <td class="description"><textarea>Yearly renewals of SSL certificates on main domain and several subdomains</textarea></td>
+                                <td><textarea class="cost">$75.00</textarea></td>
+                                <td><textarea class="qty">3</textarea></td>
+                                <td><span class="price">$225.00</span></td>
+                            </tr>
 
-                </tr>-->
-            </table>
-            <div class="modal-footer " style="text-align: center"> 
-                <!--                <a id="save" class="btn btn-primary" onclick="">PRINT</a> -->
-                <a href="index.php?pagename=manage_perchaseorder" id="btnSubmitFullForm" class="btn btn-info">CANCEL</a>
-                <?php
-                if (isset($_GET["flag"])) {
-                    ?>
-                    <input type="submit" value="DELETE" name="deleteItem" class="btn btn-danger"/>
-                    <input type="hidden" name="purchaseorderid" value="<?php echo $_GET["purchaseorderid"] ?>"/>
-                    <?php
-                }
-                ?>
+                            <tr id="hiderow">
+                                <td colspan="5"><a id="addrow" href="javascript:;" title="Add a row">Add a row</a></td>
+                            </tr>
+
+                            <tr>
+                                <td colspan="2" class="blank"> </td>
+                                <td colspan="2" class="total-line">Subtotal</td>
+                                <td class="total-value"><div id="subtotal">$875.00</div></td>
+                            </tr>
+                            <tr>
+
+                                <td colspan="2" class="blank"> </td>
+                                <td colspan="2" class="total-line">Total</td>
+                                <td class="total-value"><div id="total">$875.00</div></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" class="blank"> </td>
+                                <td colspan="2" class="total-line">Amount Paid</td>
+
+                                <td class="total-value"><textarea id="paid">$0.00</textarea></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" class="blank"> </td>
+                                <td colspan="2" class="total-line balance">Balance Due</td>
+                                <td class="total-value balance"><div class="due">$875.00</div></td>
+                            </tr>
+
+                        </tbody></table>
+
+                    <div id="terms">
+                        <h5>Terms</h5>
+                        <textarea>NET 30 Days. Finance Charge of 1.5% will be made on unpaid balances after 30 days.</textarea>
+                    </div>
+
+                </div>
+
             </div>
+
             <hr/>
         </div>
     </div>

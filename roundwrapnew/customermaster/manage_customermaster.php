@@ -82,7 +82,7 @@ if (isset($customerid) && $customerid != "") {
             </tr>
         </table>
         <div style="height: 310px;overflow: auto;overflow-x: auto">
-            <table class="customtable" id="data" style="margin-top: -1px;"  border="1">
+            <table class="customtable" id="data" style="margin-top: -1px;"  border="0">
                 <?php
                 $index = 1;
                 foreach ($listofcustomers as $key => $value) {
