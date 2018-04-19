@@ -22,7 +22,7 @@ if (isset($_POST["purchaseorderid"]) && isset($_GET["flag"])) {
 <div id="content-header">
     <div id="breadcrumb"> 
         <a class="tip-bottom"><i class="icon-home"></i>HOME</a>
-        <a class="tip-bottom"><i class="icon-home"></i>PURCHASE ORDER ENTRY</a>
+        <a class="tip-bottom"><i class="icon-home"></i>PURCHASE ORDER INVOICE</a>
     </div>
 </div>
 <style>
@@ -36,7 +36,7 @@ if (isset($_POST["purchaseorderid"]) && isset($_GET["flag"])) {
         <div class="widget-box" style="width: 100%;border-bottom: solid 1px #CDCDCD;">
             <div class="widget-title">
                 <ul class="nav nav-tabs">
-                    <li class="active"><a data-toggle="tab" href="#tab1">PURCHASE ORDER VIEW</a></li>
+                    <li class="active"><a data-toggle="tab" href="#tab1">PURCHASE ORDER INVOICE</a></li>
                 </ul>
             </div>
             <br/>
@@ -44,11 +44,12 @@ if (isset($_POST["purchaseorderid"]) && isset($_GET["flag"])) {
                 <tr>
                     <td>
                         <fieldset  class="well the-fieldset">
-                            <table>
+                            <table border="1">
                                 <tr>
                                     <td style="width: 20%"><label class="control-label"   class="control-label">COMPANY NAME&nbsp;:&nbsp</label>
                                         <input   type="text"  value="<?php echo $purchaseorder["companyname"] ?>" readonly=""/></td>
                                     <td></td>
+                                    
                                 </tr>
                                 <tr>
                                     <td  ><label  class="control-label"  class="control-label">BILLING&nbsp;ADDRESS&nbsp;:&nbsp</label>

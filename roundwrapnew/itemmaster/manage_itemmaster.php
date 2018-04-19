@@ -47,15 +47,18 @@ if (isset($itemid) && $itemid != "") {
         <h5 style="font-family: verdana;font-size: 12px;">ITEM'S LIST</h5>
     </div>
     <div class="cutomheader">
-        <table >
+        <table border="0">
             <tr >
                 <td style="width: 8%"><a class="btn" href="index.php?pagename=create_itemmaster" ><i class="icon-plus-sign"></i>&nbsp;ADD ITEM</a></td>
                 <th style="width: 2.3%">&nbsp;Search&nbsp;:&nbsp;</th>
-                <th colspan="9" style="text-align: left">
+                <th  style="text-align: left">
                     <input type="text" id="searchinput" onkeyup="searchData()" 
                            placeholder="Search for Itemname , Description" 
                            name="searchinput" style="width: 50%"/>
                 </th>
+                <td style="width: 8%"><a href="index.php?pagename=manage_itemmaster&status=active" id="btnSubmitFullForm" class="btn btn-info">VIEW ACTIVATED</a></td>
+                <td style="width: 8%"><a href="index.php?pagename=manage_itemmaster&status=inactive" id="btnSubmitFullForm" class="btn btn-info">VIEW INACTIVE</a></td>
+                <td style="width: 8%"><a href="index.php?pagename=manage_itemmaster&status=all" id="btnSubmitFullForm" class="btn btn-info">VIEW ALL</a></td>
             </tr>
         </table>
     </div>
