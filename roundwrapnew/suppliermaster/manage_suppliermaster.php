@@ -222,8 +222,8 @@ if (isset($supplierid) && $supplierid != "") {
                     case "create_note":
                         window.location = "index.php?pagename=note_suppliermaster&supplierid=" + id;
                         break;
-                    case "create_invoice":
-                        window.location = "index.php?pagename=so_invoice&supplierid=" + id;
+                    case "create_payment":
+                        window.location = "index.php?pagename=vendor_payment&supplierid=" + id;
                         break;
                     case "quit":
                         window.location = "index.php?pagename=manage_dashboard";
@@ -243,7 +243,7 @@ if (isset($supplierid) && $supplierid != "") {
                 "sep0": "---------",
                 "create_note": {name: "CREATE NOTE", icon: ""},
                 "create_perchase_order": {name: "CREATE PURCHASE ORDER", icon: ""},
-                "create_invoice": {name: "CREATE INVOICE", icon: ""},
+                "create_payment": {name: "MAKE PAYMENT", icon: ""},
                 "sep1": "---------",
                 "quit": {name: "QUIT", icon: function () {
                         return '';

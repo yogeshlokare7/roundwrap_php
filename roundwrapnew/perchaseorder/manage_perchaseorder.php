@@ -125,7 +125,7 @@ $listPerchaseOrders = MysqlConnection::fetchCustom("SELECT *  FROM  `purchase_or
 </div>
 <script>
 
-    $("#deleteThis").click(function() {
+    $("#deleteThis").click(function () {
         alert("Hello");
         $("div#divLoading").addClass('show');
         var dataString = "deleteId=" + $('#deleteId').val();
@@ -133,8 +133,8 @@ $listPerchaseOrders = MysqlConnection::fetchCustom("SELECT *  FROM  `purchase_or
             type: 'POST',
             url: 'perchaseorder/perchaseorder_ajax.php',
             data: dataString
-        }).done(function(data) {
-        }).fail(function() {
+        }).done(function (data) {
+        }).fail(function () {
         });
         location.reload();
     });
@@ -149,10 +149,10 @@ $listPerchaseOrders = MysqlConnection::fetchCustom("SELECT *  FROM  `purchase_or
 
 </script>
 <script>
-    $(function() {
+    $(function () {
         $.contextMenu({
             selector: '.context-menu-one',
-            callback: function(key, options) {
+            callback: function (key, options) {
                 var m = "clicked row: " + key;
                 var id = $(this).attr('id');
                 switch (key) {
@@ -173,7 +173,8 @@ $listPerchaseOrders = MysqlConnection::fetchCustom("SELECT *  FROM  `purchase_or
                         break;
 
                     case "create_invoice":
-                        window.location = "index.php?pagename=po_invoice&purchaseorderid=" + id;
+//                        window.location = "index.php?pagename=po_invoice&purchaseorderid=" + id;
+                        window.open("invoice/po_invoice.php?purchaseorderid=" + id, '_blank');
                         break;
                     case "quit":
                         window.location = "index.php?pagename=manage_dashboard";
@@ -190,16 +191,16 @@ $listPerchaseOrders = MysqlConnection::fetchCustom("SELECT *  FROM  `purchase_or
                 "delete_purchaseorder": {name: "DELETE PURCHASE ORDER", icon: ""},
                 "sep1": "---------",
                 "create_receiving": {name: "CREATE RECEIVING ORDER", icon: ""},
-                "create_invoice": {name: "CREATE INVOICE", icon: ""},
+                "create_invoice": {name: "PRINT INVOICE", icon: ""},
                 "sep2": "---------",
-                "quit": {name: "QUIT", icon: function() {
+                "quit": {name: "QUIT", icon: function () {
                         return '';
                     }}
             }
         });
     });
 
-    $('tr').dblclick(function() {
+    $('tr').dblclick(function () {
         var id = $(this).attr('id');
         window.location = "index.php?pagename=view_perchaseorder&purchaseorderid=" + id;
     });

@@ -15,12 +15,12 @@ if (isset($_POST["salesorderid"]) && isset($_GET["flag"])) {
     header("location:index.php?pagename=manage_salesorder");
 }
 ?>
-<div id="content-header">
+<!--<div id="content-header">
     <div id="breadcrumb"> 
         <a class="tip-bottom"><i class="icon-home"></i>HOME</a>
-        <a class="tip-bottom"><i class="icon-home"></i>SALES ORDER ENTRY</a>
+        <a class="tip-bottom"><i class="icon-home"></i>SALES ORDER INVOICE</a>
     </div>
-</div>
+</div>-->
 <style>
     input,textarea,select,date{ width: 90%; }
     .control-label{ margin-left: 10px; }
@@ -32,7 +32,7 @@ if (isset($_POST["salesorderid"]) && isset($_GET["flag"])) {
         <div class="widget-box" style="width: 100%;border-bottom: solid 1px #CDCDCD;">
             <div class="widget-title">
                 <ul class="nav nav-tabs">
-                    <li class="active"><a data-toggle="tab" href="#tab1">SALES ORDER VIEW</a></li>
+                    <li class="active"><a data-toggle="tab" href="#tab1">SALES ORDER INVOICE VIEW</a></li>
                 </ul>
             </div>
             <br/>
@@ -107,10 +107,7 @@ if (isset($_POST["salesorderid"]) && isset($_GET["flag"])) {
                                     <td><b>Sales Person</b></td>
                                     <td><input type="text" value="<?php echo $customer["representative"] ?>" readonly=""></td>
                                 </tr>
-                                <tr >
-                                    <td ><b>Total Items</b></td>
-                                    <td ><input type="text" value="<?php echo $customer["sub_total"]; ?>" readonly=""></td>
-                                </tr>
+                             
                                 <tr >
                                     <td><b>Total</b></td>
                                     <td><input type="text" value="<?php echo $customer["total"]; ?>" readonly=""></td>

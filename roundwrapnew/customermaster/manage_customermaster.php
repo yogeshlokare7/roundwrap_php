@@ -182,8 +182,8 @@ if (isset($customerid) && $customerid != "") {
                     case "active_customer":
                         window.location = "index.php?pagename=manage_customermaster&customerId=" + id;
                         break;
-                    case "create_invoice":
-                        window.location = "index.php?pagename=manage_invoice";
+                    case "create_payment":
+                        window.location = "index.php?pagename=customer_payment&customerId=" + id;
                         break;
                     case "quit":
                         window.location = "index.php?pagename=manage_dashboard";
@@ -202,7 +202,7 @@ if (isset($customerid) && $customerid != "") {
                 "sep1": "---------",
                 "create_note": {name: "CREATE NOTE", icon: ""},
                 "create_sales_order": {name: "CREATE SALES ORDER", icon: ""},
-                "create_invoice": {name: "CREATE INVOICE", icon: ""},
+                "create_payment": {name: "MAKE PAYMENT", icon: ""},
                 "sep2": "---------",
                 "quit": {name: "QUIT", icon: function() {
                         return '';
