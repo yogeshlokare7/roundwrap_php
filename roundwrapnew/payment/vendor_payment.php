@@ -10,17 +10,22 @@
 $sqlgetsupplier = "SELECT * FROM supplier_master WHERE supp_id = " . filter_input(INPUT_GET, "supplierid");
 $resultset = MysqlConnection::fetchCustom($sqlgetsupplier);
 $supplier = $resultset[0];
-echo "<pre>";
-print_r($supplier);
-echo "</pre>";
 
-echo "<pre>";
-print_r($_POST);
-echo "</pre>";
+$_SESSION["msg"] = "";
+if (isset($_POST["paidAmount"]) && $_POST["paidAmount"] != "") {
+    $_POST["cust_id"] = "0";
+    $_POST["active"] = "Y";
+    unset($_POST["paidDate"]);
+    MysqlConnection::insert("customer_balancepayment", $_POST);
+    MysqlConnection::delete("UPDATE supplier_master SET supp_balance = " . $_POST["balance"] . " WHERE supp_id =  " . $supplier["supp_id"]);
+    $_SESSION["msg"] = "Payment of " . $_POST["balance"] . " added ";
+}
 
 
 $arrreceiptno = MysqlConnection::fetchCustom("SELECT id FROM `customer_balancepayment` ORDER BY id desc");
-$receiptno = "CR-".  time()."-".$arrreceiptno[0]["id"]."".$supplier["supp_id"];
+$receiptno = "CR-" . time() . "-" . $arrreceiptno[0]["id"] . "" . $supplier["supp_id"];
+
+$resultset = MysqlConnection::fetchCustom("SELECT * FROM `customer_balancepayment` where supp_id = " . filter_input(INPUT_GET, "supplierid") . " ORDER BY paidDate DESC");
 ?> 
 <div id="content-header">
     <div id="breadcrumb"> 
@@ -33,8 +38,8 @@ $receiptno = "CR-".  time()."-".$arrreceiptno[0]["id"]."".$supplier["supp_id"];
     .control-label{ margin-left: 10px; }
     tr,td{ vertical-align: middle; font-size: 12px;padding: 0px;margin: 0px;}
 </style>
-<form action="payment/vendor_payment.php" name="purchaseorder" method="post">
-    <input type="hidden" name="suppid" value="<?php echo filter_input(INPUT_GET, "supplierid") ?>">
+<form name="purchaseorder" method="post" autocomplete="off">
+    <input type="hidden" name="supp_id" value="<?php echo filter_input(INPUT_GET, "supplierid") ?>">
     <div class="container-fluid" style="" >
         <div class="widget-box" style="width: 100%;border-bottom: solid 1px #CDCDCD;">
             <div class="widget-title">
@@ -43,6 +48,7 @@ $receiptno = "CR-".  time()."-".$arrreceiptno[0]["id"]."".$supplier["supp_id"];
                 </ul>
             </div>
             <br/>
+            <center ><p style="color: green"><?php echo $_SESSION["msg"] ?></p></center>
             <table style="width: 100%">
                 <tr>
                     <td>
@@ -60,15 +66,18 @@ $receiptno = "CR-".  time()."-".$arrreceiptno[0]["id"]."".$supplier["supp_id"];
                             </table>
                             <div style="overflow: auto;height: 300px;border-bottom: solid 1px  #CDCDCD;">
                                 <table class="table-bordered" style="width: 100%;border-collapse: collapse" border="1">
-                                    <?php for ($index = 1; $index <= 10; $index++) { ?>
+                                    <?php
+                                    $index = 1;
+                                    foreach ($resultset as $key => $value) {
+                                        ?>
                                         <tr id="<?php echo $index ?>" style="border-bottom: solid 1px  #CDCDCD;background-color: white;height: 35px;">
-                                            <td style="width: 25px"></td>
-                                            <td style="width: 120px;"></td>
-                                            <td style="width: 120px"></td>
-                                            <td style="width: 120px;"></td>
-                                            <td style="width: 120px;"></td>
-                                            <td style="width: 120px;"></td>
-                                            <td ></td>
+                                            <td style="width: 25px"><?php echo $index ++ ?></td>
+                                            <td style="width: 120px;"><?php echo $value["receiptNo"] ?></td>
+                                            <td style="width: 120px"><?php echo $value["balanceAmount"] ?></td>
+                                            <td style="width: 120px;"><?php echo $value["paidDate"] ?></td>
+                                            <td style="width: 120px;"><?php echo $value["chequeNoDDNo"] ?></td>
+                                            <td style="width: 120px;"><?php echo $value["paidAmount"] ?></td>
+                                            <td ><?php echo $value["remark"] ?></td>
                                         </tr>
                                     <?php } ?>
 
@@ -79,37 +88,37 @@ $receiptno = "CR-".  time()."-".$arrreceiptno[0]["id"]."".$supplier["supp_id"];
                             <table class="table-bordered" style="width: 100%;border-collapse: collapse;background-color: white" border="1">
                                 <tr >
                                     <td><b>Receipt No</b></td>
-                                    <td><input type="text" readonly="" value="<?php echo $receiptno?>"></td>
+                                    <td><input type="text" readonly="" name="receiptNo" id="receiptNo" value="<?php echo $receiptno ?>"></td>
                                 </tr>
                                 <tr >
                                     <td><b>Supplier Name</b></td>
-                                    <td><input type="text" readonly="" value="<?php echo $supplier["companyname"]?>"></td>
+                                    <td><input type="text" readonly="" name="" id=""  value="<?php echo $supplier["companyname"] ?>"></td>
                                 </tr>
 
                                 <tr >
                                     <td><b>Balance Amount</b></td>
-                                    <td><input type="text" readonly="" value="<?php echo $supplier["supp_balance"]?>"></td>
+                                    <td><input type="text" readonly="" name="balanceAmount" id="balanceAmount"  value="<?php echo $supplier["supp_balance"] ?>"></td>
                                 </tr>
 
                                 <tr >
                                     <td><b>Paid Date</b></td>
-                                    <td><input type="text" readonly="" value="<?php echo date("D-M-Y") ?>"></td>
+                                    <td><input type="text" readonly="" name="paidDate" id="paidDate"  value="<?php echo date("D-M-Y") ?>"></td>
                                 </tr>
                                 <tr >
-                                    <td><b>Cheque No/DD No</b></td>
-                                    <td><input type="text" readonly="" value="<?php echo date("D-M-Y") ?>"></td>
+                                    <td><b>Cheque No/DD No</b></td> 
+                                    <td><input type="text" name="chequeNoDDNo" id="chequeNoDDNo" ></td>
                                 </tr>
                                 <tr >
                                     <td><b>Paid Amount</b></td>
-                                    <td><input type="text" autofocus="" value=""></td>
+                                    <td><input type="text" autofocus="" onkeyup="calculateAmount()" name="paidAmount" id="paidAmount"  ></td>
                                 </tr>
                                 <tr >
                                     <td><b>Balance</b></td>
-                                    <td><input type="text" readonly="" value=""></td>
+                                    <td><input type="text" readonly="" name="balance" id="balance"  value=""></td>
                                 </tr>
                                 <tr >
                                     <td><b>Remark</b></td>
-                                    <td><input type="text"  value=""></td>
+                                    <td><input type="text"   name="remark" id="remark" ></td>
                                 </tr>
                             </table>
                         </div>
@@ -132,16 +141,28 @@ $receiptno = "CR-".  time()."-".$arrreceiptno[0]["id"]."".$supplier["supp_id"];
 <script src="js/maruti.form_common.js"></script>
 <script src="perchaseorder/purchasejs.js"></script>
 <script>
-                    function shiftfocus() {
-
-                    }
-
                     function createPurchaseOrder() {
                         var x = document.getElementsByTagName("form");
                         x[0].submit();
                     }
 
+                    function calculateAmount() {
+                        var balanceAmount = parseFloat($("#balanceAmount").val());
+                        var paidAmount = parseFloat($("#paidAmount").val());
+                        if (balanceAmount !== "" && paidAmount !== "" && !isNaN(paidAmount)) {
+                            if (paidAmount > balanceAmount) {
+                                $("#paidAmount").val("");
+                                $("#balance").val("");
+                                $("#paidAmount").focus();
 
+                            } else {
+                                var newbalance = balanceAmount - paidAmount;
+                                $("#balance").val(newbalance);
+                            }
+                        } else {
+                            $("#balance").val("");
+                        }
+                    }
 </script>
 
 <?php

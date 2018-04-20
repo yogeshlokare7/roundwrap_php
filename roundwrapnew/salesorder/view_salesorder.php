@@ -3,10 +3,6 @@ $sqlgetsupplier = "SELECT *, (SELECT cust_companyname FROM customer_master WHERE
 $resultset = MysqlConnection::fetchCustom($sqlgetsupplier);
 $customer = $resultset[0];
 
-echo "<pre>";
-print_r($customer);
-echo "</pre>";
-
 $sqlitems = "SELECT im.item_id,im.item_code,im.unit,im.onhand,im.sell_rate,im.item_desc_sales, si.qty, si.rqty from item_master im , sales_item si WHERE im.item_id = si.item_id AND si.so_id = " . filter_input(INPUT_GET, "salesorderid");
 $itemsarrays = MysqlConnection::fetchCustom($sqlitems);
 

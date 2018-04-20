@@ -7,32 +7,30 @@
     }
 </style>
 <?php
-$sqlgetsupplier = "SELECT * FROM supplier_master WHERE supp_id = " . filter_input(INPUT_GET, "supplierid");
+$sqlgetsupplier = "SELECT * FROM customer_master WHERE  id = " . filter_input(INPUT_GET, "customerId");
 $resultset = MysqlConnection::fetchCustom($sqlgetsupplier);
-$supplier = $resultset[0];
+$customer = $resultset[0];
 
-//$sqlitemarray = MysqlConnection::fetchCustom("SELECT count(id) as counter FROM sales_order");
-$itemarray = MysqlConnection::fetchCustom("SELECT item_id ,item_code, item_name FROM item_master;");
-$buildauto = buildauto($itemarray);
+$_SESSION["msg"] = "";
+if (isset($_POST["paidAmount"]) && $_POST["paidAmount"] != "") {
+    $_POST["supp_id"] = "0";
+    $_POST["active"] = "Y";
+    unset($_POST["paidDate"]);
+    MysqlConnection::insert("customer_balancepayment", $_POST);
+    MysqlConnection::delete("UPDATE customer_master SET balance = " . $_POST["balance"] . " WHERE id =  " . $customer["id"]);
+    $_SESSION["msg"] = "Payment of " . $_POST["balance"] . " added ";
+}
 
-$ponumber = MysqlConnection::fetchCustom("SELECT id FROM purchase_order ORDER BY id DESC LIMIT 0,1");
-?>
-<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-<script>
-    $(function() {
-        var availableTags = [<?php echo $buildauto ?>];
-        for (var index = 1; index <= 30; index++) {
-            $("#tags" + index).autocomplete({source: availableTags});
-        }
-    });
-//    $(function() {
-//        $("#expected_date").datepicker();
-//    });
-</script>
+
+$arrreceiptno = MysqlConnection::fetchCustom("SELECT id FROM `customer_balancepayment` ORDER BY id desc");
+$receiptno = "CR-" . time() . "-" . $arrreceiptno[0]["id"] . "" . $customer["id"];
+
+$resultset = MysqlConnection::fetchCustom("SELECT * FROM `customer_balancepayment` where cust_id = " . filter_input(INPUT_GET, "customerId") . " ORDER BY paidDate DESC");
+?> 
 <div id="content-header">
     <div id="breadcrumb"> 
         <a class="tip-bottom"><i class="icon-home"></i>HOME</a>
-        <a class="tip-bottom"><i class="icon-home"></i>PURCHASE ORDER ENTRY</a>
+        <a class="tip-bottom"><i class="icon-home"></i>MAKE PAYMENT</a>
     </div>
 </div>
 <style>
@@ -40,101 +38,87 @@ $ponumber = MysqlConnection::fetchCustom("SELECT id FROM purchase_order ORDER BY
     .control-label{ margin-left: 10px; }
     tr,td{ vertical-align: middle; font-size: 12px;padding: 0px;margin: 0px;}
 </style>
-<form action="perchaseorder/savepurchaseorder.php" name="purchaseorder" method="post">
-    <input type="hidden" name="suppid" value="<?php echo filter_input(INPUT_GET, "supplierid") ?>">
+<form name="purchaseorder" method="post" autocomplete="off">
+    <input type="hidden" name="cust_id" value="<?php echo filter_input(INPUT_GET, "customerId") ?>">
     <div class="container-fluid" style="" >
         <div class="widget-box" style="width: 100%;border-bottom: solid 1px #CDCDCD;">
             <div class="widget-title">
                 <ul class="nav nav-tabs">
-                    <li class="active"><a data-toggle="tab" href="#tab1">CREATE PURCHASE ORDER</a></li>
+                    <li class="active"><a data-toggle="tab" href="#tab1">VENDOR PAYMENT</a></li>
                 </ul>
             </div>
             <br/>
+            <center ><p style="color: green"><?php echo $_SESSION["msg"] ?></p></center>
             <table style="width: 100%">
                 <tr>
                     <td>
-                        <fieldset  class="well the-fieldset">
-                            <table>
-                                <tr>
-                                    <td style="width: 10%"><label class="control-label"   class="control-label">SUPPLIER NAME&nbsp;:&nbsp</label></td>
-                                    <td><input  type="text" name="companyname" placeholder="Supplier Name" value="<?php echo $supplier["companyname"] ?>" /></td>
-                                    <td style="width: 10%"><label class="control-label">SHIP VIA&nbsp;:&nbsp</label></td>
-                                    <td><input  type="text" name="ship_via" placeholder="" value="<?php echo $supplier["ship_via"] ?>"/></td>
-                                    <td style="width: 10%"><label class="control-label">EXPECTED&nbsp;DELIVERY&nbsp;:&nbsp</label></td>
-                                    <td><input type="text" name="expected_date" id="expected_date" value="<?php echo $supplier["expected_date"] ?>" ></td>
-                                </tr>
-                                <tr>
-                                    <td ><label  class="control-label"  class="control-label">BILLING&nbsp;ADDRESS&nbsp;:&nbsp</label></td>
-                                    <td><textarea style="line-height: 18px;" name="shipping"><?php echo $ownaddress ?></textarea></td>
-                                    <td><label class="control-label">SHIPPING&nbsp;ADDRESS&nbsp;:&nbsp</label></td>
-                                    <td><textarea style="line-height: 18px;" name="billing"><?php echo $ownaddress ?></textarea></td>
-                                    <td ><label class="control-label">REMARK&nbsp;/&nbsp;NOTE&nbsp;:&nbsp</label></td>
-                                    <td><textarea  style="line-height: 18px;" name="remark" value="<?php echo $supplier["shipping_address"] ?>" ></textarea></td>
-                                </tr>
-                            </table>
-                        </fieldset>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <div style="width: 70%;float: left">
+                        <div style="width: 70%;float: right">
                             <table class="table-bordered" style="width: 100%;border-collapse: collapse" border="1">
                                 <tr style="border-bottom: solid 1px  #CDCDCD;background-color: rgb(250,250,250)">
                                     <td style="width: 25px;">#</td>
-                                    <td style="width: 230px;">ITEM NAME</td>
-                                    <td style="width: 350px">ITEM DESCRIPTION</td>
-                                    <td style="width: 80px;">UNIT</td>
-                                    <td style="width: 80px;">PRICE</td>
-                                    <td style="width: 80px;">QTY</td>
-                                    <td>AMOUNT</td>
+                                    <td style="width: 120px;">Receipt.No</td>
+                                    <td style="width: 120px">Balance.Amount</td>
+                                    <td style="width: 120px;">Paid.Date</td>
+                                    <td style="width: 120px;">Cheque.No/DD.No</td>
+                                    <td style="width: 120px;">Paid.Amount</td>
+                                    <td>Remark</td>
                                 </tr>
                             </table>
-                            <div style="overflow: auto;height: 232px;border-bottom: solid 1px  #CDCDCD;">
+                            <div style="overflow: auto;height: 300px;border-bottom: solid 1px  #CDCDCD;">
                                 <table class="table-bordered" style="width: 100%;border-collapse: collapse" border="1">
-                                    <?php for ($index = 1; $index <= 50; $index++) { ?>
-                                        <tr id="<?php echo $index ?>" style="border-bottom: solid 1px  #CDCDCD;background-color: white">
-                                            <td style="width: 25px">
-                                                <a class="icon  icon-remove" onclick="clearValue('<?php echo $index ?>')"></a>
-                                            </td>
-                                            <td style="width: 230px;">
-                                                <input type="text" name="items[]" id="tags<?php echo $index ?>" onfocusout="setDetails('<?php echo $index ?>')"  style="padding: 0px;margin: 0px;width: 100%">
-                                            </td>
-                                            <td style="width: 350px"><div id="desc<?php echo $index ?>"></div></td>
-                                            <td style="width: 80px;"><div id="unit<?php echo $index ?>"></div></td>
-                                            <td style="width: 80px;"><div id="price<?php echo $index ?>"></div></td>
-                                            <td style="width: 80px;"><input type="text" name="itemcount[]" onkeypress="return chkNumericKey(event)" onfocusout="calculateAmount('<?php echo $index ?>')" id="amount<?php echo $index ?>" style="padding: 0px;margin: 0px;width: 100%"></td>
-                                            <td ><div id="total<?php echo $index ?>"></div></td>
+                                    <?php
+                                    $index = 1;
+                                    foreach ($resultset as $key => $value) {
+                                        ?>
+                                        <tr id="<?php echo $index ?>" style="border-bottom: solid 1px  #CDCDCD;background-color: white;height: 35px;">
+                                            <td style="width: 25px"><?php echo $index ++ ?></td>
+                                            <td style="width: 120px;"><?php echo $value["receiptNo"] ?></td>
+                                            <td style="width: 120px"><?php echo $value["balanceAmount"] ?></td>
+                                            <td style="width: 120px;"><?php echo $value["paidDate"] ?></td>
+                                            <td style="width: 120px;"><?php echo $value["chequeNoDDNo"] ?></td>
+                                            <td style="width: 120px;"><?php echo $value["paidAmount"] ?></td>
+                                            <td ><?php echo $value["remark"] ?></td>
                                         </tr>
                                     <?php } ?>
 
                                 </table>
                             </div>
                         </div>
-                        <div style="width: 28%;float: right">
+                        <div style="width: 28%;float: left">
                             <table class="table-bordered" style="width: 100%;border-collapse: collapse;background-color: white" border="1">
                                 <tr >
-                                    <td><b>PO Number</b></td>
-                                    <td><input type="text" name="purchaseOrderId" onkeypress="return chkNumericKey(event)" value="PO<?php echo (1000 + $ponumber[0]["id"]) ?>" readonly=""></td>
+                                    <td><b>Receipt No</b></td>
+                                    <td><input type="text" readonly="" name="receiptNo" id="receiptNo" value="<?php echo $receiptno ?>"></td>
                                 </tr>
                                 <tr >
-                                    <td><b>Purchase Date</b></td>
-                                    <td><input type="date" name="purchasedate" value="<?php echo date("Y-m-d") ?>" readonly=""></td>
+                                    <td><b>Customer Name</b></td>
+                                    <td><input type="text" readonly="" name="" id=""  value="<?php echo $customer["cust_companyname"] ?>"></td>
+                                </tr>
+
+                                <tr >
+                                    <td><b>Balance Amount</b></td>
+                                    <td><input type="text" readonly="" name="balanceAmount" id="balanceAmount"  value="<?php echo $customer["balance"] ?>"></td>
+                                </tr>
+
+                                <tr >
+                                    <td><b>Paid Date</b></td>
+                                    <td><input type="text" readonly="" name="paidDate" id="paidDate"  value="<?php echo date("D-M-Y") ?>"></td>
                                 </tr>
                                 <tr >
-                                    <td><b>Enter By</b></td>
-                                    <td><input type="text" name="enterby" value="<?php echo $_SESSION["user"]["firstName"] . " " . $_SESSION["user"]["lastName"] ?>" readonly=""></td>
+                                    <td><b>Cheque No/DD No</b></td> 
+                                    <td><input type="text" name="chequeNoDDNo" id="chequeNoDDNo" ></td>
                                 </tr>
                                 <tr >
-                                    <td><b>Total</b></td>
-                                    <td><input type="text" id="finaltotal" onkeypress="return chkNumericKey(event)" name="finaltotal" readonly=""></td>
+                                    <td><b>Paid Amount</b></td>
+                                    <td><input type="text" autofocus="" onkeyup="calculateAmount()" name="paidAmount" id="paidAmount"  ></td>
                                 </tr>
                                 <tr >
-                                    <td><b>Discount</b></td>
-                                    <td><input type="text" id="discount" name="discount" onfocusout="discount()"  name="discount" ></td>
+                                    <td><b>Balance</b></td>
+                                    <td><input type="text" readonly="" name="balance" id="balance"  value=""></td>
                                 </tr>
                                 <tr >
-                                    <td><b>Net Total</b></td>
-                                    <td><input type="text" id="nettotal"  onfocus="discount()" name="nettotal" name="nettotal" ></td>
+                                    <td><b>Remark</b></td>
+                                    <td><input type="text"   name="remark" id="remark" ></td>
                                 </tr>
                             </table>
                         </div>
@@ -157,16 +141,28 @@ $ponumber = MysqlConnection::fetchCustom("SELECT id FROM purchase_order ORDER BY
 <script src="js/maruti.form_common.js"></script>
 <script src="perchaseorder/purchasejs.js"></script>
 <script>
-                    function shiftfocus() {
-
-                    }
-
                     function createPurchaseOrder() {
                         var x = document.getElementsByTagName("form");
                         x[0].submit();
                     }
 
+                    function calculateAmount() {
+                        var balanceAmount = parseFloat($("#balanceAmount").val());
+                        var paidAmount = parseFloat($("#paidAmount").val());
+                        if (balanceAmount !== "" && paidAmount !== "" && !isNaN(paidAmount)) {
+                            if (paidAmount > balanceAmount) {
+                                $("#paidAmount").val("");
+                                $("#balance").val("");
+                                $("#paidAmount").focus();
 
+                            } else {
+                                var newbalance = balanceAmount - paidAmount;
+                                $("#balance").val(newbalance);
+                            }
+                        } else {
+                            $("#balance").val("");
+                        }
+                    }
 </script>
 
 <?php
