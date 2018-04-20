@@ -1,11 +1,4 @@
-<!--<style>
-    table tbody {
 
-    }
-    table tr td{
-        padding: 5px;
-    }
-</style>-->
 
 <link rel="stylesheet" href="../css/styleinvoice11.css">
 

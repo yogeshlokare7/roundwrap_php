@@ -110,8 +110,9 @@ $purchaseorder = $result[0];
                         <tr style="text-align: left;background-color: rgb(240,240,240);height: 30px;" >
                             <th style="width: 25%">Item</th>
                             <th >Description</th>
-                            <th  style="width: 15%">Unit Cost</th>
-                            <th  style="width: 15%">Quantity</th>
+                            <th  style="width: 10%">Unit Cost</th>
+                            <th  style="width: 10%">Quantity</th>
+                             <th  style="width: 10%">Received Quantity</th>
                         </tr>
                         <?php
                         foreach ($result as $key => $value) {
@@ -122,6 +123,7 @@ $purchaseorder = $result[0];
                                 <td>&nbsp;&nbsp;<?php echo $items[0]["item_desc_purch"] ?></td>
                                 <td>&nbsp;&nbsp;<?php echo $items[0]["unit"] ?></td>
                                 <td >&nbsp;&nbsp;<?php echo $value["qty"] ?></td>
+                                <td >&nbsp;&nbsp;<?php echo $purchaseorder["rqty"] ?></td>
                             </tr>
                         <?php } ?>
                     </tbody>

@@ -26,6 +26,11 @@ if (isset($_POST["salesorderid"]) && isset($_GET["flag"])) {
     .control-label{ margin-left: 10px; }
     tr,td{ vertical-align: middle; font-size: 12px;padding: 5px;margin: 5px;}
 </style>
+
+
+
+
+
 <form action="#" method="post">
 
     <div class="container-fluid" style="" >

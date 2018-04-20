@@ -167,18 +167,18 @@ $listPerchaseOrders = MysqlConnection::fetchCustom("SELECT *  FROM  `purchase_or
                     case "view_receivingorder":
                         window.location = "index.php?pagename=view_perchaseorder&purchaseorderid=" + id;
                         break;
-                    case "create_receivingorder":
-                        window.location = "index.php?pagename=create_receivingorder";
-                        break;
-                    case "create_note":
-                        window.location = "index.php?pagename=note_receivingorder&=" + id;
-                        break;
-                    case "edit_receivingorder":
-                        window.location = "index.php?pagename=create_receivingorder&=" + id;
-                        break;
-                    case "delete_receivingorder":
-                        window.location = "index.php?pagename=view_receivingorder&=" + id + "&flag=yes";
-                        break;
+//                    case "create_receivingorder":
+//                        window.location = "index.php?pagename=create_receivingorder";
+//                        break;
+//                    case "create_note":
+//                        window.location = "index.php?pagename=note_receivingorder&=" + id;
+//                        break;
+//                    case "edit_receivingorder":
+//                        window.location = "index.php?pagename=create_receivingorder&=" + id;
+//                        break;
+//                    case "delete_receivingorder":
+//                        window.location = "index.php?pagename=view_receivingorder&=" + id + "&flag=yes";
+//                        break;
 
                     case "create_por":
                         window.open("invoice/por_invoice.php?purchaseorderid=" + id, '_blank');
@@ -193,11 +193,11 @@ $listPerchaseOrders = MysqlConnection::fetchCustom("SELECT *  FROM  `purchase_or
             },
             items: {
                 "view_receivingorder": {name: "VIEW RECEIVING ORDER", icon: "+"},
-                "create_receivingorder": {name: "CREATE RECEIVING ORDER", icon: "img/icons/16/book.png"},
-                "edit_receivingorder": {name: "EDIT RECEIVING ORDER", icon: "context-menu-icon-add"},
-                "delete_receivingorder": {name: "DELETE RECEIVING ORDER", icon: ""},
-                "sep1": "---------",
-                "create_note": {name: "CREATE NOTE", icon: ""},
+//                "create_receivingorder": {name: "CREATE RECEIVING ORDER", icon: "img/icons/16/book.png"},
+//                "edit_receivingorder": {name: "EDIT RECEIVING ORDER", icon: "context-menu-icon-add"},
+//                "delete_receivingorder": {name: "DELETE RECEIVING ORDER", icon: ""},
+//                "sep1": "---------",
+//                "create_note": {name: "CREATE NOTE", icon: ""},
                 "create_por": {name: "PRINT RECEIVING ORDER", icon: ""},
                 "sep2": "---------",
                 "quit": {name: "QUIT", icon: function () {
