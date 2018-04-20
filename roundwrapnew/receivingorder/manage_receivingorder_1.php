@@ -120,7 +120,7 @@ $listRecieveingOrders = MysqlConnection::fetchAll("supplier_packing_slip");
                 var id = $(this).attr('id');
                 switch (key) {
                     case "view_receivingorder":
-                        window.location = "index.php?pagename=view_receivingorder&&supplier=" + id;
+                        window.location = "index.php?pagename=view_receivingorder&supplier=" + id;
                         break;
                     case "create_receivingorder":
                         window.location = "index.php?pagename=create_receivingorder";

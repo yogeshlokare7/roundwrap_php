@@ -82,19 +82,22 @@ $purchaseorder = $result[0];
                 <table id="items" style="margin-top: 0px;" border="1">
                     <tbody>
                         <tr style="text-align: left;background-color: rgb(240,240,240);height: 30px;" >
-                            <th style="width: 20%">PO</th>
-                            <th style="width: 20%">SHIP.DATE</th>
-                            <th style="width: 20%"></th>
-                            <th style="width: 20%"></th>
-                            <th >REP</th>
+                            <th style="width: 25%">PO</th>
+                            <th style="width: 25%">SHIP.DATE</th>
+                            <th >SHIP.VIA</th>
+                            <th style="width: 30%">REP</th>
                         </tr>
-                        <tr style="height: 30px" >
-                            <td ></td>
-                            <td ></td>
-                            <td ></td>
-                            <td ></td>
-                            <td ></td>
-                        </tr>
+                        <?php
+                        foreach ($result as $key => $value) {
+                            $userarray = MysqlConnection::fetchCustom("SELECT  `firstName`, `lastName`  FROM  `user_master` WHERE user_id = " . $value["added_by"]);
+                            ?>
+                            <tr style="height: 30px" >
+                                <td ><?php echo $purchaseorder["purchaseOrderId"] ?></td>
+                                <td ><?php echo $value["expected_date"] ?>&nbsp;&nbsp;</td>
+                                <td ><?php echo $purchaseorder["ship_via"] ?></td>
+                                <td ><?php echo implode(" ", $userarray[0]) ?></td>
+                            </tr>
+                        <?php } ?>
                     </tbody>
 
                 </table>

@@ -191,7 +191,7 @@ $listPerchaseOrders = MysqlConnection::fetchCustom("SELECT *  FROM  `purchase_or
                 "delete_purchaseorder": {name: "DELETE PURCHASE ORDER", icon: ""},
                 "sep1": "---------",
                 "create_receiving": {name: "CREATE RECEIVING ORDER", icon: ""},
-                "create_invoice": {name: "PRINT INVOICE", icon: ""},
+                "create_invoice": {name: "PRINT PURCHASE ORDER", icon: ""},
                 "sep2": "---------",
                 "quit": {name: "QUIT", icon: function () {
                         return '';
