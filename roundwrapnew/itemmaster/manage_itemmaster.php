@@ -92,20 +92,23 @@ if (isset($itemid) && $itemid != "") {
                     } else {
                         $bg = "";
                     }
+                    if ($value["onhand"] <= $value["reorder"]) {
+                        $reorderclr = "color: red;font-weight: bold";
+                    } else {
+                        $reorderclr = "";
+                    }
                     ?>
                     <tr id="<?php echo $value["item_id"] ?>" class="context-menu-one" style="<?php echo $bg ?>;border-bottom: solid 1px rgb(220,220,220);text-align: left;height: 35px;" >
                         <td style="width: 25px;;text-align: center">&nbsp;<?php echo $index ?></td>
-                        <td style="width: 360px;text-align: left" >
-                            &nbsp;
-                            <?php echo $value["item_code"] ?>
-                            <?php echo $value["item_name"] ?>
-                        </td>
+                        <td style="width: 360px;text-align: left" >&nbsp;<?php echo $value["item_code"] ?>&nbsp;<?php echo $value["item_name"] ?></td>
                         <td style="width: 600px;text-align: left" >
                             &nbsp;&nbsp;
                             <?php echo $value["item_desc_purch"] == "" ? $value["item_desc_sales"] : $value["item_desc_purch"] ?>
                         </td>
                         <td style="width: 110px;">&nbsp;<?php echo $value["type"] ?></td>
-                        <td style="width: 90px;text-align: right;background-color: rgb(247,252,231)"><?php echo $value["onhand"]; ?>&nbsp;&nbsp;</td>
+                        <td style="width: 90px;text-align: right;background-color: rgb(247,252,231);<?php echo $reorderclr ?>">
+                            <?php echo $value["onhand"]; ?>&nbsp;&nbsp;
+                        </td>
                         <td style="width: 90px;text-align: right"><?php echo $value["totalvalue"]; ?>&nbsp;&nbsp;</td>
                         <td style="width: 90px;text-align: right"><?php echo $value["currency"]; ?>&nbsp;&nbsp;</td>
                         <td style="text-align: right">&nbsp;<?php echo $value["sell_rate"]; ?>&nbsp;</td>
@@ -153,15 +156,15 @@ if (isset($itemid) && $itemid != "") {
 </div>
 
 <script>
-    $("#deleteThis").click(function () {
+    $("#deleteThis").click(function() {
         $("div#divLoading").addClass('show');
         var dataString = "deleteId=" + $('#deleteId').val();
         $.ajax({
             type: 'POST',
             url: 'itemmaster/itemmaster_ajax.php',
             data: dataString
-        }).done(function (data) {
-        }).fail(function () {
+        }).done(function(data) {
+        }).fail(function() {
         });
         location.reload();
     });
@@ -172,10 +175,10 @@ if (isset($itemid) && $itemid != "") {
 
 </script>
 <script type="text/javascript">
-    $(function () {
+    $(function() {
         $.contextMenu({
             selector: '.context-menu-one',
-            callback: function (key, options) {
+            callback: function(key, options) {
                 var m = "clicked row: " + key;
                 var id = $(this).attr('id');
                 switch (key) {
@@ -205,10 +208,10 @@ if (isset($itemid) && $itemid != "") {
                         window.location = "index.php?pagename=create_itemmaster&itemId=" + id + "&flag=qty";
                         break;
                     case "purchase_order":
-                        window.location = "index.php?pagename=create_perchaseorder";
+                        window.location = "index.php?pagename=create_perchaseorder" + id + "&flag=purchase";
                         break;
                     case "sales_order":
-                        window.location = "index.php?pagename=create_salesorder";
+                        window.location = "index.php?pagename=create_salesorder" + id + "&flag=purchase";
                         break;
                     case "received_items":
                         window.location = "index.php?pagename=manage_dashboard";
@@ -232,18 +235,18 @@ if (isset($itemid) && $itemid != "") {
                 "changeprice": {name: "CHANGE PRICE", icon: ""},
                 "adjustquantity": {name: "ADJUST QUANTITY", icon: ""},
                 "purchase_order": {name: "CREATE PURCHASE ORDER", icon: ""},
-//                "sales_order": {name: "CREATE SALES ORDER", icon: ""},
+                "sales_order": {name: "CREATE SALES ORDER", icon: ""},
 //                "received_items": {name: "RECEIVED ITEMS", icon: ""},
 //                "create_invoice": {name: "CREATE INVOICE", icon: ""},
                 "sep1": "---------",
-                "quit": {name: "QUIT", icon: function () {
+                "quit": {name: "QUIT", icon: function() {
                         return '';
                     }}
             }
         });
     });
 
-    $('tr').dblclick(function () {
+    $('tr').dblclick(function() {
         var id = $(this).attr('id');
         if (id !== undefined) {
             window.location = "index.php?pagename=view_itemmaster&itemId=" + id;
