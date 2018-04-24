@@ -1,7 +1,7 @@
 <?php
 $itemlist = MysqlConnection::fetchCustom("SELECT item_id,item_code FROM item_master;");
 $sqltaxinfodata = MysqlConnection::fetchCustom("SELECT * FROM taxinfo_table ORDER BY id DESC ;");
-$sqlvendorinformation = MysqlConnection::fetchCustom("SELECT supp_id,companyname FROM `supplier_master` ORDER BY companyname ;");
+$sqlvendorinformation = MysqlConnection::fetchCustom("SELECT supp_id,companyname FROM `supplier_master` WHERE status = 'Y' ORDER BY companyname  ;");
 ?>
 
 <style>

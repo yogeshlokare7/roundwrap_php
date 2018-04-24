@@ -5,11 +5,21 @@
     table tr td{
         padding: 5px;
     }
-    
+
 </style>
 
 <?php
-$sqlgetsupplier = "SELECT * FROM supplier_master WHERE supp_id = " . filter_input(INPUT_GET, "supplierid");
+$flag = filter_input(INPUT_GET, "flag");
+
+if ($flag == "purchase") {
+    $itemid = filter_input(INPUT_GET, "itemId");
+    $vendorinfo = MysqlConnection::fetchCustom("SELECT * FROM item_master WHERE item_id = $itemid");
+    $supplierid = $vendorinfo[0]["vendorid"];
+} else {
+    $supplierid = filter_input(INPUT_GET, "supplierid");
+}
+
+$sqlgetsupplier = "SELECT * FROM supplier_master WHERE supp_id = $supplierid ";
 $resultset = MysqlConnection::fetchCustom($sqlgetsupplier);
 $supplier = $resultset[0];
 
@@ -18,6 +28,7 @@ $itemarray = MysqlConnection::fetchCustom("SELECT item_id ,item_code, item_name 
 $buildauto = buildauto($itemarray);
 
 $ponumber = MysqlConnection::fetchCustom("SELECT id FROM purchase_order ORDER BY id DESC LIMIT 0,1");
+$vendorauto = buildVendorAutoComplete(MysqlConnection::fetchCustom("SELECT supp_id,companyname FROM `supplier_master` WHERE status = 'Y' ORDER BY `supplier_master`.`companyname` ASC"));
 ?>
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script>
@@ -27,9 +38,10 @@ $ponumber = MysqlConnection::fetchCustom("SELECT id FROM purchase_order ORDER BY
             $("#tags" + index).autocomplete({source: availableTags});
         }
     });
-//    $(function() {
-//        $("#expected_date").datepicker();
-//    });
+    $(function() {
+        var availableVendor = [<?php echo $vendorauto ?>];
+        $("#companyname").autocomplete({source: availableVendor});
+    });
 </script>
 <div id="content-header">
     <div id="breadcrumb"> 
@@ -43,12 +55,13 @@ $ponumber = MysqlConnection::fetchCustom("SELECT id FROM purchase_order ORDER BY
     tr,td{ vertical-align: middle; font-size: 12px;padding: 0px;margin: 0px;}
 </style>
 <form action="perchaseorder/savepurchaseorder.php" name="purchaseorder" method="post">
-    <input type="hidden" name="suppid" value="<?php echo filter_input(INPUT_GET, "supplierid") ?>">
+    <input type="hidden" name="suppid" id="suppid" value="<?php echo $supplierid ?>">
+    <input type="hidden" name="suppidajax" id="suppidajax">
     <div class="container-fluid" style="" >
         <div class="widget-box" style="width: 100%;border-bottom: solid 1px #CDCDCD;">
             <div class="widget-title">
                 <ul class="nav nav-tabs">
-                    <li class="active"><a data-toggle="tab" href="#tab1">CREATE PURCHASE ORDER</a></li>
+                    <li class="active"><a  data-toggle="tab" href="#tab1">CREATE PURCHASE ORDER</a></li>
                 </ul>
             </div>
             <br/>
@@ -59,11 +72,11 @@ $ponumber = MysqlConnection::fetchCustom("SELECT id FROM purchase_order ORDER BY
                             <table>
                                 <tr>
                                     <td style="width: 10%"><label class="control-label"   class="control-label">SUPPLIER NAME&nbsp;:&nbsp</label></td>
-                                    <td><input  type="text" name="companyname" placeholder="Supplier Name" value="<?php echo $supplier["companyname"] ?>" /></td>
+                                    <td><input  type="text" autofocus="" name="companyname" onfocusout="searchSupplier()" id="companyname" placeholder="Supplier Name" value="<?php echo $supplier["companyname"] ?>" /></td>
                                     <td style="width: 10%"><label class="control-label">SHIP VIA&nbsp;:&nbsp</label></td>
                                     <td><input  type="text" name="ship_via" placeholder="" value="<?php echo $supplier["ship_via"] ?>"/></td>
                                     <td style="width: 10%"><label class="control-label">SHIP&nbsp;DATE&nbsp;:&nbsp</label></td>
-                                    <td><input type="text" required pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}" placeholder="YYYY-MM-DD" name="expected_date" id="expected_date" value="<?php echo $supplier["expected_date"] ?>" ></td>
+                                    <td><input type="date" required pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}" placeholder="YYYY-MM-DD" name="expected_date" id="expected_date" value="<?php echo $supplier["expected_date"] ?>" ></td>
                                 </tr>
                                 <tr>
                                     <td ><label  class="control-label"  class="control-label">BILLING&nbsp;ADDRESS&nbsp;:&nbsp</label></td>
@@ -93,22 +106,47 @@ $ponumber = MysqlConnection::fetchCustom("SELECT id FROM purchase_order ORDER BY
                             </table>
                             <div style="overflow: auto;height: 232px;border-bottom: solid 1px  #CDCDCD;">
                                 <table class="table-bordered" style="width: 100%;border-collapse: collapse" border="1">
-                                    <?php for ($index = 1; $index <= 50; $index++) { ?>
-                                        <tr id="<?php echo $index ?>" style="border-bottom: solid 1px  #CDCDCD;background-color: white">
-                                            <td style="width: 25px">
-                                                <a class="icon  icon-remove" onclick="clearValue('<?php echo $index ?>')"></a>
-                                            </td>
-                                            <td style="width: 230px;">
-                                                <input type="text" name="items[]" id="tags<?php echo $index ?>" onfocusout="setDetails('<?php echo $index ?>')"  style="padding: 0px;margin: 0px;width: 100%">
-                                            </td>
-                                            <td style="width: 350px"><div id="desc<?php echo $index ?>"></div></td>
-                                            <td style="width: 80px;"><div id="unit<?php echo $index ?>"></div></td>
-                                            <td style="width: 80px;"><div id="price<?php echo $index ?>"></div></td>
-                                            <td style="width: 80px;"><input type="text" name="itemcount[]" onkeypress="return chkNumericKey(event)" onfocusout="calculateAmount('<?php echo $index ?>')" id="amount<?php echo $index ?>" style="padding: 0px;margin: 0px;width: 100%"></td>
-                                            <td ><div id="total<?php echo $index ?>"></div></td>
-                                        </tr>
-                                    <?php } ?>
-
+                                    <?php
+                                    if (count($vendorinfo) == 0) {
+                                        for ($index = 1 + $preindex; $index <= 50 + $preindex; $index++) {
+                                            ?>
+                                            <tr id="<?php echo $index ?>" style="border-bottom: solid 1px  #CDCDCD;background-color: white">
+                                                <td style="width: 25px">
+                                                    <a class="icon  icon-remove" onclick="clearValue('<?php echo $index ?>')"></a>
+                                                </td>
+                                                <td style="width: 230px;">
+                                                    <input type="text" name="items[]" id="tags<?php echo $index ?>" onfocusout="setDetails('<?php echo $index ?>')"  style="padding: 0px;margin: 0px;width: 100%">
+                                                </td>
+                                                <td style="width: 350px"><div id="desc<?php echo $index ?>"></div></td>
+                                                <td style="width: 80px;"><div id="unit<?php echo $index ?>"></div></td>
+                                                <td style="width: 80px;"><div id="price<?php echo $index ?>"></div></td>
+                                                <td style="width: 80px;"><input type="text" name="itemcount[]" onkeypress="return chkNumericKey(event)" onfocusout="calculateAmount('<?php echo $index ?>')" id="amount<?php echo $index ?>" style="padding: 0px;margin: 0px;width: 100%"></td>
+                                                <td ><div id="total<?php echo $index ?>"></div></td>
+                                            </tr>
+                                            <?php
+                                        }
+                                    } else {
+                                        $preindex = 0;
+                                        foreach ($vendorinfo as $key => $value) {
+                                            $preindex++;
+                                            ?>
+                                            <tr id="<?php echo $preindex ?>" style="border-bottom: solid 1px  #CDCDCD;background-color: white">
+                                                <td style="width: 25px">
+                                                    <a class="icon  icon-remove" onclick="clearValue('<?php echo $preindex ?>')"></a>
+                                                </td>
+                                                <td style="width: 230px;">
+                                                    <input type="text" name="items[]" value="<?php echo $value["item_code"] ?>" style="padding: 0px;margin: 0px;width: 100%">
+                                                </td>
+                                                <td style="width: 350px"><div id="desc<?php echo $preindex ?>"><?php echo $value["item_desc_purch"] ?></div></td>
+                                                <td style="width: 80px;"><div id="unit<?php echo $preindex ?>"><?php echo $value["unit"] ?></div></td>
+                                                <td style="width: 80px;"><div id="price<?php echo $preindex ?>"><?php echo $value["purchase_rate"] ?></div></td>
+                                                <td style="width: 80px;"><input type="text" name="itemcount[]" onkeypress="return chkNumericKey(event)" onfocusout="calculateAmount('<?php echo $preindex ?>')" id="amount<?php echo $preindex ?>" style="padding: 0px;margin: 0px;width: 100%"></td>
+                                                <td ><div id="total<?php echo $preindex ?>"></div></td>
+                                            </tr>
+                                            <?php
+                                        }
+                                    }
+                                    ?>
                                 </table>
                             </div>
                         </div>
@@ -116,7 +154,7 @@ $ponumber = MysqlConnection::fetchCustom("SELECT id FROM purchase_order ORDER BY
                             <table class="table-bordered" style="width: 100%;border-collapse: collapse;background-color: white" border="1">
                                 <tr style="font-weight: bold; color: red" >
                                     <td><b>PO Number</b></td>
-                                    <td><input style="color: red" type="text" name="purchaseOrderId"  onkeypress="return chkNumericKey(event)" value="PO<?php echo (1000 + $ponumber[0]["id"]) ?>" readonly=""></td>
+                                    <td><input style="color: red;font-weight: bold " type="text" name="purchaseOrderId"  onkeypress="return chkNumericKey(event)" value="PO<?php echo (1000 + $ponumber[0]["id"]) ?>" readonly=""></td>
                                 </tr>
                                 <tr >
                                     <td><b>Order Date</b></td>
@@ -159,7 +197,6 @@ $ponumber = MysqlConnection::fetchCustom("SELECT id FROM purchase_order ORDER BY
 <script src="js/maruti.form_common.js"></script>
 <script src="perchaseorder/purchasejs.js"></script>
 <script>
-    
                     function shiftfocus() {
 
                     }
@@ -168,8 +205,6 @@ $ponumber = MysqlConnection::fetchCustom("SELECT id FROM purchase_order ORDER BY
                         var x = document.getElementsByTagName("form");
                         x[0].submit();
                     }
-
-
 </script>
 
 <?php
@@ -178,6 +213,14 @@ function buildauto($itemarray) {
     $option = "";
     foreach ($itemarray as $value) {
         $option.="\"" . $value["item_code"] . "\",";
+    }
+    return $option;
+}
+
+function buildVendorAutoComplete($vendorarray) {
+    $option = "";
+    foreach ($vendorarray as $value) {
+        $option.=" \" " . $value["companyname"] . "\",";
     }
     return $option;
 }

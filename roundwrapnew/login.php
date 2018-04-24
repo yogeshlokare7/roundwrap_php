@@ -9,7 +9,7 @@ include './MysqlConnection.php';
 if (isset($_POST["go"])) {
     $username = $_POST["email"];
     $password = $_POST["password"];
-    $sqllogin = "SELECT * from user_master  where username = '$username' and password = '$password';";
+    echo $sqllogin = "SELECT * from user_master  where username = '$username' and password = '$password';";
     $sqlloginresultset = MysqlConnection::fetchCustom($sqllogin);
     $user = $sqlloginresultset[0];
     if ($user["user_id"] == "") {

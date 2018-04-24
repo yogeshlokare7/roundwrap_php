@@ -15,10 +15,12 @@ $_SESSION["msg"] = "";
 if (isset($_POST["paidAmount"]) && $_POST["paidAmount"] != "") {
     $_POST["supp_id"] = "0";
     $_POST["active"] = "Y";
+     $_POST["oriamt"] = $_POST["balanceAmount"];
     unset($_POST["paidDate"]);
+    unset($_POST["balanceAmount"]);
     MysqlConnection::insert("customer_balancepayment", $_POST);
     MysqlConnection::delete("UPDATE customer_master SET balance = " . $_POST["balance"] . " WHERE id =  " . $customer["id"]);
-    $_SESSION["msg"] = "Payment of " . $_POST["balance"] . " added ";
+    $_SESSION["msg"] = "Payment of " . $_POST["paidAmount"] . " added ";
 }
 
 
@@ -73,7 +75,7 @@ $resultset = MysqlConnection::fetchCustom("SELECT * FROM `customer_balancepaymen
                                         <tr id="<?php echo $index ?>" style="border-bottom: solid 1px  #CDCDCD;background-color: white;height: 35px;">
                                             <td style="width: 25px"><?php echo $index ++ ?></td>
                                             <td style="width: 120px;"><?php echo $value["receiptNo"] ?></td>
-                                            <td style="width: 120px"><?php echo $value["balanceAmount"] ?></td>
+                                            <td style="width: 120px"><?php echo $value["oriamt"] ?></td>
                                             <td style="width: 120px;"><?php echo $value["paidDate"] ?></td>
                                             <td style="width: 120px;"><?php echo $value["chequeNoDDNo"] ?></td>
                                             <td style="width: 120px;"><?php echo $value["paidAmount"] ?></td>
@@ -110,7 +112,7 @@ $resultset = MysqlConnection::fetchCustom("SELECT * FROM `customer_balancepaymen
                                 </tr>
                                 <tr >
                                     <td><b>Paid Amount</b></td>
-                                    <td><input type="text" autofocus="" onkeyup="calculateAmount()" name="paidAmount" id="paidAmount"  ></td>
+                                    <td><input type="text" autofocus=""  onkeypress="return chkNumericKey(event)" onkeyup="calculateAmount()" name="paidAmount" id="paidAmount"  ></td>
                                 </tr>
                                 <tr >
                                     <td><b>Balance</b></td>

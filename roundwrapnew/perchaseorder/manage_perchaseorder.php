@@ -33,19 +33,19 @@ $listPerchaseOrders = MysqlConnection::fetchCustom("SELECT *  FROM  `purchase_or
     <div class="cutomheader">
         <h5 style="font-family: verdana;font-size: 12px;">PURCHASE ORDER'S LIST</h5>
     </div>
-    <div class="cutomheader"> 
-        <table border="0">
-            <tr >
-                <td style="width: 10%"><a class="btn" href="index.php?pagename=create_perchaseorder" ><i class="icon-plus-sign"></i>&nbsp;ADD PURCHASE ORDER</a></td>
-                <th style="width: 2.3%">&nbsp;Search&nbsp;:&nbsp;</th>
-                <th  style="text-align: left">
-                    <input type="text" id="searchinput" onkeyup="searchData()" 
-                           placeholder="Search by PO Number" 
-                           name="searchinput" style="width: 35%"/>
-                </th>
-            </tr>
-        </table>
-    </div>
+    <br/>
+    <table border="0" style="width: 0%">
+        <tr style="text-align: left">
+            <td><a class="btn btn-info" href="index.php?pagename=create_perchaseorder" ><i class="icon-plus-sign"></i>&nbsp;CREATE PURCHASE ORDER</a></td>
+            <td>&nbsp;|&nbsp;</td>
+            <td style="width: 80%;vertical-align: bottom">
+                <b>&nbsp;Search&nbsp;:&nbsp;</b>
+                <input type="text" id="searchinput" onkeyup="searchData()" 
+                       placeholder="Search by PO Number" 
+                       name="searchinput" style="width: 80%;height: 25px;margin-top: 3px;"/>
+            </td>
+        </tr>
+    </table>
     <div class="widget-box">
         <table class="customtable" border="1">
             <tr style="height: 30px;background-color: rgb(240,240,240);cursor: pointer;text-transform: uppercase">
@@ -126,7 +126,7 @@ $listPerchaseOrders = MysqlConnection::fetchCustom("SELECT *  FROM  `purchase_or
 </div>
 <script>
 
-    $("#deleteThis").click(function () {
+    $("#deleteThis").click(function() {
         alert("Hello");
         $("div#divLoading").addClass('show');
         var dataString = "deleteId=" + $('#deleteId').val();
@@ -134,8 +134,8 @@ $listPerchaseOrders = MysqlConnection::fetchCustom("SELECT *  FROM  `purchase_or
             type: 'POST',
             url: 'perchaseorder/perchaseorder_ajax.php',
             data: dataString
-        }).done(function (data) {
-        }).fail(function () {
+        }).done(function(data) {
+        }).fail(function() {
         });
         location.reload();
     });
@@ -150,10 +150,10 @@ $listPerchaseOrders = MysqlConnection::fetchCustom("SELECT *  FROM  `purchase_or
 
 </script>
 <script>
-    $(function () {
+    $(function() {
         $.contextMenu({
             selector: '.context-menu-one',
-            callback: function (key, options) {
+            callback: function(key, options) {
                 var m = "clicked row: " + key;
                 var id = $(this).attr('id');
                 switch (key) {
@@ -194,14 +194,14 @@ $listPerchaseOrders = MysqlConnection::fetchCustom("SELECT *  FROM  `purchase_or
                 "create_receiving": {name: "CREATE RECEIVING ORDER", icon: ""},
                 "create_invoice": {name: "PRINT PURCHASE ORDER", icon: ""},
                 "sep2": "---------",
-                "quit": {name: "QUIT", icon: function () {
+                "quit": {name: "QUIT", icon: function() {
                         return '';
                     }}
             }
         });
     });
 
-    $('tr').dblclick(function () {
+    $('tr').dblclick(function() {
         var id = $(this).attr('id');
         window.location = "index.php?pagename=view_perchaseorder&purchaseorderid=" + id;
     });

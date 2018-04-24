@@ -7,24 +7,25 @@
     }
 </style>
 <?php
-$sqlgetsupplier = "SELECT * FROM supplier_master WHERE supp_id = " . filter_input(INPUT_GET, "supplierid");
-$resultset = MysqlConnection::fetchCustom($sqlgetsupplier);
-$supplier = $resultset[0];
+$sqlgetsupplier = "SELECT supp_id,companyname, supp_balance FROM supplier_master WHERE supp_id = " . filter_input(INPUT_GET, "supplierid");
+$resultset1 = MysqlConnection::fetchCustom($sqlgetsupplier);
+$supplier = $resultset1[0];
 
 $_SESSION["msg"] = "";
 if (isset($_POST["paidAmount"]) && $_POST["paidAmount"] != "") {
     $_POST["cust_id"] = "0";
     $_POST["active"] = "Y";
+    $_POST["oriamt"] = $_POST["balanceAmount"];
     unset($_POST["paidDate"]);
+    unset($_POST["balanceAmount"]);
     MysqlConnection::insert("customer_balancepayment", $_POST);
-    MysqlConnection::delete("UPDATE supplier_master SET supp_balance = " . $_POST["balance"] . " WHERE supp_id =  " . $supplier["supp_id"]);
-    $_SESSION["msg"] = "Payment of " . $_POST["balance"] . " added ";
+    $update = "UPDATE supplier_master SET supp_balance = " . $_POST["balance"] . " WHERE supp_id =  " . $supplier["supp_id"];
+    MysqlConnection::delete($update);
+    $_SESSION["msg"] = "Payment of " . $_POST["paidAmount"] . " added ";
 }
-
 
 $arrreceiptno = MysqlConnection::fetchCustom("SELECT id FROM `customer_balancepayment` ORDER BY id desc");
 $receiptno = "CR-" . time() . "-" . $arrreceiptno[0]["id"] . "" . $supplier["supp_id"];
-
 $resultset = MysqlConnection::fetchCustom("SELECT * FROM `customer_balancepayment` where supp_id = " . filter_input(INPUT_GET, "supplierid") . " ORDER BY paidDate DESC");
 ?> 
 <div id="content-header">
@@ -73,7 +74,7 @@ $resultset = MysqlConnection::fetchCustom("SELECT * FROM `customer_balancepaymen
                                         <tr id="<?php echo $index ?>" style="border-bottom: solid 1px  #CDCDCD;background-color: white;height: 35px;">
                                             <td style="width: 25px"><?php echo $index ++ ?></td>
                                             <td style="width: 120px;"><?php echo $value["receiptNo"] ?></td>
-                                            <td style="width: 120px"><?php echo $value["balanceAmount"] ?></td>
+                                            <td style="width: 120px"><?php echo $value["oriamt"] ?></td>
                                             <td style="width: 120px;"><?php echo $value["paidDate"] ?></td>
                                             <td style="width: 120px;"><?php echo $value["chequeNoDDNo"] ?></td>
                                             <td style="width: 120px;"><?php echo $value["paidAmount"] ?></td>
@@ -110,7 +111,7 @@ $resultset = MysqlConnection::fetchCustom("SELECT * FROM `customer_balancepaymen
                                 </tr>
                                 <tr >
                                     <td><b>Paid Amount</b></td>
-                                    <td><input type="text" autofocus="" onkeyup="calculateAmount()" name="paidAmount" id="paidAmount"  ></td>
+                                    <td><input type="text" autofocus="" onkeypress="return chkNumericKey(event)" onkeyup="calculateAmount()" name="paidAmount" id="paidAmount"  ></td>
                                 </tr>
                                 <tr >
                                     <td><b>Balance</b></td>

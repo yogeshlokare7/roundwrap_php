@@ -1,24 +1,20 @@
 <?php
+
 include '../MysqlConnection.php';
 $purchase_order = array();
-
 $purchase_order["purchaseOrderId"] = filter_input(INPUT_POST, "purchaseOrderId");
-;
 $purchase_order["supplier_id"] = $suppid = filter_input(INPUT_POST, "suppid");
 $purchase_order["shipping_address"] = $shipping = filter_input(INPUT_POST, "shipping");
 $purchase_order["billing_address"] = $billing = filter_input(INPUT_POST, "billing");
 $purchase_order["remark"] = $remark = filter_input(INPUT_POST, "remark");
-
 $purchase_order["ship_via"] = $shipvia = filter_input(INPUT_POST, "ship_via");
 $purchase_order["expected_date"] = $date = filter_input(INPUT_POST, "expected_date");
-
 $purchase_order["expected_date"] = $purchasedate = filter_input(INPUT_POST, "purchasedate");
 $purchase_order["added_by"] = $enterby = $_SESSION["user"]["user_id"];
 $purchase_order["sub_total"] = $finaltotal = filter_input(INPUT_POST, "finaltotal");
 $discount = filter_input(INPUT_POST, "discount");
 $purchase_order["discount"] = $discount == "" ? "0.00" : $discount;
 $purchase_order["total"] = $nettotal = $purchase_order["sub_total"] - $purchase_order["discount"];
-
 $purchase_order["totalTax"] = 0.0;
 
 $poid = MysqlConnection::insert("purchase_order", $purchase_order);
@@ -36,8 +32,6 @@ for ($index = 0; $index < count($items); $index++) {
         MysqlConnection::insert("purchase_item", $purchase_items);
     }
 }
-
-
 $selectbal = "SELECT `supp_balance` as supp_balance  FROM `supplier_master` where `supp_id` = " . $purchase_order["supplier_id"];
 $balancedetails = MysqlConnection::fetchCustom($selectbal);
 $balance = $balancedetails[0]["supp_balance"] + $purchase_order["total"];

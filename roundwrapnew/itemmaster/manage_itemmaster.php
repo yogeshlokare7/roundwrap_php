@@ -208,10 +208,10 @@ if (isset($itemid) && $itemid != "") {
                         window.location = "index.php?pagename=create_itemmaster&itemId=" + id + "&flag=qty";
                         break;
                     case "purchase_order":
-                        window.location = "index.php?pagename=create_perchaseorder" + id + "&flag=purchase";
+                        window.location = "index.php?pagename=create_perchaseorder&itemId=" + id + "&flag=purchase";
                         break;
-                    case "sales_order":
-                        window.location = "index.php?pagename=create_salesorder" + id + "&flag=purchase";
+//                    case "sales_order":
+//                        window.location = "index.php?pagename=create_salesorder" + id + "&flag=purchase";
                         break;
                     case "received_items":
                         window.location = "index.php?pagename=manage_dashboard";
@@ -219,7 +219,6 @@ if (isset($itemid) && $itemid != "") {
                     case "create_invoice":
                         window.location = "index.php?pagename=manage_dashboard";
                         break;
-
 
                     default:
                         window.location = "index.php?pagename=manage_itemmaster";
@@ -235,7 +234,7 @@ if (isset($itemid) && $itemid != "") {
                 "changeprice": {name: "CHANGE PRICE", icon: ""},
                 "adjustquantity": {name: "ADJUST QUANTITY", icon: ""},
                 "purchase_order": {name: "CREATE PURCHASE ORDER", icon: ""},
-                "sales_order": {name: "CREATE SALES ORDER", icon: ""},
+//                "sales_order": {name: "CREATE SALES ORDER", icon: ""},
 //                "received_items": {name: "RECEIVED ITEMS", icon: ""},
 //                "create_invoice": {name: "CREATE INVOICE", icon: ""},
                 "sep1": "---------",

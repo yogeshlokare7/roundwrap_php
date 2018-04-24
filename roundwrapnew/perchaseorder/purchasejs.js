@@ -59,3 +59,18 @@ function discount() {
         $("#nettotal").val($("#finaltotal").val());
     }
 }
+
+function searchSupplier() {
+    var companyname = $("#companyname").val();
+    var dataString = "companyname=" + companyname;
+    $.ajax({
+        type: 'POST',
+        url: 'suppliermaster/searchsupplier_ajax.php',
+        data: dataString
+    }).done(function(data) {
+        var jsonobj = JSON.parse(data);
+        console.log(jsonobj);
+        $("#suppid").val(jsonobj.supp_id);
+    }).fail(function() {
+    });
+}
