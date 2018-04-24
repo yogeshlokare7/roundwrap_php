@@ -46,7 +46,7 @@ $sqlvendorinformation = MysqlConnection::fetchCustom("SELECT supp_id,companyname
                                     ?>
                                 </select>
                             </td>
-                            <td colspan="2">Preferred Vendor<br/>
+                            <td >Preferred Vendor<br/>
                                 <select name="vendorid"  id="vendorid" value="">
                                     <option value="0"></option>
                                     <?php foreach ($sqlvendorinformation as $key => $value) { ?>
@@ -57,6 +57,7 @@ $sqlvendorinformation = MysqlConnection::fetchCustom("SELECT supp_id,companyname
                                     <?php } ?>
                                 </select>
                             </td>
+                            <td>Item Picture<br/><input type="file" name="pic" id="pic"></td>
                         </tr>
                         <tr>
                             <td >Item Code<br/><input  type="text" name="item_code" id="item_code" value="<?php echo $item["item_code"] ?>"  autofocus="" required="true" minlenght="2" maxlength="30" /></td>
