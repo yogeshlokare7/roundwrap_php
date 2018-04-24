@@ -51,15 +51,15 @@ $buildauto = buildauto($itemarray);
                                     <td style="width: 10%"><label class="control-label">SHIP VIA&nbsp;:&nbsp</label></td>
                                     <td><input  type="text" placeholder="" name="shipvia"/></td>
                                     <td style="width: 10%"><label class="control-label">EXPECTED&nbsp;DELIVERY&nbsp;:&nbsp</label></td>
-                                    <td><input type="text" value="12-02-2012"  data-date-format="mm-dd-yyyy"  ></td>
+                                    <td><input type="date" value="12-02-2012"  data-date-format="mm-dd-yyyy"  ></td>
                                 </tr>
                                 <tr>
                                     <td ><label  class="control-label"  class="control-label">BILLING&nbsp;ADDRESS&nbsp;:&nbsp</label></td>
                                     <td><textarea style="line-height: 18px;" name="billTo_address"><?php echo $customer["billto"] ?></textarea></td>
                                     <td><label class="control-label">SHIPPING&nbsp;ADDRESS&nbsp;:&nbsp</label></td>
                                     <td><textarea style="line-height: 18px;" name="shipping_address"><?php echo $customer["shipto"] ?></textarea></td>
-                                    <td ><label class="control-label">REMARK&nbsp;/&nbsp;NOTE&nbsp;:&nbsp</label></td>
-                                    <td><textarea  style="line-height: 18px;" name="remark" value="" ></textarea></td>
+                                    <td ><label class="control-label"><b>REMARK&nbsp;/&nbsp;NOTE&nbsp;:&nbsp</b></label></td>
+                                    <td><textarea  style="line-height: 18px; color: red" name="remark" value="" ></textarea></td>
                                 </tr>
                             </table>
                         </fieldset>
@@ -104,9 +104,9 @@ $buildauto = buildauto($itemarray);
                         </div>
                         <div style="width: 28%;float: right">
                             <table class="table-bordered" style="width: 100%;border-collapse: collapse;background-color: white" border="1">
-                                <tr >
+                                <tr style="font-weight: bold; color: red">
                                     <td><b>SO Number</b></td>
-                                    <td><input type="text" name="sono" onkeypress="return chkNumericKey(event)" value="<?php echo $sonumber ?>" readonly=""></td>
+                                    <td><input style="color: red" type="text" name="sono" onkeypress="return chkNumericKey(event)" value="<?php echo $sonumber ?>" readonly=""></td>
                                 </tr>
                                 <tr >
                                     <td><b>Sales Date</b></td>

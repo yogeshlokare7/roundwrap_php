@@ -57,8 +57,8 @@ if (isset($_POST["salesorderid"]) && isset($_GET["flag"])) {
                                     <td><textarea style="line-height: 18px;height: 120px;"readonly=""><?php echo $customer["billTo_address"] ?></textarea></td>
                                     <td><label class="control-label" readonly="">SHIPPING&nbsp;ADDRESS&nbsp;:&nbsp</label></td>
                                     <td><textarea style="line-height: 18px;height: 120px;" readonly=""><?php echo $customer["shipping_address"] ?></textarea></td>
-                                    <td ><label class="control-label">REMARK&nbsp;/&nbsp;NOTE&nbsp;:&nbsp</label></td>
-                                    <td><textarea  style="line-height: 18px;height: 120px;" value="" readonly="" ><?php echo $customer["remark"] ?></textarea></td>
+                                    <td ><label class="control-label"><b>REMARK&nbsp;/&nbsp;NOTE&nbsp;:&nbsp</b></label></td>
+                                    <td><textarea  style="line-height: 18px;height: 120px; color: red" value="" readonly="" ><?php echo $customer["remark"] ?></textarea></td>
                                 </tr>
                             </table>
                         </fieldset>
@@ -76,7 +76,7 @@ if (isset($_POST["salesorderid"]) && isset($_GET["flag"])) {
                                     <td style="width: 80px;">UNIT</td>
                                     <td style="width: 80px;">PRICE</td>
                                     <td style="width: 100px;">ORDERED.QTY</td>
-                                    <td style="width: 100px;">REC.QTY</td>
+                                    <td style="width: 100px;">SHIFT.QTY</td>
                                     <td>AMOUNT</td>
                                 </tr>
                             </table>
@@ -105,15 +105,15 @@ if (isset($_POST["salesorderid"]) && isset($_GET["flag"])) {
 
                         <div style="width: 28%;float: right">
                             <table class="table-bordered" style="width: 100%;border-collapse: collapse;background-color: white" border="1">
-                                <tr >
+                                <tr style="font-weight: bold; color: red" >
                                     <td><b>SO Number</b></td>
-                                    <td><input type="text" value="<?php echo $customer["sono"] ?>"  readonly=""></td>
+                                    <td><input style="color: red" type="text" value="<?php echo $customer["sono"] ?>"  readonly=""></td>
                                 </tr>
                                 <tr >
                                     <td><b>Sales Date</b></td>
                                     <td><input type="text" value="<?php echo date("Y-m-d") ?>" readonly=""></td>
                                 </tr>
-                                <tr >
+                                <tr>
                                     <td><b>Sales Person</b></td>
                                     <td><input type="text" value="<?php echo $customer["representative"] ?>" readonly=""></td>
                                 </tr>

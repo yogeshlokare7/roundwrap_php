@@ -55,7 +55,8 @@ $subitemof = MysqlConnection::fetchCustom("SELECT  item_code, item_name  FROM  `
                             <tr style="vertical-align: top">
                                 <td >Sub Item of<br/><input type="text"  value="<?php echo implode(",", $subitemof[0]) ?>" readonly=""/></td>
                                 <td >Item Status<br/><input  type="text"  value="<?php echo $item["status"] == "Y" ? "Active" : "In Active" ?>" readonly="" /></td>
-                                <td colspan="1">Currency<br/><input type="text"  value="<?php echo getcurrency($item["currency"]) . " (" . $item["currency"] . ")" ?>" readonly=""/></td>
+                                <td >Currency<br/><input type="text"  value="<?php echo getcurrency($item["currency"]) . " (" . $item["currency"] . ")" ?>" readonly=""/></td>
+                                <td >Preferred Vendor<br/><input type="text"  readonly=""/></td>
                             </tr>
                         </table> 
                     </fieldset>

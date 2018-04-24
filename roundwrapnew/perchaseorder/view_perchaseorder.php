@@ -61,7 +61,7 @@ if (isset($_POST["purchaseorderid"]) && isset($_GET["flag"])) {
                                     <td><input  type="text"  value="<?php echo $purchaseorder["companyname"] ?>" readonly=""/></td>
                                     <td style="width: 10%"><label class="control-label">SHIP VIA&nbsp;:&nbsp</label></td>
                                     <td><input  type="text" placeholder=""  value="<?php echo $purchaseorder["ship_via"] ?>" readonly="" /></td>
-                                    <td style="width: 10%"><label class="control-label">EXPECTED&nbsp;DELIVERY&nbsp;:&nbsp</label></td>
+                                    <td style="width: 10%"><label class="control-label">SHIP&nbsp;DATE&nbsp;:&nbsp</label></td>
                                     <td><input type="text" value="<?php echo $purchaseorder["expected_date"] ?>"  data-date-format="mm-dd-yyyy"  readonly="" ></td>
                                 </tr>
                                 <tr>
@@ -69,8 +69,8 @@ if (isset($_POST["purchaseorderid"]) && isset($_GET["flag"])) {
                                     <td><textarea style="line-height: 18px;" readonly=""><?php echo $purchaseorder["billing_address"] ?></textarea></td>
                                     <td><label class="control-label">SHIPPING&nbsp;ADDRESS&nbsp;:&nbsp</label></td>
                                     <td><textarea style="line-height: 18px;" readonly=""><?php echo $purchaseorder["shipping_address"] ?></textarea></td>
-                                    <td ><label class="control-label">REMARK&nbsp;/&nbsp;NOTE&nbsp;:&nbsp</label></td>
-                                    <td><textarea  style="line-height: 18px;" readonly=""  ><?php echo $purchaseorder["remark"] ?></textarea></td>
+                                    <td ><label class="control-label"><b>REMARK&nbsp;/&nbsp;NOTE&nbsp;:&nbsp</b></label></td>
+                                    <td><textarea  style="line-height: 18px; color: red" readonly=""  ><?php echo $purchaseorder["remark"] ?></textarea></td>
                                 </tr>
                             </table>
                         </fieldset>
@@ -116,12 +116,12 @@ if (isset($_POST["purchaseorderid"]) && isset($_GET["flag"])) {
                         </div>
                         <div style="width: 28%;float: right">
                             <table class="table-bordered" style="width: 100%;border-collapse: collapse;background-color: white" border="1">
-                                <tr >
+                                <tr style="font-weight: bold; color: red">
                                     <td><b>PO Number</b></td>
                                     <td><input type="text" value="<?php echo $purchaseorder["purchaseOrderId"] ?>"  readonly=""></td>
                                 </tr>
                                 <tr >
-                                    <td><b>Purchase Date</b></td>
+                                    <td><b>Order Date</b></td>
                                     <td><input type="text" value="<?php echo date("Y-m-d") ?>" readonly=""></td>
                                 </tr>
                                 <tr >

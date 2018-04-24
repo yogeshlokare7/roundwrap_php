@@ -60,7 +60,7 @@ if ($isOpen == "N") {
                                     <td><input  type="text" name="companyname" placeholder="Supplier Name" value="<?php echo $podetails["companyname"] ?>" /></td>
                                     <td style="width: 10%"><label class="control-label">SHIP VIA&nbsp;:&nbsp</label></td>
                                     <td><input  type="text" name="ship_via" value="<?php echo $podetails["ship_via"] ?>" placeholder="" /></td>
-                                    <td style="width: 10%"><label class="control-label">EXPECTED&nbsp;DELIVERY&nbsp;:&nbsp</label></td>
+                                    <td style="width: 10%"><label class="control-label">SHIP&nbsp;DATE&nbsp;:&nbsp</label></td>
                                     <td><input type="date" name="expected_date" value="<?php echo $podetails["expected_date"] ?>"   data-date-format="mm-dd-yyyy"  ></td>
                                 </tr>
                                 <tr>
@@ -68,8 +68,8 @@ if ($isOpen == "N") {
                                     <td><textarea style="line-height: 18px;" name="shipping"><?php echo $podetails["shipping_address"] ?></textarea></td>
                                     <td><label class="control-label">SHIPPING&nbsp;ADDRESS&nbsp;:&nbsp</label></td>
                                     <td><textarea style="line-height: 18px;" name="billing"><?php echo $podetails["billing_address"] ?></textarea></td>
-                                    <td ><label class="control-label">REMARK&nbsp;/&nbsp;NOTE&nbsp;:&nbsp</label></td>
-                                    <td><textarea  style="line-height: 18px;" name="remark"><?php echo $podetails["remark"] ?></textarea></td>
+                                    <td ><label class="control-label"><b>REMARK&nbsp;/&nbsp;NOTE&nbsp;:&nbsp</b></label></td>
+                                    <td><textarea  style="line-height: 18px; color: red" name="remark"><?php echo $podetails["remark"] ?></textarea></td>
                                 </tr>
                             </table>
                         </fieldset>
@@ -133,12 +133,12 @@ if ($isOpen == "N") {
                         </div>
                         <div style="width: 28%;float: right">
                             <table class="table-bordered" style="width: 100%;border-collapse: collapse;background-color: white" border="1">
-                                <tr >
+                                <tr style="font-weight: bold; color: red" >
                                     <td><b>PO Number</b></td>
                                     <td><input type="text" value="<?php echo $podetails["purchaseOrderId"] ?>"  readonly=""></td>
                                 </tr>
                                 <tr >
-                                    <td><b>Purchase Date</b></td>
+                                    <td><b>Order Date</b></td>
                                     <td><input type="date" value="<?php echo $podetails["purchaseOrderId"] ?>" readonly=""></td>
                                 </tr>
                                 <tr >

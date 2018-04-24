@@ -34,7 +34,7 @@ $sqltaxinfodata = MysqlConnection::fetchCustom("SELECT * FROM taxinfo_table ORDE
                                         <option value="InventoryPart" <?php echo $item["type"] == "InventoryPart" ? "selected" : "" ?>  >InventoryPart</option>
                                     </select>
                                 </td>
-                                <td colspan="3">Currency<br/>
+                                <td >Currency<br/>
                                     <select name="currency"  id="currency" value="">
                                         <?php
                                         $currencyarr = getcurrency();
@@ -44,6 +44,11 @@ $sqltaxinfodata = MysqlConnection::fetchCustom("SELECT * FROM taxinfo_table ORDE
                                             <?php
                                         }
                                         ?>
+                                    </select>
+                                </td>
+                                <td colspan="2">Preferred Vendor<br/>
+                                    <select name="currency"  id="currency" value="">
+                                       
                                     </select>
                                 </td>
                             </tr>

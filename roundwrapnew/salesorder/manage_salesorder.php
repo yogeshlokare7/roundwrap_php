@@ -167,8 +167,11 @@ $listSalesOrders = MysqlConnection::fetchCustom("SELECT * FROM `sales_order` ORD
                     case "create_salesorder":
                         window.location = "index.php?pagename=create_salesorderreceiving&salesorderid=" + id;
                         break;
+//                    case "print_so":
+//                        window.open("invoice/so_invoice.php?salesorderid=" + id, '_blank');
+//                        break;
                     case "create_invoice":
-                        window.location = "index.php?pagename=so_invoice&salesorderid="+ id ;
+                        window.location = "index.php?pagename=so_invoice&salesorderid=" + id;
                         break;
                     case "quit":
                         window.location = "index.php?pagename=manage_dashboard";
@@ -185,6 +188,7 @@ $listSalesOrders = MysqlConnection::fetchCustom("SELECT * FROM `sales_order` ORD
                 "delete_salesorder": {name: "DELETE ORDER", icon: ""},
                 "sep1": "---------",
                 "create_salesorder": {name: "CREATE SALES ORDER", icon: ""},
+                "print_so": {name: "PRINT SALES ORDER", icon: ""},
                 "create_invoice": {name: "CREATE INVOICE", icon: ""},
 //                "create_note": {name: "CREATE SALES ORDER", icon: ""},
                 "sep2": "---------",

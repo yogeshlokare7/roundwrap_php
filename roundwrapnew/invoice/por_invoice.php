@@ -28,7 +28,7 @@ $purchaseorder = $result[0];
 
 
 <br/>
-<div id="page-wrap" style="width: 80%">
+<div id="page-wrap" style="width: 90%">
     <h3 style="text-align: center;height: 40px;line-height: 45px;background-color: rgb(240,240,240);border: solid 1px rgb(200,200,200);margin-bottom: -1px;">PACKING SLIP</h3>
     <table style="width: 100%" border="0">
         <tr style="vertical-align: top">
