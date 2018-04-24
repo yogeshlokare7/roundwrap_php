@@ -5,7 +5,9 @@
     table tr td{
         padding: 5px;
     }
+    
 </style>
+
 <?php
 $sqlgetsupplier = "SELECT * FROM supplier_master WHERE supp_id = " . filter_input(INPUT_GET, "supplierid");
 $resultset = MysqlConnection::fetchCustom($sqlgetsupplier);
@@ -61,7 +63,7 @@ $ponumber = MysqlConnection::fetchCustom("SELECT id FROM purchase_order ORDER BY
                                     <td style="width: 10%"><label class="control-label">SHIP VIA&nbsp;:&nbsp</label></td>
                                     <td><input  type="text" name="ship_via" placeholder="" value="<?php echo $supplier["ship_via"] ?>"/></td>
                                     <td style="width: 10%"><label class="control-label">SHIP&nbsp;DATE&nbsp;:&nbsp</label></td>
-                                    <td><input type="date" name="expected_date" id="expected_date" value="<?php echo $supplier["expected_date"] ?>" ></td>
+                                    <td><input type="text" required pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}" placeholder="YYYY-MM-DD" name="expected_date" id="expected_date" value="<?php echo $supplier["expected_date"] ?>" ></td>
                                 </tr>
                                 <tr>
                                     <td ><label  class="control-label"  class="control-label">BILLING&nbsp;ADDRESS&nbsp;:&nbsp</label></td>
@@ -114,7 +116,7 @@ $ponumber = MysqlConnection::fetchCustom("SELECT id FROM purchase_order ORDER BY
                             <table class="table-bordered" style="width: 100%;border-collapse: collapse;background-color: white" border="1">
                                 <tr style="font-weight: bold; color: red" >
                                     <td><b>PO Number</b></td>
-                                    <td><input type="text" name="purchaseOrderId" onkeypress="return chkNumericKey(event)" value="PO<?php echo (1000 + $ponumber[0]["id"]) ?>" readonly=""></td>
+                                    <td><input style="color: red" type="text" name="purchaseOrderId"  onkeypress="return chkNumericKey(event)" value="PO<?php echo (1000 + $ponumber[0]["id"]) ?>" readonly=""></td>
                                 </tr>
                                 <tr >
                                     <td><b>Order Date</b></td>
@@ -157,6 +159,7 @@ $ponumber = MysqlConnection::fetchCustom("SELECT id FROM purchase_order ORDER BY
 <script src="js/maruti.form_common.js"></script>
 <script src="perchaseorder/purchasejs.js"></script>
 <script>
+    
                     function shiftfocus() {
 
                     }

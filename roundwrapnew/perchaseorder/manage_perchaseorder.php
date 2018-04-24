@@ -36,6 +36,7 @@ $listPerchaseOrders = MysqlConnection::fetchCustom("SELECT *  FROM  `purchase_or
     <div class="cutomheader"> 
         <table border="0">
             <tr >
+                <td style="width: 10%"><a class="btn" href="index.php?pagename=create_perchaseorder" ><i class="icon-plus-sign"></i>&nbsp;ADD PURCHASE ORDER</a></td>
                 <th style="width: 2.3%">&nbsp;Search&nbsp;:&nbsp;</th>
                 <th  style="text-align: left">
                     <input type="text" id="searchinput" onkeyup="searchData()" 
