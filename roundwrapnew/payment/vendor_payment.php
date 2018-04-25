@@ -10,7 +10,7 @@
 $sqlgetsupplier = "SELECT supp_id,companyname, supp_balance FROM supplier_master WHERE supp_id = " . filter_input(INPUT_GET, "supplierid");
 $resultset1 = MysqlConnection::fetchCustom($sqlgetsupplier);
 $supplier = $resultset1[0];
-
+$supp_id = $supplier["supp_id"];
 $_SESSION["msg"] = "";
 if (isset($_POST["paidAmount"]) && $_POST["paidAmount"] != "") {
     $_POST["cust_id"] = "0";
@@ -19,13 +19,14 @@ if (isset($_POST["paidAmount"]) && $_POST["paidAmount"] != "") {
     unset($_POST["paidDate"]);
     unset($_POST["balanceAmount"]);
     MysqlConnection::insert("customer_balancepayment", $_POST);
-    $update = "UPDATE supplier_master SET supp_balance = " . $_POST["balance"] . " WHERE supp_id =  " . $supplier["supp_id"];
+    $update = "UPDATE supplier_master SET supp_balance = " . $_POST["balance"] . " WHERE supp_id =  " . $supp_id;
     MysqlConnection::delete($update);
     $_SESSION["msg"] = "Payment of " . $_POST["paidAmount"] . " added ";
+    header("location:index.php?pagename=vendor_payment&supplierid=" . $supp_id);
 }
 
 $arrreceiptno = MysqlConnection::fetchCustom("SELECT id FROM `customer_balancepayment` ORDER BY id desc");
-$receiptno = "CR-" . time() . "-" . $arrreceiptno[0]["id"] . "" . $supplier["supp_id"];
+$receiptno = "CR-" . time() . "-" . $arrreceiptno[0]["id"] . "" . $supp_id;
 $resultset = MysqlConnection::fetchCustom("SELECT * FROM `customer_balancepayment` where supp_id = " . filter_input(INPUT_GET, "supplierid") . " ORDER BY paidDate DESC");
 ?> 
 <div id="content-header">

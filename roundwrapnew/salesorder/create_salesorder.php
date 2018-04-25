@@ -7,7 +7,7 @@ $sonumber = "SO" . (1000 + $salesorderbumberarray[0]["counter"]);
 
 $sqlitemarray = MysqlConnection::fetchCustom("SELECT count(id) as counter FROM sales_order");
 $itemarray = MysqlConnection::fetchCustom("SELECT * FROM item_master;");
-$buildauto = buildauto($itemarray);
+$buildauto = buildauto(MysqlConnection::fetchCustom("SELECT item_id ,item_code,item_desc_purch, item_name FROM item_master;"));
 ?>
 
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
@@ -30,7 +30,7 @@ $buildauto = buildauto($itemarray);
     .control-label{ margin-left: 10px; }
     tr,td{ vertical-align: middle; font-size: 12px;padding: 5px;margin: 5px;}
 </style>
-<form action="salesorder/savesalesorder_ajax.php" method="post">
+<form action="salesorder/savesalesorder_ajax.php" method="post" autocomplete="off">
     <input type="hidden" name="customer_id" value="<?php echo filter_input(INPUT_GET, "customerId") ?>">
     <div class="container-fluid" style="" >
         <div class="widget-box" style="width: 100%;border-bottom: solid 1px #CDCDCD;">
@@ -51,7 +51,7 @@ $buildauto = buildauto($itemarray);
                                     <td style="width: 10%"><label class="control-label">SHIP VIA&nbsp;:&nbsp</label></td>
                                     <td><input  type="text" placeholder="" name="shipvia"/></td>
                                     <td style="width: 10%"><label class="control-label">EXPECTED&nbsp;DELIVERY&nbsp;:&nbsp</label></td>
-                                    <td><input type="date" value="12-02-2012"  data-date-format="mm-dd-yyyy"  ></td>
+                                    <td><input type="text"  id="datepicker" ></td>
                                 </tr>
                                 <tr>
                                     <td ><label  class="control-label"  class="control-label">BILLING&nbsp;ADDRESS&nbsp;:&nbsp</label></td>
@@ -145,11 +145,11 @@ $buildauto = buildauto($itemarray);
 </form>
 <script src="js/jquery.min.js"></script> 
 <script src="js/bootstrap.min.js"></script> 
-<script src="js/bootstrap-colorpicker.js"></script> 
-<script src="js/bootstrap-datepicker.js"></script> 
-<script src="js/select2.min.js"></script> 
-<script src="js/maruti.js"></script> 
-<script src="js/maruti.form_common.js"></script>
+<!--<script src="js/bootstrap-colorpicker.js"></script>--> 
+<!--<script src="js/bootstrap-datepicker.js"></script>--> 
+<!--<script src="js/select2.min.js"></script>--> 
+<!--<script src="js/maruti.js"></script>--> 
+<!--<script src="js/maruti.form_common.js"></script>-->
 <script src="salesorder/salesorderjs.js"></script>
 <script>
             function createPurchaseOrder() {
@@ -162,8 +162,7 @@ $buildauto = buildauto($itemarray);
 function buildauto($itemarray) {
     $option = "";
     foreach ($itemarray as $value) {
-        $option.="\"" . $value["item_code"] . "\",";
+        $option.="\"" . $value["item_code"]. " __ " . preg_replace('!\s+!', ' ', str_replace("\"", "", $value["item_desc_purch"]) ). "\",";
     }
     return $option;
 }
-?>

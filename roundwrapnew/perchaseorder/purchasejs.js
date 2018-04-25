@@ -7,15 +7,15 @@ function setDetails(count) {
         data: dataString
     }).done(function(data) {
         var jsonobj = JSON.parse(data);
-        var desc = jsonobj.item_desc_purch === "" ? jsonobj.item_desc_purch : jsonobj.item_desc_sales;
-        $("#desc" + count).text(desc);
+//        var desc = jsonobj.item_desc_purch === "" ? jsonobj.item_desc_purch : jsonobj.item_desc_sales;
+//        $("#desc" + count).text(desc);
         $("#unit" + count).text(jsonobj.unit);
         $("#price" + count).text(jsonobj.purchase_rate);
     }).fail(function() {
     });
 }
 function clearValue(count) {
-    $("#desc" + count).text("");
+//    $("#desc" + count).text("");
     $("#unit" + count).text("");
     $("#price" + count).text("");
     $("#tags" + count).val("");
@@ -62,15 +62,21 @@ function discount() {
 
 function searchSupplier() {
     var companyname = $("#companyname").val();
-    var dataString = "companyname=" + companyname;
-    $.ajax({
-        type: 'POST',
-        url: 'suppliermaster/searchsupplier_ajax.php',
-        data: dataString
-    }).done(function(data) {
-        var jsonobj = JSON.parse(data);
-        console.log(jsonobj);
-        $("#suppid").val(jsonobj.supp_id);
-    }).fail(function() {
-    });
+    if (companyname !== "") {
+        var dataString = "companyname=" + companyname;
+        $.ajax({
+            type: 'POST',
+            url: 'suppliermaster/searchsupplier_ajax.php',
+            data: dataString
+        }).done(function(data) {
+            var jsonobj = JSON.parse(data);
+            $("#suppid").val(jsonobj.supp_id);
+            if (jsonobj.length === 0) {
+                $("#error").text("Supplier not available!!!");
+            }else{
+                $("#error").text("");
+            }
+        }).fail(function() {
+        });
+    }
 }

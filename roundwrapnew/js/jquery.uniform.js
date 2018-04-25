@@ -35,7 +35,7 @@
 
     var el = this;
     //code for specifying a reset button
-    if(options.resetSelector != false){
+    if(options.resetSelector !== false){
       $(options.resetSelector).mouseup(function(){
         function resetThis(){
           $.uniform.update(el);

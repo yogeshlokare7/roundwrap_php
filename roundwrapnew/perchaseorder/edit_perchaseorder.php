@@ -10,8 +10,7 @@
 $purchaseid = filter_input(INPUT_GET, "purchaseorderid");
 $result = MysqlConnection::fetchCustom("SELECT * , (SELECT companyname FROM supplier_master WHERE supp_id = po.`supplier_id` ) AS companyname FROM purchase_order po, purchase_item pi WHERE po.id = pi.po_id AND pi.po_id =$purchaseid");
 $podetails = $result[0];
-$itemarray = MysqlConnection::fetchCustom("SELECT item_id ,item_code, item_name FROM item_master;");
-$buildauto = buildauto($itemarray);
+$buildauto = buildauto(MysqlConnection::fetchCustom("SELECT item_id ,item_code,item_desc_purch, item_name FROM item_master;"));
 
 $isOpen = $podetails["isOpen"];
 if ($isOpen == "N") {
@@ -56,12 +55,12 @@ if ($isOpen == "N") {
                         <fieldset  class="well the-fieldset">
                             <table>
                                 <tr>
-                                    <td style="width: 10%"><label class="control-label"   class="control-label">SUPPLIER NAME&nbsp;:&nbsp</label></td>
-                                    <td><input  type="text" name="companyname" placeholder="Supplier Name" value="<?php echo $podetails["companyname"] ?>" /></td>
+                                    <td style="width: 10%"><label class="control-label"  class="control-label">SUPPLIER NAME&nbsp;:&nbsp</label></td>
+                                    <td><input  type="text" name="companyname"  readonly="" placeholder="Supplier Name" value="<?php echo $podetails["companyname"] ?>" /></td>
                                     <td style="width: 10%"><label class="control-label">SHIP VIA&nbsp;:&nbsp</label></td>
                                     <td><input  type="text" name="ship_via" value="<?php echo $podetails["ship_via"] ?>" placeholder="" /></td>
                                     <td style="width: 10%"><label class="control-label">SHIP&nbsp;DATE&nbsp;:&nbsp</label></td>
-                                    <td><input type="date" name="expected_date" value="<?php echo $podetails["expected_date"] ?>"   data-date-format="mm-dd-yyyy"  ></td>
+                                    <td><input type="text" value="<?php echo  $podetails["expected_date"] ?>" readonly="" name="expected_date" ></td>
                                 </tr>
                                 <tr>
                                     <td ><label  class="control-label"  class="control-label">BILLING&nbsp;ADDRESS&nbsp;:&nbsp</label></td>
@@ -81,8 +80,7 @@ if ($isOpen == "N") {
                             <table class="table-bordered" style="width: 100%;border-collapse: collapse" border="1">
                                 <tr style="border-bottom: solid 1px  #CDCDCD;background-color: rgb(250,250,250)">
                                     <td style="width: 25px;">#</td>
-                                    <td style="width: 230px;">ITEM NAME</td>
-                                    <td style="width: 350px">ITEM DESCRIPTION</td>
+                                    <td style="width: 550px;">ITEM NAME</td>
                                     <td style="width: 80px;">UNIT</td>
                                     <td style="width: 80px;">PRICE</td>
                                     <td style="width: 80px;">QTY</td>
@@ -100,10 +98,9 @@ if ($isOpen == "N") {
                                             <td style="width: 25px">
                                                 <a class="icon  icon-remove" onclick="clearValue('<?php echo $index ?>')"></a>
                                             </td>
-                                            <td style="width: 230px;">
-                                                <input type="text" name="items[]" value="<?php echo $items[0]["item_code"] ?>" id="tags<?php echo $index ?>" onfocusout="setDetails('<?php echo $index ?>')"  style="padding: 0px;margin: 0px;width: 100%">
+                                            <td style="width: 550px;">
+                                                <input type="text" name="items[]" value="<?php echo $items[0]["item_code"]." __ ".$items[0]["item_desc_purch"] ?>" id="tags<?php echo $index ?>" onfocusout="setDetails('<?php echo $index ?>')"  style="padding: 0px;margin: 0px;width: 100%">
                                             </td>
-                                            <td style="width: 350px"><div id="desc<?php echo $index ?>"><?php echo $items[0]["item_desc_purch"] ?></div></td>
                                             <td style="width: 80px;"><div id="unit<?php echo $index ?>"><?php echo $items[0]["unit"] ?></div></td>
                                             <td style="width: 80px;"><div id="price<?php echo $index ?>"><?php echo $items[0]["purchase_rate"] ?></div></td>
                                             <td style="width: 80px;"><input type="text" name="itemcount[]" value="<?php echo $value["qty"] ?>" onfocusout="calculateAmount('<?php echo $index ?>')" id="amount<?php echo $index ?>" style="padding: 0px;margin: 0px;width: 100%"></td>
@@ -118,10 +115,9 @@ if ($isOpen == "N") {
                                             <td style="width: 25px">
                                                 <a class="icon  icon-remove" onclick="clearValue('<?php echo $index ?>')"></a>
                                             </td>
-                                            <td style="width: 230px;">
+                                            <td style="width: 550px;">
                                                 <input type="text" name="items[]" id="tags<?php echo $index ?>" onfocusout="setDetails('<?php echo $index ?>')"  style="padding: 0px;margin: 0px;width: 100%">
                                             </td>
-                                            <td style="width: 350px"><div id="desc<?php echo $index ?>"></div></td>
                                             <td style="width: 80px;"><div id="unit<?php echo $index ?>"></div></td>
                                             <td style="width: 80px;"><div id="price<?php echo $index ?>"></div></td>
                                             <td style="width: 80px;"><input type="text" name="itemcount[]" onfocusout="calculateAmount('<?php echo $index ?>')" id="amount<?php echo $index ?>" style="padding: 0px;margin: 0px;width: 100%"></td>
@@ -139,7 +135,7 @@ if ($isOpen == "N") {
                                 </tr>
                                 <tr >
                                     <td><b>Order Date</b></td>
-                                    <td><input type="date" value="<?php echo $podetails["purchaseOrderId"] ?>" readonly=""></td>
+                                    <td><input type="text" value="<?php echo $podetails["purchasedate"] ?>" readonly=""></td>
                                 </tr>
                                 <tr >
                                     <td><b>Enter By</b></td>
@@ -169,70 +165,9 @@ if ($isOpen == "N") {
         <a href="index.php?pagename=manage_perchaseorder" id="btnSubmitFullForm" class="btn btn-info">CANCEL</a>
     </div>
 </form>
-<script src="js/jquery.min.js"></script> 
-<script src="js/bootstrap.min.js"></script> 
-<script src="js/bootstrap-colorpicker.js"></script> 
-<script src="js/bootstrap-datepicker.js"></script> 
-<script src="js/select2.min.js"></script> 
-<script src="js/maruti.js"></script> 
-<script src="js/maruti.form_common.js"></script>
 <script src="perchaseorder/purchasejs.js"></script>
 <script>
 
-//            function setDetails(count) {
-//                var item_code = $("#tags" + count).val();
-//                var dataString = "item_code=" + item_code;
-//                $.ajax({
-//                    type: 'POST',
-//                    url: 'itemmaster/getitemajax.php',
-//                    data: dataString
-//                }).done(function(data) {
-//                    var jsonobj = JSON.parse(data);
-//                    var desc = jsonobj.item_desc_purch === "" ? jsonobj.item_desc_purch : jsonobj.item_desc_sales;
-//                    $("#desc" + count).text(desc);
-//                    $("#unit" + count).text(jsonobj.unit);
-//                    $("#price" + count).text(jsonobj.purchase_rate);
-//                }).fail(function() {
-//                });
-//            }
-//            function clearValue(count) {
-//                $("#desc" + count).text("");
-//                $("#unit" + count).text("");
-//                $("#price" + count).text("");
-//                $("#tags" + count).val("");
-//                $("#total" + count).text("");
-//                $("#amount" + count).val("");
-//                finalTotal();
-//            }
-//
-//            function calculateAmount(count) {
-//                var price = $("#price" + count).text();
-//                var amount = $("#amount" + count).val();
-//                var total = parseFloat(price) * parseFloat(amount);
-//                $("#total" + count).text(total);
-//                finalTotal();
-//            }
-//
-//            function finalTotal() {
-//                var finaltotal = 0;
-//                for (var index = 1; index <= 30; index++) {
-//                    var price = $("#price" + index).text();
-//                    var amount = $("#amount" + index).val();
-//                    if (price !== "" && amount !== "") {
-//                        var t = parseFloat(price) * parseFloat(amount);
-//                        finaltotal = parseFloat(finaltotal) + parseFloat(t);
-//                    }
-//                }
-//                $("#finaltotal").val(finaltotal);
-//            }
-////                                        function discount() {
-////                                            var amount = $("#discount").val();
-////                                            var finaltotal = $("#finaltotal").val();
-////                                            if (amount !== "") {
-////                                                var discount = parseFloat(finaltotal) - parseFloat(amount);
-////                                                $("#nettotal").val(discount);
-////                                            }
-////                                        }
 
             function createPurchaseOrder() {
                 var x = document.getElementsByTagName("form");
@@ -245,7 +180,7 @@ if ($isOpen == "N") {
 function buildauto($itemarray) {
     $option = "";
     foreach ($itemarray as $value) {
-        $option.="\"" . $value["item_code"] . "\",";
+        $option.="\"" . $value["item_code"]. " __ " . preg_replace('!\s+!', ' ', str_replace("\"", "", $value["item_desc_purch"]) ). "\",";
     }
     return $option;
 }

@@ -22,8 +22,7 @@ if (count($explode) >= 2) {
 if ($_SESSION["user"] == "") {
     header("location:logout.php");
 }
-$ownaddress = 
-        $_SESSION["user"]["cmpName"] . ", " .
+$ownaddress = $_SESSION["user"]["cmpName"] . ", " .
         $_SESSION["user"]["streetNo"] . " " .
         $_SESSION["user"]["streetName"] . " " .
         $_SESSION["user"]["postalCode"] . ", " .
@@ -44,16 +43,17 @@ $ownaddress =
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="stylesheet" href="css/bootstrap.min.css" />
-        <link rel="stylesheet" href="css/fullcalendar.css" />
         <link rel="stylesheet" href="css/maruti-style.css" />
         <link rel="stylesheet" href="css/maruti-media.css" class="skin-color" />
         <link rel="stylesheet" href="css/bootstrap-responsive.min.css" />
         <link rel="stylesheet" href="css/uniform.css" />
         <link rel="stylesheet" href="css/loder.css" />
+        <!--<script src="js/maruti.js"></script>--> 
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
         <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-        <script src="js/jquery.min.js"></script> 
-        <script src="js/maruti.js"></script> 
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
         <script src="js/jquery.mask.js"></script> 
         <script>
             $(function() {
@@ -87,8 +87,15 @@ $ownaddress =
                     return false;
                 }
             }
-        </script>
 
+            $(function() {
+                $("#datepicker").datepicker({
+                    minDate: -20,
+                    maxDate: "+1M +10D"
+                });
+                $("#datepicker").datepicker("option", "dateFormat", "yy-mm-dd");
+            });
+        </script>
         <style>
             body{
                 font-size: 11px;
@@ -125,6 +132,11 @@ $ownaddress =
                 width: 100%;
                 color: white;
                 text-align: center;
+            }
+            .ui-autocomplete {
+                overflow: auto;
+                overflow-x: hidden;
+                height: 300px;
             }
         </style>
 
@@ -189,19 +201,19 @@ $ownaddress =
                 $(this).addClass("highlight");
         });
     </script>
-    <script src="js/jquery.ui.custom.js"></script> 
+      <script src="js/jquery.ui.custom.js"></script> 
     <script src="js/bootstrap.min.js"></script> 
     <script src="js/jquery.uniform.js"></script> 
-    <script src="js/excanvas.min.js"></script> 
-    <script src="js/maruti.tables.js"></script>
-    <script src="js/jquery.peity.min.js"></script> 
-    <script src="js/fullcalendar.min.js"></script> 
-    <script src="js/maruti.dashboard.js"></script> 
-    <script src="js/maruti.chat.js"></script> 
-    <script src="js/jquery.flot.min.js"></script> 
-    <script src="js/jquery.flot.resize.min.js"></script> 
-    <script src="js/maruti.tables.js"></script>
-    <script src="js/jquery.dataTables.min.js"></script> 
+    <!--<script src="js/excanvas.min.js"></script>--> 
+    <!--<script src="js/maruti.tables.js"></script>-->
+    <!--<script src="js/jquery.peity.min.js"></script>--> 
+    <!--<script src="js/fullcalendar.min.js"></script>--> 
+    <!--<script src="js/maruti.dashboard.js"></script>--> 
+    <!--<script src="js/maruti.chat.js"></script>--> 
+    <!--<script src="js/jquery.flot.min.js"></script>--> 
+    <!--<script src="js/jquery.flot.resize.min.js"></script>--> 
+    <!--<script src="js/maruti.tables.js"></script>-->
+    <!--<script src="js/jquery.dataTables.min.js"></script>--> 
     <script type="text/javascript">
 
         // This function is called from the pop-up menus to transfer to
@@ -209,10 +221,10 @@ $ownaddress =
         function goPage(newURL) {
 
             // if url is empty, skip the menu dividers and reset the menu selection to default
-            if (newURL != "") {
+            if (newURL !== "") {
 
                 // if url is "-", it is this page -- reset the menu:
-                if (newURL == "-") {
+                if (newURL === "-") {
                     resetMenu();
                 }
                 // else, send page to designated URL            
@@ -229,8 +241,6 @@ $ownaddress =
         $(window).load(function() {
             $('#overlay1').fadeOut();
         });
-
-
     </script>
 </body>
 </html>

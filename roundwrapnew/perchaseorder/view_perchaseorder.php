@@ -105,9 +105,9 @@ if (isset($_POST["purchaseorderid"]) && isset($_GET["flag"])) {
                                             <td style="width: 300px"><div id="desc"></div><?php echo $items[0]["item_desc_purch"] ?></td>
                                             <td style="width: 80px;" ><div id="unit"></div><?php echo $items[0]["unit"] ?></td>
                                             <td style="width: 80px;text-align: right"><div id="price"></div><?php echo $items[0]["purchase_rate"] ?></td>
-                                            <td style="width:80px;text-align: right"><?php echo $purchaseorder["qty"] ?></td>
-                                            <td style="width:80px;text-align: right;background-color: rgb(247,252,231)"><?php echo $purchaseorder["rqty"] ?></td>
-                                            <td style="text-align: right"><?php echo ($items[0]["purchase_rate"] * $purchaseorder["qty"]) ?></td>
+                                            <td style="width:80px;text-align: right"><?php echo $value["qty"] ?></td>
+                                            <td style="width:80px;text-align: right;background-color: rgb(247,252,231)"><?php echo $value["rqty"] ?></td>
+                                            <td style="text-align: right"><?php echo ($items[0]["purchase_rate"] * $value["qty"]) ?></td>
                                         </tr>
                                     <?php } ?>
                                 </table>

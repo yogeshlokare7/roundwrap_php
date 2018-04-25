@@ -201,7 +201,7 @@ if (isset($customerid) && $customerid != "") {
                 "active_customer": {name: "ACTIVE/IN ACTIVE CUSTOMER", icon: ""},
                 "sep1": "---------",
                 "create_note": {name: "CREATE NOTE", icon: ""},
-                "create_sales_order": {name: "CREATE SALES ORDER", icon: ""},
+                "create_sales_order": {name: "CREATE ORDER", icon: ""},
                 "create_payment": {name: "MAKE PAYMENT", icon: ""},
                 "sep2": "---------",
                 "quit": {name: "QUIT", icon: function() {

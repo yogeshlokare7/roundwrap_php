@@ -24,13 +24,13 @@ $resultset = MysqlConnection::fetchCustom($sqlgetsupplier);
 $supplier = $resultset[0];
 
 //$sqlitemarray = MysqlConnection::fetchCustom("SELECT count(id) as counter FROM sales_order");
-$itemarray = MysqlConnection::fetchCustom("SELECT item_id ,item_code, item_name FROM item_master;");
-$buildauto = buildauto($itemarray);
 
 $ponumber = MysqlConnection::fetchCustom("SELECT id FROM purchase_order ORDER BY id DESC LIMIT 0,1");
+
+$buildauto = buildauto(MysqlConnection::fetchCustom("SELECT item_id ,item_code,item_desc_purch, item_name FROM item_master;"));
 $vendorauto = buildVendorAutoComplete(MysqlConnection::fetchCustom("SELECT supp_id,companyname FROM `supplier_master` WHERE status = 'Y' ORDER BY `supplier_master`.`companyname` ASC"));
 ?>
-<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
 <script>
     $(function() {
         var availableTags = [<?php echo $buildauto ?>];
@@ -43,6 +43,7 @@ $vendorauto = buildVendorAutoComplete(MysqlConnection::fetchCustom("SELECT supp_
         $("#companyname").autocomplete({source: availableVendor});
     });
 </script>
+
 <div id="content-header">
     <div id="breadcrumb"> 
         <a class="tip-bottom"><i class="icon-home"></i>HOME</a>
@@ -56,7 +57,6 @@ $vendorauto = buildVendorAutoComplete(MysqlConnection::fetchCustom("SELECT supp_
 </style>
 <form action="perchaseorder/savepurchaseorder.php" name="purchaseorder" method="post">
     <input type="hidden" name="suppid" id="suppid" value="<?php echo $supplierid ?>">
-    <input type="hidden" name="suppidajax" id="suppidajax">
     <div class="container-fluid" style="" >
         <div class="widget-box" style="width: 100%;border-bottom: solid 1px #CDCDCD;">
             <div class="widget-title">
@@ -72,11 +72,14 @@ $vendorauto = buildVendorAutoComplete(MysqlConnection::fetchCustom("SELECT supp_
                             <table>
                                 <tr>
                                     <td style="width: 10%"><label class="control-label"   class="control-label">SUPPLIER NAME&nbsp;:&nbsp</label></td>
-                                    <td><input  type="text" autofocus="" name="companyname" onfocusout="searchSupplier()" id="companyname" placeholder="Supplier Name" value="<?php echo $supplier["companyname"] ?>" /></td>
+                                    <td>
+                                        <input  type="text" autofocus="" name="companyname"  required="" onfocusout="searchSupplier()" id="companyname" placeholder="Supplier Name" value="<?php echo $supplier["companyname"] ?>" />
+                                        <div id="error" style="color: red"></div>
+                                    </td>
                                     <td style="width: 10%"><label class="control-label">SHIP VIA&nbsp;:&nbsp</label></td>
                                     <td><input  type="text" name="ship_via" placeholder="" value="<?php echo $supplier["ship_via"] ?>"/></td>
                                     <td style="width: 10%"><label class="control-label">SHIP&nbsp;DATE&nbsp;:&nbsp</label></td>
-                                    <td><input type="date" required pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}" placeholder="YYYY-MM-DD" name="expected_date" id="expected_date" value="<?php echo $supplier["expected_date"] ?>" ></td>
+                                    <td><input type="text" name="expected_date" id="datepicker" value="<?php echo $supplier["expected_date"] ?>" ></td>
                                 </tr>
                                 <tr>
                                     <td ><label  class="control-label"  class="control-label">BILLING&nbsp;ADDRESS&nbsp;:&nbsp</label></td>
@@ -96,8 +99,7 @@ $vendorauto = buildVendorAutoComplete(MysqlConnection::fetchCustom("SELECT supp_
                             <table class="table-bordered" style="width: 100%;border-collapse: collapse" border="1">
                                 <tr style="border-bottom: solid 1px  #CDCDCD;background-color: rgb(250,250,250)">
                                     <td style="width: 25px;">#</td>
-                                    <td style="width: 230px;">ITEM NAME</td>
-                                    <td style="width: 350px">ITEM DESCRIPTION</td>
+                                    <td style="width: 550px;">ITEM NAME</td>
                                     <td style="width: 80px;">UNIT</td>
                                     <td style="width: 80px;">PRICE</td>
                                     <td style="width: 80px;">QTY</td>
@@ -114,10 +116,9 @@ $vendorauto = buildVendorAutoComplete(MysqlConnection::fetchCustom("SELECT supp_
                                                 <td style="width: 25px">
                                                     <a class="icon  icon-remove" onclick="clearValue('<?php echo $index ?>')"></a>
                                                 </td>
-                                                <td style="width: 230px;">
+                                                <td style="width: 550px;">
                                                     <input type="text" name="items[]" id="tags<?php echo $index ?>" onfocusout="setDetails('<?php echo $index ?>')"  style="padding: 0px;margin: 0px;width: 100%">
                                                 </td>
-                                                <td style="width: 350px"><div id="desc<?php echo $index ?>"></div></td>
                                                 <td style="width: 80px;"><div id="unit<?php echo $index ?>"></div></td>
                                                 <td style="width: 80px;"><div id="price<?php echo $index ?>"></div></td>
                                                 <td style="width: 80px;"><input type="text" name="itemcount[]" onkeypress="return chkNumericKey(event)" onfocusout="calculateAmount('<?php echo $index ?>')" id="amount<?php echo $index ?>" style="padding: 0px;margin: 0px;width: 100%"></td>
@@ -134,10 +135,9 @@ $vendorauto = buildVendorAutoComplete(MysqlConnection::fetchCustom("SELECT supp_
                                                 <td style="width: 25px">
                                                     <a class="icon  icon-remove" onclick="clearValue('<?php echo $preindex ?>')"></a>
                                                 </td>
-                                                <td style="width: 230px;">
-                                                    <input type="text" name="items[]" value="<?php echo $value["item_code"] ?>" style="padding: 0px;margin: 0px;width: 100%">
+                                                <td style="width: 550px;">
+                                                    <input type="text" name="items[]" value="<?php echo $value["item_code"]." __ ".$value["item_desc_purch"] ?>" style="padding: 0px;margin: 0px;width: 100%">
                                                 </td>
-                                                <td style="width: 350px"><div id="desc<?php echo $preindex ?>"><?php echo $value["item_desc_purch"] ?></div></td>
                                                 <td style="width: 80px;"><div id="unit<?php echo $preindex ?>"><?php echo $value["unit"] ?></div></td>
                                                 <td style="width: 80px;"><div id="price<?php echo $preindex ?>"><?php echo $value["purchase_rate"] ?></div></td>
                                                 <td style="width: 80px;"><input type="text" name="itemcount[]" onkeypress="return chkNumericKey(event)" onfocusout="calculateAmount('<?php echo $preindex ?>')" id="amount<?php echo $preindex ?>" style="padding: 0px;margin: 0px;width: 100%"></td>
@@ -158,7 +158,7 @@ $vendorauto = buildVendorAutoComplete(MysqlConnection::fetchCustom("SELECT supp_
                                 </tr>
                                 <tr >
                                     <td><b>Order Date</b></td>
-                                    <td><input type="date" name="purchasedate" value="<?php echo date("Y-m-d") ?>" readonly=""></td>
+                                    <td><input type="text" name="purchasedate" value="<?php echo date("Y-m-d") ?>" readonly=""></td>
                                 </tr>
                                 <tr >
                                     <td><b>Enter By</b></td>
@@ -188,12 +188,6 @@ $vendorauto = buildVendorAutoComplete(MysqlConnection::fetchCustom("SELECT supp_
         </div>
     </div>
 </form>
-<script src="js/jquery.min.js"></script> 
-<script src="js/bootstrap.min.js"></script> 
-<script src="js/bootstrap-colorpicker.js"></script> 
-<script src="js/bootstrap-datepicker.js"></script> 
-<script src="js/select2.min.js"></script> 
-<script src="js/maruti.js"></script> 
 <script src="js/maruti.form_common.js"></script>
 <script src="perchaseorder/purchasejs.js"></script>
 <script>
@@ -212,7 +206,7 @@ $vendorauto = buildVendorAutoComplete(MysqlConnection::fetchCustom("SELECT supp_
 function buildauto($itemarray) {
     $option = "";
     foreach ($itemarray as $value) {
-        $option.="\"" . $value["item_code"] . "\",";
+        $option.="\"" . $value["item_code"]. " __ " . preg_replace('!\s+!', ' ', str_replace("\"", "", $value["item_desc_purch"]) ). "\",";
     }
     return $option;
 }

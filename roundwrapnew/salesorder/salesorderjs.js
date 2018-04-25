@@ -63,3 +63,6 @@ function discount() {
         $("#nettotal").val($("#finaltotal").val());
     }
 }
+
+
+

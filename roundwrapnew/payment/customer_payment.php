@@ -8,8 +8,8 @@
 </style>
 <?php
 $sqlgetsupplier = "SELECT * FROM customer_master WHERE  id = " . filter_input(INPUT_GET, "customerId");
-$resultset = MysqlConnection::fetchCustom($sqlgetsupplier);
-$customer = $resultset[0];
+$resultset1 = MysqlConnection::fetchCustom($sqlgetsupplier);
+$customer = $resultset1[0];
 
 $_SESSION["msg"] = "";
 if (isset($_POST["paidAmount"]) && $_POST["paidAmount"] != "") {
@@ -21,6 +21,7 @@ if (isset($_POST["paidAmount"]) && $_POST["paidAmount"] != "") {
     MysqlConnection::insert("customer_balancepayment", $_POST);
     MysqlConnection::delete("UPDATE customer_master SET balance = " . $_POST["balance"] . " WHERE id =  " . $customer["id"]);
     $_SESSION["msg"] = "Payment of " . $_POST["paidAmount"] . " added ";
+    header("location:index.php?pagename=customer_payment&customerId=" . $customer["id"]);
 }
 
 
