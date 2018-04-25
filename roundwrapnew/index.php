@@ -201,7 +201,7 @@ $ownaddress = $_SESSION["user"]["cmpName"] . ", " .
                 $(this).addClass("highlight");
         });
     </script>
-      <script src="js/jquery.ui.custom.js"></script> 
+      <!--<script src="js/jquery.ui.custom.js"></script>--> 
     <script src="js/bootstrap.min.js"></script> 
     <script src="js/jquery.uniform.js"></script> 
     <!--<script src="js/excanvas.min.js"></script>--> 

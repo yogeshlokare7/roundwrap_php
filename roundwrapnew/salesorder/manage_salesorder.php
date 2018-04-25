@@ -1,5 +1,10 @@
 <?php
-$listSalesOrders = MysqlConnection::fetchCustom("SELECT * FROM `sales_order` ORDER BY isOpen DESC");
+$isBackOrder = filter_input(INPUT_GET, "isBackOrder");
+if ($isBackOrder != "") {
+    $listSalesOrders = MysqlConnection::fetchCustom("SELECT * FROM `sales_order` WHERE isBackOrder = 'Y' AND isOpen = 'Y' ORDER BY isOpen DESC");
+} else {
+    $listSalesOrders = MysqlConnection::fetchCustom("SELECT * FROM `sales_order` WHERE isBackOrder = 'N' AND isOpen = 'Y' ORDER BY isOpen DESC");
+}
 ?>
 <style>
     .customtable{
@@ -32,18 +37,20 @@ $listSalesOrders = MysqlConnection::fetchCustom("SELECT * FROM `sales_order` ORD
     <div class="cutomheader">
         <h5 style="font-family: verdana;font-size: 12px;">CUSTOMER SALES ORDER LIST</h5>
     </div>
-    <div class="cutomheader">
-        <table >
-            <tr >
-                <th style="width: 2.3%;text-align: left">Search&nbsp;:&nbsp;</th>
-                <th colspan="9" style="text-align: left">
-                    <input type="text" id="searchinput" onkeyup="searchData()" 
-                           placeholder="By SO Number" 
-                           name="searchinput" style="width: 250px"/>
-                </th>
-            </tr>
-        </table>
-    </div>
+
+    <br/>
+    <table border="0" style="width: 0%">
+        <tr style="text-align: left">
+            <td><a class="btn btn-info" href="index.php?pagename=create_salesorder" ><i class="icon-plus-sign"></i>&nbsp;CREATE CUSTOMER ORDER</a></td>
+            <td>&nbsp;|&nbsp;</td>
+            <td style="width: 80%;vertical-align: bottom">
+                <b>&nbsp;Search&nbsp;:&nbsp;</b>
+                <input type="text" id="searchinput" onkeyup="searchData()" 
+                       placeholder="Search by So Number" 
+                       name="searchinput" style="width: 80%;height: 25px;margin-top: 3px;"/>
+            </td>
+        </tr>
+    </table>
 
     <div class="widget-box">
         <table class="customtable" border="1">
@@ -119,17 +126,26 @@ $listSalesOrders = MysqlConnection::fetchCustom("SELECT * FROM `sales_order` ORD
             </tr>
         </table>
     </div>
+
+    <table border="0" style="width: 0%">
+        <tr style="text-align: left">
+            <td><a class="btn btn-info" href="index.php?pagename=manage_salesorder" >&nbsp;SHOW ORDER'S</a></td>
+            <td><a class="btn btn-info" href="index.php?pagename=manage_salesorder&isBackOrder=Y" >&nbsp;SHOW BACK ORDER'S</a></td>
+            <td><a class="btn btn-info" href="index.php?pagename=manage_salesorderreceiving" >&nbsp;CLOSED ORDER'S</a></td>
+        </tr>
+    </table>
+
 </div>
 <script>
-    $("#deleteThis").click(function () {
+    $("#deleteThis").click(function() {
         $("div#divLoading").addClass('show');
         var dataString = "deleteId=" + $('#deleteId').val();
         $.ajax({
             type: 'POST',
             url: 'salesorder/salesorder_ajax.php',
             data: dataString
-        }).done(function (data) {
-        }).fail(function () {
+        }).done(function(data) {
+        }).fail(function() {
         });
         location.reload();
     });
@@ -143,10 +159,10 @@ $listSalesOrders = MysqlConnection::fetchCustom("SELECT * FROM `sales_order` ORD
     }
 </script>
 <script>
-    $(function () {
+    $(function() {
         $.contextMenu({
             selector: '.context-menu-one',
-            callback: function (key, options) {
+            callback: function(key, options) {
                 var m = "clicked row: " + key;
                 var id = $(this).attr('id');
                 switch (key) {
@@ -192,14 +208,14 @@ $listSalesOrders = MysqlConnection::fetchCustom("SELECT * FROM `sales_order` ORD
                 "create_invoice": {name: "CREATE INVOICE", icon: ""},
 //                "create_note": {name: "CREATE SALES ORDER", icon: ""},
                 "sep2": "---------",
-                "quit": {name: "QUIT", icon: function () {
+                "quit": {name: "QUIT", icon: function() {
                         return '';
                     }}
             }
         });
     });
 
-    $('tr').dblclick(function () {
+    $('tr').dblclick(function() {
         var id = $(this).attr('id');
         if (id !== undefined) {
             window.location = "index.php?pagename=view_salesorder&salesorderid=" + id;

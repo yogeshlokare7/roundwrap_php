@@ -8,15 +8,21 @@ $sonumber = "SO" . (1000 + $salesorderbumberarray[0]["counter"]);
 $sqlitemarray = MysqlConnection::fetchCustom("SELECT count(id) as counter FROM sales_order");
 $itemarray = MysqlConnection::fetchCustom("SELECT * FROM item_master;");
 $buildauto = buildauto(MysqlConnection::fetchCustom("SELECT item_id ,item_code,item_desc_purch, item_name FROM item_master;"));
+$customerauto = buildCustomerrAutoComplete(MysqlConnection::fetchCustom("SELECT id,cust_companyname FROM `customer_master` WHERE status = 'Y' ORDER BY `cust_companyname` ASC"));
 ?>
 
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="salesorder/salesorderjs.js"></script>
 <script>
     $(function() {
         var availableTags = [<?php echo $buildauto ?>];
         for (var index = 1; index <= 30; index++) {
             $("#tags" + index).autocomplete({source: availableTags});
         }
+    });
+    $(function() {
+        var availableCustomer = [<?php echo $customerauto ?>];
+        $("#companyname").autocomplete({source: availableCustomer});
     });
 </script>
 <div id="content-header">
@@ -31,7 +37,7 @@ $buildauto = buildauto(MysqlConnection::fetchCustom("SELECT item_id ,item_code,i
     tr,td{ vertical-align: middle; font-size: 12px;padding: 5px;margin: 5px;}
 </style>
 <form action="salesorder/savesalesorder_ajax.php" method="post" autocomplete="off">
-    <input type="hidden" name="customer_id" value="<?php echo filter_input(INPUT_GET, "customerId") ?>">
+    <input type="hidden" name="customer_id" id="customer_id" value="<?php echo filter_input(INPUT_GET, "customerId") ?>">
     <div class="container-fluid" style="" >
         <div class="widget-box" style="width: 100%;border-bottom: solid 1px #CDCDCD;">
             <div class="widget-title">
@@ -47,17 +53,20 @@ $buildauto = buildauto(MysqlConnection::fetchCustom("SELECT item_id ,item_code,i
                             <table>
                                 <tr>
                                     <td style="width: 10%"><label class="control-label"   class="control-label">CUSTOMER NAME&nbsp;:&nbsp</label></td>
-                                    <td><input  type="text" placeholder="Customer Name" value="<?php echo $customer["cust_companyname"] ?>" /></td>
+                                    <td>
+                                        <input  type="text" placeholder="Customer Name" autofocus="" onfocusout="searchCustomer()" required="" id="companyname" value="<?php echo $customer["cust_companyname"] ?>" />
+                                        <div id="error" style="color: red"></div>
+                                    </td>
                                     <td style="width: 10%"><label class="control-label">SHIP VIA&nbsp;:&nbsp</label></td>
                                     <td><input  type="text" placeholder="" name="shipvia"/></td>
                                     <td style="width: 10%"><label class="control-label">EXPECTED&nbsp;DELIVERY&nbsp;:&nbsp</label></td>
-                                    <td><input type="text"  id="datepicker" ></td>
+                                    <td><input type="text" name="expected_date" id="datepicker" ></td>
                                 </tr>
                                 <tr>
                                     <td ><label  class="control-label"  class="control-label">BILLING&nbsp;ADDRESS&nbsp;:&nbsp</label></td>
-                                    <td><textarea style="line-height: 18px;" name="billTo_address"><?php echo $customer["billto"] ?></textarea></td>
+                                    <td><textarea style="line-height: 18px;" name="billTo_address" id="billTo_address"><?php echo $customer["billto"] ?></textarea></td>
                                     <td><label class="control-label">SHIPPING&nbsp;ADDRESS&nbsp;:&nbsp</label></td>
-                                    <td><textarea style="line-height: 18px;" name="shipping_address"><?php echo $customer["shipto"] ?></textarea></td>
+                                    <td><textarea style="line-height: 18px;" name="shipping_address" id="shipping_address"><?php echo $customer["shipto"] ?></textarea></td>
                                     <td ><label class="control-label"><b>REMARK&nbsp;/&nbsp;NOTE&nbsp;:&nbsp</b></label></td>
                                     <td><textarea  style="line-height: 18px; color: red" name="remark" value="" ></textarea></td>
                                 </tr>
@@ -71,8 +80,7 @@ $buildauto = buildauto(MysqlConnection::fetchCustom("SELECT item_id ,item_code,i
                             <table class="table-bordered" style="width: 100%;border-collapse: collapse" border="1">
                                 <tr style="border-bottom: solid 1px  #CDCDCD;background-color: rgb(250,250,250)">
                                     <td style="width: 25px;">#</td>
-                                    <td style="width: 200px;">ITEM NAME</td>
-                                    <td style="width: 300px">ITEM DESCRIPTION</td>
+                                    <td style="width: 550px;">ITEM NAME</td>
                                     <td style="width: 80px;">UNIT</td>
                                     <td style="width: 80px;">PRICE</td>
                                     <td style="width: 80px;">ONHAND</td>
@@ -87,10 +95,9 @@ $buildauto = buildauto(MysqlConnection::fetchCustom("SELECT item_id ,item_code,i
                                             <td style="width: 25px">
                                                 <a class="icon  icon-remove" onclick="clearValue('<?php echo $index ?>')"></a>
                                             </td>
-                                            <td style="width: 200px;">
+                                            <td style="width: 550px;">
                                                 <input type="text" name="items[]" id="tags<?php echo $index ?>" onfocusout="setDetails('<?php echo $index ?>')"  style="padding: 0px;margin: 0px;width: 100%">
                                             </td>
-                                            <td style="width: 300px"><div id="desc<?php echo $index ?>"></div></td>
                                             <td style="width: 80px;"><div id="unit<?php echo $index ?>"></div></td>
                                             <td style="width: 80px;"><div id="price<?php echo $index ?>"></div></td>
                                             <td style="width: 80px;"><div id="onhand<?php echo $index ?>"></div></td>
@@ -110,7 +117,7 @@ $buildauto = buildauto(MysqlConnection::fetchCustom("SELECT item_id ,item_code,i
                                 </tr>
                                 <tr >
                                     <td><b>Sales Date</b></td>
-                                    <td><input type="date" name="salesdate" value="<?php echo date("Y-m-d") ?>" readonly=""></td>
+                                    <td><input type="text" name="salesdate" value="<?php echo date("Y-m-d") ?>" readonly=""></td>
                                 </tr>
                                 <tr >
                                     <td><b>Sales Person</b></td>
@@ -143,14 +150,7 @@ $buildauto = buildauto(MysqlConnection::fetchCustom("SELECT item_id ,item_code,i
     </div>
     <input type="hidden" name="onhand" id="onhand">
 </form>
-<script src="js/jquery.min.js"></script> 
-<script src="js/bootstrap.min.js"></script> 
-<!--<script src="js/bootstrap-colorpicker.js"></script>--> 
-<!--<script src="js/bootstrap-datepicker.js"></script>--> 
-<!--<script src="js/select2.min.js"></script>--> 
-<!--<script src="js/maruti.js"></script>--> 
-<!--<script src="js/maruti.form_common.js"></script>-->
-<script src="salesorder/salesorderjs.js"></script>
+
 <script>
             function createPurchaseOrder() {
                 var x = document.getElementsByTagName("form");
@@ -162,7 +162,15 @@ $buildauto = buildauto(MysqlConnection::fetchCustom("SELECT item_id ,item_code,i
 function buildauto($itemarray) {
     $option = "";
     foreach ($itemarray as $value) {
-        $option.="\"" . $value["item_code"]. " __ " . preg_replace('!\s+!', ' ', str_replace("\"", "", $value["item_desc_purch"]) ). "\",";
+        $option.="\"" . $value["item_code"] . " __ " . preg_replace('!\s+!', ' ', str_replace("\"", "", $value["item_desc_purch"])) . "\",";
+    }
+    return $option;
+}
+
+function buildCustomerrAutoComplete($vendorarray) {
+    $option = "";
+    foreach ($vendorarray as $value) {
+        $option.=" \" " . preg_replace('!\s+!', ' ', str_replace("\"", "", $value["cust_companyname"])) . "\",";
     }
     return $option;
 }

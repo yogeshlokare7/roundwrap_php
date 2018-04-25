@@ -65,4 +65,25 @@ function discount() {
 }
 
 
-
+function searchCustomer() {
+    var companyname = $("#companyname").val();
+    if (companyname !== "") {
+        var dataString = "companyname=" + companyname;
+        $.ajax({
+            type: 'POST',
+            url: 'customermaster/searchcustomer_ajax.php',
+            data: dataString
+        }).done(function(data) {
+            var jsonobj = JSON.parse(data);
+            $("#customer_id").val(jsonobj.id);
+            $("#billTo_address").val(jsonobj.billto);
+            $("#shipping_address").val(jsonobj.shipto);
+            if (jsonobj.length === 0) {
+                $("#error").text("Customer not available!!!");
+            } else {
+                $("#error").text("");
+            }
+        }).fail(function() {
+        });
+    }
+}

@@ -6,6 +6,11 @@ $salesorderid = $_POST["salesorderid"];
 for ($index = 0; $index < count($_POST["salesitems"]); $index++) {
     $salesitems = $_POST["salesitems"][$index];
     $itemsid = $_POST["itemsid"][$index];
+    
+    $delete = $_POST["delete"][$index];
+    
+    MysqlConnection::delete("DELETE FROM sales_item WHERE so_id = $salesorderid AND item_id = $delete ");
+
     if ($salesitems != "") {
         $oldreceived = MysqlConnection::fetchCustom("SELECT * FROM `sales_item` where item_id = $itemsid AND so_id = $salesorderid  ");
         $rQty = $oldreceived[0]["rQty"];
@@ -21,7 +26,10 @@ for ($index = 0; $index < count($_POST["salesitems"]); $index++) {
 
 $sumqty = MysqlConnection::fetchCustom("SELECT SUM(`qty`) as qty  FROM  `sales_item` WHERE so_id =$salesorderid ");
 $sumrqty = MysqlConnection::fetchCustom("SELECT SUM(`rqty`) as rqty  FROM  `sales_item` WHERE so_id =$salesorderid ");
+
 if ($sumqty[0]["qty"] == $sumrqty[0]["rqty"]) {
     MysqlConnection::delete("UPDATE sales_order SET isOpen = 'N'  where  id = $salesorderid ");
+} else {
+    MysqlConnection::delete("UPDATE sales_order SET isBackOrder = 'Y'  where  id = $salesorderid ");
 }
 header("location:../index.php?pagename=manage_salesorder");

@@ -58,12 +58,12 @@ $itemsarrays = MysqlConnection::fetchCustom($sqlitems);
                             <table class="table-bordered" style="width: 100%;border-collapse: collapse" border="1">
                                 <tr style="border-bottom: solid 1px  #CDCDCD;background-color: rgb(250,250,250)">
                                     <td style="width: 25px;">#</td>
-                                    <td style="width: 230px;">ITEM NAME</td>
-                                    <td style="width: 350px">ITEM DESCRIPTION</td>
+                                    <td style="width: 500px;">ITEM DETAIL</td>
                                     <td style="width: 100px;">ON.HAND.QTY</td>
                                     <td style="width: 100px;">ORD.QTY</td>
                                     <td style="width: 100px;">PRE.SALE.QTY</td>
-                                    <td>SALES QTY</td>
+                                    <td style="width: 100px;">SALES QTY</td>
+                                    <td >DELETE</td>
                                 </tr>
                             </table> 
                             <div style="overflow: auto;;margin: 0 auto">
@@ -72,34 +72,55 @@ $itemsarrays = MysqlConnection::fetchCustom($sqlitems);
                                     $index = 1;
                                     foreach ($itemsarrays as $key => $value) {
                                         if ($value["rqty"] - $value["qty"] != 0) {
-                                            if ($value["qty"] > $value["onhand"]) {
+                                            if ($value["onhand"] < 0) {
                                                 $back = "rgb(251,210,210)";
                                             } else {
                                                 $back = "";
                                             }
                                             ?>
                                             <tr id="<?php echo $index ?>" style="border-bottom: solid 1px  #CDCDCD;background-color: <?php echo $back ?>">
-                                                <td style="width: 25px"><?php echo $index++ ?></td>
-                                                <td style="width: 230px;"><?php echo $value["item_code"] ?></td>
-                                                <td style="width: 350px"><?php echo $value["item_desc_sales"] ?></td>
+                                                <td style="width: 25px"><?php echo $index ?></td>
+                                                <td style="width: 500px;"><?php echo $value["item_code"] ?> <?php echo $value["item_desc_sales"] ?></td>
                                                 <td style="width: 100px;"><?php echo $value["onhand"] ?></td>
                                                 <td style="width: 100px;"><?php echo $value["qty"] ?></td>
                                                 <td style="width: 100px;"><?php echo $value["rqty"] ?></td>
-                                                <td >
+                                                <td style="width: 100px;">
                                                     <?php
-                                                    if ($value["qty"] < $value["onhand"]) {
+                                                    if ($value["onhand"] > 0) {
                                                         ?>
-                                                        <input type="text" name="salesitems[]" id="salesitems[]">
+                                                        <input type="hidden" id="orderedqty<?php echo $index ?>" value="<?php echo $value["onhand"] ?>"/>
+                                                        <input type="hidden" name="qty[]" id="qty<?php echo $index ?>" value="<?php echo $value["qty"] ?>"/>
+
+                                                        <input type="text" name="salesitems[]" onkeypress="return chkNumericKey(event)" 
+                                                               value="<?php echo $value["qty"] - $value["rqty"] ?>"
+                                                               onfocusout="validateQty('<?php echo $index ?>')" id="salesitems<?php echo $index ?>">
+                                                        
                                                         <input type="hidden" name="itemsid[]" id="itemsid[]" value="<?php echo $value["item_id"] ?>"> 
                                                         <?php
-                                                    }else{
-                                                        echo "<a href='#'>CREATE PO</a>";
+                                                    } else {
+                                                        echo "<a href='index.php?pagename=create_perchaseorder&itemId=" . $value["item_id"] . "&flag=purchase'>CREATE PO</a>";
                                                     }
                                                     ?>
                                                 </td>
+                                                <td>
+                                                    <input type="checkbox" name="delete[]" value="<?php echo $value["item_id"] ?>">
+                                                </td>
+                                            </tr>
+                                            <?php
+                                        } else {
+                                            ?>
+                                            <tr id="<?php echo $index ?>" style="border-bottom: solid 1px  #CDCDCD;background-color: <?php echo $back ?>">
+                                                <td style="width: 25px"><?php echo $index++ ?></td>
+                                                <td style="width: 500px;"><?php echo $value["item_code"] ?> <?php echo $value["item_desc_sales"] ?></td>
+                                                <td style="width: 100px;"><?php echo $value["onhand"] ?></td>
+                                                <td style="width: 100px;"><?php echo $value["qty"] ?></td>
+                                                <td style="width: 100px;"><?php echo $value["rqty"] ?></td>
+                                                <td style="width: 100px;"><i class="btn-warning" style="padding: 2px 15px 2px 15px;">SHIPPED</i></td>
+                                                <td></td>
                                             </tr>
                                             <?php
                                         }
+                                        $index++;
                                     }
                                     ?>
                                 </table>
@@ -129,6 +150,22 @@ $itemsarrays = MysqlConnection::fetchCustom($sqlitems);
                     function createPurchaseOrder() {
                         var x = document.getElementsByTagName("form");
                         x[0].submit();
+                    }
+
+                    function validateQty(id) {
+
+                        var lastreceived = parseInt($("#orderedqty" + id).val());
+                        var received = parseInt($("#salesitems" + id).val());
+                        var qty = parseInt($("#qty" + id).val());
+                        if (received > lastreceived) {
+                            $("#salesitems" + id).val("");
+                            $("#salesitems" + id).focus();
+                        }
+
+                        if (qty < received) {
+                            $("#salesitems" + id).val("");
+                            $("#salesitems" + id).focus();
+                        }
                     }
 </script>
 <?php
