@@ -54,19 +54,19 @@ if (isset($customerid) && $customerid != "") {
     <div class="cutomheader">
         <h5 style="font-family: verdana;font-size: 12px;">CUSTOMER'S LIST</h5>
     </div>
-    <div class="cutomheader">
-        <table >
-            <tr>
-                <td style="width: 10%"><a class="btn" href="index.php?pagename=create_customermaster" ><i class="icon icon-user"></i>&nbsp;&nbsp;ADD&nbsp;CUSTOMER</a></td>
-                <th  style="width: 2.3%">&nbsp;Search&nbsp;:&nbsp;</th>
-                <th colspan="9" style="text-align: left">
-                    <input type="text" id="searchinput" onkeyup="searchData()" 
-                           placeholder="Search for companyname" 
-                           name="searchinput" style="width: 50%"/>
-                </th>
-            </tr>
-        </table>
-    </div>
+    <br/>
+    <table>
+        <tr>
+            <td ><a class="btn btn-info" href="index.php?pagename=create_customermaster" ><i class="icon icon-user"></i>&nbsp;&nbsp;ADD&nbsp;CUSTOMER</a></td>
+            <td>&nbsp;|&nbsp;</td>
+            <td style="width: 80%;vertical-align: bottom">
+                <b>&nbsp;Search&nbsp;:&nbsp;</b>
+                <input type="text" id="searchinput" onkeyup="searchData()" 
+                       placeholder="Search for companyname" 
+                       name="searchinput" style="width: 80%;height: 25px;margin-top: 3px;"/>
+            </td>
+        </tr>
+    </table>
     <div class="widget-box">
         <table class="customtable" border="1">
             <tr style="height: 30px;background-color: rgb(240,240,240);">
@@ -154,10 +154,10 @@ if (isset($customerid) && $customerid != "") {
 
 <!--</form>-->
 <script>
-    $(function() {
+    $(function () {
         $.contextMenu({
             selector: '.context-menu-one',
-            callback: function(key, options) {
+            callback: function (key, options) {
                 var m = "clicked row: " + key;
                 var id = $(this).attr('id');
                 switch (key) {
@@ -204,14 +204,14 @@ if (isset($customerid) && $customerid != "") {
                 "create_sales_order": {name: "CREATE ORDER", icon: ""},
                 "create_payment": {name: "MAKE PAYMENT", icon: ""},
                 "sep2": "---------",
-                "quit": {name: "QUIT", icon: function() {
+                "quit": {name: "QUIT", icon: function () {
                         return '';
                     }}
             }
         });
     });
 
-    $('tr').dblclick(function() {
+    $('tr').dblclick(function () {
         var id = $(this).attr('id');
         if (id !== undefined) {
             window.location = "index.php?pagename=view_customermaster&customerId=" + id;

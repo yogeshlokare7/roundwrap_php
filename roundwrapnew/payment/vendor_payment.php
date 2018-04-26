@@ -26,7 +26,7 @@ if (isset($_POST["paidAmount"]) && $_POST["paidAmount"] != "") {
 }
 
 $arrreceiptno = MysqlConnection::fetchCustom("SELECT id FROM `customer_balancepayment` ORDER BY id desc");
-$receiptno = "CR-" . time() . "-" . $arrreceiptno[0]["id"] . "" . $supp_id;
+$receiptno = "VR-" . time() . "-" . $arrreceiptno[0]["id"] . "" . $supp_id;
 $resultset = MysqlConnection::fetchCustom("SELECT * FROM `customer_balancepayment` where supp_id = " . filter_input(INPUT_GET, "supplierid") . " ORDER BY paidDate DESC");
 ?> 
 <div id="content-header">
@@ -93,7 +93,7 @@ $resultset = MysqlConnection::fetchCustom("SELECT * FROM `customer_balancepaymen
                                     <td><input type="text" readonly="" name="receiptNo" id="receiptNo" value="<?php echo $receiptno ?>"></td>
                                 </tr>
                                 <tr >
-                                    <td><b>Supplier Name</b></td>
+                                    <td><b>Vendor Name</b></td>
                                     <td><input type="text" readonly="" name="" id=""  value="<?php echo $supplier["companyname"] ?>"></td>
                                 </tr>
 

@@ -56,19 +56,20 @@ if (isset($itemid) && $itemid != "") {
     <div class="cutomheader">
         <h5 style="font-family: verdana;font-size: 12px;">ITEM'S LIST</h5>
     </div>
-    <div class="cutomheader"> 
-        <table border="0">
-            <tr >
-                <td style="width: 8%"><a class="btn" href="index.php?pagename=create_itemmaster" ><i class="icon-plus-sign"></i>&nbsp;ADD ITEM</a></td>
-                <th style="width: 2.3%">&nbsp;Search&nbsp;:&nbsp;</th>
-                <th  style="text-align: left">
-                    <input type="text" id="searchinput" onkeyup="searchData()" 
-                           placeholder="Search for Itemname " 
-                           name="searchinput" style="width: 50%"/>
-                </th>
-            </tr>
-        </table>
-    </div>
+    <br/>
+    <table border="0" style="width: 0%">
+        <tr >
+            <td ><a class="btn btn-info" href="index.php?pagename=create_itemmaster" ><i class="icon-plus-sign"></i>&nbsp;ADD ITEM </a></td>
+            <td>&nbsp;|&nbsp;</td>
+             <td style="width: 80%;vertical-align: bottom">
+                <b>&nbsp;Search&nbsp;:&nbsp;</b>
+                <input type="text" id="searchinput" onkeyup="searchData()" 
+                       placeholder="Search for Itemname " 
+                       name="searchinput" style="width: 80%;height: 25px;margin-top: 3px;"/>
+            </td>
+        </tr>
+    </table>
+
     <div class="widget-box">
         <table class="customtable" border="1">
             <tr style="height: 30px;background-color: rgb(240,240,240);">
@@ -156,15 +157,15 @@ if (isset($itemid) && $itemid != "") {
 </div>
 
 <script>
-    $("#deleteThis").click(function() {
+    $("#deleteThis").click(function () {
         $("div#divLoading").addClass('show');
         var dataString = "deleteId=" + $('#deleteId').val();
         $.ajax({
             type: 'POST',
             url: 'itemmaster/itemmaster_ajax.php',
             data: dataString
-        }).done(function(data) {
-        }).fail(function() {
+        }).done(function (data) {
+        }).fail(function () {
         });
         location.reload();
     });
@@ -175,10 +176,10 @@ if (isset($itemid) && $itemid != "") {
 
 </script>
 <script type="text/javascript">
-    $(function() {
+    $(function () {
         $.contextMenu({
             selector: '.context-menu-one',
-            callback: function(key, options) {
+            callback: function (key, options) {
                 var m = "clicked row: " + key;
                 var id = $(this).attr('id');
                 switch (key) {
@@ -238,14 +239,14 @@ if (isset($itemid) && $itemid != "") {
 //                "received_items": {name: "RECEIVED ITEMS", icon: ""},
 //                "create_invoice": {name: "CREATE INVOICE", icon: ""},
                 "sep1": "---------",
-                "quit": {name: "QUIT", icon: function() {
+                "quit": {name: "QUIT", icon: function () {
                         return '';
                     }}
             }
         });
     });
 
-    $('tr').dblclick(function() {
+    $('tr').dblclick(function () {
         var id = $(this).attr('id');
         if (id !== undefined) {
             window.location = "index.php?pagename=view_itemmaster&itemId=" + id;

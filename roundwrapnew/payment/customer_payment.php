@@ -47,7 +47,7 @@ $resultset = MysqlConnection::fetchCustom("SELECT * FROM `customer_balancepaymen
         <div class="widget-box" style="width: 100%;border-bottom: solid 1px #CDCDCD;">
             <div class="widget-title">
                 <ul class="nav nav-tabs">
-                    <li class="active"><a data-toggle="tab" href="#tab1">VENDOR PAYMENT</a></li>
+                    <li class="active"><a data-toggle="tab" href="#tab1">CUSTOMER PAYMENT</a></li>
                 </ul>
             </div>
             <br/>
