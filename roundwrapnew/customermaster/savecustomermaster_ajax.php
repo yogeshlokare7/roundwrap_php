@@ -30,7 +30,7 @@ $customerarray["currency"] = filter_input(INPUT_POST, "currency");
 $customerarray["balance"] = filter_input(INPUT_POST, "balance");
 $customerarray["cust_accnt_no"] = filter_input(INPUT_POST, "cust_accnt_no");
 $customerarray["creditlimit"] = filter_input(INPUT_POST, "creditlimit");
-$customerarray["status"] = filter_input(INPUT_POST, "status");
+$customerarray["status"] ="Y";
 $customerarray["taxInformation"] = filter_input(INPUT_POST, "taxInformation");
 
 $customerarray["streetName"] = filter_input(INPUT_POST, "streetName");

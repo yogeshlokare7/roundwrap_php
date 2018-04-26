@@ -36,7 +36,7 @@ if (!empty($supplierid)) {
     </div>
 </div>
 <script>
-//    btnVenNext1  btnVenPrev1
+
     $('#btnVenNext1').on('click', function() {
         $('#siTab1').removeClass('active');
         $('#adTab2').addClass('active');

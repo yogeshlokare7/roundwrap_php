@@ -8,6 +8,10 @@ $purchaseid = filter_input(INPUT_GET, "purchaseorderid");
 $result = MysqlConnection::fetchCustom("SELECT * , "
                 . "( SELECT companyname FROM supplier_master WHERE supp_id = po.`supplier_id` ) AS companyname FROM purchase_order po, purchase_item pi WHERE po.id = pi.po_id AND pi.po_id =$purchaseid");
 $purchaseorder = $result[0];
+
+//echo "<pre>";
+//   print_r($purchaseorder);
+//echo "</pre>";
 ?>
 <style>
     input,textarea,select,date{ width: 90%; }
@@ -22,7 +26,7 @@ $purchaseorder = $result[0];
 
 <br/>
 <div id="page-wrap" style="width: 95%">
-    <h3 style="text-align: center;height: 40px;line-height: 45px;background-color: rgb(240,240,240);border: solid 1px rgb(200,200,200);margin-bottom: -1px;">PACKING SLIP</h3>
+    <h3 style="text-align: center;height: 40px;line-height: 45px;background-color: rgb(240,240,240);border: solid 1px rgb(200,200,200);margin-bottom: -1px;">Purchase Order</h3>
     <table style="width: 100%" border="0">
         <tr style="vertical-align: top">
             <td colspan="2" style="width: 70%">
@@ -37,14 +41,14 @@ $purchaseorder = $result[0];
             <td>
                 <div id="customer">
                     <table id="meta">
-                        <tbody>
-                            <tr>
+                        <tbody style="width:50%">
+<!--                            <tr>
                                 <th class="meta-head">Invoice #</th>
                                 <td><?php echo $purchaseorder["purchaseOrderId"] ?></td>
-                            </tr>
-                            <tr>
+                            </tr>-->
+                            <tr> 
                                 <th class="meta-head">Date</th>
-                                <td><?php echo date("Y-m-d") ?></td>
+                                <td><?php echo $purchaseorder["purchasedate"] ?></td>
                             </tr>
                         </tbody>
                     </table>
@@ -80,17 +84,14 @@ $purchaseorder = $result[0];
                             <th >SHIP.VIA</th>
                             <th style="width: 30%">REP</th>
                         </tr>
-                        <?php
-                        foreach ($result as $key => $value) {
-                            $userarray = MysqlConnection::fetchCustom("SELECT  `firstName`, `lastName`  FROM  `user_master` WHERE user_id = " . $value["added_by"]);
-                            ?>
+                     
                             <tr style="height: 30px" >
                                 <td ><?php echo $purchaseorder["purchaseOrderId"] ?></td>
-                                <td ><?php echo $value["expected_date"] ?>&nbsp;&nbsp;</td>
+                                <td ><?php echo $purchaseorder["expected_date"] ?>&nbsp;&nbsp;</td>
                                 <td ><?php echo $purchaseorder["ship_via"] ?></td>
-                                <td ><?php echo implode(" ", $userarray[0]) ?></td>
+                                <td ><?php echo $purchaseorder["supplier_id"] ?></td>
                             </tr>
-                        <?php } ?>
+                       
                     </tbody>
 
                 </table>

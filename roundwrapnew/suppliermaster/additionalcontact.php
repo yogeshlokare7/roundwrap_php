@@ -1,5 +1,4 @@
 <?php
-echo $supplierid;
 $arraycontacts = MysqlConnection::fetchCustom("SELECT *  FROM  `supplier_contact` where supp_id = $supplierid");
 ?>
 <script>
