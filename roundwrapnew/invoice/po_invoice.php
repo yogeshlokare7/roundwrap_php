@@ -21,40 +21,37 @@ $purchaseorder = $result[0];
         margin: 0px;
         font-size: 12px;
     }
+  
 </style>
 
 
 <br/>
 <div id="page-wrap" style="width: 95%">
-    <h3 style="text-align: center;height: 40px;line-height: 45px;background-color: rgb(240,240,240);border: solid 1px rgb(200,200,200);margin-bottom: -1px;">Purchase Order</h3>
-    <table style="width: 100%" border="0">
+    <!--    <h3 style="text-align: center;height: 40px;line-height: 45px;background-color: rgb(240,240,240);border: solid 1px rgb(200,200,200);margin-bottom: -1px;">Purchase Order</h3>-->
+    <table style="width: 100%" border="1">
+
         <tr style="vertical-align: top">
-            <td colspan="2" style="width: 70%">
+            <td></td>
+            <td  style="width: 40%">
                 <div id="identity" style="width: 80%">
                     <p style="text-align: justify;line-height: 20px">
                         <?php echo $purchaseorder["billing_address"] ?>
                     </p>
-                    <br/>
-                    <br/>
+                    
                 </div>
             </td>
-            <td>
-                <div id="customer">
-                    <table id="meta">
-                        <tbody style="width:50%">
-<!--                            <tr>
-                                <th class="meta-head">Invoice #</th>
-                                <td><?php echo $purchaseorder["purchaseOrderId"] ?></td>
-                            </tr>-->
-                            <tr> 
-                                <th class="meta-head">Date</th>
-                                <td><?php echo $purchaseorder["purchasedate"] ?></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </td>
+            <td></td>
         </tr>
+    </table>
+    <br/>
+    <table style="width: 100%" border="0" >
+        <tr style="text-align: left;background-color: rgb(240,240,240);height: 30px;" >
+            <td  >PO No:&nbsp;&nbsp;<?php echo $purchaseorder["purchaseOrderId"] ?></td>
+            <td style="width: 68%; text-align:center;"><b>PURCHASE ORDER</b></td>
+            <td style=" text-align:right;">Date:&nbsp;&nbsp;<?php echo $purchaseorder["purchasedate"] ?></td>
+        </tr>
+    </table>
+    <table style="width: 100%" border="1">
         <tr>
             <td >
                 <div id="identity" style="width: 100%">
@@ -72,26 +69,23 @@ $purchaseorder = $result[0];
                     </p>
                 </div>
             </td>
-            <td ></td>
+            
         </tr>
         <tr>
             <td colspan="3">
                 <table id="items" style="margin-top: 0px;" border="1">
                     <tbody>
                         <tr style="text-align: left;background-color: rgb(240,240,240);height: 30px;" >
-                            <th style="width: 25%">PO</th>
                             <th style="width: 25%">SHIP.DATE</th>
                             <th >SHIP.VIA</th>
                             <th style="width: 30%">REP</th>
                         </tr>
-                     
-                            <tr style="height: 30px" >
-                                <td ><?php echo $purchaseorder["purchaseOrderId"] ?></td>
-                                <td ><?php echo $purchaseorder["expected_date"] ?>&nbsp;&nbsp;</td>
-                                <td ><?php echo $purchaseorder["ship_via"] ?></td>
-                                <td ><?php echo $purchaseorder["supplier_id"] ?></td>
-                            </tr>
-                       
+                        <tr style="height: 30px" >
+                            <td ><?php echo $purchaseorder["expected_date"] ?>&nbsp;&nbsp;</td>
+                            <td ><?php echo $purchaseorder["ship_via"] ?></td>
+                            <td ><?php echo $purchaseorder["supplier_id"] ?></td>
+                        </tr>
+
                     </tbody>
 
                 </table>
@@ -104,8 +98,10 @@ $purchaseorder = $result[0];
                         <tr style="text-align: left;background-color: rgb(240,240,240);height: 30px;" >
                             <th style="width: 25%">Item</th>
                             <th >Description</th>
-                            <th  style="width: 15%">Unit Cost</th>
-                            <th  style="width: 15%">Quantity</th>
+                            <th  style="width: 10%">Unit Cost</th>
+                            <th  style="width: 10%">Quantity</th>
+                            <th  style="width: 10%">Price</th>
+                            <th >Amount</th>
                         </tr>
                         <?php
                         foreach ($result as $key => $value) {
@@ -116,8 +112,25 @@ $purchaseorder = $result[0];
                                 <td>&nbsp;&nbsp;<?php echo $items[0]["item_desc_purch"] ?></td>
                                 <td>&nbsp;&nbsp;<?php echo $items[0]["unit"] ?></td>
                                 <td >&nbsp;&nbsp;<?php echo $value["qty"] ?></td>
+                                <td style="text-align:right"><?php echo $items[0]["purchase_rate"] ?>&nbsp;&nbsp;</td>
+                                <td style="text-align: right"><?php echo ($items[0]["purchase_rate"] * $value["qty"]) ?>&nbsp;&nbsp;</td>
                             </tr>
                         <?php } ?>
+                        <tr  style="height: 35px;">
+                            <td colspan="4" > </td>
+                            <td  ><b>Subtotal</b></td>
+                            <td style="text-align: right"><?php echo $purchaseorder["sub_total"]; ?>&nbsp;&nbsp;</td>
+                        </tr>
+                        <tr style="height: 35px;">
+                            <td colspan="4" > </td>
+                            <td style="text-align: left"><b>Discount</b></td>
+                            <td style="text-align: right"><?php echo $purchaseorder["discount"]; ?>&nbsp;&nbsp;</td>
+                        </tr>
+                        <tr style="height: 35px;">
+                            <td colspan="4" > </td>
+                            <td style="text-align: left"><b>Total</b></td>
+                            <td style="text-align: right"><?php echo $purchaseorder["total"]; ?>&nbsp;&nbsp;</td>
+                        </tr>
                     </tbody>
                 </table>
             </td>
