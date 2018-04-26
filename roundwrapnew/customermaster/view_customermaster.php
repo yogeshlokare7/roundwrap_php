@@ -169,6 +169,9 @@ if (isset($_POST["deleteItem"])) {
             <div id="tab3" class="tab-pane">
                 <?php
                 $customertype = MysqlConnection::fetchCustom("SELECT name FROM generic_entry WHERE ID = " . $customer["cust_type"]);
+
+                $taxinfo = MysqlConnection::fetchCustom("SELECT * FROM taxinfo_table WHERE id = " . $customer["taxInformation"]);
+                $paymentterm = MysqlConnection::fetchCustom("SELECT name FROM generic_entry WHERE id = " . $customer["paymentterm"]);
                 ?>
                 <fieldset class="well the-fieldset">
                     <table  style="width: 80%;vertical-align: top" border="0"> 
@@ -178,7 +181,7 @@ if (isset($_POST["deleteItem"])) {
                             <td><label class="control-label">Discount</label></td>
                             <td><input type="text" value="<?php echo $customer["discount"] ?>" readonly=""/></td>
                             <td><label class="control-label">Term</label></td>
-                            <td><input type="text" value="<?php echo $customer["paymentTerm"] ?>" readonly=""/></td>
+                            <td><input type="text" value="<?php echo $paymentterm[0]["code"]." ".$paymentterm[0]["name"] ?>" readonly=""/></td>
                         </tr>
                         <tr>
                             <td><label class="control-label">Rep</label></td>
@@ -190,7 +193,7 @@ if (isset($_POST["deleteItem"])) {
                         </tr>
                         <tr>
                             <td>&nbsp;</td>
-                            <td><input type="text" value="<?php echo $customer["taxcode"] ?>" readonly=""/></td>
+                            <td><input type="text" value="<?php echo $taxinfo[0]["taxcode"]."-".$taxinfo[0]["taxname"]."-".$taxinfo[0]["taxvalues"] ?> %" readonly=""/></td>
                         </tr>
                     </table>
                     <hr/>
@@ -212,7 +215,7 @@ if (isset($_POST["deleteItem"])) {
                             <td><label class="control-label">Credit Limit</label></td>
                             <td><input type="text"  value="<?php echo $customer["creditlimit"] ?>" readonly=""/></td>
                         </tr>
-                        <?php foreach ($customerpaymentarray as $key => $value) { ?>
+<?php foreach ($customerpaymentarray as $key => $value) { ?>
                             <tr>
                                 <td><label class="control-label">Credit Card No.</label></td>
                                 <td><input type="text"   value="<?php echo $value["cardnumber"] ?>" readonly="" /></td>
@@ -224,7 +227,7 @@ if (isset($_POST["deleteItem"])) {
                                 <td><input type="text"  value="<?php echo $value["cvvno"] ?>"  readonly=""/></td>
 
                             </tr>
-                        <?php } ?>
+<?php } ?>
                     </table> 
                     <hr/>
                     <input type="hidden" value="customerid" value="<?php echo $customerid ?>"/>
@@ -240,21 +243,21 @@ if (isset($_POST["deleteItem"])) {
                                 <th style="width: 100px;">&nbsp;DATE</th>
                                 <th>&nbsp;LAST NOTES</th>
                             </tr>
-                            <?php
-                            foreach ($arrcustomernote as $key => $value) {
-                                ?>
+<?php
+foreach ($arrcustomernote as $key => $value) {
+    ?>
                                 <tr style="border-bottom: solid 1px rgb(220,220,220);">
                                     <td>&nbsp;
-                                        <?php
-                                        $explod = explode(" ", $value["adddate"]);
-                                        echo $explod[0];
-                                        ?>
+    <?php
+    $explod = explode(" ", $value["adddate"]);
+    echo $explod[0];
+    ?>
                                     </td>
                                     <td><p style="padding: 3px;text-align: justify"><?php echo $value["note"] ?></p></td>
                                 </tr>
-                                <?php
-                            }
-                            ?>
+    <?php
+}
+?>
                         </table>
                     </div>
                 </fieldset>
@@ -274,12 +277,12 @@ if (isset($_POST["deleteItem"])) {
             type: 'POST',
             url: 'customermaster/customermaster_ajax.php',
             data: dataString
-        }).done(function (data) {
-        }).fail(function () {
+        }).done(function(data) {
+        }).fail(function() {
         });
     }
 
-    $('#btnCmpNext1').on('click', function () {
+    $('#btnCmpNext1').on('click', function() {
         $('#ciTab1').removeClass('active');
         $('#acTab2').addClass('active');
 
@@ -287,14 +290,14 @@ if (isset($_POST["deleteItem"])) {
         $('#tab2').addClass('active');
     });
 
-    $('#btnCmpPrev1').on('click', function () {
+    $('#btnCmpPrev1').on('click', function() {
         $('#acTab2').removeClass('active');
         $('#ciTab1').addClass('active');
         $('#tab2').removeClass('active');
         $('#tab1').addClass('active');
 
     });
-    $('#btnCmpNext2').on('click', function () {
+    $('#btnCmpNext2').on('click', function() {
         $('#acTab2').removeClass('active');
         $('#tdTab3').addClass('active');
         $('#tab2').removeClass('active');
@@ -302,32 +305,32 @@ if (isset($_POST["deleteItem"])) {
     });
 
 
-    $('#btnCmpPrev2').on('click', function () {
+    $('#btnCmpPrev2').on('click', function() {
         $('#tdTab3').removeClass('active');
         $('#acTab2').addClass('active');
         $('#tab3').removeClass('active');
         $('#tab2').addClass('active');
     });
-    $('#btnCmpNext3').on('click', function () {
+    $('#btnCmpNext3').on('click', function() {
         $('#tdTab3').removeClass('active');
         $('#dpiTab4').addClass('active');
         $('#tab3').removeClass('active');
         $('#tab4').addClass('active');
     });
-    $('#btnCmpPrev3').on('click', function () {
+    $('#btnCmpPrev3').on('click', function() {
         $('#dpiTab4').removeClass('active');
         $('#tdTab3').addClass('active');
         $('#tab4').removeClass('active');
         $('#tab3').addClass('active');
     });
 
-    $('#btnCmpNext4').on('click', function () {
+    $('#btnCmpNext4').on('click', function() {
         $('#dpiTab4').removeClass('active');
         $('#noteTab5').addClass('active');
         $('#tab4').removeClass('active');
         $('#tab5').addClass('active');
     });
-    $('#btnCmpPrev4').on('click', function () {
+    $('#btnCmpPrev4').on('click', function() {
         $('#noteTab5').removeClass('active');
         $('#dpiTab4').addClass('active');
         $('#tab5').removeClass('active');

@@ -112,6 +112,10 @@ $resultset = MysqlConnection::fetchCustom("SELECT * FROM `customer_balancepaymen
                                     <td><input type="text" name="chequeNoDDNo" id="chequeNoDDNo" ></td>
                                 </tr>
                                 <tr >
+                                    <td><b>Currency</b></td>
+                                    <td><input type="text" readonly="" value="<?php echo $customer["currency"]?>" ></td>
+                                </tr>
+                                <tr >
                                     <td><b>Paid Amount</b></td>
                                     <td><input type="text" autofocus=""  onkeypress="return chkNumericKey(event)" onkeyup="calculateAmount()" name="paidAmount" id="paidAmount"  ></td>
                                 </tr>

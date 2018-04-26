@@ -7,7 +7,7 @@
     }
 </style>
 <?php
-$sqlgetsupplier = "SELECT supp_id,companyname, supp_balance FROM supplier_master WHERE supp_id = " . filter_input(INPUT_GET, "supplierid");
+$sqlgetsupplier = "SELECT supp_id,companyname, supp_balance,currency FROM supplier_master WHERE supp_id = " . filter_input(INPUT_GET, "supplierid");
 $resultset1 = MysqlConnection::fetchCustom($sqlgetsupplier);
 $supplier = $resultset1[0];
 $supp_id = $supplier["supp_id"];
@@ -109,6 +109,10 @@ $resultset = MysqlConnection::fetchCustom("SELECT * FROM `customer_balancepaymen
                                 <tr >
                                     <td><b>Cheque No/DD No</b></td> 
                                     <td><input type="text" name="chequeNoDDNo" id="chequeNoDDNo" ></td>
+                                </tr>
+                                <tr >
+                                    <td><b>Currency</b></td>
+                                    <td><input type="text" readonly="" value="<?php echo $supplier["currency"]?>" ></td>
                                 </tr>
                                 <tr >
                                     <td><b>Paid Amount</b></td>
